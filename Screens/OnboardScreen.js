@@ -1,13 +1,32 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Onboarding from "react-native-onboarding-swiper";
 import { Image } from "@rneui/themed";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StatusBar } from "expo-status-bar";
 
 const OnboardScreen = ({ navigation }) => {
   const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({});
   const redirect = () => {
     navigation.replace("Home");
   };
+  const getUser = async () => {
+    // console.log("getUser");
+    const store = await AsyncStorage.getAllKeys();
+    const userData = await AsyncStorage.getItem("user");
+    setUser(JSON.parse(userData));
+
+    // console.log("Names", store);
+  };
+  useEffect(() => {
+    getUser();
+    AsyncStorage.getItem("token").then((value) => {
+      if (value !== null) {
+        setIsLogin(true);
+      }
+    });
+  }, []);
   return (
     <Onboarding
       onSkip={() =>
@@ -55,7 +74,9 @@ const OnboardScreen = ({ navigation }) => {
           subtitle: "Recive Delivery from your door Step",
         },
       ]}
-    />
+    >
+      <StatusBar style="light" />
+    </Onboarding>
   );
 };
 

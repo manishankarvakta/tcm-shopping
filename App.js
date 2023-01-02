@@ -1,27 +1,34 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import OnboardScreen from "./Screens/OnboardScreen";
-import LoginScreen from "./Screens/LoginScreen";
-import HomeScreen from "./Screens/HomeScreen";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import AuthStackNav from "./Navigation/AuthStackNav";
+import StackNav from "./Navigation/StackNav";
+import "react-native-gesture-handler";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  const [token, setToken] = useState(false);
+  const [user, setUser] = useState({});
+  const getUser = async () => {
+    // console.log("getUser");
+    const store = await AsyncStorage.getAllKeys();
+    const userData = await AsyncStorage.getItem("user");
+    setUser(JSON.parse(userData));
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Onbording"
-          component={OnboardScreen}
-        />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    AsyncStorage.getItem("token").then((value) => {
+      if (value !== null) {
+        setToken(true);
+      }
+    });
+  };
+  console.log("Names", user, token);
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  return token ? <StackNav /> : <AuthStackNav />;
 }
 
 const styles = StyleSheet.create({
