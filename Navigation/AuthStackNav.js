@@ -1,27 +1,38 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../Screens/LoginScreen";
+// import LoginScreen from "../Screens/Auth/LoginScreen";
+// import OnboardScreen from "../Screens/OnboardScreen";
+import ROUTES from "../Utility/Routes";
 import OnboardScreen from "../Screens/OnboardScreen";
+import LoginScreen from "../Screens/Auth/LoginScreen";
+import RegisterScreen from "../Screens/Auth/RegisterScreen";
+import ForgotPasswordScreen from "../Screens/Auth/ForgotPasswordScreen";
+// import RegisterScreen from "../Screens/Auth/RegisterScreen";
+// import ForgotPasswordScreen from "../Screens/Auth/ForgotPasswordScreen";
 
 const AuthStackNav = () => {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Onbording"
-          component={OnboardScreen}
-        />
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      screenOptions={{
+        // headerShown: false,
+        headerStyle: {
+          backgroundColor: "red",
+        },
+        headerTintColor: "white",
+        headerBackTitleVisible: false,
+      }}
+      initialRouteName={ROUTES.LOGIN}
+    >
+      <Stack.Screen name={ROUTES.ONBOARD} component={OnboardScreen} />
+      <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
+      <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
+      <Stack.Screen
+        name={ROUTES.FORGOT_PASSWORD}
+        component={ForgotPasswordScreen}
+      />
+    </Stack.Navigator>
   );
 };
 

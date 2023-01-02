@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AuthStackNav from "./Navigation/AuthStackNav";
 import StackNav from "./Navigation/StackNav";
 import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -28,7 +29,11 @@ export default function App() {
     getUser();
   }, []);
 
-  return token ? <StackNav /> : <AuthStackNav />;
+  return (
+    <NavigationContainer>
+      {token ? <StackNav /> : <AuthStackNav />}
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({

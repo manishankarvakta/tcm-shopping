@@ -1,4 +1,6 @@
 export default {
+  ONBOARD: "Onboard Screen",
+
   LOGIN: "Login",
   REGISTER: "Register",
   FORGOT_PASSWORD: "Forgot Password",

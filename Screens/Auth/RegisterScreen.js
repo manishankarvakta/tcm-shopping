@@ -14,11 +14,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format } from "date-fns";
 import { Icon } from "@rneui/base";
 import axios from "axios";
-import BASE_URL from "../Utility/BaseUrl";
+import BASE_URL from "../../Utility/BaseUrl";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { StatusBar } from "expo-status-bar";
 
-const LoginScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState("");
   const [pass, setPass] = useState("");
@@ -88,88 +88,21 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <ImageBackground
-      source={require("../assets/bg.png")}
-      resizeMode="cover"
-      style={styles.image}
-    >
-      <StatusBar style="light" />
-
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={[styles.container]}
-      >
-        <Spinner
-          //visibility of Overlay Loading Spinner
-          visible={loading}
-          //Text with the Spinner
-          textContent={"Loading..."}
-          //Text style of the Spinner Text
-          textStyle={styles.spinnerTextStyle}
-        />
-        <Avatar source={require("../assets/logo.png")} style={styles.logo} />
-        <Text style={styles.title}>Login</Text>
-        <View style={styles.inputWrapper}>
-          <Input
-            style={styles.input}
-            placeholder="@user Id"
-            value={userId}
-            onChangeText={(text) => setUserId(text)}
-            leftIcon={
-              <Icon name="user" type="ant-design" size={24} color="gray" />
-            }
-          />
-          <Input
-            style={styles.input}
-            placeholder="Password"
-            secureTextEntry
-            value={pass}
-            onChangeText={(text) => setPass(text)}
-            leftIcon={
-              <Icon name="key" type="ant-design" size={24} color="gray" />
-            }
-          />
-          <Button
-            type="solid"
-            color="error"
-            buttonStyle={{ borderRadius: 50, padding: 13, fontWeight: 600 }}
-            style={styles.button}
-            onPress={() => submitLogin()}
-          >
-            <Icon
-              name="lock"
-              type="ant-design"
-              color="white"
-              style={{ marginRight: 10 }}
-            />
-            Login
-          </Button>
-        </View>
-      </KeyboardAvoidingView>
-    </ImageBackground>
+    <View style={styles.container}>
+      <Text>Register</Text>
+    </View>
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "red",
-    // flex: 1,
+    backgroundColor: "red",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     color: "white",
-    marginHorizontal: 25,
-    paddingVertical: 20,
-    backgroundColor: "rgba(255, 255, 255, .80)",
-    borderRadius: 16,
-    shadowColor: "#171717",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 30,
-    // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    backdropFilter: "blur(5.2px)",
-    border: "1px solid rgba(255, 255, 255, 0.3)",
   },
   logo: {
     height: 120,
