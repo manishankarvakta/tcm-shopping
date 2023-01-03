@@ -12,7 +12,8 @@ import { format } from "date-fns";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from "expo-location";
 import { StatusBar } from "expo-status-bar";
-import ImageCarousel from "../Components/ImageCarousel";
+import ImageCarousel from "../../Components/ImageCarousel";
+import Routes from "../../Utility/Routes";
 
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
@@ -62,7 +63,7 @@ const HomeScreen = ({ navigation }) => {
     } catch (err) {
       console.log("logout error", err);
     } finally {
-      navigation.replace("Login");
+      navigation.replace(Routes.LOGIN);
     }
   };
 
@@ -79,7 +80,7 @@ const HomeScreen = ({ navigation }) => {
             <TouchableOpacity>
               <Avatar
                 rounded
-                source={require("../assets/logo.png")}
+                source={require("../../assets/logo.png")}
                 style={styles.avatar}
               />
             </TouchableOpacity>
@@ -162,7 +163,10 @@ const HomeScreen = ({ navigation }) => {
           <Text style={{ fontSize: 16, fontWeight: "600" }}>
             Top Categories
           </Text>
-          <TouchableOpacity style={{ flexDirection: "row" }}>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_TAB)}
+          >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>

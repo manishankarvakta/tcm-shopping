@@ -15,9 +15,7 @@ const ImageCarousel = () => {
     { url: require("../assets/image2.jpg") },
     { url: require("../assets/image3.jpg") },
   ];
-  const getUri = (item) => {
-    return `../assets/${item.url}.jpg`;
-  };
+
   return (
     <FlatList
       horizontal

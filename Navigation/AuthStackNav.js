@@ -8,6 +8,7 @@ import OnboardScreen from "../Screens/OnboardScreen";
 import LoginScreen from "../Screens/Auth/LoginScreen";
 import RegisterScreen from "../Screens/Auth/RegisterScreen";
 import ForgotPasswordScreen from "../Screens/Auth/ForgotPasswordScreen";
+import TabNav from "./TabNav";
 // import RegisterScreen from "../Screens/Auth/RegisterScreen";
 // import ForgotPasswordScreen from "../Screens/Auth/ForgotPasswordScreen";
 
@@ -31,6 +32,11 @@ const AuthStackNav = () => {
       <Stack.Screen
         name={ROUTES.FORGOT_PASSWORD}
         component={ForgotPasswordScreen}
+      />
+      <Stack.Screen
+        name={ROUTES.HOME_TAB}
+        component={TabNav}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

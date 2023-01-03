@@ -18,7 +18,6 @@ import BASE_URL from "../../Utility/BaseUrl";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { StatusBar } from "expo-status-bar";
 import Routes from "../../Utility/Routes";
-// import Routes from "../../Utility/Routes";
 
 const LoginScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -39,7 +38,7 @@ const LoginScreen = ({ navigation }) => {
     getUser();
     AsyncStorage.getItem("token").then((value) => {
       if (value !== null) {
-        navigation.replace("Home");
+        navigation.navigate(Routes.HOME);
       }
     });
     console.log(loading);
@@ -73,7 +72,7 @@ const LoginScreen = ({ navigation }) => {
             console.log("storeError:", error);
           } finally {
             console.log("Login Success");
-            navigation.replace("Home");
+            navigation.replace(Routes.HOME_TAB);
           }
         }
         const store = await AsyncStorage.getAllKeys();
