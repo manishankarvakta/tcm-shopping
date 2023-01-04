@@ -6,6 +6,7 @@ import AuthStackNav from "./Navigation/AuthStackNav";
 import StackNav from "./Navigation/StackNav";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
+import TabNav from "./Navigation/TabNav";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -31,7 +32,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {token ? <StackNav /> : <AuthStackNav />}
+      {token ? <TabNav /> : <AuthStackNav />}
     </NavigationContainer>
   );
 }

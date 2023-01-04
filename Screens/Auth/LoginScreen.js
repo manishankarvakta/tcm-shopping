@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation }) => {
     getUser();
     AsyncStorage.getItem("token").then((value) => {
       if (value !== null) {
-        navigation.navigate(Routes.HOME);
+        navigation.navigate(Routes.HOME_TAB);
       }
     });
     console.log(loading);

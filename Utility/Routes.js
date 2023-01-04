@@ -13,8 +13,12 @@ export default {
   SERARCH_TAB: "Search Tab",
 
   CATEGORY: "Category",
-  CATEGORY_TAB: "Category Tab",
+  CATEGORY_GROUP: "Category Group",
+  CATEGORY_GROUP_TAB: "Category Tab",
   CATEGORY_PRODUCT: "Category Product",
+
+  CHATS: "Chats",
+  CHATS_TAB: "Chats Tab",
 
   NOTIFICATIONS: "Notifications",
   NOTIFICATIONS_DRAWER: "Notification Drawer",

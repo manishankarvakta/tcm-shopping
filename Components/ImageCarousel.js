@@ -28,8 +28,8 @@ const ImageCarousel = () => {
             onPress={() => alert(item.url)}
             source={item.url}
             style={{
-              width: 300,
-              height: 150,
+              width: 200,
+              height: 100,
               marginHorizontal: 5,
               marginVertical: 10,
               borderRadius: 10,

@@ -77,7 +77,9 @@ const HomeScreen = ({ navigation }) => {
       headerLeft: () => {
         return (
           <View style={styles.headerLeft}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            // onPress={() => navigation.openDrawer()}
+            >
               <Avatar
                 rounded
                 source={require("../../assets/logo.png")}
@@ -165,7 +167,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_TAB)}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -184,6 +186,7 @@ const styles = StyleSheet.create({
     // marginHorizontal: 5,
     // marginVertical: 5,
     // marginBottom: 5,
+    marginLeft: 10,
   },
   avatar: {
     height: 40,

@@ -9,8 +9,8 @@ import LoginScreen from "../Screens/Auth/LoginScreen";
 import RegisterScreen from "../Screens/Auth/RegisterScreen";
 import ForgotPasswordScreen from "../Screens/Auth/ForgotPasswordScreen";
 import TabNav from "./TabNav";
-// import RegisterScreen from "../Screens/Auth/RegisterScreen";
-// import ForgotPasswordScreen from "../Screens/Auth/ForgotPasswordScreen";
+
+import { Onbording, Login, Register, ForgotPassword } from "../Screens";
 
 const AuthStackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -26,13 +26,10 @@ const AuthStackNav = () => {
       }}
       initialRouteName={ROUTES.LOGIN}
     >
-      <Stack.Screen name={ROUTES.ONBOARD} component={OnboardScreen} />
-      <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
-      <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
-      <Stack.Screen
-        name={ROUTES.FORGOT_PASSWORD}
-        component={ForgotPasswordScreen}
-      />
+      <Stack.Screen name={ROUTES.ONBOARD} component={Onbording} />
+      <Stack.Screen name={ROUTES.LOGIN} component={Login} />
+      <Stack.Screen name={ROUTES.REGISTER} component={Register} />
+      <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPassword} />
       <Stack.Screen
         name={ROUTES.HOME_TAB}
         component={TabNav}

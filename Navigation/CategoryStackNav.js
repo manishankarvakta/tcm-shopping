@@ -2,20 +2,17 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Routes from "../Utility/Routes";
-import CategoryScreen from "../Screens/Home/CategoryScreen";
-import CategoryProductScreen from "../Screens/Home/CategoryProductScreen";
-import HomeScreen from "../Screens/Home/HomeScreen";
+import { Category, CategoryProduct } from "../Screens";
 
 const CategoryStackNav = () => {
   const Stack = createNativeStackNavigator();
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name={Routes.HOME} component={HomeScreen} />
-      <Stack.Screen name={Routes.CATEGORY} component={CategoryScreen} />
+      <Stack.Screen name={Routes.CATEGORY_TAB} component={Category} />
       <Stack.Screen
         name={Routes.CATEGORY_PRODUCT}
-        component={CategoryProductScreen}
+        component={CategoryProduct}
       />
     </Stack.Navigator>
   );

@@ -2,11 +2,9 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Routes from "../Utility/Routes";
-import HomeScreen from "../Screens/Home/HomeScreen";
-import SearchScreen from "../Screens/Home/SearchScreen";
-import CategoryScreen from "../Screens/Home/CategoryScreen";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import { Home, Category, Search, Chats, CategoryGroup } from "../Screens";
 
 const TabNav = () => {
   const Tab = createBottomTabNavigator();
@@ -14,15 +12,19 @@ const TabNav = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        headerShown: false,
+        // headerShown: false,
         tabBarIcon: ({ color, size, focused }) => {
           let IconName;
           if (route.name === Routes.HOME_TAB) {
-            IconName = focused ? "ios-home-outline" : "ios-home-sharp";
-          } else if (route.name === Routes.CATEGORY_TAB) {
-            IconName = focused ? "ios-apps-outline" : "ios-apps-sharp";
+            IconName = focused ? "ios-home-sharp" : "ios-home-outline";
+          } else if (route.name === Routes.CATEGORY_GROUP_TAB) {
+            IconName = focused ? "ios-apps-sharp" : "ios-apps-outline";
           } else if (route.name === Routes.SERARCH_TAB) {
-            IconName = focused ? "ios-search-outline" : "ios-search-sharp";
+            IconName = focused ? "ios-search-sharp" : "ios-search-outline";
+          } else if (route.name === Routes.CHATS_TAB) {
+            IconName = focused
+              ? "ios-chatbubble-ellipses-sharp"
+              : "ios-chatbubble-ellipses-outline";
           }
           return <Icon name={IconName} size={22} color={color} />;
         },
@@ -30,9 +32,10 @@ const TabNav = () => {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name={Routes.HOME_TAB} component={HomeScreen} />
-      <Tab.Screen name={Routes.CATEGORY_TAB} component={CategoryScreen} />
-      <Tab.Screen name={Routes.SERARCH_TAB} component={SearchScreen} />
+      <Tab.Screen name={Routes.HOME_TAB} component={Home} />
+      <Tab.Screen name={Routes.CATEGORY_GROUP_TAB} component={CategoryGroup} />
+      <Tab.Screen name={Routes.CHATS_TAB} component={Chats} />
+      <Tab.Screen name={Routes.SERARCH_TAB} component={Search} />
     </Tab.Navigator>
   );
 };
