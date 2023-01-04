@@ -24,7 +24,6 @@ const ImageCarousel = () => {
       renderItem={({ item }) => (
         <TouchableOpacity>
           <Image
-            // source={`../assets/image1.jpg`}
             onPress={() => alert(item.url)}
             source={item.url}
             style={{
