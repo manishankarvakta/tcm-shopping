@@ -8,6 +8,7 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNav from "./Navigation/TabNav";
 
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [token, setToken] = useState(false);
@@ -32,7 +33,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {token ? <TabNav /> : <AuthStackNav />}
+    <TabNav/>
     </NavigationContainer>
   );
 }
@@ -45,3 +46,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+//  {token ? <TabNav /> : <AuthStackNav />}

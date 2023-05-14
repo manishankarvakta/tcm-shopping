@@ -50,7 +50,8 @@ const LoginScreen = ({ navigation }) => {
     // navigation.replace("Home");
 
     // AXIOS LOGIN REQUEST
-    axios
+    console.log(`${BASE_URL}/customer/login`)
+    await axios
       .post(`${BASE_URL}/user/login`, {
         email: userId,
         password: pass,

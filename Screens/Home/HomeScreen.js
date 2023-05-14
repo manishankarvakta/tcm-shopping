@@ -1,5 +1,5 @@
 import {
-  Alert,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -14,7 +14,7 @@ import * as Location from "expo-location";
 import { StatusBar } from "expo-status-bar";
 import ImageCarousel from "../../Components/ImageCarousel";
 import Routes from "../../Utility/Routes";
-
+import TopCategorys from "../../Components/TopCategorys"
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -153,8 +153,7 @@ const HomeScreen = ({ navigation }) => {
     <ScrollView style={styles.continer}>
       <StatusBar style="dark" />
       <ImageCarousel />
-      <View>
-        <View
+      <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -173,7 +172,39 @@ const HomeScreen = ({ navigation }) => {
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
-      </View>
+        <View>
+        <View style={styles.row}>
+        <TopCategorys/>
+    </View>
+   
+        </View>
+
+        <View>
+              <TouchableOpacity>
+                 <Text style={{textAlign:"center",fontSize: 20,fontWeight:"700",color:"red" }}>All Categories</Text>
+                 </TouchableOpacity>
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Popular
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+           </View>
+        </View>
     </ScrollView>
   );
 };
@@ -199,4 +230,18 @@ const styles = StyleSheet.create({
   continer: {
     backgroundColor: "white",
   },
+
+  row: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding:10,
+  },
+  cardImgStyle:{
+    width:170,
+    height:90,
+    borderRadius:15
+  }
+
 });
