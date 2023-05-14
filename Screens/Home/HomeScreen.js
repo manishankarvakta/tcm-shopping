@@ -15,6 +15,16 @@ import { StatusBar } from "expo-status-bar";
 import ImageCarousel from "../../Components/ImageCarousel";
 import Routes from "../../Utility/Routes";
 import TopCategorys from "../../Components/TopCategorys"
+import ProductCard from "../../Components/ProductCard";
+import FlashSale from "../../Components/FlashSale";
+import Freshvegetable from "../../Components/Freshvegetable";
+import Biscuits from "../../Components/Biscuits";
+import SaltSugar from "../../Components/SaltSugar";
+import SliderTwo from "../../Components/SliderTwo"
+import FreshFruits from "../../Components/FreshFruits.";
+import Noodles from "../../Components/Noodles";
+import Oil from "../../Components/Oil"
+import OffersSlider from "../../Components/OffersSlider";
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -202,6 +212,223 @@ const HomeScreen = ({ navigation }) => {
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
+        </View>
+           </View>
+           <View>
+             <ProductCard/>
+           </View>
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Flash Sales
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <FlashSale/>
+        </View>
+           </View>
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Fresh Vegetables
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <Freshvegetable/>
+        </View>
+           </View>
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Biscuits
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <Biscuits/>
+        </View>
+           </View>
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Salt & Sugar
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <SaltSugar/>
+        </View>
+           </View>
+
+           <View>
+            <SliderTwo/>
+           </View>
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Fresh Fruits
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <FreshFruits/>
+        </View>
+           </View>
+
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Noodles
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <Noodles/>
+        </View>
+           </View>
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Oil
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <Oil/>
+        </View>
+           </View>
+
+
+           <View>
+           <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 10,
+            marginTop: 20,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            Offers
+          </Text>
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+          >
+            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Icon name="arrowright" type="ant-design" size={20} color="red" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <OffersSlider/>
         </View>
            </View>
         </View>
