@@ -25,4 +25,6 @@ export default {
 
   SETTING: "Setting",
   PROFILE: "Profile",
+
+ 
 };

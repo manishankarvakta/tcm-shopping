@@ -5,6 +5,8 @@ import Routes from "../Utility/Routes";
 
 import { Home, Login, Category, CategoryGroup } from "../Screens";
 
+
+
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -16,6 +18,7 @@ const StackNav = () => {
         name={Routes.CATEGORY_GROUP_TAB}
         component={CategoryGroup}
       />
+
     </Stack.Navigator>
   );
 };

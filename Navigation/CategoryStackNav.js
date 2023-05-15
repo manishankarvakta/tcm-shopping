@@ -3,6 +3,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Routes from "../Utility/Routes";
 import { Category, CategoryProduct } from "../Screens";
+import PopularProducts from "../Screens/Home/PopularProducts";
+import LoginScreen from "../Screens/Auth/LoginScreen";
 
 const CategoryStackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -13,6 +15,11 @@ const CategoryStackNav = () => {
       <Stack.Screen
         name={Routes.CATEGORY_PRODUCT}
         component={CategoryProduct}
+      />
+
+      <Stack.Screen
+        name={Routes.LOGIN}
+        component={LoginScreen}
       />
     </Stack.Navigator>
   );

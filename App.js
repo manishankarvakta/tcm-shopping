@@ -7,8 +7,8 @@ import StackNav from "./Navigation/StackNav";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNav from "./Navigation/TabNav";
-import ProductCart from "./Components/ProductCart";
-import ProductCard from "./Components/ProductCard";
+import PopularProducts from "./Screens/Home/PopularProducts";
+
 
 
 export default function App() {
