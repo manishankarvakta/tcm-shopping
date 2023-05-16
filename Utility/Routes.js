@@ -25,6 +25,13 @@ export default {
 
   SETTING: "Setting",
   PROFILE: "Profile",
-
- 
+  
+  POPULAR_Product : "Popular Product",
+  FLASHSLE:"Flash Sales",
+  FRESH_VEGETABLES:"Fresh Vegetables",
+  All_BISCUITS:"Biscuits",
+  SALT_SUGER : "Salt Suger",
+  FRESH_FOOD:"Fresh food",
+  NOODLES:"Noodles",
+  ALL_OIL:"oil",
 };

@@ -3,10 +3,10 @@ import { View, Text, ScrollView,StyleSheet, Image, TouchableOpacity } from 'reac
 
 const TopCategorys = () => {
   const [data, setData] = useState([
-    { id: '1', imageUrl: "https://i.ibb.co/rdZ9MMJ/category-f6939a4160010043a11b.jpg", title: 'Item 1' },
-    { id: '2', imageUrl: "https://i.ibb.co/31CCyhk/image.png", title: 'Item 2' },
-    { id: '3', imageUrl: "https://i.ibb.co/rdZ9MMJ/category-f6939a4160010043a11b.jpg", title: 'Item 1' },
-    { id: '4', imageUrl: "https://i.ibb.co/31CCyhk/image.png", title: 'Item 2' },
+    { id: '1', imageUrl:"https://i.ibb.co/hKHSyd3/f1.jpg", title: 'Item 1' },
+    { id: '2', imageUrl: "https://i.ibb.co/yh9NwdF/f3.jpg", title: 'Item 2' },
+    { id: '3', imageUrl: "https://i.ibb.co/3FLQkyH/f4.jpg", title: 'Item 3' },
+    { id: '4', imageUrl: "https://i.ibb.co/31CCyhk/image.png", title: 'Item 4' },
   
   ]);
 

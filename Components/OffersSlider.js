@@ -11,13 +11,13 @@ import {
   
   const OffersSlider = () => {
     const data = [
-      { url: require("../assets/image1.jpg") },
+      { url: require("../assets/FlashSales/f3.jpg") },
       { url: require("../assets/image2.jpg") },
-      { url: require("../assets/image3.jpg") },
-      { url: require("../assets/image2.jpg") },
-      { url: require("../assets/image3.jpg") },
-      { url: require("../assets/image2.jpg") },
-      { url: require("../assets/image3.jpg") },
+      { url: require("../assets/Freshfood/3.jpg") },
+      { url: require("../assets/PopularProduct/p3.jpg") },
+      { url: require("../assets/PopularProduct/p7.jpg") },
+      { url: require("../assets/FlashSales/f6.jpg") },
+      { url: require("../assets/PopularProduct/p3.jpg") },
     ];
   
     return (

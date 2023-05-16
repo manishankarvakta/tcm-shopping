@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
-import Routes from '../../Utility/Routes';
 const numColumns = 3 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
+const data = [
+    { id: '1', imageUrl:require("../../assets/PopularProduct/p1.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
+    { id: '2', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
+    { id: '3', imageUrl: require("../../assets/PopularProduct/p3.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
+    { id: '4', imageUrl: require("../../assets/PopularProduct/p4.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
+    { id: '5', imageUrl:require("../../assets/PopularProduct/p5.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
+    { id: '7', imageUrl: require("../../assets/PopularProduct/p6.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
+    { id: '8', imageUrl:require("../../assets/PopularProduct/p7.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
+    { id: '9', imageUrl:require("../../assets/PopularProduct/p8.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
+    { id: '10', imageUrl: require("../../assets/PopularProduct/p9.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
+    { id: '11', imageUrl: require("../../assets/PopularProduct/p10.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
+    { id: '12', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
+    { id: '13', imageUrl: require("../../assets/PopularProduct/p8.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
+  ];
 
-    const data = [
-      { id: '1', imageUrl:require("../../assets/PopularProduct/p1.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
-      { id: '2', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '3', imageUrl: require("../../assets/PopularProduct/p3.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '4', imageUrl: require("../../assets/PopularProduct/p4.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
-      { id: '5', imageUrl:require("../../assets/PopularProduct/p5.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '7', imageUrl: require("../../assets/PopularProduct/p6.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '8', imageUrl:require("../../assets/PopularProduct/p7.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
-      { id: '9', imageUrl:require("../../assets/PopularProduct/p8.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '10', imageUrl: require("../../assets/PopularProduct/p9.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '11', imageUrl: require("../../assets/PopularProduct/p10.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
-      { id: '12', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '13', imageUrl: require("../../assets/PopularProduct/p8.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
-    ];
-
-const PopularProducts = () => {
+const AllNoodles = () => {
   const renderItem = ({ item }) => {
     return (
         <TouchableOpacity style={styles.card} >
@@ -30,7 +28,7 @@ const PopularProducts = () => {
       width: 95,
       height: 90,
       
-      
+      marginVertical: 5,
       borderRadius: 10,
     }}
     
@@ -116,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PopularProducts;
+export default AllNoodles;

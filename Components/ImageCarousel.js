@@ -11,9 +11,9 @@ import React from "react";
 
 const ImageCarousel = () => {
   const data = [
-    { url: require("../assets/image1.jpg") },
+    { url: require("../assets/FlashSales/f1.jpg") },
     { url: require("../assets/image2.jpg") },
-    { url: require("../assets/image3.jpg") },
+    { url: require("../assets/Freshfood/1.jpg") },
   ];
 
   return (
@@ -28,7 +28,7 @@ const ImageCarousel = () => {
             source={item.url}
             style={{
               width: 200,
-              height: 100,
+              height: 130,
               marginHorizontal: 5,
               marginVertical: 10,
               borderRadius: 10,

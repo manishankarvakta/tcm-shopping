@@ -11,15 +11,14 @@
       
       const ProductCard = () => {
         const data = [
-          { id: '1', imageUrl:require("../assets/image1.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
-          { id: '2', imageUrl:require("../assets/img66.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-          { id: '3', imageUrl: require("../assets/image1.jpg"), title: 'Item 1',name:"Orange",price:"300TK",weight:"1kg" },
-          { id: '4', imageUrl: require("../assets/img66.jpg"), title: 'Item 2' ,name:"Watermelon",price:"620TK",weight:"2kg"},
-          { id: '5', imageUrl:require("../assets/img66.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-          { id: '6', imageUrl: require("../assets/image1.jpg"), title: 'Item 1',name:"Orange",price:"300TK",weight:"1kg" },
+          { id: '1', imageUrl:require("../assets/FlashSales/f9.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
+          { id: '2', imageUrl:require("../assets/Freshfood/7.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
+          { id: '3', imageUrl: require("../assets/PopularProduct/p1.jpg"), title: 'Item 1',name:"Orange",price:"300TK",weight:"1kg" },
+          { id: '4', imageUrl: require("../assets/FlashSales/f4.jpg"), title: 'Item 2' ,name:"Watermelon",price:"620TK",weight:"2kg"},
+          { id: '5', imageUrl:require("../assets/Freshfood/6.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
+          { id: '6', imageUrl: require("../assets/PopularProduct/p6.jpg"), title: 'Item 1',name:"Orange",price:"300TK",weight:"1kg" },
         
         ];
-      
         return (
           <FlatList
             horizontal
@@ -34,7 +33,7 @@
                     width: 95,
                     height: 90,
                     
-                    marginVertical: 5,
+                    marginVertical: 8,
                     borderRadius: 10,
                   }}
                   

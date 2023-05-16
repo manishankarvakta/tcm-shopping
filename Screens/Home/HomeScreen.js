@@ -25,7 +25,9 @@ import FreshFruits from "../../Components/FreshFruits.";
 import Noodles from "../../Components/Noodles";
 import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
-const HomeScreen = ({ navigation }) => {
+import { useNavigation } from "@react-navigation/native";
+const HomeScreen = () => {
+  const navigation = useNavigation()
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   useEffect(() => {
@@ -190,7 +192,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
 
         <View>
-              <TouchableOpacity>
+              <TouchableOpacity   onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}>
                  <Text style={{textAlign:"center",fontSize: 20,fontWeight:"700",color:"red" }}>All Categories</Text>
                  </TouchableOpacity>
            <View>
@@ -207,7 +209,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.LOGIN)}
+            onPress={() => navigation.navigate(Routes.POPULAR_Product)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -232,7 +234,8 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+            onPress={() => navigation.navigate(Routes.FLASHSLE)}
+           
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -258,7 +261,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+            onPress={() => navigation.navigate(Routes.FRESH_VEGETABLES)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -284,7 +287,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+            onPress={() => navigation.navigate(Routes.All_BISCUITS)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -310,7 +313,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CHATS)}
+            onPress={() => navigation.navigate(Routes.SALT_SUGER)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -340,7 +343,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+            onPress={() => navigation.navigate(Routes.FRESH_FOOD)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -367,7 +370,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+            onPress={() => navigation.navigate(Routes.NOODLES)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
@@ -393,7 +396,7 @@ const HomeScreen = ({ navigation }) => {
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+            onPress={() => navigation.navigate(Routes.ALL_OIL)}
           >
             <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />

@@ -5,6 +5,7 @@ import Routes from "../Utility/Routes";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { Home, Category, Search, Chats, CategoryGroup } from "../Screens";
+import StackNav from "./StackNav";
 
 const TabNav = () => {
   const Tab = createBottomTabNavigator();
@@ -32,7 +33,7 @@ const TabNav = () => {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name={Routes.HOME_TAB} component={Home} />
+      <Tab.Screen name={Routes.HOME_TAB} component={StackNav} />
       <Tab.Screen name={Routes.CATEGORY_GROUP_TAB} component={CategoryGroup} />
       <Tab.Screen name={Routes.CHATS_TAB} component={Chats} />
       <Tab.Screen name={Routes.SERARCH_TAB} component={Search} />
