@@ -6,6 +6,8 @@ import {
     Image,
     View,
   } from "react-native";
+  import Icon from "react-native-vector-icons/FontAwesome";
+
   import React from "react";
   // import { Image } from "@rneui/themed";
   
@@ -42,8 +44,13 @@ import {
              <View style={styles.details}>
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.price}>Price: {item.price}</Text>
-          <Text style={styles.quantity}>{item.weight}</Text>
-        </View>
+          <View style={styles.cartStyle}>
+                <Text style={styles.quantity}>{item.weight}</Text>
+               <TouchableOpacity>
+               <Icon name="shopping-cart" size={24} color="gray" />
+               </TouchableOpacity>
+             </View>        
+             </View>
             {/* <Text>{`../assets/${item.key}.jpg`}</Text> */}
           </TouchableOpacity>
         )}
@@ -68,6 +75,10 @@ import {
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
       elevation: 5,
+    },
+    cartStyle:{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
     image: {
       width: 95,

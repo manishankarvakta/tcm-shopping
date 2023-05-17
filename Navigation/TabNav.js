@@ -13,7 +13,7 @@ const TabNav = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        // headerShown: false,
+         headerShown: false,
         tabBarIcon: ({ color, size, focused }) => {
           let IconName;
           if (route.name === Routes.HOME_TAB) {

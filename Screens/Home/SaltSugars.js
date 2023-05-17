@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Icon from "react-native-vector-icons/FontAwesome";
+
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
 const numColumns = 3 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
@@ -37,8 +39,13 @@ const SaltSugars = () => {
    <View style={styles.details}>
 <Text style={styles.name}>{item.name}</Text>
 <Text style={styles.price}>Price: {item.price}</Text>
-<Text style={styles.quantity}>{item.weight}</Text>
-</View>
+<View style={styles.cartStyle}>
+                <Text style={styles.quantity}>{item.weight}</Text>
+               <TouchableOpacity>
+               <Icon name="shopping-cart" size={24} color="gray" />
+               </TouchableOpacity>
+             </View> 
+             </View>
   {/* <Text>{`../assets/${item.key}.jpg`}</Text> */}
 </TouchableOpacity>
     );
@@ -61,6 +68,10 @@ const styles = StyleSheet.create({
   container:{
     marginHorizontal:10,
     marginVertical:10
+    },
+    cartStyle:{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
   item: {
     alignItems: 'center',
