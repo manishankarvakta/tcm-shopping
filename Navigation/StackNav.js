@@ -13,6 +13,7 @@ import AllFreshFruits from "../Screens/Home/AllFreshFruits";
 import AllNoodles from "../Screens/Home/AllNoodles"
 import AllOil from "../Screens/Home/AllOil"
 
+
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,8 @@ const StackNav = () => {
       <Stack.Screen name={Routes.FRESH_FOOD} component={AllFreshFruits} />
       <Stack.Screen name={Routes.NOODLES} component={AllNoodles} />
       <Stack.Screen name={Routes.ALL_OIL} component={AllOil} />
+
+      
     </Stack.Navigator>
   );
 };

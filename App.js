@@ -7,7 +7,10 @@ import StackNav from "./Navigation/StackNav";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNav from "./Navigation/TabNav";
+import SingleProductDetailsScreen from "./Screens/SingleProductsDetailsScreen"
 
+
+ 
 
 
 
@@ -35,7 +38,8 @@ export default function App() {
 
   return (
     <NavigationContainer>
-    <TabNav/>
+       <SingleProductDetailsScreen/>
+
     </NavigationContainer>
   );
 }
@@ -48,4 +52,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-//  {token ? <TabNav /> : <AuthStackNav />}
+
+//{token ? <TabNav /> : <AuthStackNav />}

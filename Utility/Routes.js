@@ -34,4 +34,7 @@ export default {
   FRESH_FOOD:"Fresh food",
   NOODLES:"Noodles",
   ALL_OIL:"oil",
+
+  T:"Testt",
+  Tt:"TestD"
 };

@@ -5,18 +5,18 @@ const numColumns = 2 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
 
 const data = [
-  { key: '1', image: require('../../assets/FlashSales/f1.jpg')},
-  { key: '2', image: require('../../assets/PopularProduct/p3.jpg')},
-  { key: '3', image: require('../../assets/PopularProduct/p5.jpg')},
-  { key: '4', image: require('../../assets/PopularProduct/p2.jpg')},
-  { key: '5', image: require('../../assets/FlashSales/f4.jpg')},
-  { key: '6', image: require('../../assets/FlashSales/f6.jpg')},
-  { key: '7', image: require('../../assets/PopularProduct/p8.jpg')},
-  { key: '8', image: require('../../assets/PopularProduct/p7.jpg')},
-  { key: '9', image: require('../../assets/PopularProduct/p10.jpg')},
-  { key: '10', image: require('../../assets/PopularProduct/p2.jpg')},
-  { key: '11', image: require('../../assets/PopularProduct/p1.jpg')},
-  { key: '12', image: require('../../assets/PopularProduct/p9.jpg')},
+  { Id: '1', image: require('../../assets/FlashSales/f1.jpg')},
+  { Id: '2', image: require('../../assets/PopularProduct/p3.jpg')},
+  { Id: '3', image: require('../../assets/PopularProduct/p5.jpg')},
+  { Id: '4', image: require('../../assets/PopularProduct/p2.jpg')},
+  { Id: '5', image: require('../../assets/FlashSales/f4.jpg')},
+  { Id: '6', image: require('../../assets/FlashSales/f6.jpg')},
+  { Id: '7', image: require('../../assets/PopularProduct/p8.jpg')},
+  { Id: '8', image: require('../../assets/PopularProduct/p7.jpg')},
+  { Id: '9', image: require('../../assets/PopularProduct/p10.jpg')},
+  { Id: '10', image: require('../../assets/PopularProduct/p2.jpg')},
+  { Id: '11', image: require('../../assets/PopularProduct/p1.jpg')},
+  { Id: '12', image: require('../../assets/PopularProduct/p9.jpg')},
 ];
 
 const CategoryGroupScreen = () => {
