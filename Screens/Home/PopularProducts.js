@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 import Routes from '../../Utility/Routes';
+import { useNavigation } from '@react-navigation/native';
 const numColumns = 3 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
+
+
 
     const data = [
       { id: '1', imageUrl:require("../../assets/PopularProduct/p1.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
@@ -21,9 +24,12 @@ const itemWidth = Dimensions.get('window').width / numColumns;
     ];
 
 const PopularProducts = () => {
+  const navigation = useNavigation()
+
+
   const renderItem = ({ item }) => {
     return (
-        <TouchableOpacity style={styles.card} >
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card} >
         <Image
     onPress={() => alert(item.imageUrl)}
     source={item.imageUrl}

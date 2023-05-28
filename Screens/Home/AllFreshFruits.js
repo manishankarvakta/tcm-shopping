@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Icon from "react-native-vector-icons/FontAwesome";
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
+import Routes from '../../Utility/Routes';
 const numColumns = 3 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
 
@@ -19,10 +20,10 @@ const itemWidth = Dimensions.get('window').width / numColumns;
       { id: '13', imageUrl: require("../../assets/Freshfood/1.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
     ];
 
-const AllFreshFruits = () => {
+const AllFreshFruits = ({navigation}) => {
   const renderItem = ({ item }) => {
     return (
-        <TouchableOpacity style={styles.card} >
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card} >
         <Image
     onPress={() => alert(item.imageUrl)}
     source={item.imageUrl}

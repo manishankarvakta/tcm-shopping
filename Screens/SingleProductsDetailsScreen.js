@@ -8,11 +8,11 @@ export default function SingleProductsDetailsScreen() {
       };
   return (
     <SafeAreaView>
-      <Text style={{marginTop:30 ,fontWeight: 'bold', fontSize: 18,marginLeft:10}}>Mango Himshagor (Satkhira)+- 50gm</Text>
+      <Text style={{marginTop:10 ,fontWeight: 'bold', fontSize: 18,marginLeft:10}}>Mango Himshagor (Satkhira)+- 50gm</Text>
       <View style={{ alignItems: 'center',}}>
-          <Image source={require("../assets/Freshfood/1.jpg")} style={{ width: 250, height: 250,marginTop:60}} />
+          <Image source={require("../assets/Freshfood/5.jpg")} style={{ width: 230, height: 230,marginTop:20}} />
       </View>
-      <Text style={{color:"red",marginTop:40 ,fontSize: 15,marginLeft:17}}>$265 / 400gm</Text>
+      <Text style={{color:"red",marginTop:30 ,fontSize: 15,marginLeft:17}}>$265 / 400gm</Text>
     
       
       
@@ -22,7 +22,7 @@ export default function SingleProductsDetailsScreen() {
       <Button style={{color:"red"}} title ="Buy now" onPress={handleButtonPress} color="white"/>
      
       </View>
-      <TouchableOpacity  style={{padding:3,backgroundColor:"#CBCBCB" ,height:35,width:35,   alignItems: 'center',justifyContent: 'center',}}>
+      <TouchableOpacity  style={{padding:3,marginTop:25 ,backgroundColor:"#CBCBCB" ,height:35,width:35,   alignItems: 'center',justifyContent: 'center',}}>
        <FontAwesome name="plus" size={16} color="#1D2F3E"  />
         </TouchableOpacity >
       </View>

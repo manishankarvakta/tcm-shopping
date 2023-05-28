@@ -4,15 +4,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Routes from "../Utility/Routes";
 
 import { Home, Login, Category, CategoryGroup } from "../Screens";
-import PopularProducts from "../Screens/Home/PopularProducts";
-import FlashSale from "../Screens/Home/FlashSales";
-import FreshVegetables from "../Screens/Home/FreshVegetables";
-import AllBiscuits from "../Screens/Home/AllBiscuits";
-import SaltSugars from "../Screens/Home/SaltSugars";
-import AllFreshFruits from "../Screens/Home/AllFreshFruits";
-import AllNoodles from "../Screens/Home/AllNoodles"
-import AllOil from "../Screens/Home/AllOil"
 
+import ProductStacknav from "./ProductStacknav";
+import PopularProductStack from "./PopularProductStack";
+import FlashsaleProductNav from "./FlashsaleProductNav";
+import VegetablesProductStack from "./VegetablesProductStack";
+import BiscuitsStack from "./BiscuitsStack"
+import SaltSugarStack from "./SaltSugarStack";
+import FreshFruitsStack from "./FreshFruitsStack"
+import NoodlesStack from "./NoodlesStack";
+import OilStacknav from "./OilStacknav";
 
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -25,14 +26,15 @@ const StackNav = () => {
         name={Routes.CATEGORY_GROUP_TAB}
         component={CategoryGroup}
       />
-      <Stack.Screen name={Routes.POPULAR_Product} component={PopularProducts} />
-      <Stack.Screen name={Routes.FLASHSLE} component={FlashSale} />
-      <Stack.Screen name={Routes.FRESH_VEGETABLES} component={FreshVegetables} />
-      <Stack.Screen name={Routes.All_BISCUITS} component={AllBiscuits} />
-      <Stack.Screen name={Routes.SALT_SUGER} component={SaltSugars} />
-      <Stack.Screen name={Routes.FRESH_FOOD} component={AllFreshFruits} />
-      <Stack.Screen name={Routes.NOODLES} component={AllNoodles} />
-      <Stack.Screen name={Routes.ALL_OIL} component={AllOil} />
+      <Stack.Screen name={Routes.POPULAR_Product} component={PopularProductStack} />
+      <Stack.Screen name={Routes.FLASHSLE} component={FlashsaleProductNav} />
+      <Stack.Screen name={Routes.FRESH_VEGETABLES} component={VegetablesProductStack} />
+      <Stack.Screen name={Routes.All_BISCUITS} component={BiscuitsStack} />
+      <Stack.Screen name={Routes.SALT_SUGER} component={SaltSugarStack} />
+      <Stack.Screen name={Routes.FRESH_FOOD} component={FreshFruitsStack} />
+      <Stack.Screen name={Routes.NOODLES} component={NoodlesStack} />
+      <Stack.Screen name={Routes.ALL_OIL} component={OilStacknav} />
+      <Stack.Screen name={Routes.Product_Card} component={ProductStacknav} />
 
       
     </Stack.Navigator>

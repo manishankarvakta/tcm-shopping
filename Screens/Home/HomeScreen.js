@@ -26,6 +26,7 @@ import Noodles from "../../Components/Noodles";
 import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
 import { useNavigation } from "@react-navigation/native";
+import FlashSaleStackNav from "../../Navigation/FlashSaleStackNav";
 const HomeScreen = () => {
   const navigation = useNavigation()
   const [location, setLocation] = useState(null);
@@ -217,7 +218,7 @@ const HomeScreen = () => {
         </View>
            </View>
            <View>
-             <ProductCard/>
+           <ProductCard/>
            </View>
 
            <View>

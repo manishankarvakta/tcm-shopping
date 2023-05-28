@@ -8,7 +8,14 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNav from "./Navigation/TabNav";
 import SingleProductDetailsScreen from "./Screens/SingleProductsDetailsScreen"
-
+import PopularProducts from "./Screens/Home/PopularProducts";
+import ProductCard from "./Components/ProductCard";
+import ProductStacknav  from "./Navigation/ProductStacknav";
+import PopularProductStack from "./Navigation/PopularProductStack";
+import FlashSaleStackNav from "./Navigation/FlashSaleStackNav";
+import FlashsaleProductNav from "./Navigation/FlashsaleProductNav";
+import HomeScreen from "./Screens/Home/HomeScreen";
+import OffersScreen from "./Screens/Home/OffersScreen";
 
  
 
@@ -38,8 +45,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-       <SingleProductDetailsScreen/>
-
+       <OffersScreen />
     </NavigationContainer>
   );
 }

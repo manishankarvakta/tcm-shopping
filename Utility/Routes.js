@@ -36,5 +36,9 @@ export default {
   ALL_OIL:"oil",
 
   T:"Testt",
-  Tt:"TestD"
+  Tt:"TestD",
+
+  
+  Product_Card:"ProductCard"
+
 };

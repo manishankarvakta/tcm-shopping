@@ -8,9 +8,10 @@ import {
   } from "react-native";
   import Icon from "react-native-vector-icons/FontAwesome";
   import React from "react";
-  // import { Image } from "@rneui/themed";
-  
+  import { useNavigation } from '@react-navigation/native';
+  import Routes from "../Utility/Routes";
   const FlashSale = () => {
+    const navigation = useNavigation()
     const data = [
       { id: '1', imageUrl:require("../assets/FlashSales/f1.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
       { id: '2', imageUrl:require("../assets/Freshfood/1.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
@@ -27,7 +28,7 @@ import {
         data={data}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.card}>
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card}>
                   <Image
               onPress={() => alert(item.imageUrl)}
               source={item.imageUrl}
