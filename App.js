@@ -49,7 +49,7 @@ export default function App() {
     <Provider store={store
     }>
       <NavigationContainer>
-        <OffersScreen />
+        <TabNav />
       </NavigationContainer>
     </Provider>
   );

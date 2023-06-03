@@ -39,6 +39,8 @@ export default {
   Tt:"TestD",
 
   
-  Product_Card:"ProductCard"
+  Product_Card:"ProductCard",
+
+  OFFER_PRODUCTS:"OfferProducts"
 
 };

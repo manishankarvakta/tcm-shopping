@@ -14,6 +14,7 @@ import SaltSugarStack from "./SaltSugarStack";
 import FreshFruitsStack from "./FreshFruitsStack"
 import NoodlesStack from "./NoodlesStack";
 import OilStacknav from "./OilStacknav";
+import OffersScreen from "../Screens/Home/OffersScreen";
 
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -35,6 +36,8 @@ const StackNav = () => {
       <Stack.Screen name={Routes.NOODLES} component={NoodlesStack} />
       <Stack.Screen name={Routes.ALL_OIL} component={OilStacknav} />
       <Stack.Screen name={Routes.Product_Card} component={ProductStacknav} />
+      <Stack.Screen name={Routes.OFFER_PRODUCTS} component={OffersScreen} />
+
 
       
     </Stack.Navigator>
