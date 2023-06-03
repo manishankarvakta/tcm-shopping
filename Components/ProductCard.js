@@ -10,9 +10,16 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import React from "react";
 import { useNavigation } from '@react-navigation/native';
 import Routes from "../Utility/Routes";
+import { useDispatch } from "react-redux";
+import { AddToCart } from "../Screens/Redux/CartSlice";
 
 const ProductCard = () => {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
+  const handlePress = () => {
+    // Dispatch an event or action here
+    dispatch({ type: 'BUTTON_PRESSED' });
+  };
   const data = [
     { id: '1', imageUrl: require("../assets/FlashSales/f9.jpg"), title: 'Item 1', name: "Mango", price: "320TK", weight: "4kg", },
     { id: '2', imageUrl: require("../assets/Freshfood/7.jpg"), title: 'Item 2', name: "Apple", price: "320TK", weight: "2kg",  },
@@ -44,7 +51,7 @@ const ProductCard = () => {
             <Text style={styles.price}>Price: {item.price}</Text>
              <View style={styles.cartStyle}>
                 <Text style={styles.quantity}>{item.weight}</Text>
-               <TouchableOpacity>
+               <TouchableOpacity onPress={AddToCart(data)}>
                <Icon name="shopping-cart" size={24} color="gray" />
                </TouchableOpacity>
              </View>

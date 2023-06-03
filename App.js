@@ -16,6 +16,8 @@ import FlashSaleStackNav from "./Navigation/FlashSaleStackNav";
 import FlashsaleProductNav from "./Navigation/FlashsaleProductNav";
 import HomeScreen from "./Screens/Home/HomeScreen";
 import OffersScreen from "./Screens/Home/OffersScreen";
+import { Provider } from "react-redux";
+import { store } from "./Screens/Redux/Store/Store";
 
  
 
@@ -44,9 +46,12 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer>
-       <OffersScreen />
-    </NavigationContainer>
+    <Provider store={store
+    }>
+      <NavigationContainer>
+        <OffersScreen />
+      </NavigationContainer>
+    </Provider>
   );
 }
 
