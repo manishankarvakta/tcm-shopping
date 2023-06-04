@@ -15,11 +15,7 @@ import { AddToCart } from "../Screens/Redux/CartSlice";
 
 const ProductCard = () => {
   const navigation = useNavigation()
-  const dispatch = useDispatch()
-  const handlePress = () => {
-    // Dispatch an event or action here
-    dispatch({ type: 'BUTTON_PRESSED' });
-  };
+
   const data = [
     { id: '1', imageUrl: require("../assets/FlashSales/f9.jpg"), title: 'Item 1', name: "Mango", price: "320TK", weight: "4kg", },
     { id: '2', imageUrl: require("../assets/Freshfood/7.jpg"), title: 'Item 2', name: "Apple", price: "320TK", weight: "2kg",  },

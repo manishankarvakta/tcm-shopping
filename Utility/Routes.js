@@ -41,6 +41,8 @@ export default {
   
   Product_Card:"ProductCard",
 
-  OFFER_PRODUCTS:"OfferProducts"
+  OFFER_PRODUCTS:"OfferProducts",
+
+  CART_SCREEN:"cartScreen"
 
 };

@@ -26,7 +26,7 @@ import Noodles from "../../Components/Noodles";
 import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
 import { useNavigation } from "@react-navigation/native";
-import FlashSaleStackNav from "../../Navigation/FlashSaleStackNav";
+
 const HomeScreen = () => {
   const navigation = useNavigation()
   const [location, setLocation] = useState(null);
@@ -148,7 +148,7 @@ const HomeScreen = () => {
                 Items
               </Text>
             </View>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => logOut()}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate(Routes.CART_SCREEN)}>
               <Icon
                 name="shoppingcart"
                 type="ant-design"
