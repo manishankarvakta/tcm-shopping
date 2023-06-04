@@ -32,7 +32,156 @@ export default function CartScreen() {
                  <Text style={{color:"#fff"}}>5.00PM-6.00PM</Text>
             </View>
 
-            <View style={{flexDirection:"row"}}>
+            <View style={{flexDirection:"row", justifyContent:"space-around" ,paddingVertical:15}}>
+            <View>
+            <Image
+                 source={require('../../assets/FlashSales/f1.jpg')}
+                 style={{ width: 75, height: 75 }}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+            <View style={{flexDirection:"row", justifyContent:"space-around" ,paddingVertical:15}}>
+            <View>
+            <Image
+                 source={require('../../assets/FlashSales/f1.jpg')}
+                 style={{ width: 75, height: 75 }}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+
+            <View style={{flexDirection:"row", justifyContent:"space-around" ,paddingVertical:15}}>
+            <View>
+            <Image
+                 source={require('../../assets/FlashSales/f1.jpg')}
+                 style={{ width: 75, height: 75 }}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+
+            <View style={{flexDirection:"row", justifyContent:"space-around" ,paddingVertical:15}}>
+            <View>
+            <Image
+                 source={require('../../assets/FlashSales/f1.jpg')}
+                 style={{ width: 75, height: 75 }}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+
+            <View style={{flexDirection:"row", justifyContent:"space-around" ,paddingVertical:15}}>
+            <View>
+            <Image
+                 source={require('../../assets/FlashSales/f1.jpg')}
+                 style={{ width: 75, height: 75 }}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+
+            <View style={{flexDirection:"row", justifyContent:"space-around" ,paddingVertical:15}}>
             <View>
             <Image
                  source={require('../../assets/FlashSales/f1.jpg')}
