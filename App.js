@@ -18,6 +18,7 @@ import HomeScreen from "./Screens/Home/HomeScreen";
 import OffersScreen from "./Screens/Home/OffersScreen";
 import { Provider } from "react-redux";
 import { store } from "./Screens/Redux/Store/Store";
+import ConfirmOrder from "./Screens/ConfirmOrder";
 
  
 
@@ -49,7 +50,7 @@ export default function App() {
     <Provider store={store
     }>
       <NavigationContainer>
-        <TabNav />
+        <ConfirmOrder />
       </NavigationContainer>
     </Provider>
   );
