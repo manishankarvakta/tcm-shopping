@@ -2,8 +2,9 @@ import { View, Text,SafeAreaView ,TouchableOpacity,Image } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Icon } from '@rneui/base';
+import Routes from '../../Utility/Routes';
 
-export default function CartScreen() {
+export default function CartScreen({navigation}) {
   return (
     <SafeAreaView style={{backgroundColor:"#fff"}}>
           <ScrollView>
@@ -294,7 +295,7 @@ export default function CartScreen() {
             </View>
 
 
-            <TouchableOpacity style={{flexDirection:"row",marginHorizontal:10,paddingVertical:12,backgroundColor:"red",borderRadius:10,paddingHorizontal:10,marginBottom:15}}>
+            <TouchableOpacity onPress={() => navigation.navigate(Routes.CONFIRM_ORDER)} style={{flexDirection:"row",justifyContent:"space-between", marginHorizontal:10,paddingVertical:12,backgroundColor:"red",borderRadius:10,paddingHorizontal:10,marginBottom:15}}>
                 <View>
                    <Icon type="antdesign" name="shoppingcart" size={24} color="white" />
                 </View>

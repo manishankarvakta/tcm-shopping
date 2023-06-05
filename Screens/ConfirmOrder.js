@@ -118,7 +118,7 @@ export default function ConfirmOrder() {
             </View>
             </View>
 
-            <View style={{marginHorizontal:10,marginTop:100,alignItems:"center"}}>
+            <View style={{marginHorizontal:10,marginTop:60,alignItems:"center"}}>
                 <Text style={{color:"gray",fontSize:10,}}>By tapping proceed, I agree to TCM SuperShop <Text style={{color:"red"}}>Terms and Conditions.</Text></Text>
             </View>
 

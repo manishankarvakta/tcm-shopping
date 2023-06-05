@@ -50,7 +50,7 @@ export default function App() {
     <Provider store={store
     }>
       <NavigationContainer>
-        <ConfirmOrder />
+        <TabNav />
       </NavigationContainer>
     </Provider>
   );

@@ -43,6 +43,7 @@ export default {
 
   OFFER_PRODUCTS:"OfferProducts",
 
-  CART_SCREEN:"cartScreen"
+  CART_SCREEN:"cartScreen",
+  CONFIRM_ORDER:"Confirm Order"
 
 };
