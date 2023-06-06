@@ -8,7 +8,7 @@ export default function ConfirmationProducts() {
   return (
     <SafeAreaView>
         <ScrollView>
-    <View style={{flexDirection:"row",shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 5,justifyContent:"space-around",backgroundColor:"#F0F8FF",margin:10,borderRadius:5,marginTop:40,padding:10}}>
+    <View style={{flexDirection:"row",shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 5,justifyContent:"space-around",backgroundColor:"#F0F8FF",margin:10,borderRadius:5,marginTop:10,padding:10}}>
     <View>
          <Image
                source={require('../../assets/FlashSales/f1.jpg')}

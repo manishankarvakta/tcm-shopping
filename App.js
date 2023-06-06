@@ -43,7 +43,7 @@ export default function App() {
     <Provider store={store
     }>
       <NavigationContainer>
-        <ConfirmationProducts />
+        <TabNav />
       </NavigationContainer>
     </Provider>
   );

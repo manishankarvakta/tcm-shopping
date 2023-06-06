@@ -2,9 +2,10 @@ import { View, Text,SafeAreaView,TouchableOpacity,Switch } from 'react-native'
 import React from 'react'
 import { Icon } from '@rneui/base';
 import { useState } from 'react';
+import Routes from '../../Utility/Routes';
 
 
-export default function ConfirmOrder() {
+export default function ConfirmOrder({navigation}) {
     const [isEnabled, setIsEnabled] = useState(false)
 
  
@@ -124,7 +125,7 @@ export default function ConfirmOrder() {
 
 
      <View style={{marginTop:20}}>
-     <TouchableOpacity style={{flexDirection:"row",justifyContent:"space-between",marginHorizontal:10,paddingVertical:12,backgroundColor:"red",borderRadius:10,paddingHorizontal:10,marginBottom:15}}>
+     <TouchableOpacity onPress={() => navigation.navigate(Routes.ORDER_ID)} style={{flexDirection:"row",justifyContent:"space-between",marginHorizontal:10,paddingVertical:12,backgroundColor:"red",borderRadius:10,paddingHorizontal:10,marginBottom:15}}>
                 <View>
                    <Icon type="antdesign" name="shoppingcart" size={24} color="white" />
                 </View>
