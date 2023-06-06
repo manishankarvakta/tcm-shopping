@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from "../Utility/Routes";
-import CartScreen from '../Screens/Home/CartScreen';
-import ConfirmOrder from '../Screens/ConfirmOrder';
+import CartScreen from '../Screens/OrderScreen/CartScreen';
+import ConfirmOrder from '../Screens/OrderScreen/ConfirmOrder';
 
 
 

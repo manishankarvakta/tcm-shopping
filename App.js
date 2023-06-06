@@ -6,19 +6,12 @@ import AuthStackNav from "./Navigation/AuthStackNav";
 import StackNav from "./Navigation/StackNav";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
-import TabNav from "./Navigation/TabNav";
-import SingleProductDetailsScreen from "./Screens/SingleProductsDetailsScreen"
-import PopularProducts from "./Screens/Home/PopularProducts";
-import ProductCard from "./Components/ProductCard";
-import ProductStacknav  from "./Navigation/ProductStacknav";
-import PopularProductStack from "./Navigation/PopularProductStack";
-import FlashSaleStackNav from "./Navigation/FlashSaleStackNav";
-import FlashsaleProductNav from "./Navigation/FlashsaleProductNav";
-import HomeScreen from "./Screens/Home/HomeScreen";
-import OffersScreen from "./Screens/Home/OffersScreen";
+
 import { Provider } from "react-redux";
 import { store } from "./Screens/Redux/Store/Store";
-import ConfirmOrder from "./Screens/ConfirmOrder";
+import ConfirmationProducts from "./Screens/OrderScreen/ConfirmationProducts";
+import TabNav from "./Navigation/TabNav";
+
 
  
 
@@ -50,7 +43,7 @@ export default function App() {
     <Provider store={store
     }>
       <NavigationContainer>
-        <TabNav />
+        <ConfirmationProducts />
       </NavigationContainer>
     </Provider>
   );
