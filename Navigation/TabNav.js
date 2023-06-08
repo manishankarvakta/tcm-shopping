@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { Home, Category, Search, Chats, CategoryGroup } from "../Screens";
 import StackNav from "./StackNav";
+import CategoryStackNav from "./CategoryStackNav";
 
 const TabNav = () => {
   const Tab = createBottomTabNavigator();
@@ -34,7 +35,7 @@ const TabNav = () => {
       })}
     >
       <Tab.Screen name={Routes.HOME_TAB} component={StackNav} />
-      <Tab.Screen name={Routes.CATEGORY_GROUP_TAB} component={CategoryGroup} />
+      <Tab.Screen name={Routes.CATEGORY_GROUP_TAB} component={CategoryStackNav} />
       <Tab.Screen name={Routes.CHATS_TAB} component={Chats} />
       <Tab.Screen name={Routes.SERARCH_TAB} component={Search} />
     </Tab.Navigator>

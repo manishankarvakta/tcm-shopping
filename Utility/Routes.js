@@ -13,10 +13,11 @@ export default {
   SERARCH_TAB: "Search Tab",
 
   CATEGORY: "Category",
-  CATEGORY_GROUP: "Category Group",
+  CATEGORY_SCREEN: "Category Screen ",
+  CATEGORY_GROUP_SCREEN: "Category Group ",
   CATEGORY_GROUP_TAB: "Category Tab",
   CATEGORY_PRODUCT: "Category Product",
-
+  SUB_CATEGORY : "Sub categorry",
   CHATS: "Chats",
   CHATS_TAB: "Chats Tab",
 
@@ -35,8 +36,8 @@ export default {
   NOODLES:"Noodles",
   ALL_OIL:"oil",
 
-  T:"Testt",
-  Tt:"TestD",
+  T:"Popular ",
+  Tt:"Products Details",
 
   
   Product_Card:"ProductCard",

@@ -1,13 +1,16 @@
 import { View, Text,SafeAreaView,Image,Button,TouchableOpacity  } from 'react-native'
 import React from 'react'
 import { FontAwesome } from '@expo/vector-icons';
-export default function SingleProductsDetailsScreen() {
+import { ScrollView } from 'react-native-gesture-handler';
+import Routes from '../Utility/Routes';
+export default function SingleProductsDetailsScreen({ navigation }) {
     const handleButtonPress = () => {
        
         console.log('Button pressed!');
       };
   return (
     <SafeAreaView>
+      <ScrollView>
       <Text style={{marginTop:10 ,fontWeight: 'bold', fontSize: 18,marginLeft:10}}>Mango Himshagor (Satkhira)+- 50gm</Text>
       <View style={{ alignItems: 'center',}}>
           <Image source={require("../assets/Freshfood/5.jpg")} style={{ width: 230, height: 230,marginTop:20}} />
@@ -34,7 +37,8 @@ export default function SingleProductsDetailsScreen() {
             </Text>
         </View>
 
-        <Button style={{color:"red"}} title ="Close" onPress={handleButtonPress} color="blue"/>
+        <Button  style={{color:"red"}} title ="Close" onPress={() => navigation.navigate(Routes.HOME)} color="blue"/>
+        </ScrollView>
     </SafeAreaView>
   )
 }

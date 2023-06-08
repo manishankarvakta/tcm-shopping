@@ -3,8 +3,9 @@ import { Icon } from '@rneui/base';
 
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
+import Routes from '../../Utility/Routes';
 
-export default function ConfirmationProducts() {
+export default function ConfirmationProducts({navigation}) {
   return (
     <SafeAreaView>
         <ScrollView>
@@ -195,7 +196,7 @@ export default function ConfirmationProducts() {
             </View>
 
             <View style={{alignSelf:"center"}}>
-            <TouchableOpacity style={{ borderWidth: 1,width:"50%", borderColor: "green", borderRadius: 5, padding: 13,marginVertical:15,alignItems:"center" }}>
+            <TouchableOpacity onPress={() => navigation.navigate(Routes.HOME)} style={{ borderWidth: 1,width:"50%", borderColor: "green", borderRadius: 5, padding: 13,marginVertical:15,alignItems:"center" }}>
         <Text style={{ color: "green", fontWeight: "700" }}>Back to Shopping</Text>
       </TouchableOpacity>
             </View>

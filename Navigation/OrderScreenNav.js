@@ -3,6 +3,8 @@ import Routes from "../Utility/Routes";
 import CartScreen from '../Screens/OrderScreen/CartScreen';
 import ConfirmOrder from '../Screens/OrderScreen/ConfirmOrder';
 import ConfirmationProducts from '../Screens/OrderScreen/ConfirmationProducts';
+import HomeScreen from '../Screens/Home/HomeScreen';
+import { tr } from 'date-fns/locale';
 
 
 
@@ -43,6 +45,25 @@ export default function OrderScreenNav()  {
 <Stack.Screen
       name={Routes.ORDER_ID}
       component={ConfirmationProducts}
+      options={{
+        headerShown:false,
+
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
+     
+        headerTitle: "",
+      }}
+    
+    />
+
+<Stack.Screen
+      name={Routes.HOME}
+      component={HomeScreen}
       options={{
         headerShown:false,
 

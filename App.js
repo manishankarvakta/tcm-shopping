@@ -11,8 +11,9 @@ import { Provider } from "react-redux";
 import { store } from "./Screens/Redux/Store/Store";
 import ConfirmationProducts from "./Screens/OrderScreen/ConfirmationProducts";
 import TabNav from "./Navigation/TabNav";
-
-
+import CategoryScreen from "./Screens/Home/CategoryScreen"
+import SubCategory from "./Screens/Home/SubCategory"
+import CategoryStackNav from "./Navigation/CategoryStackNav";
  
 
 
@@ -43,7 +44,7 @@ export default function App() {
     <Provider store={store
     }>
       <NavigationContainer>
-        <TabNav />
+        <TabNav/>
       </NavigationContainer>
     </Provider>
   );
