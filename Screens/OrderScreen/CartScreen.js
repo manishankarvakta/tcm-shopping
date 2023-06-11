@@ -39,7 +39,7 @@ export default function CartScreen({navigation}) {
   borderWidth: 1,
   marginVertical:10,
   marginHorizontal:10,
-  backgroundColor:"#D4E9F9",
+  backgroundColor:"#F3F6FD",
   borderColor: "#ddd",
   borderRadius: 5,
   shadowColor: "#000",
@@ -82,7 +82,7 @@ export default function CartScreen({navigation}) {
   borderWidth: 1,
   marginVertical:5,
   marginHorizontal:10,
-  backgroundColor:"#D4E9F9",
+  backgroundColor:"#F3F6FD",
   borderColor: "#ddd",
   borderRadius: 5,
   shadowColor: "#000",
@@ -124,7 +124,7 @@ export default function CartScreen({navigation}) {
   borderWidth: 1,
   marginVertical:5,
   marginHorizontal:10,
-  backgroundColor:"#D4E9F9",
+  backgroundColor:"#F3F6FD",
   borderColor: "#ddd",
   borderRadius: 5,
   shadowColor: "#000",
@@ -167,7 +167,7 @@ export default function CartScreen({navigation}) {
   borderWidth: 1,
   marginVertical:5,
   marginHorizontal:10,
-  backgroundColor:"#D4E9F9",
+  backgroundColor:"#F3F6FD",
   borderColor: "#ddd",
   borderRadius: 5,
   shadowColor: "#000",
@@ -209,7 +209,7 @@ export default function CartScreen({navigation}) {
   borderWidth: 1,
   marginVertical:5,
   marginHorizontal:10,
-  backgroundColor:"#D4E9F9",
+  backgroundColor:"#F3F6FD",
   borderColor: "#ddd",
   borderRadius: 5,
   shadowColor: "#000",
@@ -250,7 +250,7 @@ export default function CartScreen({navigation}) {
   borderWidth: 1,
   marginVertical:5,
   marginHorizontal:10,
-  backgroundColor:"#D4E9F9",
+  backgroundColor:"#F3F6FD",
   borderColor: "#ddd",
   borderRadius: 5,
   shadowColor: "#000",
@@ -286,11 +286,11 @@ export default function CartScreen({navigation}) {
             </View>
             </View>
 
-            <View style={{ flexDirection:"row",margin:30, marginHorizontal:10,paddingVertical:10,backgroundColor:"#CCB18B",borderRadius:5,}}>
+            <View style={{ flexDirection:"row",margin:30, marginHorizontal:10,paddingVertical:10,backgroundColor:"#D4E9F9",borderRadius:5,}}>
   
               <View style={{flexDirection:"row",justifyContent:"space-between",marginHorizontal:20,}}>
               <Icon style={{  width: 14, height: 14, borderRadius: 15, backgroundColor: "green", justifyContent: "center", alignItems: "center",marginHorizontal:10,marginVertical:2}} name="check" size={12} color="#fff" type="ant-design"/>
-              <Text style={{color:"#fff"}}>Delivery fee is reduced to $0 from $29 </Text>
+              <Text style={{color:"#000"}}>Delivery fee is reduced to $0 from $29 </Text>
               </View>
             </View>
 

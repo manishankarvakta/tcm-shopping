@@ -44,7 +44,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-           <OrderHistoryNavStack/>
+           <TabNav/>
       </NavigationContainer>
     </Provider>
   );

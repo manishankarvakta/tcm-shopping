@@ -50,12 +50,12 @@ export default function OrderHistoryDetails() {
 
           <View style={{borderWidth:.4, borderTopColor:"#BABCBE",marginHorizontal:10,marginTop:10}}/>
 
-          <View style={{backgroundColor:"#F0F2F5",marginHorizontal:10,padding:10,marginVertical:10,borderRadius:10}}>
+          <View style={{backgroundColor:"#AEBDC6",marginHorizontal:10,padding:10,marginVertical:10,borderRadius:10}}>
               <Text style={{fontSize:15,fontWeight:"700"}}>11914325A</Text>
               <Text>Jun 12,2023 | 9:00AM - 10:00 AM</Text>
           </View>
 
-          <View style={{backgroundColor:"#F0F2F5",justifyContent:"space-between", marginHorizontal:10,padding:10,marginVertical:5,borderRadius:10,flexDirection:"row"}}>
+          <View style={{backgroundColor:"#DEE1E6",justifyContent:"space-between", marginHorizontal:10,padding:10,marginVertical:5,borderRadius:10,flexDirection:"row"}}>
              <View style={{flexDirection:"row", justifyContent:"flex-start"}}>
               <Icon name="box-open" size={25} color="orange" type="font-awesome-5" />
               <Text style={{fontSize:15,fontWeight:"500",padding:3,color:"gray",marginLeft:10}}>Return Items</Text>
@@ -69,7 +69,7 @@ export default function OrderHistoryDetails() {
           </View>
 
 
-          <View style={{backgroundColor:"#F0F2F5",justifyContent:"space-between", marginHorizontal:10,padding:10,marginVertical:5,borderRadius:10,flexDirection:"row"}}>
+          <View style={{backgroundColor:"#DEE1E6",justifyContent:"space-between", marginHorizontal:10,padding:10,marginVertical:5,borderRadius:10,flexDirection:"row"}}>
              <View style={{flexDirection:"row", justifyContent:"flex-start"}}>
               <Icon name="report-problem" size={25} color="red" type="MaterialIcons" />
               <Text style={{fontSize:15,fontWeight:"500",padding:3,color:"gray",marginLeft:10}}>Report Issues</Text>
