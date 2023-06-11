@@ -50,5 +50,9 @@ export default {
   ORDER_ID:"ID NO",
 
   DP:"prectice",
-  DPT:"prectice Two"
+  DPT:"prectice Two",
+
+
+  ORDER_HISTORY:"Order history",
+  ORDER_HISTORY_DETAILS:"Order history details"
 };

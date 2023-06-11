@@ -11,6 +11,8 @@ import { store } from "./Screens/Redux/Store/Store";
 
 import TabNav from "./Navigation/TabNav";
 import OrderHistory from "./Screens/DrawerScreen/OrderHistory";
+import OrderHistoryDetails from "./Screens/DrawerScreen/OrderHistoryDetails";
+import OrderHistoryNavStack from "./Navigation/OrderHistoryNavStack";
 
 
  
@@ -42,7 +44,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-           <OrderHistory/>
+           <OrderHistoryNavStack/>
       </NavigationContainer>
     </Provider>
   );

@@ -1,7 +1,8 @@
 import { View, Text, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { Icon } from '@rneui/base';
-export default function OrderHistory() {
+import Routes from '../../Utility/Routes';
+export default function OrderHistory({navigation}) {
   return (
     <SafeAreaView>
          <ScrollView>
@@ -25,7 +26,7 @@ export default function OrderHistory() {
 
                   </View>
                   <View style={{flexDirection:"row",paddingVertical:10,marginHorizontal:10,justifyContent:"space-between"}}>
-                    <TouchableOpacity style={{flexDirection:"row"}}>
+                    <TouchableOpacity onPress={() => navigation.navigate(Routes.ORDER_HISTORY_DETAILS)} style={{flexDirection:"row"}}>
                     <Icon name="filetext1" size={16} color="gray" type="ant-design" paddingRight={5}/>
                      <Text style={{fontWeight:"bold",fontSize:15,color:"#0D569E"}}>Details</Text>
                     </TouchableOpacity>
