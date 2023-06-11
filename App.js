@@ -3,17 +3,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AuthStackNav from "./Navigation/AuthStackNav";
-import StackNav from "./Navigation/StackNav";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { Provider } from "react-redux";
 import { store } from "./Screens/Redux/Store/Store";
-import ConfirmationProducts from "./Screens/OrderScreen/ConfirmationProducts";
+
 import TabNav from "./Navigation/TabNav";
-import CategoryScreen from "./Screens/Home/CategoryScreen"
-import SubCategory from "./Screens/Home/SubCategory"
-import CategoryStackNav from "./Navigation/CategoryStackNav";
+import OrderHistory from "./Screens/DrawerScreen/OrderHistory";
+
+
  
 
 
@@ -41,10 +40,9 @@ export default function App() {
   }, []);
 
   return (
-    <Provider store={store
-    }>
+    <Provider store={store}>
       <NavigationContainer>
-        <TabNav/>
+           <OrderHistory/>
       </NavigationContainer>
     </Provider>
   );

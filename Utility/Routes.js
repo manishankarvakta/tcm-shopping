@@ -47,5 +47,8 @@ export default {
   CART_SCREEN:"Products Cart",
   CONFIRM_ORDER:"Confirm Order",
 
-  ORDER_ID:"ID NO"
+  ORDER_ID:"ID NO",
+
+  DP:"prectice",
+  DPT:"prectice Two"
 };
