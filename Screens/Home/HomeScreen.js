@@ -91,7 +91,7 @@ const HomeScreen = () => {
         return (
           <View style={styles.headerLeft}>
             <TouchableOpacity
-            // onPress={() => navigation.openDrawer()}
+           onPress={() => navigation.openDrawer()}
             >
               <Avatar
                 rounded

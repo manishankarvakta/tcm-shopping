@@ -13,6 +13,7 @@ import TabNav from "./Navigation/TabNav";
 import OrderHistory from "./Screens/DrawerScreen/OrderHistory";
 import OrderHistoryDetails from "./Screens/DrawerScreen/OrderHistoryDetails";
 import OrderHistoryNavStack from "./Navigation/OrderHistoryNavStack";
+import DrawerNav from "./Navigation/DrawerNav.";
 
 
  
@@ -44,7 +45,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-           <TabNav/>
+           <DrawerNav/>
       </NavigationContainer>
     </Provider>
   );
