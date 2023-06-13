@@ -35,8 +35,7 @@ const CategoryStackNav = () => {
           },
           
           headerBackTitle: "BACK",
-       
-          headerTitle: "",
+      
         }}
       />
 
@@ -53,7 +52,7 @@ const CategoryStackNav = () => {
           
           headerBackTitle: "BACK",
        
-          headerTitle: "",
+         
         }}
       />
 
@@ -70,7 +69,7 @@ const CategoryStackNav = () => {
           
           headerBackTitle: "BACK",
        
-          headerTitle: "",
+        
         }}
       />
 
@@ -88,7 +87,7 @@ const CategoryStackNav = () => {
           
           headerBackTitle: "BACK",
        
-          headerTitle: "",
+
         }}
       />
 
@@ -105,7 +104,6 @@ const CategoryStackNav = () => {
           
           headerBackTitle: "BACK",
        
-          headerTitle: "",
         }}
       />
     </Stack.Navigator>

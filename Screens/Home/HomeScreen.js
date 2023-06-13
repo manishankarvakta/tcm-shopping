@@ -27,6 +27,8 @@ import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
 import { useNavigation } from "@react-navigation/native";
 
+
+
 const HomeScreen = () => {
   const navigation = useNavigation()
   const [location, setLocation] = useState(null);
@@ -90,8 +92,14 @@ const HomeScreen = () => {
       headerLeft: () => {
         return (
           <View style={styles.headerLeft}>
+
+
+          <TouchableOpacity>
+            <Icon onPress={() => navigation.openDrawer()} name="bars" size={37} color="white" type="ant-design" paddingRight={10}/>
+         </TouchableOpacity>
+    
             <TouchableOpacity
-           onPress={() => navigation.openDrawer()}
+          
             >
               <Avatar
                 rounded

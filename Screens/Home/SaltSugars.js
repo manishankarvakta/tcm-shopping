@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Icon from "react-native-vector-icons/FontAwesome";
-
+import { Icon } from '@rneui/base';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
 import Routes from '../../Utility/Routes';
 const numColumns = 3 ;
@@ -43,7 +42,7 @@ const SaltSugars = ({navigation}) => {
 <View style={styles.cartStyle}>
                 <Text style={styles.quantity}>{item.weight}</Text>
                <TouchableOpacity>
-               <Icon name="shopping-cart" size={24} color="gray" />
+                  <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
                </TouchableOpacity>
              </View> 
              </View>
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "column",
     margin: 5,
-    backgroundColor:"#fff",
+    backgroundColor:"#F5F6FB",
     padding:7,
     borderRadius:5,
     shadowColor: 'gray',
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.5,
     shadowRadius: 3.84,
     elevation: 5,
   },

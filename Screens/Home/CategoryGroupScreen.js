@@ -42,7 +42,7 @@ const CategoryGroupScreen = ({ navigation }) => {
       <FlatList
       data={data}
       renderItem={renderItem}
-      keyExtractor={(item) => item.key}
+      keyExtractor={(item) => item.Id}
       numColumns={numColumns}
     />
   </View>

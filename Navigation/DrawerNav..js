@@ -9,7 +9,7 @@ const Drawer = createDrawerNavigator();
 function DrawerNav() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name={Routes.HOME_TAB} component={TabNav}  options={{ headerShown: false }}/>
+      <Drawer.Screen name={Routes.HOME} component={TabNav}  options={{ headerShown: false }}/>
       <Drawer.Screen name={Routes.CATEGORY_GROUP_SCREEN} component={CategoryGroupScreen} />
     </Drawer.Navigator>
   );

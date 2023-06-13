@@ -42,7 +42,7 @@ export default {
   
   Product_Card:"ProductCard",
 
-  OFFER_PRODUCTS:"OfferProducts",
+  OFFER_PRODUCTS:"Offers",
 
   CART_SCREEN:"Products Cart",
   CONFIRM_ORDER:"Confirm Order",

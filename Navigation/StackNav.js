@@ -22,7 +22,7 @@ const StackNav = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name={Routes.HOME_TAB} component={Home}  />
+      <Stack.Screen name={Routes.HOME} component={Home}  />
       <Stack.Screen name={Routes.LOGIN} component={Login} />
       <Stack.Screen
         name={Routes.CATEGORY_GROUP_TAB}
