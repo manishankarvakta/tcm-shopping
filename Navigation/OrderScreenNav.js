@@ -17,17 +17,14 @@ export default function OrderScreenNav()  {
     <Stack.Screen
       name={Routes.CART_SCREEN}
       component={CartScreen}
-      options={{
-        headerShown:false,
-      }}
-    
+   
      
     />
     <Stack.Screen
       name={Routes.CONFIRM_ORDER}
       component={ConfirmOrder}
       options={{
-        headerShown:false,
+       
 
         headerStyle: {
           
@@ -37,7 +34,7 @@ export default function OrderScreenNav()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
+     
       }}
     
     />
@@ -46,7 +43,7 @@ export default function OrderScreenNav()  {
       name={Routes.ORDER_ID}
       component={ConfirmationProducts}
       options={{
-        headerShown:false,
+        
 
         headerStyle: {
           
@@ -56,7 +53,6 @@ export default function OrderScreenNav()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
       }}
     
     />
@@ -65,7 +61,7 @@ export default function OrderScreenNav()  {
       name={Routes.HOME}
       component={HomeScreen}
       options={{
-        headerShown:false,
+      
 
         headerStyle: {
           
@@ -75,7 +71,7 @@ export default function OrderScreenNav()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
+    
       }}
     
     />

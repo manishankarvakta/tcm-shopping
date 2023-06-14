@@ -1,14 +1,15 @@
 import { View, Text,SafeAreaView,Image,TouchableOpacity,ScrollView } from 'react-native'
 import React from 'react'
 import { FontAwesome } from '@expo/vector-icons';
-export default function OffersScreen() {
+import Routes from '../../Utility/Routes'
+export default function OffersScreen({navigation}) {
   return (
     <SafeAreaView>
         <ScrollView>
     
 
         <View style={{backgroundColor:"#F5F6FB"}}>
-        <View>
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)}>
         <View style={{ alignItems: 'center',}} >
           <Image source={require("../../assets/PopularProduct/p5.jpg")} style={{ width: 340, height: 250,marginTop:20,}} />
       </View>
@@ -19,7 +20,7 @@ export default function OffersScreen() {
             <FontAwesome name="plus" size={16} color="#1D2F3E"  />
             </TouchableOpacity >
             </View>
-        </View>
+        </TouchableOpacity>
       </View>
 
 

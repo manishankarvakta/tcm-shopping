@@ -12,11 +12,9 @@ export default function OilStacknav()  {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.T}
+      name={Routes.ALL_OIL}
       component={AllOil}
-      options={{
-        headerShown:false,
-      }}
+     
     
      
     />
@@ -24,7 +22,7 @@ export default function OilStacknav()  {
       name={Routes.Tt}
       component={SingleProductsDetailsScreen}
       options={{
-        headerShown:false,
+
 
         headerStyle: {
           
@@ -34,7 +32,7 @@ export default function OilStacknav()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
+       
       }}
     
     />

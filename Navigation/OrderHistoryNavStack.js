@@ -16,7 +16,7 @@ export default function OrderHistoryNavStack()  {
     <Stack.Screen
       name={Routes.ORDER_HISTORY}
       component={OrderHistory}
-
+   
     
      
     />
@@ -24,7 +24,7 @@ export default function OrderHistoryNavStack()  {
       name={Routes.ORDER_HISTORY_DETAILS}
       component={OrderHistoryDetails}
       options={{
-     
+       
 
         headerStyle: {
           
@@ -34,8 +34,9 @@ export default function OrderHistoryNavStack()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
+     
       }}
+    
     
     />
    

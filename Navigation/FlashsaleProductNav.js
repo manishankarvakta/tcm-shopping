@@ -12,11 +12,9 @@ export default function FlashsaleProductNav()  {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.T}
+      name={Routes.FLASHSALE}
       component={FlashSale}
-      options={{
-        headerShown:false,
-      }}
+
     
      
     />
@@ -24,7 +22,7 @@ export default function FlashsaleProductNav()  {
       name={Routes.Tt}
       component={SingleProductsDetailsScreen}
       options={{
-        headerShown:false,
+        
 
         headerStyle: {
           
@@ -34,7 +32,7 @@ export default function FlashsaleProductNav()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
+       
       }}
     
     />

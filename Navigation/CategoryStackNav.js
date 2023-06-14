@@ -17,17 +17,17 @@ const CategoryStackNav = () => {
   return (
     <Stack.Navigator>
      
-      <Stack.Screen
+     <Stack.Screen
         name={Routes.CATEGORY_GROUP_SCREEN}
         component={CategoryGroupScreen}
-   
+       
       />
 
       <Stack.Screen
         name={Routes.CATEGORY_SCREEN}
         component={CategoryScreen}
         options={{
-         
+        
           headerStyle: {
             
             borderBottomWidth: 0,
@@ -49,7 +49,7 @@ const CategoryStackNav = () => {
             borderBottomWidth: 0,
            
           },
-          
+        
           headerBackTitle: "BACK",
        
          
@@ -103,6 +103,7 @@ const CategoryStackNav = () => {
           },
           
           headerBackTitle: "BACK",
+          
        
         }}
       />

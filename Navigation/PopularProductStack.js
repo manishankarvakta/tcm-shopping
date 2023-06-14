@@ -10,28 +10,16 @@ export default function PopularProductStack()  {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.T}
+      name={Routes.Product_Card}
       component={PopularProducts}
   
-      options={{
-        headerShown:false,
-        headerStyle: {
-          
-          borderBottomWidth: 0,
-         
-        },
-        
-        headerBackTitle: "BACK",
-     
-        headerTitle: "",
-      }}
+
      
     />
     <Stack.Screen
       name={Routes.Tt}
       component={SingleProductsDetailsScreen}
       options={{
-        headerShown:false,
         headerStyle: {
           
           borderBottomWidth: 0,
@@ -39,8 +27,7 @@ export default function PopularProductStack()  {
         },
         
         headerBackTitle: "BACK",
-     
-        headerTitle: "",
+    
       }}
     
     />

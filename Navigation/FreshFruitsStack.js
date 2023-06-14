@@ -2,8 +2,7 @@
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from "../Utility/Routes";
-import FlashSale from "../Screens/Home/FlashSales";
-import AllBiscuits from "../Screens/Home/AllBiscuits";
+
 import AllFreshFruits from "../Screens/Home/AllFreshFruits";
 
 
@@ -14,11 +13,9 @@ export default function FlashsaleProductNav()  {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.T}
+      name={Routes.FRESH_FOOD}
       component={AllFreshFruits}
-      options={{
-        headerShown:false,
-      }}
+
     
      
     />
@@ -26,7 +23,7 @@ export default function FlashsaleProductNav()  {
       name={Routes.Tt}
       component={SingleProductsDetailsScreen}
       options={{
-        headerShown:false,
+       
 
         headerStyle: {
           
@@ -36,7 +33,7 @@ export default function FlashsaleProductNav()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
+       
       }}
     
     />

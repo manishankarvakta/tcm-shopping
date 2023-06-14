@@ -14,9 +14,8 @@ import SaltSugarStack from "./SaltSugarStack";
 import FreshFruitsStack from "./FreshFruitsStack"
 import NoodlesStack from "./NoodlesStack";
 import OilStacknav from "./OilStacknav";
-import OffersScreen from "../Screens/Home/OffersScreen";
 import OrderScreenNav from "../Navigation/OrderScreenNav"
-
+import OfferScreenstack from "../Navigation/OfferScreenstack"
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -28,6 +27,7 @@ const StackNav = () => {
         name={Routes.CATEGORY_GROUP_TAB}
         component={CategoryGroup}
       />
+      <Stack.Screen name={Routes.CART_SCREEN} component={OrderScreenNav}  options={{ headerShown: false }}/>
       <Stack.Screen name={Routes.POPULAR_Product} component={PopularProductStack} />
       <Stack.Screen name={Routes.FLASHSLE} component={FlashsaleProductNav} />
       <Stack.Screen name={Routes.FRESH_VEGETABLES} component={VegetablesProductStack} />
@@ -37,8 +37,8 @@ const StackNav = () => {
       <Stack.Screen name={Routes.NOODLES} component={NoodlesStack} />
       <Stack.Screen name={Routes.ALL_OIL} component={OilStacknav} />
       <Stack.Screen name={Routes.Product_Card} component={ProductStacknav} />
-      <Stack.Screen name={Routes.OFFER_PRODUCTS} component={OffersScreen} />
-      <Stack.Screen name={Routes.CART_SCREEN} component={OrderScreenNav} />
+      <Stack.Screen name={Routes.OFFER_PRODUCTS} component={OfferScreenstack} />
+      
 
 
       

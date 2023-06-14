@@ -5,6 +5,7 @@ import Routes from "../Utility/Routes";
 import FlashSale from "../Screens/Home/FlashSales";
 import AllBiscuits from "../Screens/Home/AllBiscuits";
 import AllFreshFruits from "../Screens/Home/AllFreshFruits";
+import AllNoodles from "../Screens/Home/AllNoodles";
 
 
 const Stack = createStackNavigator();
@@ -14,11 +15,9 @@ export default function NoodlesStack()  {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.T}
-      component={AllFreshFruits}
-      options={{
-        headerShown:false,
-      }}
+      name={Routes.NOODLES}
+      component={AllNoodles}
+    
     
      
     />
@@ -26,8 +25,7 @@ export default function NoodlesStack()  {
       name={Routes.Tt}
       component={SingleProductsDetailsScreen}
       options={{
-        headerShown:false,
-
+  
         headerStyle: {
           
           borderBottomWidth: 0,
@@ -35,8 +33,7 @@ export default function NoodlesStack()  {
         },
         
         headerBackTitle: "BACK",
-     
-        headerTitle: "",
+  
       }}
     
     />

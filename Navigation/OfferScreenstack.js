@@ -4,20 +4,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Routes from "../Utility/Routes";
 import AllOil from "../Screens/Home/AllOil";
 import HomeScreen from "../Screens/Home/HomeScreen";
+import OffersScreen from "../Screens/Home/OffersScreen";
 
 
 const Stack = createStackNavigator();
 
-export default function OilStacknav()  {
+export default function OfferScreenstack()  {
 
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.T}
-      component={AllOil}
-      options={{
-        headerShown:false,
-      }}
+      name={Routes.OFFER_PRODUCTS}
+      component={OffersScreen}
+   
     
      
     />
@@ -25,7 +24,7 @@ export default function OilStacknav()  {
       name={Routes.Tt}
       component={SingleProductsDetailsScreen}
       options={{
-        headerShown:false,
+    
 
         headerStyle: {
           
@@ -35,13 +34,53 @@ export default function OilStacknav()  {
         
         headerBackTitle: "BACK",
      
-        headerTitle: "",
+    
       }}
 
       
     
     />
 
+<Stack.Screen
+      name={Routes.HOME}
+      component={HomeScreen}
+      options={{
+      
+
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
+     
+    
+      }}
+    
+    />
+
+    
+
   </Stack.Navigator>
   );
 }
+
+<Stack.Screen
+      name={Routes.HOME}
+      component={HomeScreen}
+      options={{
+      
+
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
+     
+    
+      }}
+    
+    />

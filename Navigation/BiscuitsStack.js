@@ -17,7 +17,8 @@ export default function FlashsaleProductNav()  {
       component={AllBiscuits}
       options={{
         headerShown:false,
-      }}
+       
+        }}
     
      
     />
