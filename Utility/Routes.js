@@ -68,7 +68,15 @@ export default {
 
   ORDER_HISTORY:"Order history", 
   ORDER_HISTORY_TAB:"Order history", 
-  ORDER_HISTORY_DRAWER:"Order history's", 
+  ORDER_HISTORY_DRAWER:"Order History", 
   ORDER_HISTORY_DETAILS:"details",
+
+  HELP_SCREEN_DRAWER : "help",
+  CUSTOMER_SUPPORT_DRAWER : "Customer Support",
+  LIVE_CHAT_DREAWER : "Live Chat",
+
+  REWARD:"Earn a Reward",
+
+  FAVORITES_PRODUCTS_DRAWER:"Favorites"
 
 };

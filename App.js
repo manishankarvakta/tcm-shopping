@@ -21,6 +21,7 @@ import OfferScreenstack from "./Navigation/OfferScreenstack"
 import FlashSale from "./Screens/Home/FlashSales";
 import HomeScreen from "./Screens/Home/HomeScreen";
 import StackNav from "./Navigation/StackNav";
+import HelpScreen from "./Screens/Home/HelpScreen";
  
 
 
