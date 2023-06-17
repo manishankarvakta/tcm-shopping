@@ -17,6 +17,7 @@ import HelpScreen from '../Screens/Home/HelpScreen';
 import ChatsScreen from '../Screens/Home/ChatsScreen';
 import EarnReward from '../Screens/Home/EarnReward';
 import FavoritesProducts from '../Screens/Home/FavoritesProducts';
+import CustomDrawer from '../Components/CustomDrawer';
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -25,7 +26,7 @@ function DrawerNav() {
     Linking.openURL('tel:+1234567890');
   };
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator drawerContent={props => <CustomDrawer  {...props} />}>
       <Drawer.Screen name={Routes.HOME_DRAWER} component={TabNav}
       
       options={{ headerShown: false, 
