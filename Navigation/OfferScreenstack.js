@@ -16,7 +16,7 @@ export default function OfferScreenstack()  {
     <Stack.Screen
       name={Routes.OFFER_PRODUCTS}
       component={OffersScreen}
-   
+ 
     
      
     />

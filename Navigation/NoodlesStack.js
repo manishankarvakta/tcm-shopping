@@ -17,13 +17,6 @@ export default function NoodlesStack()  {
     <Stack.Screen
       name={Routes.NOODLES}
       component={AllNoodles}
-    
-    
-     
-    />
-    <Stack.Screen
-      name={Routes.Tt}
-      component={SingleProductsDetailsScreen}
       options={{
   
         headerStyle: {
@@ -35,6 +28,13 @@ export default function NoodlesStack()  {
         headerBackTitle: "BACK",
   
       }}
+    
+     
+    />
+    <Stack.Screen
+      name={Routes.Tt}
+      component={SingleProductsDetailsScreen}
+      
     
     />
    
