@@ -12,7 +12,7 @@ export default function ConfirmationProducts({navigation}) {
     <View style={{flexDirection:"row",shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 5,justifyContent:"space-around",backgroundColor:"#F0F8FF",margin:10,borderRadius:5,marginTop:10,padding:10}}>
     <View>
          <Image
-               source={require('../../assets/FlashSales/f1.jpg')}
+               source={require('../../assets/f1.png')}
                style={{ width: 120, height: 100,borderRadius:10,flex:1}}
            />
          </View>
@@ -121,7 +121,7 @@ export default function ConfirmationProducts({navigation}) {
                  <View style={{justifyContent:"space-between",flexDirection: 'row'}}> 
                   
                  <Image
-                 source={require('../../assets/FlashSales/f1.jpg')}
+                 source={require('../../assets/f1.png')}
                  style={{ width: 45, height: 45 ,borderRadius:10}}
              />
                   <Text style={{color:"black",marginTop:3,fontWeight:"500",fontSize:16,padding:10}}>Nagad</Text>

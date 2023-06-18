@@ -6,7 +6,7 @@ const numColumns = 3 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
 
     const data = [
-      { id: '1', imageUrl:require("../../assets/FlashSales/f1.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
+      { id: '1', imageUrl:require("../../assets/f1.png") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
       { id: '2', imageUrl:require("../../assets/FlashSales/f2.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
       { id: '3', imageUrl: require("../../assets/FlashSales/f3.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
       { id: '4', imageUrl: require("../../assets/FlashSales/f4.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},

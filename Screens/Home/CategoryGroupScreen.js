@@ -1,91 +1,91 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
+import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text, SafeAreaView } from 'react-native';
 import Routes from '../../Utility/Routes';
-
 const numColumns = 2 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
 
 const data = [
-  { Id: '1', image: require('../../assets/FlashSales/f1.jpg'),name: "Popular"},
-  { Id: '2', image: require('../../assets/PopularProduct/p3.jpg',),name: "Flash Sales"},
-  { Id: '3', image: require('../../assets/PopularProduct/p5.jpg'),name: "Food"},
-  { Id: '4', image: require('../../assets/PopularProduct/p2.jpg'),name: "Cleaning Supplies"},
-  { Id: '5', image: require('../../assets/FlashSales/f4.jpg'),name: "Personal Care"},
-  { Id: '6', image: require('../../assets/FlashSales/f6.jpg'),name: "Health & Wellness"},
-  { Id: '7', image: require('../../assets/PopularProduct/p8.jpg'),name: "Baby Care "},
-  { Id: '8', image: require('../../assets/PopularProduct/p7.jpg'),name: "Home & Kitcen"},
-  { Id: '9', image: require('../../assets/PopularProduct/p10.jpg'),name: "Stationary & Office"},
-  { Id: '10', image: require('../../assets/PopularProduct/p2.jpg'),name: "Pet Care"},
-  { Id: '11', image: require('../../assets/PopularProduct/p1.jpg'),name: "toys & Sports"},
-  { Id: '13', image: require('../../assets/FlashSales/f3.jpg'),name: "Beauty & MakeUp "},
-  { Id: '14', image: require('../../assets/FlashSales/f5.jpg'),name: "Fashion & LifeStyle "},
-  { Id: '15', image: require('../../assets/FlashSales/f6.jpg'),name: "Vehicle & Essentials "},
+  { Id: '1', image: require('../../assets/FlashSales/f10.png'),name: "Popular"},
+  { Id: '2', image: require('../../assets/FlashSales/f6.png',),name: "Flash Sales"},
+  { Id: '3', image: require('../../assets/FlashSales/f2.png'),name: "Food"},
+  { Id: '4', image: require('../../assets/FlashSales/f8.png'),name: "Cleaning Supplies"},
+  { Id: '5', image: require('../../assets/FlashSales/f5.png'),name: "Personal Care"},
+  { Id: '6', image: require('../../assets/FlashSales/f3.png'),name: "Health & Wellness"},
+  { Id: '7', image: require('../../assets/FlashSales/f9.png'),name: "Baby Care "},
+  { Id: '8', image: require('../../assets/FlashSales/1.png'),name: "Home & Kitcen"},
+  { Id: '9', image: require('../../assets/FlashSales/5.png'),name: "Stationary & Office"},
+  { Id: '10', image: require('../../assets/FlashSales/9.png'),name: "Pet Care"},
+  { Id: '11', image: require('../../assets/FlashSales/7.png'),name: "toys & Sports"},
+  { Id: '13', image: require('../../assets/FlashSales/3.png'),name: "Beauty & MakeUp "},
+  { Id: '14', image: require('../../assets/FlashSales/2.png'),name: "Fashion & LifeStyle "},
+  { Id: '15', image: require('../../assets/FlashSales/4.png'),name: "Vehicle & Essentials "},
   
 ];
+export default function CategoryGroupScreen({ navigation }) {
 
-const CategoryGroupScreen = ({ navigation }) => {
-  const renderItem = ({ item }) => {
-    return (
-      <View style={styles.cardTwo}>
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.CATEGORY_SCREEN)} style={styles.item}>
-        <Image source={item.image} style={styles.image} />
-        <Text>{item.name}</Text>
-        
-      </TouchableOpacity>
-      </View>
-    );
-  };
+    const renderItem = ({ item }) => {
+        return (
+                 <View style={styles.cardTwo}>
+           
 
+           <TouchableOpacity onPress={() => navigation.navigate(Routes.CATEGORY_SCREEN)} style={{flexDirection:"row",justifyContent:"space-between"}}>
+             <Text style={{alignSelf:"center",width:"50%",fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
+
+            <View style={styles.imageContainer}>
+           <Image source={item.image} style={styles.image} />
+         </View>
+       </TouchableOpacity>
+
+         </View>
+        );
+      };
   return (
-  <View   style={styles.container}>
+<SafeAreaView style={{marginHorizontal:10,marginTop:10}}>
+    <View   style={styles.container}>
  
-      <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.Id}
-      numColumns={numColumns}
-    />
-  </View>
-  );
-};
+    <FlatList
+    data={data}
+    renderItem={renderItem}
+    keyExtractor={(item) => item.Id}
+    numColumns={numColumns}
+  />
+</View>
+</SafeAreaView>  
+)
+}
 
 const styles = StyleSheet.create({
-  container:{
-    marginHorizontal:10,
-    marginVertical:10
-    },
-  item: {
-    alignItems: 'center',
-    flex: 1,
-    margin: 5,
-    width: itemWidth,
-  },
-  image:{
-     marginBottom:10,
-     width:150,
-     height:100,
-     textAlign:"center",
-     borderRadius:10,
-     maxWidth: "100%",
-     maxHeight: "100%",
-  },
-  cardTwo: {
-    margin:2,
-    backgroundColor:"#fff",
-    padding:2,
-    borderRadius:5,
-    shadowColor: 'gray',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    justifyContent: "center",
-    alignItems: "center",
-    width:"50%",
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    
-  },
-});
 
-export default CategoryGroupScreen;
+
+    cardTwo: {
+      marginVertical: 3,
+      marginHorizontal:3,
+      backgroundColor: "#F5F6FB",
+      padding: 5,
+      borderRadius: 10,
+      shadowColor: "gray",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+    
+    
+      width: "48.4%",
+      shadowOpacity: 0.5,
+      shadowRadius: 3.84,
+    },
+
+    image: {
+        width: 90,
+        height: 80,
+    
+        
+      },
+
+      imageContainer: {
+        justifyContent: "flex-end",
+        alignItems:"flex-end",
+      },
+  });
+
+  

@@ -16,7 +16,7 @@ const itemWidth = Dimensions.get('window').width / numColumns;
       { id: '8', imageUrl:require("../../assets/PopularProduct/p9.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
       { id: '9', imageUrl:require("../../assets/FlashSales/f8.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
       { id: '10', imageUrl: require("../../assets/PopularProduct/p7.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '11', imageUrl: require("../../assets/FlashSales/f1.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
+      { id: '11', imageUrl: require("../../assets/f1.png"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
       { id: '12', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
       { id: '13', imageUrl: require("../../assets/FlashSales/f3.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
     ];

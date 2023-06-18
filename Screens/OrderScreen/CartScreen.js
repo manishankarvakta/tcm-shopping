@@ -49,7 +49,7 @@ export default function CartScreen({navigation}) {
   elevation: 55}}>
             <View>
             <Image
-                 source={require('../../assets/FlashSales/f1.jpg')}
+                 source={require('../../assets/f1.png')}
                  style={{ width: 55, height: 55 ,borderRadius:10}}
              />
             </View>

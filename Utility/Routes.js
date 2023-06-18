@@ -31,6 +31,7 @@ export default {
   POPULAR_Product : "Popular Product",
   
   FLASHSLE:"Flash Sales",
+  FLASHSALE_TAB:"", 
   FLASHSALE_Drawer:"Flash Sales",
   FRESH_VEGETABLES:"Fresh Vegetables",
   All_BISCUITS:"Biscuits",

@@ -11,7 +11,7 @@ import React from "react";
 
 const ImageCarousel = () => {
   const data = [
-    { url: require("../assets/FlashSales/f1.jpg") },
+    { url: require("../assets/f1.png") },
     { url: require("../assets/image2.jpg") },
     { url: require("../assets/Freshfood/1.jpg") },
   ];
