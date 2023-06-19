@@ -10,7 +10,7 @@ const data = [
   { Id: '9', image: require('../../assets/FlashSales/5.png'),name: "Stationary & Office"},
   { Id: '10', image: require('../../assets/FlashSales/9.png'),name: "Pet Care"},
   { Id: '13', image: require('../../assets/FlashSales/3.png'),name: "Beauty & MakeUp "},
-
+ 
   
   
 ];
@@ -22,7 +22,7 @@ export default function SubCategory({ navigation }) {
            
 
            <TouchableOpacity onPress={() => navigation.navigate(Routes.T)} style={{flexDirection:"row",justifyContent:"space-between"}}>
-             <Text style={{alignSelf:"center",width:"50%",fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
+             <Text style={{alignSelf:"center",width:"50%",marginLeft:10,width:"55%",fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
 
             <View style={styles.imageContainer}>
            <Image source={item.image} style={styles.image} />
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
       imageContainer: {
         justifyContent: "flex-end",
         alignItems:"flex-end",
+        width:"45%",
       },
   });
 

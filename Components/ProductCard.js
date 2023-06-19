@@ -11,11 +11,10 @@ import { Icon } from '@rneui/base';
 import React from "react";
 import { useNavigation } from '@react-navigation/native';
 import Routes from "../Utility/Routes";
-import { useDispatch } from "react-redux";
 import { AddToCart } from "../Screens/Redux/CartSlice";
 
 const ProductCard = () => {
-  const navigation = useNavigation()
+ 
 
   const data = [
     { id: '1', imageUrl: require("../assets/FlashSales/f9.jpg"), title: 'Item 1', name: "Mango", price: "320TK", weight: "4kg", },
@@ -32,7 +31,7 @@ const ProductCard = () => {
       data={data}
       showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card}>
+        <TouchableOpacity  style={styles.card}>
           <Image
             onPress={() => alert(item.imageUrl)}
             source={item.imageUrl}

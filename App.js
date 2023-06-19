@@ -13,7 +13,7 @@ import TabNav from "./Navigation/TabNav";
 import OrderHistory from "./Screens/DrawerScreen/OrderHistory";
 import OrderHistoryDetails from "./Screens/DrawerScreen/OrderHistoryDetails";
 import OrderHistoryNavStack from "./Navigation/OrderHistoryNavStack";
-import DrawerNav from "./Navigation/DrawerNav.";
+import DrawerNav from "./Navigation/DrawerNav";
 import OrderScreenNav from "./Navigation/OrderScreenNav";
 import FreshFruitsStack from "./Navigation/FreshFruitsStack"
 import FlashsaleProductNav from "./Navigation/FlashsaleProductNav";
@@ -22,8 +22,8 @@ import FlashSale from "./Screens/Home/FlashSales";
 import HomeScreen from "./Screens/Home/HomeScreen";
 import StackNav from "./Navigation/StackNav";
 import HelpScreen from "./Screens/Home/HelpScreen";
-import Prectices from "./Screens/Home/Prectices";
 import CategoryGroupScreen from "./Screens/Home/CategoryGroupScreen"
+import { Home } from "./Screens";
 
 
 

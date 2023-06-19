@@ -27,17 +27,17 @@ const StackNav = () => {
         name={Routes.CATEGORY_GROUP_TAB}
         component={CategoryGroup}
       />
-      <Stack.Screen name={Routes.CART_SCREEN} component={OrderScreenNav}  options={{ headerShown: false }}/>
+      <Stack.Screen name={Routes.CART_SCREEN_TAB} component={OrderScreenNav}  options={{ headerShown: false }}/>
       <Stack.Screen name={Routes.POPULAR_Product} component={PopularProductStack} options={{ headerShown: false }}/>
-      <Stack.Screen name={Routes.FLASHSLE} component={FlashsaleProductNav} />
+      <Stack.Screen name={Routes.FLASHSALE_TAB} component={FlashsaleProductNav} options={{ headerShown: false }}/>
       <Stack.Screen name={Routes.FRESH_VEGETABLES} component={VegetablesProductStack} />
       <Stack.Screen name={Routes.All_BISCUITS} component={BiscuitsStack} />
       <Stack.Screen name={Routes.SALT_SUGER} component={SaltSugarStack} />
-      <Stack.Screen name={Routes.FRESH_FOOD} component={FreshFruitsStack} options={{ headerShown: false }} />
-      <Stack.Screen name={Routes.NOODLES} component={NoodlesStack} options={{ headerShown: false }}/>
-      <Stack.Screen name={Routes.ALL_OIL} component={OilStacknav} options={{ headerShown: false }}/>
+      <Stack.Screen name={Routes.FRESH_FOOD_TAB} component={FreshFruitsStack} options={{ headerShown: false }} />
+      <Stack.Screen name={Routes.NOODLES_TAB} component={NoodlesStack} options={{ headerShown: false }}/>
+      <Stack.Screen name={Routes.ALL_OIL_TAB} component={OilStacknav} options={{ headerShown: false }}/>
       <Stack.Screen name={Routes.Product_Card} component={ProductStacknav} options={{ headerShown: false }}/>
-      <Stack.Screen name={Routes.OFFER_PRODUCTS} component={OfferScreenstack} options={{ headerShown: false }}/>
+      <Stack.Screen name={Routes.OFFER_PRODUCTS_TAB} component={OfferScreenstack} options={{ headerShown: false }}/>
       
 
 

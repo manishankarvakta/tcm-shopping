@@ -30,35 +30,44 @@ export default {
   
   POPULAR_Product : "Popular Product",
   
-  FLASHSLE:"Flash Sales",
-  FLASHSALE_TAB:"", 
-  FLASHSALE_Drawer:"Flash Sales",
+  FLASHSALE:"Flashsales",
+  FLASHSALE_TAB:"Flash Sales Tab", 
+  FLASHSALE_Drawer:"Flash Sales ",
+
+
   FRESH_VEGETABLES:"Fresh Vegetables",
   All_BISCUITS:"Biscuits",
+
   SALT_SUGER : "Salt Suger",
+
   FRESH_FOOD:"Fresh food",
+  FRESH_FOOD_TAB:"Fresh Foods",
 
   NOODLES:"Noodles",
-  NOODLES_DRAWER:"Noodles Product",
+  NOODLES_TAB:"Noodles Product",
 
   ALL_OIL:"oil",
-  ALL_OIL_DRAWER:"oil's",
+  ALL_OIL_TAB:"oil,s",
+
 
 
   T:"Popular ",
   Tt:"Details",
 
+  Product_Slider :"P Products",
   
   Product_Card:"Popular Products",
   Product_Card_Drawer:"Popular",
 
-  OFFER_PRODUCTS:"Offers",
-  OFFER_PRODUCTS_DRAWER:"Offer",
+  OFFER_PRODUCTS:"Special Offer ",
+  OFFER_PRODUCTS_TAB:"Offer ",
+  OFFER_PRODUCTS_DRAWER:"Offers",
 
 
 
   CART_SCREEN:"Order products",
   CART_SCREEN_TAB:"Order's product's",
+
   CONFIRM_ORDER:"Confirm Order",
 
   ORDER_ID:"ID NO",

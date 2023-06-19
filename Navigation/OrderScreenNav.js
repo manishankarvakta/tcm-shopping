@@ -58,7 +58,7 @@ export default function OrderScreenNav()  {
     />
 
 <Stack.Screen
-      name={Routes.HOME}
+      name={Routes.HOME_TAB}
       component={HomeScreen}
       options={{
       

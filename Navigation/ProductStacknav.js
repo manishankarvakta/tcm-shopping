@@ -9,7 +9,7 @@ export default function ProductStacknav()  {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.Product_Card}
+      name={Routes.Product_Slider}
       component={ProductCard}
       options={{
         headerShown:false

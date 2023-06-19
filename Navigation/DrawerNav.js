@@ -1,16 +1,10 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Routes from '../Utility/Routes';
 import TabNav from './TabNav';
-import CategoryGroupScreen from '../Screens/Home/CategoryGroupScreen';
-import FreshFruitsStack from "../Navigation/FreshFruitsStack"
 import CategoryStackNav from './CategoryStackNav';
 import OrderHistoryNavStack from './OrderHistoryNavStack';
-import OrderScreenNav from './OrderScreenNav';
 import CustomerSupport from '../Screens/Home/CustomerSupport'
 import { Icon } from '@rneui/base';
-
-import NoodlesStack from './NoodlesStack';
-import OilStacknav from './OilStacknav';
 import OfferScreenstack from "./OfferScreenstack"
 import PopularProductStack from './PopularProductStack';
 import HelpScreen from '../Screens/Home/HelpScreen';
@@ -18,6 +12,7 @@ import ChatsScreen from '../Screens/Home/ChatsScreen';
 import EarnReward from '../Screens/Home/EarnReward';
 import FavoritesProducts from '../Screens/Home/FavoritesProducts';
 import CustomDrawer from '../Components/CustomDrawer';
+import FlashsaleProductNav from './FlashsaleProductNav';
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -49,6 +44,17 @@ function DrawerNav() {
        ),}}
       
       />
+
+
+<Drawer.Screen name={Routes.FLASHSALE_Drawer} component={FlashsaleProductNav}
+      
+      options={{ headerShown: false, 
+        drawerIcon: ({ color, size }) => (
+       <Icon name="box" size={20} color="red" type="entypo" />
+       ),}}
+      
+      />
+
 
     <Drawer.Screen name={Routes.FAVORITES_PRODUCTS_DRAWER} component={FavoritesProducts}
       

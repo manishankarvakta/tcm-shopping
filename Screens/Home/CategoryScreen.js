@@ -24,7 +24,7 @@ export default function CategoryScreen({ navigation }) {
            
 
            <TouchableOpacity onPress={() => navigation.navigate(Routes.SUB_CATEGORY)} style={{flexDirection:"row",justifyContent:"space-between"}}>
-             <Text style={{alignSelf:"center",width:"50%",fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
+             <Text style={{alignSelf:"center",width:"55%",marginLeft:10,fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
 
             <View style={styles.imageContainer}>
            <Image source={item.image} style={styles.image} />
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
       imageContainer: {
         justifyContent: "flex-end",
         alignItems:"flex-end",
+        width:"45%",
       },
   });
 
