@@ -196,7 +196,7 @@ export default function ConfirmationProducts({navigation}) {
             </View>
 
             <View style={{alignSelf:"center"}}>
-            <TouchableOpacity onPress={() => navigation.navigate(Routes.HOME)} style={{ borderWidth: 1,width:"50%", borderColor: "green", borderRadius: 5, padding: 13,marginVertical:15,alignItems:"center" }}>
+            <TouchableOpacity onPress={() => navigation.navigate(Routes.HOME_TAB)} style={{ borderWidth: 1,width:"50%", borderColor: "green", borderRadius: 5, padding: 13,marginVertical:15,alignItems:"center" }}>
         <Text style={{ color: "green", fontWeight: "700" }}>Back to Shopping</Text>
       </TouchableOpacity>
             </View>

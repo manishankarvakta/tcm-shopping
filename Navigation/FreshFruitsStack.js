@@ -16,7 +16,19 @@ export default function FlashsaleProductNav()  {
       name={Routes.FRESH_FOOD}
       component={AllFreshFruits}
 
+      options={{
     
+
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
+     
+    
+      }}
      
     />
     <Stack.Screen

@@ -17,7 +17,19 @@ export default function OfferScreenstack()  {
       name={Routes.OFFER_PRODUCTS}
       component={OffersScreen}
  
+      options={{
     
+
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
+     
+    
+      }}
      
     />
     <Stack.Screen

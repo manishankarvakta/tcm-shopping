@@ -14,7 +14,7 @@ export default function FlashSaleStackNav()  {
     <Stack.Screen
       name={Routes.HOME}
       component={FlashSale}
-  
+    
     
      
     />

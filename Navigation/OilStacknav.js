@@ -14,7 +14,19 @@ export default function OilStacknav()  {
     <Stack.Screen
       name={Routes.ALL_OIL}
       component={AllOil}
+      options={{
+    
+
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
      
+    
+      }}
     
      
     />

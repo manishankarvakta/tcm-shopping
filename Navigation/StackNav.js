@@ -16,6 +16,7 @@ import NoodlesStack from "./NoodlesStack";
 import OilStacknav from "./OilStacknav";
 import OrderScreenNav from "../Navigation/OrderScreenNav"
 import OfferScreenstack from "../Navigation/OfferScreenstack"
+import CategoryStackNav from "./CategoryStackNav";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -25,7 +26,8 @@ const StackNav = () => {
       <Stack.Screen name={Routes.LOGIN} component={Login} />
       <Stack.Screen
         name={Routes.CATEGORY_GROUP_TAB}
-        component={CategoryGroup}
+        component={CategoryStackNav}
+        options={{ headerShown: false }}
       />
       <Stack.Screen name={Routes.CART_SCREEN_TAB} component={OrderScreenNav}  options={{ headerShown: false }}/>
       <Stack.Screen name={Routes.POPULAR_Product} component={PopularProductStack} options={{ headerShown: false }}/>

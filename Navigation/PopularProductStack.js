@@ -12,7 +12,19 @@ export default function PopularProductStack()  {
     <Stack.Screen
       name={Routes.Product_Card}
       component={PopularProducts}
-  
+      options={{
+    
+
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
+     
+    
+      }}
 
      
     />

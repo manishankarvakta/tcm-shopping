@@ -14,7 +14,19 @@ export default function FlashsaleProductNav()  {
     <Stack.Screen
       name={Routes.FLASHSALE}
       component={FlashSale}
+      options={{
+    
 
+        headerStyle: {
+          
+          borderBottomWidth: 0,
+         
+        },
+        
+        headerBackTitle: "BACK",
+     
+    
+      }}
     
      
     />

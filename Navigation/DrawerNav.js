@@ -31,14 +31,14 @@ function DrawerNav() {
       />
       <Drawer.Screen name={Routes.OFFER_PRODUCTS_DRAWER} component={OfferScreenstack}
       
-      options={{ headerShown: false, 
+      options={{  headerShown: false,
         drawerIcon: ({ color, size }) => (
        <Icon name="local-offer" size={20} color="red" type="MaterialIcons" />
        ),}}
       />
       <Drawer.Screen name={Routes.Product_Card_Drawer} component={PopularProductStack}
       
-      options={{ headerShown: false, 
+      options={{headerShown: false,
         drawerIcon: ({ color, size }) => (
        <Icon name="box" size={20} color="red" type="entypo" />
        ),}}
@@ -48,7 +48,7 @@ function DrawerNav() {
 
 <Drawer.Screen name={Routes.FLASHSALE_Drawer} component={FlashsaleProductNav}
       
-      options={{ headerShown: false, 
+      options={{ headerShown: false,
         drawerIcon: ({ color, size }) => (
        <Icon name="box" size={20} color="red" type="entypo" />
        ),}}
@@ -65,13 +65,15 @@ function DrawerNav() {
       
       />
       <Drawer.Screen name={Routes.CATEGORY_GROUP_DRAWER} component={CategoryStackNav}  
+  options={{ headerShown: false, 
+    }}
+  />
+           
 
-           options={{ headerShown: false,}} 
- />
 
       <Drawer.Screen   name={Routes.ORDER_HISTORY_DRAWER} component={OrderHistoryNavStack} 
 
-         options={{ headerShown: false, 
+         options={{ headerShown: false,
          drawerIcon: ({ color, size }) => (
         <Icon name="details" size={20} color="red" type="MaterialIcons
         " />
@@ -79,7 +81,7 @@ function DrawerNav() {
 
        <Drawer.Screen   name={Routes.REWARD} component={EarnReward} 
 
-        options={{ headerShown: false, 
+        options={{ headerShown: false,
          drawerIcon: ({ color, size }) => (
            <Icon name="coins" size={20} color="red" type="font-awesome-5" />
        ),}}/>
