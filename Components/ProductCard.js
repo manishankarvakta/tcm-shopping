@@ -11,11 +11,13 @@ import { Icon } from '@rneui/base';
 import React from "react";
 import { useNavigation } from '@react-navigation/native';
 import Routes from "../Utility/Routes";
-import { AddToCart } from "../Screens/Redux/CartSlice";
+import { addToCart } from "../Screens/Redux/CartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductCard = () => {
  
-
+  const dispatch  = useDispatch();
+  
   const data = [
     { id: '1', imageUrl: require("../assets/FlashSales/f9.jpg"), title: 'Item 1', name: "Mango", price: "320TK", weight: "4kg", },
     { id: '2', imageUrl: require("../assets/Freshfood/7.jpg"), title: 'Item 2', name: "Apple", price: "320TK", weight: "2kg",  },
@@ -24,6 +26,11 @@ const ProductCard = () => {
     { id: '5', imageUrl: require("../assets/Freshfood/6.jpg"), title: 'Item 2', name: "Apple", price: "320TK", weight: "2kg",  },
     { id: '6', imageUrl: require("../assets/PopularProduct/p6.jpg"), title: 'Item 1', name: "Orange", price: "300TK", weight: "1kg",  },
   ];
+
+  const handleAddtoCart = (item) =>{
+    console.log(item)
+    dispatch(addToCart(item))
+  }
 
   return (
     <FlatList
@@ -47,7 +54,7 @@ const ProductCard = () => {
             <Text style={styles.price}>Price: {item.price}</Text>
              <View style={styles.cartStyle}>
                 <Text style={styles.quantity}>{item.weight}</Text>
-               <TouchableOpacity onPress={AddToCart(data)}>
+               <TouchableOpacity onPress={()=>handleAddtoCart(item)}>
                <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
                </TouchableOpacity>
              </View>

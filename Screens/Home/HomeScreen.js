@@ -26,11 +26,20 @@ import Noodles from "../../Components/Noodles";
 import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { useGetProductsQuery } from "../Redux/Api/ProductsApi";
 
 
 
-const HomeScreen = () => {
-  const navigation = useNavigation()
+const HomeScreen = ({navigation}) => {
+  const {data, isSuccess, isError, isFetching, isLoading} = useGetProductsQuery()
+  // const cart = useSelector(state => state.cartReducer)
+
+  useEffect(()=>{
+    console.log("Product:",data)
+  },[isSuccess])
+
+  console.log(isFetching,isLoading, isSuccess, isError)
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   useEffect(() => {
