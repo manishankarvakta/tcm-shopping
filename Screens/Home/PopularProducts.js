@@ -1,100 +1,74 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, Image, Text } from 'react-native';
 import { Icon } from '@rneui/base';
 import Routes from '../../Utility/Routes';
 import { useNavigation } from '@react-navigation/native';
-const numColumns = 3 ;
+import { useGetPopularProductsQuery } from '../Redux/Api/ProductsApi';
+const numColumns = 3;
 const itemWidth = Dimensions.get('window').width / numColumns;
-
-
-
-    const data = [
-      { id: '1', imageUrl:require("../../assets/PopularProduct/p1.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
-      { id: '2', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '3', imageUrl: require("../../assets/PopularProduct/p3.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '4', imageUrl: require("../../assets/PopularProduct/p4.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
-      { id: '5', imageUrl:require("../../assets/PopularProduct/p5.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '7', imageUrl: require("../../assets/PopularProduct/p6.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '8', imageUrl:require("../../assets/PopularProduct/p7.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
-      { id: '9', imageUrl:require("../../assets/PopularProduct/p8.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '10', imageUrl: require("../../assets/PopularProduct/p9.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '11', imageUrl: require("../../assets/PopularProduct/p10.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
-      { id: '12', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '13', imageUrl: require("../../assets/PopularProduct/p8.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
-    ];
+import { PHOTO_URL } from '../../Utility/BaseUrl'
 
 const PopularProducts = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const [product, setProduct] = useState([]);
 
+  const { data, isSuccess, isError } = useGetPopularProductsQuery();
+
+  useEffect(() => {
+    data?.length > 0 && setProduct(data);
+  }, [isSuccess]);
+
+  const truncateName = (name) => {
+    const nameWords = name.split(' ');
+    const truncatedName = nameWords.slice(0,  v   ).join(' ');
+    const hasMoreWords = nameWords.length > 1;
+    return hasMoreWords ? `${truncatedName}...` : truncatedName;
+  };
 
   const renderItem = ({ item }) => {
+    const photos = `${PHOTO_URL}${item.photo}`;
+    const truncatedName = truncateName(item.name);
+
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card} >
-        <Image
-    onPress={() => alert(item.imageUrl)}
-    source={item.imageUrl}
-    style={{
-      width: 95,
-      height: 90,
-      
-      
-      borderRadius: 10,
-    }}
-    
-  />
-   <View style={styles.details}>
-<Text style={styles.name}>{item.name}</Text>
-<Text style={styles.price}>Price: {item.price}</Text>
-<View style={styles.cartStyle}>
-                <Text style={styles.quantity}>{item.weight}</Text>
-               <TouchableOpacity>
-               <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
-               </TouchableOpacity>
-             </View> 
-</View>
-  {/* <Text>{`../assets/${item.key}.jpg`}</Text> */}
-</TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card}>
+        <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
+        <View style={styles.details}>
+          <Text style={styles.name}>{truncatedName}</Text>
+          <Text style={styles.price}>Price: {item.priceList[0].mrp}</Text>
+          <View style={styles.cartStyle}>
+            <Text style={styles.quantity}>{item.weight}</Text>
+            <TouchableOpacity>
+              <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </TouchableOpacity>
     );
   };
 
   return (
-  <View style={styles.container}>
-   
+    <View style={styles.container}>
       <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-      numColumns={numColumns}
-    />
-  </View>
+        data={product}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        numColumns={numColumns}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container:{
-    marginHorizontal:10,
-    marginVertical:10
-    },
-  item: {
-    alignItems: 'center',
-    flex: 1,
-    margin: 5,
-    width: itemWidth,
+  container: {
+    marginHorizontal: 10,
+    marginVertical: 10
   },
-  image:{
-     marginBottom:10,
-     width:160,
-     height:100,
-     textAlign:"center",
-     borderRadius:10,
-  },
-
   card: {
     flexDirection: "column",
     margin: 5,
-    backgroundColor:"#F5F6FB",
-    padding:7,
-    borderRadius:5,
+    backgroundColor: "#F5F6FB",
+    padding: 7,
+    borderRadius: 5,
     shadowColor: 'gray',
     shadowOffset: {
       width: 0,
@@ -104,15 +78,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  image: {
-    width: 85,
-    height: 80,
-    borderRadius:10,
-    resizeMode: 'cover',
-  },
   details: {
     paddingTop: 10,
-    
   },
   name: {
     fontSize: 18,
@@ -126,10 +93,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
   },
-  cartStyle:{
+  cartStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  PopularProductsImg: {
+    width: 95,
+    height: 90,
+    borderRadius: 10,
+  }
 });
 
 export default PopularProducts;

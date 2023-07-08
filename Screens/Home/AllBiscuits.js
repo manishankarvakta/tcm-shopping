@@ -28,13 +28,7 @@ const AllBiscuits = ({navigation}) => {
         <Image
     onPress={() => alert(item.imageUrl)}
     source={item.imageUrl}
-    style={{
-      width: 95,
-      height: 90,
-      
-      marginVertical: 5,
-      borderRadius: 10,
-    }}
+    style={styles.BiscuitsImgStyle}
     
   />
    <View style={styles.details}>
@@ -126,6 +120,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
   },
+  BiscuitsImgStyle:{
+    width: 95,
+    height: 90,  
+    marginVertical: 5,
+    borderRadius: 10,
+  }
 });
 
 export default AllBiscuits;

@@ -54,6 +54,96 @@ export default function CartScreen({navigation}) {
 
             </View>
             </View>
+
+            <View style={styles.CartProductStyle}>
+            <View>
+            <Image
+                 source={require('../../assets/f1.png')}
+                 style={styles.CartProductImgStyle}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+
+            <View style={styles.CartProductStyle}>
+            <View>
+            <Image
+                 source={require('../../assets/f1.png')}
+                 style={styles.CartProductImgStyle}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+            <View style={styles.CartProductStyle}>
+            <View>
+            <Image
+                 source={require('../../assets/f1.png')}
+                 style={styles.CartProductImgStyle}
+             />
+            </View>
+
+            <View style={{justifyContent:"space-between",paddingHorizontal:10,}}>
+              <View>
+                <Text>Lychee Premium</Text>
+              </View>
+              <View style={{flexDirection:"row"}}>
+                  <Text style={{color:"red"}}>$175  </Text> 
+                  <Text style={{textDecorationLine: 'line-through' }}>$225</Text>
+                  <Text> | 50 pcs</Text>
+              </View>
+            </View>
+
+            <View style={{flexDirection:"row",alignItems:"flex-end",alignSelf: 'flex-end'}}>
+
+            <TouchableOpacity><Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <TouchableOpacity><Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10}/></TouchableOpacity>
+            <Text>1</Text>
+            <TouchableOpacity><Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10}/></TouchableOpacity>
+
+            </View>
+            </View>
+
+
             <View style={{ flexDirection:"row",margin:30, marginHorizontal:10,paddingVertical:10,backgroundColor:"#D4E9F9",borderRadius:5,}}>
   
               <View style={{flexDirection:"row",justifyContent:"space-between",marginHorizontal:20,}}>

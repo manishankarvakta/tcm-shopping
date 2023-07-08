@@ -27,13 +27,7 @@ const AllFreshFruits = ({navigation}) => {
         <Image
     onPress={() => alert(item.imageUrl)}
     source={item.imageUrl}
-    style={{
-      width: 95,
-      height: 90,
-      
-      marginVertical: 5,
-      borderRadius: 10,
-    }}
+    style={styles.FreshFruitsImgStyle}
     
   />
    <View style={styles.details}>
@@ -125,6 +119,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
   },
+  FreshFruitsImgStyle:{
+    width: 95,
+    height: 90,
+    
+    marginVertical: 5,
+    borderRadius: 10,
+  }
 });
 
 export default AllFreshFruits;

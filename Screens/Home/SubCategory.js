@@ -21,8 +21,8 @@ export default function SubCategory({ navigation }) {
                  <View style={styles.cardTwo}>
            
 
-           <TouchableOpacity onPress={() => navigation.navigate(Routes.T)} style={{flexDirection:"row",justifyContent:"space-between"}}>
-             <Text style={{alignSelf:"center",width:"50%",marginLeft:10,width:"55%",fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
+           <TouchableOpacity onPress={() => navigation.navigate(Routes.T)} style={styles.SubCategoryCardStyle}>
+             <Text style={styles.SubCategoryTextStyle}>{item.name}</Text>
 
             <View style={styles.imageContainer}>
            <Image source={item.image} style={styles.image} />
@@ -80,6 +80,21 @@ const styles = StyleSheet.create({
         alignItems:"flex-end",
         width:"45%",
       },
+
+      SubCategoryTextStyle:{
+        alignSelf:"center",
+        width:"50%",
+        marginLeft:10,
+        width:"55%",
+        fontWeight:"700",
+        fontSize:15,
+        color:"#5E6D75"
+    },
+
+    SubCategoryCardStyle:{
+      flexDirection:"row",
+      justifyContent:"space-between"
+    }
   });
 
   

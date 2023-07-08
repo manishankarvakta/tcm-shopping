@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
 import { Icon } from '@rneui/base';
 import Routes from '../../Utility/Routes';
-const numColumns = 3 ;
-const itemWidth = Dimensions.get('window').width / numColumns;
+const numColumns = 2 ;
+
 
     const data = [
       { id: '1', imageUrl:require("../../assets/f1.png") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
@@ -27,13 +27,7 @@ const FlashSale = ({navigation }) => {
         <Image
     onPress={() => alert(item.imageUrl)}
     source={item.imageUrl}
-    style={{
-      width: 95,
-      height: 90,
-      
-      marginVertical: 5,
-      borderRadius: 10,
-    }}
+    style={styles.FlashSaleImg}
     
   />
    <View style={styles.details}>
@@ -73,19 +67,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     margin: 5,
-    width: itemWidth,
+    
   },
   cartStyle:{
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   image:{
-     marginBottom:10,
-     width:160,
-     height:100,
-     textAlign:"center",
-     borderRadius:10,
-  },
+    marginBottom:10,
+    width:260,
+    height:100,
+    textAlign:"center",
+    borderRadius:10,
+ },
 
   card: {
     flexDirection: "column",
@@ -98,16 +92,12 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
+    width:"47%",
     shadowOpacity: 0.5,
     shadowRadius: 3.84,
     elevation: 5,
   },
-  image: {
-    width: 85,
-    height: 80,
-    borderRadius:10,
-    resizeMode: 'cover',
-  },
+
   details: {
     paddingTop: 10,
     
@@ -123,6 +113,16 @@ const styles = StyleSheet.create({
   quantity: {
     fontSize: 16,
     marginTop: 5,
+  },
+
+  FlashSaleImg:{
+    width: 115,
+    height: 100,
+    textAlign:"center",
+    alignItems:"center",
+    alignSelf:"center",
+    marginVertical: 5,
+    borderRadius: 10,
   },
 });
 

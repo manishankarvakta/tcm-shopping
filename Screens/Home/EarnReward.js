@@ -44,7 +44,7 @@ export default function EarnReward() {
 
 
               <View>
-              <View style={{flexDirection:"row",justifyContent:"space-between",paddingHorizontal:10,paddingVertical:20,borderTopWidth:1,borderTopColor:"gray",borderBottomWidth:1,borderBottomColor:"gray",marginHorizontal:10,marginVertical:20}}>
+              <View style={styles.TotalPointStyle}>
                        <Text>Your Total Rewards</Text>
                        <Text>$0</Text>
                   </View>
@@ -65,4 +65,16 @@ const styles = StyleSheet.create({
     width: 350,
     height: 350,
   },
+  TotalPointStyle:{
+    flexDirection:"row",
+    justifyContent:"space-between",
+    paddingHorizontal:10,
+    paddingVertical:20,
+    borderTopWidth:1,
+    borderTopColor:"gray",
+    borderBottomWidth:1,
+    borderBottomColor:"gray",
+    marginHorizontal:10,
+    marginVertical:20
+},
 });

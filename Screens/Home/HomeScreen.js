@@ -27,19 +27,28 @@ import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-import { useGetProductsQuery } from "../Redux/Api/ProductsApi";
+import {
+  useGetProductsQuery, useGetPopularProductsQuery, useGetComboProductsQuery,
+  useGetBestSellerProductsQuery, useGetBestFeaturedProductsQuery, useGetSingleProductQuery,
+  useGetCategoryProductQuery, useGetSimilarProductsQuery, useGetProductsCategoryQuery,
+  useGetCategoryGroupQuery,useGetOfferProductsQuery
+} from "../Redux/Api/ProductsApi";
 
 
 
-const HomeScreen = ({navigation}) => {
-  const {data, isSuccess, isError, isFetching, isLoading} = useGetProductsQuery()
+const HomeScreen = ({ navigation }) => {
+  const id = "62ea7c9d00236188f4f000b9"
+  const { data, isSuccess, isError, isFetching, isLoading } = useGetOfferProductsQuery()
   // const cart = useSelector(state => state.cartReducer)
 
   useEffect(()=>{
-    console.log("Product:",data)
+   // console.log("offer:", data)
+
   },[isSuccess])
 
-  console.log(isFetching,isLoading, isSuccess, isError)
+  console.log(isFetching, isLoading, isSuccess, isError)
+  
+
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   useEffect(() => {
@@ -70,7 +79,7 @@ const HomeScreen = ({navigation}) => {
       await AsyncStorage.setItem("location", JSON.stringify(place[0]));
     })();
   }, []);
-  console.log("Location:", location);
+  //console.log("Location:", location);
 
   let text = "Waiting..";
   if (errorMsg) {
@@ -184,21 +193,16 @@ const HomeScreen = ({navigation}) => {
       <StatusBar style="dark" />
       <ImageCarousel />
       <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 10,
-          }}
+          style={styles.TopCategorysTextStyle}
         >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+          <Text style={styles.TitleNameStyle}>
             Top Categories
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -211,25 +215,18 @@ const HomeScreen = ({navigation}) => {
 
         <View>
               <TouchableOpacity   onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}>
-                 <Text style={{textAlign:"center",fontSize: 20,fontWeight:"700",color:"red" }}>All Categories</Text>
+                 <Text style={styles.AllCategoryTextstyle}>All Categories</Text>
                  </TouchableOpacity>
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Popular
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.POPULAR_Product)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -239,15 +236,8 @@ const HomeScreen = ({navigation}) => {
            </View>
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Flash Sales
           </Text>
           <TouchableOpacity
@@ -255,7 +245,7 @@ const HomeScreen = ({navigation}) => {
             onPress={() => navigation.navigate(Routes.FLASHSALE_TAB)}
            
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -266,22 +256,15 @@ const HomeScreen = ({navigation}) => {
            </View>
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Fresh Vegetables
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.FRESH_VEGETABLES)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -292,22 +275,15 @@ const HomeScreen = ({navigation}) => {
            </View>
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Biscuits
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.All_BISCUITS)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -318,22 +294,15 @@ const HomeScreen = ({navigation}) => {
            </View>
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Salt & Sugar
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.SALT_SUGER)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -348,22 +317,15 @@ const HomeScreen = ({navigation}) => {
            </View>
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Fresh Fruits
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.FRESH_FOOD_TAB)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -375,22 +337,15 @@ const HomeScreen = ({navigation}) => {
 
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Noodles
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.NOODLES_TAB)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -401,22 +356,15 @@ const HomeScreen = ({navigation}) => {
            </View>
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Oil
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.ALL_OIL_TAB)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -428,22 +376,15 @@ const HomeScreen = ({navigation}) => {
 
 
            <View>
-           <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600" }}>
+           <View style={styles.AllProductSectionStyle}>
+          <Text style={styles.TitleNameStyle}>
             Offers
           </Text>
           <TouchableOpacity
             style={{ flexDirection: "row" }}
             onPress={() => navigation.navigate(Routes.OFFER_PRODUCTS_TAB)}
           >
-            <Text style={{ marginRight: 5, color: "red" }}>View More</Text>
+            <Text style={styles.ViewMoreStyle}>View More</Text>
             <Icon name="arrowright" type="ant-design" size={20} color="red" />
           </TouchableOpacity>
         </View>
@@ -490,6 +431,37 @@ const styles = StyleSheet.create({
     width:170,
     height:90,
     borderRadius:15
-  }
+  },
+
+  TopCategorysTextStyle:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 10,
+    marginTop: 10,
+  },
+
+  TitleNameStyle:{
+    fontSize: 16,
+    fontWeight: "600" 
+    },
+
+  AllCategoryTextstyle:{
+    textAlign:"center",
+    fontSize: 20,
+    fontWeight:"700",
+    color:"red" 
+  },
+
+  AllProductSectionStyle:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 10,
+    marginTop: 20,
+  },
+
+  ViewMoreStyle:{ 
+    marginRight: 5,
+    color: "red"
+    },
 
 });

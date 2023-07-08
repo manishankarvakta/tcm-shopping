@@ -1,50 +1,53 @@
 import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Image,
-    View,
-  } from "react-native";
-  import React from "react";
-  // import { Image } from "@rneui/themed";
-  
-  const OffersSlider = () => {
-    const data = [
-      { url: require("../assets/FlashSales/f3.jpg") },
-      { url: require("../assets/image2.jpg") },
-      { url: require("../assets/Freshfood/3.jpg") },
-      { url: require("../assets/PopularProduct/p3.jpg") },
-      { url: require("../assets/PopularProduct/p7.jpg") },
-      { url: require("../assets/FlashSales/f6.jpg") },
-      { url: require("../assets/PopularProduct/p3.jpg") },
-    ];
-  
-    return (
-      <FlatList
-        horizontal
-        data={data}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+  View,
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import { useGetOfferProductsQuery } from "../Screens/Redux/Api/ProductsApi";
+import { PHOTO_URL } from '../Utility/BaseUrl';
+
+const OffersSlider = () => {
+  const { data, isSuccess, isError } = useGetOfferProductsQuery();
+  const [offerImg, setOfferImg] = useState([]);
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      setOfferImg(data);
+    }
+  }, [isSuccess, data]);
+
+  return (
+    <FlatList
+      horizontal
+      data={offerImg}
+      showsHorizontalScrollIndicator={false}
+      keyExtractor={(item) => item._id.toString()}
+      renderItem={({ item }) => {
+        const offerSliderImg = `${PHOTO_URL}${item.photo}`;
+        
+        return (
           <TouchableOpacity>
             <Image
-              onPress={() => alert(item.url)}
-              source={item.url}
+              source={{ uri: offerSliderImg }}
               style={{
                 width: 200,
-                height: 120,
+                height: 200,
                 marginHorizontal: 5,
                 marginVertical: 10,
                 borderRadius: 10,
               }}
             />
-            {/* <Text>{`../assets/${item.key}.jpg`}</Text> */}
           </TouchableOpacity>
-        )}
-      />
-    );
-  };
-  
-  export default OffersSlider;
-  
-  const styles = StyleSheet.create({});
+        );
+      }}
+    />
+  );
+};
+
+export default OffersSlider;
+
+const styles = StyleSheet.create({});

@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { SafeAreaView, StyleSheet, Image, View, Text, TextInput } from 'react-native';
+import { useGetSearchProductQuery } from '../Redux/Api/ProductsApi';
 
 const SearchScreen = () => {
   const [searchText, setSearchText] = useState('');
+  const { data, isSuccess, isError, isFetching, isLoading,refetch  } = useGetSearchProductQuery(searchText)
+  // const cart = useSelector(state => state.cartReducer)
 
-  const handleSearch = () => {
+  useEffect(()=>{
+    //console.log("Product:", data)
+  },[isSuccess])
+
+  console.log(isFetching, isLoading, isSuccess, isError, refetch )
+  const handleSearch = (q) => {
     // Perform search based on searchText
+    setSearchText(q);
+    refetch()
     console.log('Searching for:', searchText);
   };
 
@@ -25,7 +35,7 @@ const SearchScreen = () => {
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search"
+            placeholder="Search" 
             value={searchText}
             onChangeText={setSearchText}
             onSubmitEditing={handleSearch}

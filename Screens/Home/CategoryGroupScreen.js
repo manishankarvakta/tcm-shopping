@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text, SafeAreaView } from 'react-native';
 import Routes from '../../Utility/Routes';
+import {useGetCategoryGroupQuery} from "../../Screens/Redux/Api/ProductsApi"
+import { useEffect } from 'react';
+import { PHOTO_URL } from '../../Utility/BaseUrl';
 const numColumns = 2 ;
-const itemWidth = Dimensions.get('window').width / numColumns;
+
 
 const data = [
   { Id: '1', image: require('../../assets/FlashSales/f10.png'),name: "Popular"},
@@ -23,16 +26,24 @@ const data = [
 ];
 export default function CategoryGroupScreen({ navigation }) {
 
-    const renderItem = ({ item }) => {
+  const { data, isSuccess, isError } = useGetCategoryGroupQuery()
+  const [categoryGroup, setCategoryGroup] = useState([])
+  
+  useEffect(() => {
+  data?.length>0 && setCategoryGroup(data)
+  },[isSuccess])
+
+  const renderItem = ({ item }) => {
+     
         return (
                  <View style={styles.cardTwo}>
            
 
-           <TouchableOpacity onPress={() => navigation.navigate(Routes.CATEGORY_SCREEN)} style={{flexDirection:"row",justifyContent:"space-between"}}>
-             <Text style={{alignSelf:"center",marginLeft:10,width:"55%",fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
+            <TouchableOpacity onPress={() => navigation.navigate(Routes.CATEGORY_SCREEN, {id: item.Id})} style={styles.CategoryGroupScreenStyle}>
+             <Text style={styles.CategoryGroupNameStyle}>{item.name}</Text>
 
             <View style={styles.imageContainer}>
-           <Image source={item.image} style={styles.image} />
+           <Image source={item.promo_price} style={styles.image} />
          </View>
        </TouchableOpacity>
 
@@ -87,6 +98,19 @@ const styles = StyleSheet.create({
         alignSelf:"flex-end",
         width:"45%",
 
+      },
+      CategoryGroupScreenStyle:{
+        flexDirection:"row",
+        justifyContent:"space-between"
+      },
+
+      CategoryGroupNameStyle:{
+        alignSelf:"center",
+        marginLeft:10,
+        width:"55%",
+        fontWeight:"700",
+        fontSize:15,
+        color:"#5E6D75"
       },
   });
 

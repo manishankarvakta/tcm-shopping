@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text, SafeAreaView } from 'react-native';
 import Routes from '../../Utility/Routes';
 const numColumns = 2 ;
@@ -16,15 +16,22 @@ const data = [
   { Id: '15', image: require('../../assets/FlashSales/4.png'),name: "Vehicle & Essentials "},
   
 ];
-export default function CategoryScreen({ navigation }) {
+export default function CategoryScreen({ navigation, route }) {
+  const { id } = route.params
+  
+  // const { data, isSuccess, refetch } = userGHDG(id)
 
+  // useEffect(() => {
+  //   refetch()
+  // },[id])
+  console.log(id)
     const renderItem = ({ item }) => {
         return (
                  <View style={styles.cardTwo}>
            
 
-           <TouchableOpacity onPress={() => navigation.navigate(Routes.SUB_CATEGORY)} style={{flexDirection:"row",justifyContent:"space-between"}}>
-             <Text style={{alignSelf:"center",width:"55%",marginLeft:10,fontWeight:"700",fontSize:15,color:"#5E6D75"}}>{item.name}</Text>
+           <TouchableOpacity onPress={() => navigation.navigate(Routes.SUB_CATEGORY)} style={styles.CategoryScreenStyle}>
+             <Text style={styles.CategoryScreenNameStyle}>{item.name}</Text>
 
             <View style={styles.imageContainer}>
            <Image source={item.image} style={styles.image} />
@@ -83,6 +90,19 @@ const styles = StyleSheet.create({
         alignItems:"flex-end",
         width:"45%",
       },
+      CategoryScreenNameStyle:{
+        alignSelf:"center",
+        width:"55%",
+        marginLeft:10,
+        fontWeight:"700",
+        fontSize:15,
+        color:"#5E6D75"
+      },
+
+      CategoryScreenStyle:{
+        flexDirection:"row",
+        justifyContent:"space-between"
+      }
   });
 
   

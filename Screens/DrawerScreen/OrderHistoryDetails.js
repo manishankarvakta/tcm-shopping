@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image ,TouchableOpacity} from 'react-native';
+import { View, Text, SafeAreaView, Image ,TouchableOpacity,StyleSheet} from 'react-native';
 import React from 'react';
 import { Icon } from '@rneui/base';
 export default function OrderHistoryDetails() {
@@ -6,18 +6,18 @@ export default function OrderHistoryDetails() {
     <SafeAreaView>
       <View>
         <View>
-          <View style={{ flexDirection: "row", justifyContent: "center",marginTop:10 }}>
+          <View style={styles.OrderHistoryDetailsScreenStyle}>
 
             <Image
               source={require('../../assets/FlashSales/f9.jpg')}
-              style={{ width: 90, height: 90, borderRadius: 15 }}
+              style={styles.OrderHistoryImg}
               resizeMode="contain"
             />
 
             <View style={{ padding: 10, alignSelf: "center" }}>
               <Text>
-                <Text style={{ fontSize: 18, fontWeight: "900" ,margin:10}}>Order  </Text>
-                <Text style={{ fontSize: 18, fontWeight: "700", color: "#CCCCAE",padding:10 }}>Cancelled</Text>
+                <Text style={styles.OrderText}>Order  </Text>
+                <Text style={styles.CancelText}>Cancelled</Text>
                 
               </Text>
               <Text style={{ marginVertical: 5 }}>Order ID: <Text style={{ fontSize: 14, fontWeight: "900" }}>11880922</Text></Text>
@@ -25,40 +25,40 @@ export default function OrderHistoryDetails() {
 
           </View>
 
-          <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 20 }}>
-            <TouchableOpacity style={{ alignItems: "center", marginHorizontal: 10 }}>
+          <View style={styles.headerTitleStyle}>
+            <TouchableOpacity style={styles.TitleItemStyle}>
               <Icon name="shopping-bag" size={25} padding={5}  color="green" type="feather" paddingRight={5}/>
 
-              <Text style={{color:"green",fontSize:15}}>Reorder</Text>
+              <Text style={styles.ColorSizeStyle}>Reorder</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ alignItems: "center", marginHorizontal: 10 }}>
+            <TouchableOpacity style={styles.TitleItemStyle}>
             <Icon name="shopping-basket" size={25} padding={5}  color="green" type="Fontisto" paddingRight={5}/>
-              <Text style={{color:"green",fontSize:15}}>Items</Text>
+              <Text style={styles.ColorSizeStyle}>Items</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ alignItems: "center", marginHorizontal: 10 }}>
+            <TouchableOpacity style={styles.TitleItemStyle}>
             <Icon name="payment" size={25} padding={5} color="green" type="Fontisto" paddingRight={5}/>
-              <Text style={{color:"green",fontSize:15}}>Pay Now</Text>
+              <Text style={styles.ColorSizeStyle}>Pay Now</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ alignItems: "center", marginHorizontal: 10 }}>
+            <TouchableOpacity style={styles.TitleItemStyle}>
             <Icon name="cancel" size={25} padding={5} color="green" type="MaterialIcons" paddingRight={5}/>
-              <Text style={{color:"green",fontSize:15}}>Cancel</Text>
+              <Text style={styles.ColorSizeStyle}>Cancel</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={{borderWidth:.4, borderTopColor:"#BABCBE",marginHorizontal:10,marginTop:10}}/>
+          <View style={styles.BlankViewStyle}/>
 
-          <View style={{backgroundColor:"#AEBDC6",marginHorizontal:10,padding:10,marginVertical:10,borderRadius:10}}>
+          <View style={styles.OrderDeliverTimeStyle}>
               <Text style={{fontSize:15,fontWeight:"700"}}>11914325A</Text>
               <Text>Jun 12,2023 | 9:00AM - 10:00 AM</Text>
           </View>
 
-          <View style={{backgroundColor:"#DEE1E6",justifyContent:"space-between", marginHorizontal:10,padding:10,marginVertical:5,borderRadius:10,flexDirection:"row"}}>
-             <View style={{flexDirection:"row", justifyContent:"flex-start"}}>
+          <View style={styles.ReturnItemTextStyle}>
+             <View style={styles.CommonTextStyle}>
               <Icon name="box-open" size={25} color="orange" type="font-awesome-5" />
-              <Text style={{fontSize:15,fontWeight:"500",padding:3,color:"gray",marginLeft:10}}>Return Items</Text>
+              <Text style={styles.ReturnTextStyle}>Return Items</Text>
              </View>
 
               <TouchableOpacity>
@@ -69,10 +69,10 @@ export default function OrderHistoryDetails() {
           </View>
 
 
-          <View style={{backgroundColor:"#DEE1E6",justifyContent:"space-between", marginHorizontal:10,padding:10,marginVertical:5,borderRadius:10,flexDirection:"row"}}>
-             <View style={{flexDirection:"row", justifyContent:"flex-start"}}>
+          <View style={styles.ReportIssuesStyle}>
+             <View style={styles.CommonTextStyle}>
               <Icon name="report-problem" size={25} color="red" type="MaterialIcons" />
-              <Text style={{fontSize:15,fontWeight:"500",padding:3,color:"gray",marginLeft:10}}>Report Issues</Text>
+              <Text style={styles.ReportText}>Report Issues</Text>
              </View>
 
               <TouchableOpacity>
@@ -96,7 +96,7 @@ export default function OrderHistoryDetails() {
           </View>
      
 
-          <View style={{borderWidth:.5, borderTopColor:"#BABCBE",marginHorizontal:10}}></View>
+          <View style={styles.BlankViewTwoStyle}></View>
 
           <View style={{padding:10,}}>
              <Text><Text style={{fontWeight:"900",fontSize:16}}>Total </Text> <Text style={{fontSize:14,color:"green"}}>$444</Text></Text>
@@ -108,3 +108,105 @@ export default function OrderHistoryDetails() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  OrderHistoryDetailsScreenStyle:{
+     flexDirection: "row", 
+     justifyContent: "center",
+     marginTop:10 
+    },
+
+    OrderHistoryImg:{
+      width: 90, 
+      height: 90, 
+      borderRadius: 15 
+    },
+
+    OrderText:{
+      fontSize: 18, 
+      fontWeight: "900" ,
+      margin:10
+    },
+
+    CancelText:{ 
+      fontSize: 18, 
+      fontWeight: "700", 
+      color: "#CCCCAE",
+      padding:10 
+    },
+headerTitleStyle:{ 
+  flexDirection: "row", 
+  justifyContent: "center", 
+  marginTop: 20 
+},
+
+TitleItemStyle:{ 
+  alignItems: "center", 
+  marginHorizontal: 10 
+},
+
+ColorSizeStyle:{
+  color:"green",
+  fontSize:15
+},
+OrderDeliverTimeStyle:{
+  backgroundColor:"#AEBDC6",
+  marginHorizontal:10,
+  padding:10,
+  marginVertical:10,
+  borderRadius:10
+},
+
+BlankViewStyle:{
+  borderWidth:.4, 
+  borderTopColor:"#BABCBE",
+  marginHorizontal:10,
+  marginTop:10
+},
+
+ReturnItemTextStyle:{
+  backgroundColor:"#DEE1E6",
+  justifyContent:"space-between", 
+  marginHorizontal:10,
+  padding:10,
+  marginVertical:5,
+  borderRadius:10,
+  flexDirection:"row"
+},
+
+ReportIssuesStyle:{
+  backgroundColor:"#DEE1E6",
+  justifyContent:"space-between", 
+  marginHorizontal:10,
+  padding:10,
+  marginVertical:5,
+  borderRadius:10,
+  flexDirection:"row"
+},
+
+CommonTextStyle:{
+flexDirection:"row", 
+justifyContent:"flex-start"
+},
+
+ReturnTextStyle: {fontSize:15,
+  fontWeight:"500",
+  padding:3,
+  color:"gray",
+  marginLeft:10
+},
+
+ReportText:{
+  fontSize:15,
+  fontWeight:"500",
+  padding:3,
+  color:"gray",
+  marginLeft:10
+},
+BlankViewTwoStyle:{
+  borderWidth:.5, 
+  borderTopColor:"#BABCBE",
+  marginHorizontal:10
+},
+
+})
