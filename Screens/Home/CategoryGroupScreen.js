@@ -1,117 +1,88 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text, SafeAreaView } from 'react-native';
+import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, Image, Text, SafeAreaView } from 'react-native';
 import Routes from '../../Utility/Routes';
-import {useGetCategoryGroupQuery} from "../../Screens/Redux/Api/ProductsApi"
-import { useEffect } from 'react';
-import { PHOTO_URL } from '../../Utility/BaseUrl';
-const numColumns = 2 ;
+import { useNavigation } from '@react-navigation/native';
 
+const numColumns = 2;
 
-const data = [
-  { Id: '1', image: require('../../assets/FlashSales/f10.png'),name: "Popular"},
-  { Id: '2', image: require('../../assets/FlashSales/f6.png',),name: "Flash Sales"},
-  { Id: '3', image: require('../../assets/FlashSales/f2.png'),name: "Food"},
-  { Id: '4', image: require('../../assets/FlashSales/f8.png'),name: "Cleaning Supplies"},
-  { Id: '5', image: require('../../assets/FlashSales/f5.png'),name: "Personal Care"},
-  { Id: '6', image: require('../../assets/FlashSales/f3.png'),name: "Health & Wellness"},
-  { Id: '7', image: require('../../assets/FlashSales/f9.png'),name: "Baby Care "},
-  { Id: '8', image: require('../../assets/FlashSales/1.png'),name: "Home & Kitcen"},
-  { Id: '9', image: require('../../assets/FlashSales/5.png'),name: "Stationary & Office"},
-  { Id: '10', image: require('../../assets/FlashSales/9.png'),name: "Pet Care"},
-  { Id: '11', image: require('../../assets/FlashSales/7.png'),name: "toys & Sports"},
-  { Id: '13', image: require('../../assets/FlashSales/3.png'),name: "Beauty & MakeUp "},
-  { Id: '14', image: require('../../assets/FlashSales/2.png'),name: "Fashion & LifeStyle "},
-  { Id: '15', image: require('../../assets/FlashSales/4.png'),name: "Vehicle & Essentials "},
-  
+const mcData = [
+  { option: "food", label: "Food" },
+  { option: "personalCare", label: "Personal Care" },
+  { option: "hygiene", label: "Hygiene" },
+  { option: "beauty", label: "Beauty & Health" },
+  { option: "babyCare", label: "Baby Care" },
+  { option: "clean", label: "Clean & Supplies" },
+  { option: "home", label: "Home & Kitchen" },
+  { option: "stationeries", label: "Stationeries" },
+  { option: "toys", label: "Toys" },
+  { option: "lifeStyle", label: "Life Style" },
 ];
-export default function CategoryGroupScreen({ navigation }) {
 
-  const { data, isSuccess, isError } = useGetCategoryGroupQuery()
-  const [categoryGroup, setCategoryGroup] = useState([])
-  
-  useEffect(() => {
-  data?.length>0 && setCategoryGroup(data)
-  },[isSuccess])
-
+export default function CategoryGroupScreen({ route}) {
+  const navigation = useNavigation();
   const renderItem = ({ item }) => {
-     
-        return (
-                 <View style={styles.cardTwo}>
-           
+    return (
+      <View style={styles.cardTwo}>
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.CATEGORY_SCREEN, { group: item.option })} style={styles.CategoryGroupScreenStyle}>
+          <Text style={styles.CategoryGroupNameStyle}>{item.label}</Text>
+          <View style={styles.imageContainer}>
+            <Image source={item.image} style={styles.image} />
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
-            <TouchableOpacity onPress={() => navigation.navigate(Routes.CATEGORY_SCREEN, {id: item.Id})} style={styles.CategoryGroupScreenStyle}>
-             <Text style={styles.CategoryGroupNameStyle}>{item.name}</Text>
-
-            <View style={styles.imageContainer}>
-           <Image source={item.promo_price} style={styles.image} />
-         </View>
-       </TouchableOpacity>
-
-         </View>
-        );
-      };
   return (
-<SafeAreaView style={{marginHorizontal:10,marginTop:10}}>
-    <View   style={styles.container}>
- 
-    <FlatList
-    data={data}
-    renderItem={renderItem}
-    keyExtractor={(item) => item.Id}
-    numColumns={numColumns}
-  />
-</View>
-</SafeAreaView>  
-)
+    <SafeAreaView style={{ marginHorizontal: 10, marginTop: 10 }}>
+      <View style={styles.container}>
+        <FlatList
+          data={mcData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.option}
+          numColumns={numColumns}
+        />
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-
-
-    cardTwo: {
-      marginVertical: 3,
-      marginHorizontal:3,
-      backgroundColor: "#F5F6FB",
-      padding: 5,
-      borderRadius: 10,
-      shadowColor: "gray",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-    
-    
-      width: "48.4%",
-      shadowOpacity: 0.5,
-      shadowRadius: 3.84,
+  cardTwo: {
+    marginVertical: 3,
+    marginHorizontal: 3,
+    backgroundColor: "#F5F6FB",
+    padding: 5,
+    borderRadius: 10,
+    shadowColor: "gray",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-
-    image: {
-        width: 90,
-        height: 80,
-        
-      },
-
-      imageContainer: {
-        justifyContent: "flex-end",
-        alignItems:"flex-end",
-        alignSelf:"flex-end",
-        width:"45%",
-
-      },
-      CategoryGroupScreenStyle:{
-        flexDirection:"row",
-        justifyContent:"space-between"
-      },
-
-      CategoryGroupNameStyle:{
-        alignSelf:"center",
-        marginLeft:10,
-        width:"55%",
-        fontWeight:"700",
-        fontSize:15,
-        color:"#5E6D75"
-      },
-  });
-
-  
+    width: "48.4%",
+    shadowOpacity: 0.5,
+    shadowRadius: 3.84,
+  },
+  image: {
+    width: 90,
+    height: 80,
+  },
+  imageContainer: {
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    alignSelf: "flex-end",
+    width: "45%",
+  },
+  CategoryGroupScreenStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  CategoryGroupNameStyle: {
+    alignSelf: "center",
+    marginLeft: 10,
+    width: "55%",
+    fontWeight: "700",
+    fontSize: 15,
+    color: "#5E6D75",
+  },
+});

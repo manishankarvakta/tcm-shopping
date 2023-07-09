@@ -49,9 +49,12 @@ export const ProductsApi = createApi({
     }),
 
     getCategoryGroup: builder.query({
-      query: (id) => `/ecom/category/group${id}`,
+      query: (group) => `/category/group/${group}`,
      
     }),
+
+ 
+
 
 
   }),

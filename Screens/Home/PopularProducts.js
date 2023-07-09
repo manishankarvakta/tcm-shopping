@@ -7,38 +7,47 @@ import { useGetPopularProductsQuery } from '../Redux/Api/ProductsApi';
 const numColumns = 3;
 const itemWidth = Dimensions.get('window').width / numColumns;
 import { PHOTO_URL } from '../../Utility/BaseUrl'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Redux/CartSlice';
 
 const PopularProducts = () => {
   const navigation = useNavigation();
   const [product, setProduct] = useState([]);
 
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
+  const dispatch = useDispatch();
+
+  const handleAddtoCart = (item) => {
+    //console.log(item);
+    dispatch(addToCart(item));
+  };
+
 
   useEffect(() => {
     data?.length > 0 && setProduct(data);
   }, [isSuccess]);
 
   const truncateName = (name) => {
-    const nameWords = name.split(' ');
-    const truncatedName = nameWords.slice(0,  v   ).join(' ');
-    const hasMoreWords = nameWords.length > 1;
-    return hasMoreWords ? `${truncatedName}...` : truncatedName;
+    const maxLength = 12; // Define the maximum length for the name
+    if (name.length > maxLength) {
+      return name.substring(0, maxLength - 3) + "..."; // Truncate and add "..." at the end
+    }
+    return name;
   };
 
   const renderItem = ({ item }) => {
     const photos = `${PHOTO_URL}${item.photo}`;
-    const truncatedName = truncateName(item.name);
 
     return (
       <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card}>
         <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
         <View style={styles.details}>
-          <Text style={styles.name}>{truncatedName}</Text>
-          <Text style={styles.price}>Price: {item.priceList[0].mrp}</Text>
+          <Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>
-            <Text style={styles.quantity}>{item.weight}</Text>
-            <TouchableOpacity>
-              <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
+          <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
+
+            <TouchableOpacity onPress={() => handleAddtoCart(item)}>
+              <Icon name="shopping-basket-add" size={20} color="#2EB5AC" paddingTop={5} type="fontisto" />
             </TouchableOpacity>
           </View>
         </View>
@@ -51,7 +60,7 @@ const PopularProducts = () => {
       <FlatList
         data={product}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         numColumns={numColumns}
       />
     </View>
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   name: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   price: {

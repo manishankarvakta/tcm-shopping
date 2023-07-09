@@ -1,4 +1,4 @@
-import ProductCard from "../Components/ProductCard";
+import ProductCart from "../Components/ProductCart";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from "../Utility/Routes";
@@ -10,7 +10,7 @@ export default function ProductStacknav()  {
     <Stack.Navigator>
     <Stack.Screen
       name={Routes.Product_Slider}
-      component={ProductCard}
+      component={ProductCart}
       options={{
         headerShown:false
       }}

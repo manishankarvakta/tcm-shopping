@@ -13,6 +13,8 @@ import OrderHistory from "./Screens/DrawerScreen/OrderHistory";
 import OrderHistoryNavStack from "./Navigation/OrderHistoryNavStack";
 import AllBiscuits from "./Screens/Home/AllBiscuits";
 import OffersScreen from "./Screens/Home/OffersScreen";
+import CategoryGroupScreen from "./Screens/Home/CategoryGroupScreen";
+import CategoryScreen from "./Screens/Home/CategoryScreen";
 
 
 export default function App() {

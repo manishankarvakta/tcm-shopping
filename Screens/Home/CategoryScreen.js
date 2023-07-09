@@ -1,30 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text, SafeAreaView } from 'react-native';
 import Routes from '../../Utility/Routes';
+import { useNavigation } from '@react-navigation/native';
+import { useGetCategoryGroupQuery } from '../Redux/Api/ProductsApi';
 const numColumns = 2 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
 
-const data = [
-  { Id: '1', image: require('../../assets/FlashSales/f10.png'),name: "Popular"},
-  { Id: '2', image: require('../../assets/FlashSales/f6.png',),name: "Flash Sales"},
-  { Id: '4', image: require('../../assets/FlashSales/f8.png'),name: "Cleaning Supplies"},
-  { Id: '5', image: require('../../assets/FlashSales/f5.png'),name: "Personal Care"},
-  { Id: '8', image: require('../../assets/FlashSales/1.png'),name: "Home & Kitcen"},
-  { Id: '9', image: require('../../assets/FlashSales/5.png'),name: "Stationary & Office"},
-  { Id: '10', image: require('../../assets/FlashSales/9.png'),name: "Pet Care"},
-  { Id: '13', image: require('../../assets/FlashSales/3.png'),name: "Beauty & MakeUp "},
-  { Id: '15', image: require('../../assets/FlashSales/4.png'),name: "Vehicle & Essentials "},
-  
-];
-export default function CategoryScreen({ navigation, route }) {
-  const { id } = route.params
-  
-  // const { data, isSuccess, refetch } = userGHDG(id)
+export default function CategoryScreen({navigation, route }) {
 
-  // useEffect(() => {
-  //   refetch()
-  // },[id])
-  console.log(id)
+  const { group } = route.params
+  console.log("checkTwo :",group)
+  const { data, isError,refetch } = useGetCategoryGroupQuery(group)
+
+console.log("check :",data)
+  useEffect(() => {
+   refetch()
+   },[id])
+  //console.log(id)
     const renderItem = ({ item }) => {
         return (
                  <View style={styles.cardTwo}>
@@ -48,7 +40,7 @@ export default function CategoryScreen({ navigation, route }) {
     <FlatList
     data={data}
     renderItem={renderItem}
-    keyExtractor={(item) => item.Id}
+    
     numColumns={numColumns}
   />
 </View>

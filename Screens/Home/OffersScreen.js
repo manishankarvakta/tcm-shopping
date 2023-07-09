@@ -15,26 +15,32 @@ const OffersScreen = ({ navigation }) => {
     data?.length> 0 && setOffer(data)
   }, [isSuccess, data]);
 
-  console.log(isFetching, isLoading, isSuccess, isError);
+  //console.log(isFetching, isLoading, isSuccess, isError);
 
   const renderProductItem = ({ item }) => {
     const Offerphoto = `${PHOTO_URL}${item.photo}`;
     
     return (
-      <View style={{backgroundColor:"#F5F6FBb  "}}>
+      <View>
+      <View style={{backgroundColor:"#F5F6FB"}}>
          <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)}>
         <View style={{ alignItems: 'center' }}>
           <Image source={{ uri: Offerphoto }} style={styles.OfferImgStyle} />
         </View>
         <Text style={styles.OfferProductNameStyle}>{item.name}</Text>
         <View style={styles.OfferPriceSectionStyle}>
-          <Text style={{ color: 'red', fontSize: 15 }}>Price: {item.priceList[0].mrp}</Text>
+          <Text style={{ color: 'red', fontSize: 15 }}>৳{item.priceList[0].mrp}</Text>
           <TouchableOpacity style={styles.OfferProductAddCartStyle}>
-            <FontAwesome name="plus" size={16} color="#1D2F3E" />
+            <FontAwesome name="plus" size={14} color="#1D2F3E" />
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
-     </View>
+        </View>
+        
+        <View style={{borderWidth:0.4,borderTopColor:"gray",width:"90%",alignItems:"center",alignSelf:"center"}}>
+           
+        </View>
+      </View>
     );
   };
 
@@ -51,15 +57,15 @@ const OffersScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   OfferImgStyle: {
-    width: 340,
-    height: 250,
+    width: 240,
+    height: 150,
     marginTop: 20,
   },
   OfferProductNameStyle: {
     marginTop: 10,
     fontWeight: 'bold',
-    fontSize: 18,
-    margin: 30,
+    fontSize: 16,
+    margin: 20,
   },
   OfferPriceSectionStyle: {
     flexDirection: 'row',
@@ -69,8 +75,8 @@ const styles = StyleSheet.create({
   },
   OfferProductAddCartStyle: {
     backgroundColor: '#CBCBCB',
-    height: 30,
-    width: 30,
+    height: 25,
+    width: 25,
     alignItems: 'center',
     justifyContent: 'center',
   },

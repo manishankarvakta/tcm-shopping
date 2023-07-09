@@ -15,7 +15,7 @@ import { StatusBar } from "expo-status-bar";
 import ImageCarousel from "../../Components/ImageCarousel";
 import Routes from "../../Utility/Routes";
 import TopCategorys from "../../Components/TopCategorys"
-import ProductCard from "../../Components/ProductCard";
+import ProductCart from "../../Components/ProductCart";
 import FlashSale from "../../Components/FlashSale";
 import Freshvegetable from "../../Components/Freshvegetable";
 import Biscuits from "../../Components/Biscuits";
@@ -232,7 +232,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
            </View>
            <View>
-           <ProductCard />
+           <ProductCart />
            </View>
 
            <View>

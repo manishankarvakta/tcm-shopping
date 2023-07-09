@@ -11,17 +11,8 @@ const Slider = () => {
     { id: '6', imageUrl: require("../assets/image1.jpg") },
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) =>
-        prevIndex === data.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 2000);
 
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <FlatList
@@ -36,19 +27,16 @@ const Slider = () => {
             style={{
               width: 356,
               height: 250,
-              marginHorizontal: 10,
-              marginVertical: 5,
+              marginHorizontal: 20,
+              marginVertical: 15,
               borderRadius: 10,
-              opacity: index === activeIndex ? 1 : 0.5,
+              resizeMode:"cover"
             }}
           />
         </TouchableOpacity>
       )}
       keyExtractor={(item) => item.id}
-      onMomentumScrollEnd={(event) => {
-        const index = Math.round(event.nativeEvent.contentOffset.x / 376);
-        setActiveIndex(index);
-      }}
+     
     />
   );
 };
