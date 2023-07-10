@@ -15,6 +15,8 @@ import AllBiscuits from "./Screens/Home/AllBiscuits";
 import OffersScreen from "./Screens/Home/OffersScreen";
 import CategoryGroupScreen from "./Screens/Home/CategoryGroupScreen";
 import CategoryScreen from "./Screens/Home/CategoryScreen";
+import ProductsCategory from "./Screens/Home/ProductsCategory";
+import CategoryStackNav from "./Navigation/CategoryStackNav";
 
 
 export default function App() {
@@ -33,7 +35,7 @@ export default function App() {
       }
     });
   };
-  console.log("Names", user, token);
+  //console.log("Names", user, token);
 
   useEffect(() => {
     getUser();

@@ -41,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
         navigation.navigate(Routes.HOME_TAB);
       }
     });
-    console.log(loading);
+    //console.log(loading);
   }, [loading]);
 
   const submitLogin = async () => {
@@ -50,7 +50,7 @@ const LoginScreen = ({ navigation }) => {
     // navigation.replace("Home");
 
     // AXIOS LOGIN REQUEST
-    console.log(`${BASE_URL}/customer/login`)
+    //console.log(`${BASE_URL}/customer/login`)
     await axios
       .post(`${BASE_URL}/user/login`, {
         email: userId,
@@ -70,9 +70,9 @@ const LoginScreen = ({ navigation }) => {
           } catch (error) {
             Alert.alert("Login Faild! Please try again.");
             setLoading(false);
-            console.log("storeError:", error);
+           // console.log("storeError:", error);
           } finally {
-            console.log("Login Success");
+           // console.log("Login Success");
             navigation.replace(Routes.HOME_TAB);
           }
         }
@@ -83,17 +83,17 @@ const LoginScreen = ({ navigation }) => {
       })
       .catch(async (error) => {
         Alert.alert("Login Faild! Please try again.");
-        console.log("error", error);
+        //console.log("error", error);
         setLoading(false);
       });
     // .finally();
   };
 
   const forgotPassword = () => {
-    console.log("forgot Pass");
+   // console.log("forgot Pass");
   };
   const register = () => {
-    console.log("register");
+   // console.log("register");
   };
 
   return (

@@ -87,6 +87,8 @@ export default {
 
   REWARD:"Earn a Reward",
 
-  FAVORITES_PRODUCTS_DRAWER:"Favorites"
+  FAVORITES_PRODUCTS_DRAWER: "Favorites",
+  
+  PRODUCTS_CATEGORY : "Products"
 
 };

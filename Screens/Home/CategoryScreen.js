@@ -9,20 +9,19 @@ const itemWidth = Dimensions.get('window').width / numColumns;
 export default function CategoryScreen({navigation, route }) {
 
   const { group } = route.params
-  console.log("checkTwo :",group)
-  const { data, isError,refetch } = useGetCategoryGroupQuery(group)
 
-console.log("check :",data)
+  const { data, isError, refetch } = useGetCategoryGroupQuery(group)
+ 
   useEffect(() => {
    refetch()
-   },[id])
+   },[group])
   //console.log(id)
-    const renderItem = ({ item }) => {
+  const renderItem = ({ item }) => {
         return (
                  <View style={styles.cardTwo}>
            
 
-           <TouchableOpacity onPress={() => navigation.navigate(Routes.SUB_CATEGORY)} style={styles.CategoryScreenStyle}>
+           <TouchableOpacity onPress={() => navigation.navigate(Routes.SUB_CATEGORY, { mc: item.mcId })} style={styles.CategoryScreenStyle}>
              <Text style={styles.CategoryScreenNameStyle}>{item.name}</Text>
 
             <View style={styles.imageContainer}>

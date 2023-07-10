@@ -14,7 +14,7 @@ const ImageCarousel = () => {
   const { data, isSuccess, isError, isFetching, isLoading } = useGetBestFeaturedProductsQuery();
 
   useEffect(() => {
-    console.log(data);
+    //console.log(data);
   }, [isSuccess, data]);
 
  

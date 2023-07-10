@@ -26,27 +26,12 @@ import Noodles from "../../Components/Noodles";
 import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
-import {
-  useGetProductsQuery, useGetPopularProductsQuery, useGetComboProductsQuery,
-  useGetBestSellerProductsQuery, useGetBestFeaturedProductsQuery, useGetSingleProductQuery,
-  useGetCategoryProductQuery, useGetSimilarProductsQuery, useGetProductsCategoryQuery,
-  useGetCategoryGroupQuery,useGetOfferProductsQuery
-} from "../Redux/Api/ProductsApi";
+
 
 
 
 const HomeScreen = ({ navigation }) => {
-  const id = "62ea7c9d00236188f4f000b9"
-  const { data, isSuccess, isError, isFetching, isLoading } = useGetOfferProductsQuery()
-  // const cart = useSelector(state => state.cartReducer)
 
-  useEffect(()=>{
-   // console.log("offer:", data)
-
-  },[isSuccess])
-
-  console.log(isFetching, isLoading, isSuccess, isError)
   
 
   const [location, setLocation] = useState(null);
@@ -94,7 +79,7 @@ const HomeScreen = ({ navigation }) => {
       await AsyncStorage.removeItem("token");
       await AsyncStorage.removeItem("user");
     } catch (err) {
-      console.log("logout error", err);
+      //console.log("logout error", err);
     } finally {
       navigation.replace(Routes.LOGIN);
     }

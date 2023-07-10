@@ -3,20 +3,37 @@ import React from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
 import Routes from '../Utility/Routes';
-export default function SingleProductsDetailsScreen({ navigation }) {
+import { useGetProductDetailsQuery } from './Redux/Api/ProductsApi';
+import { useEffect } from 'react';
+import { PHOTO_URL } from '../Utility/BaseUrl';
+export default function SingleProductsDetailsScreen({ navigation, route }) {
+
+  const { _id } = route.params
+   //console.log(_id)
+  const { data, isError, refetch } = useGetProductDetailsQuery(_id)
+  
+  useEffect(() => {
+    refetch()
+  }, [_id])
+  
+      //console.log("dataN:", isError)
     const handleButtonPress = () => {
        
-        console.log('Button pressed!');
-      };
+        //console.log('Button pressed!');
+      
+  };
+  
+   const noPhoto = "https://i.ibb.co/PNQcdP2/noPhoto.jpg"
   return (
     <SafeAreaView>
       <ScrollView>
-      <Text style={{marginTop:10 ,fontWeight: 'bold', fontSize: 18,marginLeft:10}}>Mango Himshagor (Satkhira)+- 50gm</Text>
+        <Text style={{ marginTop: 10, fontWeight: 'bold', fontSize: 18, marginLeft: 10 }}>{data?.name}</Text>
       <View style={{ alignItems: 'center',}}>
-          <Image source={require("../assets/Freshfood/5.jpg")} style={{ width: 230, height: 230,marginTop:20}} />
+          <Image
+            source={{ uri: `${PHOTO_URL}${data?.photo}` }} style={{ width: 230, height: 230, marginTop: 20 }} />
       </View>
-      <Text style={{color:"red",marginTop:30 ,fontSize: 15,marginLeft:17}}>$265 / 400gm</Text>
-    
+      <Text style={{color:"red",marginTop:30 ,fontSize: 15,marginLeft:17}}>৳{data?.priceList[0]?.mrp}</Text>
+     
       
       
 

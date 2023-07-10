@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text, SafeAreaView } from 'react-native';
 import Routes from '../../Utility/Routes';
+import { useGetSubCategoryQuery } from '../Redux/Api/ProductsApi';
+import { useEffect } from 'react';
 const numColumns = 2 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
 
-const data = [
-  { Id: '11', image: require('../../assets/FlashSales/7.png'),name: "toys & Sports"},
-  { Id: '8', image: require('../../assets/FlashSales/1.png'),name: "Home & Kitcen"},
-  { Id: '9', image: require('../../assets/FlashSales/5.png'),name: "Stationary & Office"},
-  { Id: '10', image: require('../../assets/FlashSales/9.png'),name: "Pet Care"},
-  { Id: '13', image: require('../../assets/FlashSales/3.png'),name: "Beauty & MakeUp "},
- 
+export default function SubCategory({ navigation, route }) {
   
-  
-];
-export default function SubCategory({ navigation }) {
+  const { mc } = route.params
 
-    const renderItem = ({ item }) => {
+  const { data, isError, refetch } = useGetSubCategoryQuery(mc)
+  
+  useEffect(() => {
+    refetch()
+  },[mc])
+
+  const renderItem = ({ item }) => {
+ //console.log("item : ",item)
+      
         return (
                  <View style={styles.cardTwo}>
            
 
-           <TouchableOpacity onPress={() => navigation.navigate(Routes.T)} style={styles.SubCategoryCardStyle}>
+           <TouchableOpacity onPress={() => navigation.navigate(Routes.PRODUCTS_CATEGORY , {product:item._id})} style={styles.SubCategoryCardStyle}>
              <Text style={styles.SubCategoryTextStyle}>{item.name}</Text>
 
             <View style={styles.imageContainer}>
@@ -39,7 +41,7 @@ export default function SubCategory({ navigation }) {
     <FlatList
     data={data}
     renderItem={renderItem}
-    keyExtractor={(item) => item.Id}
+    keyExtractor={(item) => item._id}
     numColumns={numColumns}
   />
 </View>

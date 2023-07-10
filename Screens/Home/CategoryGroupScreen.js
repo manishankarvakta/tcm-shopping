@@ -18,7 +18,7 @@ const mcData = [
   { option: "lifeStyle", label: "Life Style" },
 ];
 
-export default function CategoryGroupScreen({ route}) {
+export default function CategoryGroupScreen() {
   const navigation = useNavigation();
   const renderItem = ({ item }) => {
     return (

@@ -10,6 +10,7 @@ import CategoryScreen from "../Screens/Home/CategoryScreen";
 import SubCategory from "../Screens/Home/SubCategory";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import HomeScreen from "../Screens/Home/HomeScreen";
+import ProductsCategory from "../Screens/Home/ProductsCategory";
 
 const CategoryStackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -57,8 +58,8 @@ const CategoryStackNav = () => {
       />
 
       <Stack.Screen
-        name={Routes.T}
-        component={PopularProducts}
+        name={Routes.PRODUCTS_CATEGORY}
+        component={ProductsCategory}
         options={{
           
           headerStyle: {

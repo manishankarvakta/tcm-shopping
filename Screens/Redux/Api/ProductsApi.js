@@ -5,25 +5,31 @@ import BASE_URL from '../../../Utility/BaseUrl'
 export const ProductsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  tagTypes: ['Products'],
+  tagTypes: ['Product','Category'],
   endpoints: (builder) => ({
     getOfferProducts: builder.query({
       query: () => `/ecom/product/offer`,
+      tagTypes: ['Product'],
     }),
     getPopularProducts: builder.query({
       query: () => `/ecom/product/promo-products`,
+      tagTypes: ['Product'],
     }),
 
     getComboProducts: builder.query({
       query: () => `/ecom/product/Combo`,
+      tagTypes: ['Product'],
     }),
 
     getBestSellerProducts: builder.query({
       query: () => `/ecom/product/best-seller`,
+      tagTypes: ['Product'],
     }),
 
     getBestFeaturedProducts: builder.query({
       query: () => `/ecom/featured`,
+      tagTypes: ['Product'],
+
     }),
 
 
@@ -35,24 +41,45 @@ export const ProductsApi = createApi({
 
     getSearchProduct: builder.query({
       query: (q) => `/product/search/${q}`,
-     
+      tagTypes: ['Products'],
+
     }),
 
     getSimilarProducts: builder.query({
       query: (id) => `/ecom/product-similar/${id}`,
+      tagTypes: ['Products'],
      
     }),
 
     getProductsCategory: builder.query({
       query: (id) => `/ecom/product/category/${id}`,
-     
+      tagTypes: ['Category'],
+
     }),
 
     getCategoryGroup: builder.query({
-      query: (group) => `/category/group/${group}`,
-     
+      query: (group) => `/ecom/category/group/${group}`,
+      tagTypes: ['Category'],
+
     }),
 
+    getSubCategory: builder.query({
+      query: (mc) => `/ecom/category/master/${mc}`,
+      tagTypes: ['Category'],
+
+    }),
+
+    getProductCategoryId: builder.query({
+      query: (_id) => `ecom/product_category/${_id}`,
+      tagTypes: ['Category'],
+
+    }),
+
+    getProductDetails: builder.query({
+      query: (_id) => `/ecom/product/${_id}`,
+      tagTypes: ['Products'],
+
+    }),
  
 
 
@@ -72,7 +99,9 @@ export const {
   useGetSimilarProductsQuery,
   useGetProductsCategoryQuery,
   useGetCategoryGroupQuery,
-  
+  useGetSubCategoryQuery,
+  useGetProductCategoryIdQuery,
+  useGetProductDetailsQuery,
    
    
    } = ProductsApi;

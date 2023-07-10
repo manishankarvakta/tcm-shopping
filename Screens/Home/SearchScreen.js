@@ -11,12 +11,12 @@ const SearchScreen = () => {
     //console.log("Product:", data)
   },[isSuccess])
 
-  console.log(isFetching, isLoading, isSuccess, isError, refetch )
+  //console.log(isFetching, isLoading, isSuccess, isError, refetch )
   const handleSearch = (q) => {
     // Perform search based on searchText
     setSearchText(q);
     refetch()
-    console.log('Searching for:', searchText);
+    //console.log('Searching for:', searchText);
   };
 
   return (
