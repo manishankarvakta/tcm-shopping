@@ -10,7 +10,9 @@ import React, { useState, useEffect } from "react";
 import { useGetBestFeaturedProductsQuery } from "../Screens/Redux/Api/ProductsApi";
 import { PHOTO_URL } from "../Utility/BaseUrl";
 
-const ImageCarousel = () => {
+import Routes from "../Utility/Routes";
+
+const ImageCarousel = ({navigation}) => {
   const { data, isSuccess, isError, isFetching, isLoading } = useGetBestFeaturedProductsQuery();
 
   useEffect(() => {
@@ -27,8 +29,8 @@ const ImageCarousel = () => {
         const Featuredphoto = `${PHOTO_URL}${item.photo}`;
 
         return (
-          <TouchableOpacity>
-            <Image
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt,{_id:item._id})}>
+            <Image 
               source={{ uri: Featuredphoto }}
               style={styles.image}
               resizeMode="cover"

@@ -89,6 +89,10 @@ export default {
 
   FAVORITES_PRODUCTS_DRAWER: "Favorites",
   
-  PRODUCTS_CATEGORY : "Products"
+  PRODUCTS_CATEGORY: "Products",
+  
+  IMAGE_CAROUSEL: "Featued Product",
+  IMAGE_CAROUSEL_Tab : "Featued Product"
+
 
 };

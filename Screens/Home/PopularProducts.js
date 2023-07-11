@@ -39,7 +39,7 @@ const PopularProducts = () => {
     const photos = `${PHOTO_URL}${item.photo}`;
 
     return (
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card}>
+      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt,{_id: item._id})} style={styles.card}>
         <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
         <View style={styles.details}>
           <Text style={styles.name}>{truncateName(item.name)}</Text>

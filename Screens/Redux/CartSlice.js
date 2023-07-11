@@ -9,8 +9,9 @@ const cartSlice = createSlice ({
     name: "cart",
     initialState,
     reducers:{
-        addToCart:(state,action) => {
-            //console.log("PayLoad:",action.payload)
+        addToCart: (state, action) => {
+            //console.log(action.payload)
+            console.log("PayLoad:",action.payload)
             // const newProduct = {
             //     name: action.payload.name,
             //     article_code: action.payload.article_code,

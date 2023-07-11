@@ -26,6 +26,7 @@ import Noodles from "../../Components/Noodles";
 import Oil from "../../Components/Oil"
 import OffersSlider from "../../Components/OffersSlider";
 import { useNavigation } from "@react-navigation/native";
+import FeaturedProductStack from "../../Navigation/FeaturedProductStack";
 
 
 
@@ -176,7 +177,9 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView style={styles.continer}>
       <StatusBar style="dark" />
-      <ImageCarousel />
+      <View>
+        <ImageCarousel/>
+         </View>
       <View
           style={styles.TopCategorysTextStyle}
         >

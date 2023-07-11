@@ -23,7 +23,7 @@ const OffersScreen = ({ navigation }) => {
     return (
       <View>
       <View style={{backgroundColor:"#F5F6FB"}}>
-         <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)}>
+         <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt,{_id: item._id})}>
         <View style={{ alignItems: 'center' }}>
           <Image source={{ uri: Offerphoto }} style={styles.OfferImgStyle} />
         </View>

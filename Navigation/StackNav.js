@@ -17,6 +17,7 @@ import OilStacknav from "./OilStacknav";
 import OrderScreenNav from "../Navigation/OrderScreenNav"
 import OfferScreenstack from "../Navigation/OfferScreenstack"
 import CategoryStackNav from "./CategoryStackNav";
+import FeaturedProductStack from "./FeaturedProductStack";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -39,7 +40,9 @@ const StackNav = () => {
       <Stack.Screen name={Routes.NOODLES_TAB} component={NoodlesStack} options={{ headerShown: false }}/>
       <Stack.Screen name={Routes.ALL_OIL_TAB} component={OilStacknav} options={{ headerShown: false }}/>
       <Stack.Screen name={Routes.Product_Card} component={ProductStacknav} options={{ headerShown: false }}/>
-      <Stack.Screen name={Routes.OFFER_PRODUCTS_TAB} component={OfferScreenstack} options={{ headerShown: false }}/>
+      <Stack.Screen name={Routes.OFFER_PRODUCTS_TAB} component={OfferScreenstack} options={{ headerShown: false }} />
+      <Stack.Screen name={Routes.IMAGE_CAROUSEL_Tab} component={FeaturedProductStack} />
+      
       
 
 

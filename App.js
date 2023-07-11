@@ -8,15 +8,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import Store, { store } from "./Screens/Redux/Store/Store";
 import DrawerNav from "./Navigation/DrawerNav";
-import OrderHistoryDetails from "./Screens/DrawerScreen/OrderHistoryDetails";
-import OrderHistory from "./Screens/DrawerScreen/OrderHistory";
-import OrderHistoryNavStack from "./Navigation/OrderHistoryNavStack";
-import AllBiscuits from "./Screens/Home/AllBiscuits";
-import OffersScreen from "./Screens/Home/OffersScreen";
-import CategoryGroupScreen from "./Screens/Home/CategoryGroupScreen";
-import CategoryScreen from "./Screens/Home/CategoryScreen";
-import ProductsCategory from "./Screens/Home/ProductsCategory";
-import CategoryStackNav from "./Navigation/CategoryStackNav";
+import FeaturedProductStack from "./Navigation/FeaturedProductStack";
+
 
 
 export default function App() {
