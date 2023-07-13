@@ -11,7 +11,7 @@ import { Icon } from '@rneui/base';
 import React from "react";
 import { useNavigation } from '@react-navigation/native';
 import Routes from "../Utility/Routes";
-import { addToCart } from "../Screens/Redux/CartSlice";
+import { addProduct, addToCart } from "../Screens/Redux/CartSlice";
 import { useDispatch } from "react-redux";
 import { useGetPopularProductsQuery } from "../Screens/Redux/Api/ProductsApi";
 import { useState, useEffect } from "react";
@@ -27,10 +27,10 @@ const ProductCart = () => {
 
   const dispatch = useDispatch();
   
-  const handleAddtoCart = (item) => {
+ /// const handleAddtoCart = (item) => {
     //console.log(item);
-    dispatch(addToCart(item));
-  };
+    //dispatch(addToCart(item));
+  //};
 
   const truncateName = (name) => {
     const maxLength = 12; // Define the maximum length for the name
@@ -62,7 +62,7 @@ const ProductCart = () => {
             <View style={styles.cartStyle}>
             <Text style={styles.price}>${item.priceList[0].mrp}</Text>
 
-              <TouchableOpacity onPress={() => handleAddtoCart(item)}>
+              <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
                 <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
               </TouchableOpacity>
             </View>

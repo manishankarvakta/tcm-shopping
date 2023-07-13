@@ -9,10 +9,13 @@ import {
 import React, { useState, useEffect } from "react";
 import { useGetOfferProductsQuery } from "../Screens/Redux/Api/ProductsApi";
 import { PHOTO_URL } from '../Utility/BaseUrl';
+import { useDispatch } from "react-redux";
+import { addProduct } from "../Screens/Redux/CartSlice";
 
 const OffersSlider = () => {
   const { data, isSuccess, isError } = useGetOfferProductsQuery();
   const [offerImg, setOfferImg] = useState([]);
+
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -25,7 +28,6 @@ const OffersSlider = () => {
       horizontal
       data={offerImg}
       showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => item._id.toString()}
       renderItem={({ item }) => {
         const offerSliderImg = `${PHOTO_URL}${item.photo}`;
         

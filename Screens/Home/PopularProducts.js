@@ -7,8 +7,10 @@ import { useGetPopularProductsQuery } from '../Redux/Api/ProductsApi';
 const numColumns = 3;
 const itemWidth = Dimensions.get('window').width / numColumns;
 import { PHOTO_URL } from '../../Utility/BaseUrl'
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../Redux/CartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTocart } from '../../Utility/Utility';
+import { addProduct } from '../Redux/CartSlice';
+// import { addToCart } from '../Redux/CartSlice';
 
 const PopularProducts = () => {
   const navigation = useNavigation();
@@ -16,10 +18,11 @@ const PopularProducts = () => {
 
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
   const dispatch = useDispatch();
+ 
 
   const handleAddtoCart = (item) => {
     //console.log(item);
-    dispatch(addToCart(item));
+    // dispatch(addToCart(item));
   };
 
 
@@ -46,8 +49,8 @@ const PopularProducts = () => {
           <View style={styles.cartStyle}>
           <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
 
-            <TouchableOpacity onPress={() => handleAddtoCart(item)}>
-              <Icon name="shopping-basket-add" size={20} color="#2EB5AC" paddingTop={5} type="fontisto" />
+            <TouchableOpacity >
+              <Icon onPress={() => dispatch(addProduct(item))} name="shopping-basket-add" size={20} color="#2EB5AC" paddingTop={5} type="fontisto" />
             </TouchableOpacity>
           </View>
         </View>

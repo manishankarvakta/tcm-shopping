@@ -5,12 +5,15 @@ import Routes from '../../Utility/Routes';
 import { useGetOfferProductsQuery } from '../Redux/Api/ProductsApi';
 import { useState, useEffect } from 'react';
 import { PHOTO_URL } from '../../Utility/BaseUrl';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../Redux/CartSlice';
 
 const OffersScreen = ({ navigation }) => {
   const { data, isSuccess, isError, isFetching, isLoading } = useGetOfferProductsQuery();
 
   const [offer, setOffer] = useState([]);
 
+  const dispatch = useDispatch()
   useEffect(() => {
     data?.length> 0 && setOffer(data)
   }, [isSuccess, data]);
@@ -31,7 +34,7 @@ const OffersScreen = ({ navigation }) => {
         <View style={styles.OfferPriceSectionStyle}>
           <Text style={{ color: 'red', fontSize: 15 }}>৳{item.priceList[0].mrp}</Text>
           <TouchableOpacity style={styles.OfferProductAddCartStyle}>
-            <FontAwesome name="plus" size={14} color="#1D2F3E" />
+            <FontAwesome name="plus" size={14} color="#1D2F3E" onPress={() => dispatch(addProduct(item))} />
           </TouchableOpacity>
         </View>
       </TouchableOpacity>

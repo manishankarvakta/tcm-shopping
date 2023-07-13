@@ -88,11 +88,14 @@ export default {
   REWARD:"Earn a Reward",
 
   FAVORITES_PRODUCTS_DRAWER: "Favorites",
+  FAVORITES_PRODUCTS_STACK:"Favorites",
   
   PRODUCTS_CATEGORY: "Products",
   
   IMAGE_CAROUSEL: "Featued Product",
-  IMAGE_CAROUSEL_Tab : "Featued Product"
+  IMAGE_CAROUSEL_Tab: "Featued Product",
+  
+  
 
 
 };

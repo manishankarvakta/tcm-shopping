@@ -3,85 +3,45 @@ import { Icon } from '@rneui/base';
 import Routes from '../../Utility/Routes';
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import { PHOTO_URL } from '../../Utility/BaseUrl';
+
 const CartScreen = ({ navigation }) => {
+  const cartItems = useSelector((state) => state.cartReducer);
 
-  
-  const cartProducts = [
-    {
-      id: 1,
-      name: 'Lychee Premium',
-      price: 175,
-      originalPrice: 225,
-      quantity: 1,
-      image: require('../../assets/f1.png'),
-    },
-    {
-      id: 10,
-      name: 'Lychee Premium',
-      price: 175,
-      originalPrice: 225,
-      quantity: 1,
-      image: require('../../assets/f1.png'),
-    },
-
-    {
-      id: 2,
-      name: 'Lychee Premium',
-      price: 175,
-      originalPrice: 225,
-      quantity: 1,
-      image: require('../../assets/f1.png'),
-    },
-
-
-    {
-      id: 3,
-      name: 'Lychee Premium',
-      price: 175,
-      originalPrice: 225,
-      quantity: 1,
-      image: require('../../assets/f1.png'),
-    },
-
-
-    {
-      id: 4,
-      name: 'Lychee Premium',
-      price: 175,
-      originalPrice: 225,
-      quantity: 1,
-      image: require('../../assets/f1.png'),
-    },
-  ];
-
+  //console.log("cartIt:",cartItems )
+ 
   const renderItem = ({ item }) => {
+   //console.log("item",item)
+    const photos = `${PHOTO_URL}${item.photo}`;
     return (
       <View style={styles.CartProductStyle}>
         <View>
-          <Image source={item.image} style={styles.CartProductImgStyle} />
+          <Image source={{ uri: photos }} style={styles.CartProductImgStyle} />
         </View>
 
         <View style={{ justifyContent: 'space-between', paddingHorizontal: 10 }}>
-          <View>
+          <View style={{width:180}}>
             <Text>{item.name}</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ color: 'red' }}>${item.price}  </Text>
-            <Text style={{ textDecorationLine: 'line-through' }}>${item.originalPrice}</Text>
-            <Text> | {item.quantity} pcs</Text>
+            <Text style={{ color: 'red' }}>${item.mrp}  </Text>
+            
+            <Text> | {item.qty} pcs</Text>
           </View>
         </View>
 
         <View style={{ flexDirection: 'row', alignItems: 'flex-end', alignSelf: 'flex-end' }}>
           <TouchableOpacity>
-            <Icon name="delete" size={20} color="red" type="ant-design" paddingRight={10} />
+            <Icon name="delete" size={20} color="red" type="ant-design" paddingRight={5} />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={10} />
+            <Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={5} />
           </TouchableOpacity>
-          <Text>{item.quantity}</Text>
+          <Text>{item.order}</Text>
           <TouchableOpacity>
-            <Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={10} />
+            <Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={5} />
           </TouchableOpacity>
         </View>
       </View>
@@ -106,11 +66,10 @@ const CartScreen = ({ navigation }) => {
       </View>
 
       <FlatList
-        data={cartProducts}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: 15 }}
-      />
+         data={cartItems.products}
+         renderItem={renderItem}
+         contentContainerStyle={{ paddingBottom: 15 }}
+/>
 
       <View style={{ flexDirection: 'row', margin: 30, marginHorizontal: 10, paddingVertical: 10, backgroundColor: '#D4E9F9', borderRadius: 5 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20 }}>
@@ -175,8 +134,8 @@ const styles = StyleSheet.create({
     elevation: 55,
   },
   CartProductImgStyle: {
-    width: 55,
-    height: 55,
+    width: 60,
+    height: 65,
     borderRadius: 10,
   },
 });

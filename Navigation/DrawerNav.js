@@ -13,6 +13,7 @@ import EarnReward from '../Screens/Home/EarnReward';
 import FavoritesProducts from '../Screens/Home/FavoritesProducts';
 import CustomDrawer from '../Components/CustomDrawer';
 import FlashsaleProductNav from './FlashsaleProductNav';
+import FavoriteProductsStack from './FavoriteProductsStack';
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -56,7 +57,7 @@ function DrawerNav() {
       />
 
 
-    <Drawer.Screen name={Routes.FAVORITES_PRODUCTS_DRAWER} component={FavoritesProducts}
+    <Drawer.Screen name={Routes.FAVORITES_PRODUCTS_DRAWER} component={FavoriteProductsStack}
       
       options={{ headerShown: false, 
         drawerIcon: ({ color, size }) => (
