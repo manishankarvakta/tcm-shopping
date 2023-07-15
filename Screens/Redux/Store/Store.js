@@ -8,6 +8,7 @@ const Store = configureStore({
     [ProductsApi.reducerPath]: ProductsApi.reducer,
     
     cartReducer,
+    WishReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.

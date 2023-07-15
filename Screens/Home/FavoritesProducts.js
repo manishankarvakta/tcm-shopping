@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
 import { Icon } from '@rneui/base';
 import Routes from '../../Utility/Routes';
-import { useGetSingleProductQuery } from '../Redux/Api/ProductsApi';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import { PHOTO_URL } from '../../Utility/BaseUrl';
 const numColumns = 2 ;
 
@@ -13,13 +11,13 @@ const numColumns = 2 ;
 
 
 const FavoritesProducts = ({ navigation }) => {
-  const cartItems = useSelector((state) => state.cartReducer);
+  const FavoriteItem = useSelector((state) => state.WishReducer);
   
   
   const renderItem = ({ item }) => {
     const photos = `${PHOTO_URL}${item.photo}`;
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt,{_id: item._id})} style={styles.card} >
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item.id })} style={styles.card} >
         <Image
     source={{ uri: photos }}
     style={styles.FlashSaleImg}
@@ -45,9 +43,9 @@ const FavoritesProducts = ({ navigation }) => {
   <View style={styles.container}>
    
       <FlatList
-        data={cartItems.products}
+        data={FavoriteItem.FavoritesProducts}
         renderItem={renderItem}
-        keyExtractor={(item) => item._id}
+        //keyExtractor={(item) => item._id}
 
       numColumns={numColumns}
     />

@@ -1,16 +1,22 @@
 import { View, Text, SafeAreaView, TouchableOpacity, Image, StyleSheet, FlatList } from 'react-native';
 import { Icon } from '@rneui/base';
 import Routes from '../../Utility/Routes';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { PHOTO_URL } from '../../Utility/BaseUrl';
+import { selcetProduct } from '../Redux/CartSlice';
 
 const CartScreen = ({ navigation }) => {
   const cartItems = useSelector((state) => state.cartReducer);
+  const dispatch = useDispatch()
 
-  //console.log("cartIt:",cartItems )
+  useEffect(() => {
+    dispatch(selcetProduct(cartItems.products))
+  },[cartItems.products])
+
+  console.log("cartIt:",cartItems )
  
   const renderItem = ({ item }) => {
    //console.log("item",item)
@@ -88,7 +94,7 @@ const CartScreen = ({ navigation }) => {
         </View>
 
         <View style={{ borderRadius: 20 }}>
-          <Text style={{ backgroundColor: '#E7D6EC', paddingVertical: 5, paddingHorizontal: 25, borderRadius: 15, color: '#000' }}>$450</Text>
+          <Text style={{ backgroundColor: '#E7D6EC', paddingVertical: 5, paddingHorizontal: 25, borderRadius: 15, color: '#000' }}>{cartItems.total}</Text>
         </View>
       </TouchableOpacity>
     </SafeAreaView>

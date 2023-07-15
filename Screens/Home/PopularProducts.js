@@ -10,20 +10,15 @@ import { PHOTO_URL } from '../../Utility/BaseUrl'
 import { useDispatch, useSelector } from 'react-redux';
 import { addTocart } from '../../Utility/Utility';
 import { addProduct } from '../Redux/CartSlice';
-// import { addToCart } from '../Redux/CartSlice';
+import { addFavoriteProduct } from '../Redux/WishListSlice';
 
 const PopularProducts = () => {
   const navigation = useNavigation();
   const [product, setProduct] = useState([]);
+  const [favoriteItems, setFavoriteItems] = useState([]);
 
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
   const dispatch = useDispatch();
- 
-
-  const handleAddtoCart = (item) => {
-    //console.log(item);
-    // dispatch(addToCart(item));
-  };
 
 
   useEffect(() => {
@@ -38,18 +33,38 @@ const PopularProducts = () => {
     return name;
   };
 
+  const handleFavoriteToggle = (item) => {
+    if (favoriteItems.includes(item)) {
+      setFavoriteItems(favoriteItems.filter((item) => item !== item));
+    } else {
+      setFavoriteItems([...favoriteItems, item]);
+    }
+  };
+
+  const isItemFavorite = (item) => favoriteItems.includes(item);
+
   const renderItem = ({ item }) => {
     const photos = `${PHOTO_URL}${item.photo}`;
 
     return (
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt,{_id: item._id})} style={styles.card}>
+      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })} style={styles.card}>
         <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
+        <TouchableOpacity
+          style={styles.heartIcon}
+          onPress={() => handleFavoriteToggle(item.item)}
+        >
+          <Icon onPress={() => dispatch(addFavoriteProduct(item))}
+            name="heart"
+            size={20}
+            color={isItemFavorite(item._id) ? 'red' : 'black'}
+            type="font-awesome"
+          />
+        </TouchableOpacity>
         <View style={styles.details}>
           <Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>
-          <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
-
-            <TouchableOpacity >
+            <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
+            <TouchableOpacity>
               <Icon onPress={() => dispatch(addProduct(item))} name="shopping-basket-add" size={20} color="#2EB5AC" paddingTop={5} type="fontisto" />
             </TouchableOpacity>
           </View>
@@ -73,7 +88,7 @@ const PopularProducts = () => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
-    marginVertical: 10
+    marginVertical: 10,
   },
   card: {
     flexDirection: "column",
@@ -113,7 +128,13 @@ const styles = StyleSheet.create({
     width: 95,
     height: 90,
     borderRadius: 10,
-  }
+  },
+  heartIcon: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
+  },
 });
 
 export default PopularProducts;

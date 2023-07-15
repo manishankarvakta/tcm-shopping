@@ -13,7 +13,7 @@ export default function FavoriteProductsStack()  {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.FAVORITES_PRODUCTS_STACK}
+      name={Routes.FAVORITES_STACK}
       component={FavoritesProducts}
       options={{
     
