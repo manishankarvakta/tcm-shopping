@@ -2,56 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-        invoiceId: "",
-        source: "app",
-        note: "",
-        warehouse: "62b5b575b4facb87eef3b47c",
-        FavoritesProducts: [],
-        returnProducts: [],
-        returnCal: {
-          totalItem: 0,
-          total: 0,
-          vatAmount: 0,
-          grossTotal: 0,
-          grossTotalRound: 0,
-          point: 0,
-        },
-        returnInvoice: null,
-        paidAmount: {
-          cash: 0,
-          mfs: {
-            name: "",
-            amount: 0,
-          },
-          card: {
-            name: "",
-            amount: 0,
-          },
-          point: 0,
-        },
-        changeAmount: 0,
-        totalReceived: 0,
-        grossTotal: 0,
-        grossTotalRound: 0,
-        totalItem: 0,
-        total: 0,
-        vat: 0,
-        point: {
-          old: 0,
-          new: 0,
-        },
-        todayPoint: 0,
-        discount: 0,
-        promo_discount: 0,
-        billerId: "63dfffdd1edc4e4632e8bcf4",
-        delivery: {
-          address: "",
-          phone: "",
-        },
-        customerId: "",
-        updateUser: "63dfffdd1edc4e4632e8bcf4",
-        status: "order"
-};
+  FavoritesProducts: [
+
+]};
 
 const WishListSlice = createSlice ({
     name: "Wishlist",

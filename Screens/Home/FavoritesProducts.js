@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
 import { Icon } from '@rneui/base';
 import Routes from '../../Utility/Routes';
-import {useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import { PHOTO_URL } from '../../Utility/BaseUrl';
+import { addProduct, addWishListProduct } from '../Redux/CartSlice';
 const numColumns = 2 ;
 
 
@@ -12,7 +13,16 @@ const numColumns = 2 ;
 
 const FavoritesProducts = ({ navigation }) => {
   const FavoriteItem = useSelector((state) => state.WishReducer);
+  const dispatch = useDispatch()
   
+
+  const truncateName = (name) => {
+    const maxLength = 12; // Define the maximum length for the name
+    if (name.length > maxLength) {
+      return name.substring(0, maxLength - 3) + "..."; // Truncate and add "..." at the end
+    }
+    return name;
+  };
   
   const renderItem = ({ item }) => {
     const photos = `${PHOTO_URL}${item.photo}`;
@@ -24,12 +34,11 @@ const FavoritesProducts = ({ navigation }) => {
     
   />
    <View style={styles.details}>
-<Text style={styles.name}>{item.name}</Text>
+<Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>
           <Text style={styles.price}>৳ {item.mrp} </Text>
 
-                <Text style={styles.qty}>2kg</Text>
-               <TouchableOpacity>
+               <TouchableOpacity onPress={() => dispatch(addWishListProduct(item))}>
                <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
                </TouchableOpacity>
              </View> 
@@ -98,7 +107,7 @@ const styles = StyleSheet.create({
     
   },
   name: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   price: {

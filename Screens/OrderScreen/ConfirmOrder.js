@@ -1,12 +1,16 @@
 import { View, Text,SafeAreaView,TouchableOpacity,Switch,StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Icon } from '@rneui/base';
 import { useState } from 'react';
 import Routes from '../../Utility/Routes';
+import { useDispatch, useSelector } from 'react-redux';
+import { selcetProduct } from '../Redux/CartSlice';
 
 
-export default function ConfirmOrder({navigation}) {
-    const [isEnabled, setIsEnabled] = useState(false)
+export default function ConfirmOrder({ navigation }) {
+  const [isEnabled, setIsEnabled] = useState(false)
+
+  const cartItems = useSelector((state) => state.cartReducer);
 
  
   return (
@@ -55,31 +59,7 @@ export default function ConfirmOrder({navigation}) {
                  </View>
                 </View>
 
-                <View>
-                <View style={styles.DeliveryScheduleStyle}>
-                 <View style={{marginVertical:5}}>
-                 <View style={{justifyContent:"space-between",flexDirection: 'row'}}> 
-                  
-                  <Icon
-                     name="shipping-fast"
-                     size={20}
-                     color="gray"
-                     type="font-awesome-5"
-                     paddingRight={10}
-                  />
-                  <Text style={styles.TextColorStyle}>Express Items</Text>
-                  </View>
-                  <Text style={styles.TextColorStyle}>Mon,Jun 5</Text>
-                  <Text style={styles.TextColorStyle}>5:00 PM - 6.00 PM</Text>
-                 </View>
-
-                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end',}}>
-                 <TouchableOpacity style={{paddingRight:5}}>
-                   <Icon name="angle-down" size={20} color={styles.TextColorStyle} type="font-awesome" />
-                 </TouchableOpacity>
-                 </View>
-            </View>
-                </View>
+          
             </View>
 
             <View>
@@ -135,7 +115,7 @@ export default function ConfirmOrder({navigation}) {
                 </View>
 
                 <View style={{borderRadius:20}}>
-                    <Text style={styles.TotalPriceStyle}>$450</Text>
+                    <Text style={styles.TotalPriceStyle}>৳{cartItems.total} tk</Text>
                 </View>
             </TouchableOpacity>
      </View>

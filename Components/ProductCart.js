@@ -1,36 +1,40 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, Text, TouchableOpacity, Image, View } from "react-native";
 import { Icon } from '@rneui/base';
 
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from '@react-navigation/native';
 import Routes from "../Utility/Routes";
 import { addProduct, addToCart } from "../Screens/Redux/CartSlice";
 import { useDispatch } from "react-redux";
 import { useGetPopularProductsQuery } from "../Screens/Redux/Api/ProductsApi";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { PHOTO_URL } from "../Utility/BaseUrl";
+import { addFavoriteProduct } from "../Screens/Redux/WishListSlice";
 
 const ProductCart = () => {
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
   const [products, setProducts] = useState([]);
+
 
   useEffect(() => {
     data?.length > 0 && setProducts(data);
   }, [isSuccess]);
 
   const dispatch = useDispatch();
-  
- /// const handleAddtoCart = (item) => {
-    //console.log(item);
-    //dispatch(addToCart(item));
-  //};
+  const [favoriteItems, setFavoriteItems] = useState([]);
+
+  const navigation = useNavigation();
+
+  const handleFavoriteToggle = (item) => {
+    dispatch(addFavoriteProduct(item))
+    if (favoriteItems.includes(item)) {
+      setFavoriteItems(favoriteItems.filter((favItem) => favItem !== item));
+    } else {
+      setFavoriteItems([...favoriteItems, item]);
+    }
+  };
+
+  const isItemFavorite = (item) => favoriteItems.includes(item);
 
   const truncateName = (name) => {
     const maxLength = 12; // Define the maximum length for the name
@@ -57,11 +61,21 @@ const ProductCart = () => {
               borderRadius: 10,
             }}
           />
+          <TouchableOpacity
+            style={styles.heartIcon}
+            onPress={() => handleFavoriteToggle(item)}
+          >
+            <Icon
+              name="heart"
+              size={20}
+              color={isItemFavorite(item) ? 'red' : 'gray'}
+              type="font-awesome"
+            />
+          </TouchableOpacity>
           <View style={styles.details}>
             <Text style={styles.name}>{truncateName(item.name)}</Text>
             <View style={styles.cartStyle}>
-            <Text style={styles.price}>${item.priceList[0].mrp}</Text>
-
+              <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
               <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
                 <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
               </TouchableOpacity>
@@ -91,11 +105,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  image: {
-    width: 95,
-    height: 90,
-    borderRadius: 10,
-    resizeMode: 'cover',
+  heartIcon: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
   },
   details: {
     paddingTop: 10,

@@ -4,18 +4,18 @@ import { Icon } from '@rneui/base';
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 import Routes from '../../Utility/Routes';
+import { useSelector } from 'react-redux';
+import { PHOTO_URL } from '../../Utility/BaseUrl';
 
-export default function ConfirmationProducts({navigation}) {
+export default function ConfirmationProducts({ navigation }) {
+     
+     const cartItems = useSelector((state) => state.cartReducer);
+
   return (
     <SafeAreaView>
         <ScrollView>
     <View style={styles.OrderConfirmantionSectionStye}>
-    <View>
-         <Image
-               source={require('../../assets/f1.png')}
-               style={styles.OrderProductImg}
-           />
-    </View>
+  
 
          <View>
             <Text style={styles.ConfirmationText}>Confirmation</Text>
@@ -209,10 +209,10 @@ export default function ConfirmationProducts({navigation}) {
          </View>
 
          <View>
-            <Text style={styles.TitleStyle}>$300</Text>
-            <Text style={styles.TitleStyle}>$65</Text>
-            <Text style={styles.TitleStyle}>$235</Text>
-            <Text style={styles.TitleStyleThree}>$0</Text>
+            <Text style={styles.TitleStyle}>{cartItems.total}tk</Text>
+            <Text style={styles.TitleStyle}>৳{cartItems.vat}</Text>
+            <Text style={styles.TitleStyle}>৳{cartItems.grossTotal}</Text>
+            <Text style={styles.TitleStyleThree}>৳0</Text>
 
             
          </View>
@@ -220,7 +220,7 @@ export default function ConfirmationProducts({navigation}) {
         
         <View style={{borderTopWidth:1,borderTopColor:"#c1c1c1",flexDirection:"row",justifyContent:"space-between"}}>
         <Text style={styles.TitleStyleFour}>Deu</Text>
-        <Text style={styles.TitleStyleFour}>$235</Text>
+                                <Text style={styles.TitleStyleFour}>৳{cartItems.grossTotal}</Text>
         </View>
      
     </View>
@@ -244,7 +244,6 @@ export default function ConfirmationProducts({navigation}) {
 
 const styles = StyleSheet.create({
 OrderConfirmantionSectionStye:{
-flexDirection:"row",
 shadowColor: '#000',
 shadowOffset: { width: 0, height: 2 }, 
 shadowOpacity: 0.3,

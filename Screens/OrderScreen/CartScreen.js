@@ -6,20 +6,32 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { PHOTO_URL } from '../../Utility/BaseUrl';
-import { selcetProduct } from '../Redux/CartSlice';
+import {  productsQuntityDecrements, productsQuntityIncrement, removeProduct, selcetProduct } from '../Redux/CartSlice';
 
 const CartScreen = ({ navigation }) => {
   const cartItems = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  useEffect(() => {   
     dispatch(selcetProduct(cartItems.products))
   },[cartItems.products])
 
-  console.log("cartIt:",cartItems )
+ // console.log("cartIt:",cartItems )
  
   const renderItem = ({ item }) => {
-   //console.log("item",item)
+
+    const handleDelete = () => {
+      dispatch(removeProduct(item.id));
+    };
+
+    const handlePlus = () => {
+      dispatch(productsQuntityIncrement(item.id ));
+    };
+
+    const handleMinus = () => {
+      dispatch(productsQuntityDecrements(item.id ));
+    };
+  //console.log("item",item)
     const photos = `${PHOTO_URL}${item.photo}`;
     return (
       <View style={styles.CartProductStyle}>
@@ -32,23 +44,28 @@ const CartScreen = ({ navigation }) => {
             <Text>{item.name}</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ color: 'red' }}>${item.mrp}  </Text>
+            <Text style={{ color: 'red' }}>৳{item.mrp} </Text>
             
             <Text> | {item.qty} pcs</Text>
           </View>
+          
         </View>
 
-        <View style={{ flexDirection: 'row', alignItems: 'flex-end', alignSelf: 'flex-end' }}>
-          <TouchableOpacity>
-            <Icon name="delete" size={20} color="red" type="ant-design" paddingRight={5} />
+        <View style={{ justifyContent: 'space-between',flexDirection:"column"}}>
+          <View>
+          <TouchableOpacity onPress={handleDelete} style={{alignSelf:"flex-end",alignItems:"flex-end"}}>
+            <Icon name="delete" size={20} color="red" type="ant-design" />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Icon name="minus" size={20} color="#000" type="ant-design" paddingRight={5} />
+            </View>
+          <View style={{ justifyContent: 'space-between',flexDirection:"row"}}>
+          <TouchableOpacity onPress={handleMinus}>
+            <Icon name="minus" size={25} color="#000" type="ant-design" paddingRight={7} />
           </TouchableOpacity>
-          <Text>{item.order}</Text>
-          <TouchableOpacity>
-            <Icon name="plus" size={20} color="#000" type="ant-design" paddingLeft={5} />
+          <Text style={{fontSize:18}}>{item.qty}</Text>
+          <TouchableOpacity onPress={handlePlus}>
+            <Icon name="plus" size={22} color="#000" type="ant-design" paddingLeft={7} />
           </TouchableOpacity>
+            </View>
         </View>
       </View>
     );
@@ -72,10 +89,12 @@ const CartScreen = ({ navigation }) => {
       </View>
 
       <FlatList
-         data={cartItems.products}
-         renderItem={renderItem}
-         contentContainerStyle={{ paddingBottom: 15 }}
+  data={cartItems.products}
+  keyExtractor={(item) => item.id}
+  renderItem={renderItem}
+  contentContainerStyle={{ paddingBottom: 15 }}
 />
+
 
       <View style={{ flexDirection: 'row', margin: 30, marginHorizontal: 10, paddingVertical: 10, backgroundColor: '#D4E9F9', borderRadius: 5 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20 }}>
@@ -94,7 +113,7 @@ const CartScreen = ({ navigation }) => {
         </View>
 
         <View style={{ borderRadius: 20 }}>
-          <Text style={{ backgroundColor: '#E7D6EC', paddingVertical: 5, paddingHorizontal: 25, borderRadius: 15, color: '#000' }}>{cartItems.total}</Text>
+          <Text style={{ backgroundColor: '#E7D6EC', paddingVertical: 5, paddingHorizontal: 25, borderRadius: 15, color: '#000' }}>৳{cartItems.total} tk</Text>
         </View>
       </TouchableOpacity>
     </SafeAreaView>

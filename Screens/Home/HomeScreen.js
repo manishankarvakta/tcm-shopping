@@ -31,9 +31,9 @@ import FeaturedProductStack from "../../Navigation/FeaturedProductStack";
 
 
 
+
 const HomeScreen = ({ navigation }) => {
 
-  
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);

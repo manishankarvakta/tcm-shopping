@@ -19,6 +19,19 @@ const PopularProducts = () => {
 
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
   const dispatch = useDispatch();
+  const itemData = useSelector((state) => state.cartReducer)
+  //console.log("itemData:",itemData)
+ // const addCartProduct = (item) => {
+    //console.log("item:",item)
+     // const existingProduct = itemData.products.find((it) => it.id === item._id)
+      ///console.log("exist :",existingProduct)
+  
+      //if (existingProduct) {
+      //  existingProduct.qty += 1;
+//} else {
+     ///   dispatch(addProduct(item))
+    //  }
+   // }
 
 
   useEffect(() => {
@@ -34,7 +47,10 @@ const PopularProducts = () => {
   };
 
   const handleFavoriteToggle = (item) => {
+    dispatch(addFavoriteProduct(item))
     if (favoriteItems.includes(item)) {
+
+     
       setFavoriteItems(favoriteItems.filter((item) => item !== item));
     } else {
       setFavoriteItems([...favoriteItems, item]);
@@ -49,14 +65,14 @@ const PopularProducts = () => {
     return (
       <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })} style={styles.card}>
         <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
-        <TouchableOpacity
+        <TouchableOpacity onPress={() => handleFavoriteToggle(item)}
           style={styles.heartIcon}
-          onPress={() => handleFavoriteToggle(item.item)}
+          
         >
-          <Icon onPress={() => dispatch(addFavoriteProduct(item))}
+          <Icon 
             name="heart"
             size={20}
-            color={isItemFavorite(item._id) ? 'red' : 'black'}
+            color={isItemFavorite(item._id) ? 'red' : 'gray'}
             type="font-awesome"
           />
         </TouchableOpacity>
@@ -64,8 +80,8 @@ const PopularProducts = () => {
           <Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>
             <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
-            <TouchableOpacity>
-              <Icon onPress={() => dispatch(addProduct(item))} name="shopping-basket-add" size={20} color="#2EB5AC" paddingTop={5} type="fontisto" />
+            <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
+              <Icon  name="shopping-basket-add" size={20} color="#2EB5AC" paddingTop={5} type="fontisto" />
             </TouchableOpacity>
           </View>
         </View>
