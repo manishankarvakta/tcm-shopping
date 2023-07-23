@@ -15,7 +15,6 @@ const ProductCart = () => {
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
   const [products, setProducts] = useState([]);
 
-
   useEffect(() => {
     data?.length > 0 && setProducts(data);
   }, [isSuccess]);

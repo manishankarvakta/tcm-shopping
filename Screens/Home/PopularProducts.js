@@ -8,7 +8,6 @@ const numColumns = 3;
 const itemWidth = Dimensions.get('window').width / numColumns;
 import { PHOTO_URL } from '../../Utility/BaseUrl'
 import { useDispatch, useSelector } from 'react-redux';
-import { addTocart } from '../../Utility/Utility';
 import { addProduct } from '../Redux/CartSlice';
 import { addFavoriteProduct } from '../Redux/WishListSlice';
 
@@ -19,19 +18,7 @@ const PopularProducts = () => {
 
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
   const dispatch = useDispatch();
-  const itemData = useSelector((state) => state.cartReducer)
-  //console.log("itemData:",itemData)
- // const addCartProduct = (item) => {
-    //console.log("item:",item)
-     // const existingProduct = itemData.products.find((it) => it.id === item._id)
-      ///console.log("exist :",existingProduct)
-  
-      //if (existingProduct) {
-      //  existingProduct.qty += 1;
-//} else {
-     ///   dispatch(addProduct(item))
-    //  }
-   // }
+
 
 
   useEffect(() => {

@@ -3,40 +3,76 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions ,Image, Text } from 'react-native';
 import Routes from '../../Utility/Routes';
 import { Icon } from '@rneui/base';
+import { useGetProductCategoryIdQuery } from '../Redux/Api/ProductsApi';
+import { useEffect } from 'react';
+import { PHOTO_URL } from '../../Utility/BaseUrl';
+import { addFavoriteProduct } from '../Redux/WishListSlice';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../Redux/CartSlice';
 const numColumns = 3 ;
 const itemWidth = Dimensions.get('window').width / numColumns;
 
-    const data = [
-      { id: '1', imageUrl:require("../../assets/PopularProduct/p10.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
-      { id: '2', imageUrl:require("../../assets/FlashSales/f2.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '3', imageUrl: require("../../assets/PopularProduct/p1.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '4', imageUrl: require("../../assets/FlashSales/f4.jpg"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
-      { id: '5', imageUrl:require("../../assets/PopularProduct/p5.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '7', imageUrl: require("../../assets/FlashSales/f7.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '8', imageUrl:require("../../assets/PopularProduct/p9.jpg") , title: 'Item 1' ,name:"Mango",price:"320TK",weight:"4kg" },
-      { id: '9', imageUrl:require("../../assets/FlashSales/f8.jpg"), title: 'Item 2',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '10', imageUrl: require("../../assets/PopularProduct/p7.jpg"), title: 'Item 3',name:"Orange",price:"300TK",weight:"1kg" },
-      { id: '11', imageUrl: require("../../assets/f1.png"), title: 'Item 4' ,name:"Water",price:"620TK",weight:"2kg"},
-      { id: '12', imageUrl:require("../../assets/PopularProduct/p2.jpg"), title: 'Item 5',name:"Apple",price:"320TK",weight:"2kg" },
-      { id: '13', imageUrl: require("../../assets/FlashSales/f3.jpg"), title: 'Item 6',name:"Orange",price:"300TK",weight:"1kg" },
-    ];
 
-const AllBiscuits = ({navigation}) => {
+
+const AllBiscuits = ({ navigation }) => {
+  const { data, isSuccess, isError } = useGetProductCategoryIdQuery("62e8fe11b0757f089ab009e6")
+  const [Biscuits, setBiscuits] = useState([])
+  const [favoriteItems, setFavoriteItems] = useState([]);
+
+
+const dispatch = useDispatch()
+  useEffect(() => {
+    data?.length > 0 && setBiscuits(data);
+  }, [isSuccess]);
+
+   const handleFavoriteToggle = (item) => {
+     dispatch(addFavoriteProduct(item)) 
+    if (favoriteItems.includes(item)) {
+      setFavoriteItems(favoriteItems.filter((favItem) => favItem !== item));
+    } else {
+      setFavoriteItems([...favoriteItems, item]);
+    }
+  };
+
+  const isItemFavorite = (item) => favoriteItems.includes(item);
   const renderItem = ({ item }) => {
+    const photos = `${PHOTO_URL}${item.photo}`;
+    const truncateName = (name) => {
+      const maxLength = 12; // Define the maximum length for the name
+      if (name.length > maxLength) {
+        return name.substring(0, maxLength - 3) + "..."; // Truncate and add "..." at the end
+      }
+      return name;
+    };
+  
+    
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt)} style={styles.card} >
+      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })} style={styles.card} >
+           <TouchableOpacity
+          style={styles.heartIcon}
+          onPress={() => handleFavoriteToggle(item)}
+        >
+          <Icon
+            name="heart"
+            size={20}
+            color={isItemFavorite(item) ? 'red' : 'gray'}
+            type="font-awesome"
+          />
+        </TouchableOpacity>
         <Image
     onPress={() => alert(item.imageUrl)}
-    source={item.imageUrl}
+    source={{uri:photos}}
     style={styles.BiscuitsImgStyle}
     
-  />
+        />
+         
+
    <View style={styles.details}>
-<Text style={styles.name}>{item.name}</Text>
-<Text style={styles.price}>Price: {item.price}</Text>
-<View style={styles.cartStyle}>
-                <Text style={styles.quantity}>{item.weight}</Text>
-               <TouchableOpacity>
+<Text style={styles.name}>{truncateName(item.name)}</Text>
+          <View style={styles.cartStyle}>
+          <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
+
+               <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
                <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
 
                </TouchableOpacity>
@@ -51,9 +87,9 @@ const AllBiscuits = ({navigation}) => {
   <View style={styles.container}>
    
       <FlatList
-      data={data}
+      data={Biscuits}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item._id}
       numColumns={numColumns}
     />
   </View>
@@ -87,7 +123,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     margin: 5,
     backgroundColor:"#F5F6FB",
-    padding:7,
+    padding:4,
     borderRadius:5,
     shadowColor: 'gray',
     shadowOffset: {
@@ -109,8 +145,9 @@ const styles = StyleSheet.create({
     
   },
   name: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
+    width:100,
   },
   price: {
     fontSize: 16,
@@ -125,7 +162,20 @@ const styles = StyleSheet.create({
     height: 90,  
     marginVertical: 5,
     borderRadius: 10,
-  }
+  },
+  heartIcon: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
+  },
+  
+  heartIcon: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
+  },
 });
 
 export default AllBiscuits;

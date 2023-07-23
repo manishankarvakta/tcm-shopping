@@ -16,15 +16,16 @@ export const ProductsApi = createApi({
       tagTypes: ['Product'],
     }),
 
+    getFlashSales: builder.query({
+      query:() => `/ecom/product/promo-products`
+    }),
+
     getComboProducts: builder.query({
       query: () => `/ecom/product/Combo`,
       tagTypes: ['Product'],
     }),
 
-    getBestSellerProducts: builder.query({
-      query: () => `/ecom/product/best-seller`,
-      tagTypes: ['Product'],
-    }),
+
 
     getBestFeaturedProducts: builder.query({
       query: () => `/ecom/featured`,
@@ -68,6 +69,7 @@ export const ProductsApi = createApi({
       tagTypes: ['Category'],
 
     }),
+ 
 
     getProductCategoryId: builder.query({
       query: (_id) => `ecom/product_category/${_id}`,
@@ -92,7 +94,6 @@ export const {
   useGetOfferProductsQuery,
   useGetPopularProductsQuery,
   useGetComboProductsQuery,
-  useGetBestSellerProductsQuery,
   useGetBestFeaturedProductsQuery,
   useGetSingleProductQuery,
   useGetSearchProductQuery,
@@ -102,6 +103,7 @@ export const {
   useGetSubCategoryQuery,
   useGetProductCategoryIdQuery,
   useGetProductDetailsQuery,
+  useGetFlashSalesQuery,
    
    
    } = ProductsApi;
