@@ -2,7 +2,6 @@
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from "../Utility/Routes";
-import AllOil from "../Screens/Home/AllOil";
 import OrderHistory from "../Screens/DrawerScreen/OrderHistory";
 import OrderHistoryDetails from "../Screens/DrawerScreen/OrderHistoryDetails";
 

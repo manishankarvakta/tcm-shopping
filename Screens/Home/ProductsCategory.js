@@ -8,6 +8,7 @@ import { sin } from 'react-native-reanimated';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../Redux/CartSlice';
 import { addFavoriteProduct } from '../Redux/WishListSlice';
+import { PHOTO_URL } from '../../Utility/BaseUrl';
 
 const numColumns = 2;
 
@@ -41,6 +42,8 @@ const ProductsCategory = ({ navigation, route }) => {
   const isItemFavorite = (item) => favoriteItems.includes(item);
 
   const renderItem = ({ item }) => {
+    const photos = `${PHOTO_URL}${item.photo}`;
+
     return (
       <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })} style={styles.card}>
         <TouchableOpacity  style={styles.heartIcon}>
@@ -48,12 +51,12 @@ const ProductsCategory = ({ navigation, route }) => {
             onPress={() => handleFavoriteToggle(item) }
             name="heart"
             size={20}
-            color={isItemFavorite(item) ? 'red' : 'black'}
+            color={isItemFavorite(item) ? 'red' : 'gray'}
             type="font-awesome"
             
           />
         </TouchableOpacity>
-        <Image source={item.imageUrl} style={styles.FlashSaleImg} />
+        <Image source={{uri:photos}} style={styles.FlashSaleImg} />
         <View style={styles.details}>
           <Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>

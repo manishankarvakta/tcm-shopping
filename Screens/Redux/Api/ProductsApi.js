@@ -1,94 +1,86 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import BASE_URL from '../../../Utility/BaseUrl'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import BASE_URL from "../../../Utility/BaseUrl";
 
 // Define a service using a base URL and expected endpoints
 export const ProductsApi = createApi({
-  reducerPath: 'productsApi',
+  reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  tagTypes: ['Product','Category'],
+  tagTypes: ["Product", "Category"],
   endpoints: (builder) => ({
     getOfferProducts: builder.query({
       query: () => `/ecom/product/offer`,
-      tagTypes: ['Product'],
+      tagTypes: ["Product"],
     }),
     getPopularProducts: builder.query({
       query: () => `/ecom/product/promo-products`,
-      tagTypes: ['Product'],
+      tagTypes: ["Product"],
     }),
 
     getFlashSales: builder.query({
-      query:() => `/ecom/product/promo-products`
+      query: () => `/ecom/product/promo-products`,
     }),
 
     getComboProducts: builder.query({
       query: () => `/ecom/product/Combo`,
-      tagTypes: ['Product'],
+      tagTypes: ["Product"],
     }),
-
-
 
     getBestFeaturedProducts: builder.query({
       query: () => `/ecom/featured`,
-      tagTypes: ['Product'],
-
+      tagTypes: ["Product"],
     }),
-
-
 
     getSingleProduct: builder.query({
       query: (id) => `/product/${id}`,
-      providesTags: ['Products']
+      providesTags: ["Products"],
     }),
 
     getSearchProduct: builder.query({
       query: (q) => `/product/search/${q}`,
-      tagTypes: ['Products'],
-
+      tagTypes: ["Products"],
     }),
 
     getSimilarProducts: builder.query({
       query: (id) => `/ecom/product-similar/${id}`,
-      tagTypes: ['Products'],
-     
+      tagTypes: ["Products"],
     }),
 
     getProductsCategory: builder.query({
       query: (id) => `/ecom/product/category/${id}`,
-      tagTypes: ['Category'],
-
+      tagTypes: ["Category"],
     }),
 
     getCategoryGroup: builder.query({
       query: (group) => `/ecom/category/group/${group}`,
-      tagTypes: ['Category'],
-
+      tagTypes: ["Category"],
     }),
 
     getSubCategory: builder.query({
       query: (mc) => `/ecom/category/master/${mc}`,
-      tagTypes: ['Category'],
-
+      tagTypes: ["Category"],
     }),
- 
 
     getProductCategoryId: builder.query({
       query: (_id) => `ecom/product_category/${_id}`,
-      tagTypes: ['Category'],
+      tagTypes: ["Category"],
+    }),
 
+    getSkinCareProducts: builder.query({
+      query: (_id) => `ecom/product_category/${_id}`,
+      tagTypes: ["Category"],
+    }),
+
+    getVegetables: builder.query({
+      query: (_id) => `ecom/product_category/${_id}`,
+      tagTypes: ["Category"],
     }),
 
     getProductDetails: builder.query({
       query: (_id) => `/ecom/product/${_id}`,
-      tagTypes: ['Products'],
-
+      tagTypes: ["Products"],
     }),
- 
-
-
-
   }),
-})
-
+});
 
 export const {
   useGetOfferProductsQuery,
@@ -104,7 +96,7 @@ export const {
   useGetProductCategoryIdQuery,
   useGetProductDetailsQuery,
   useGetFlashSalesQuery,
-   
-   
-   } = ProductsApi;
+  useGetSkinCareProductsQuery,
+  useGetVegetablesQuery,
+} = ProductsApi;
 export default ProductsApi;

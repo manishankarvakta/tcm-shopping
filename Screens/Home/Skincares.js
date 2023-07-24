@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -8,27 +8,28 @@ import {
   Image,
   Text,
 } from "react-native";
-import Routes from "../../Utility/Routes";
 import { Icon } from "@rneui/base";
-import { useGetProductCategoryIdQuery } from "../Redux/Api/ProductsApi";
-import { useEffect } from "react";
+import Routes from "../../Utility/Routes";
+import {
+  useGetFlashSalesQuery,
+  useGetSkinCareProductsQuery,
+} from "../Redux/Api/ProductsApi";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
-import { addFavoriteProduct } from "../Redux/WishListSlice";
 import { useDispatch } from "react-redux";
+import { addFavoriteProduct } from "../Redux/WishListSlice";
 import { addProduct } from "../Redux/CartSlice";
-const numColumns = 3;
-const itemWidth = Dimensions.get("window").width / numColumns;
+const numColumns = 2;
 
-const AllOil = ({ navigation }) => {
-  const { data, isSuccess, isError } = useGetProductCategoryIdQuery(
-    "62e8fe11b0757f089ab009e6"
+const SkinCares = ({ navigation }) => {
+  const { data, isSuccess, isError } = useGetSkinCareProductsQuery(
+    "62e8fe11b0757f089ab009c4"
   );
-  const [AllOil, setAllOil] = useState([]);
+  const [Skincare, setSkincare] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
-
   const dispatch = useDispatch();
+
   useEffect(() => {
-    data?.length > 0 && setAllOil(data);
+    data?.length > 0 && setSkincare(data);
   }, [isSuccess]);
 
   const handleFavoriteToggle = (item) => {
@@ -41,15 +42,17 @@ const AllOil = ({ navigation }) => {
   };
 
   const isItemFavorite = (item) => favoriteItems.includes(item);
+
+  const truncateName = (name) => {
+    const maxLetter = 23;
+    if (name.length > maxLetter) {
+      return name.substring(0, maxLetter - 3) + "...";
+    }
+    return name;
+  };
+
   const renderItem = ({ item }) => {
-    const photos = `${PHOTO_URL}${item.photo}`;
-    const truncateName = (name) => {
-      const maxLength = 12; // Define the maximum length for the name
-      if (name.length > maxLength) {
-        return name.substring(0, maxLength - 3) + "..."; // Truncate and add "..." at the end
-      }
-      return name;
-    };
+    const photo = `${PHOTO_URL}${item.photo}`;
 
     return (
       <TouchableOpacity
@@ -69,15 +72,13 @@ const AllOil = ({ navigation }) => {
         </TouchableOpacity>
         <Image
           onPress={() => alert(item.imageUrl)}
-          source={{ uri: photos }}
-          style={styles.BiscuitsImgStyle}
+          source={{ uri: photo }}
+          style={styles.FlashSaleImg}
         />
-
         <View style={styles.details}>
           <Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>
             <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
-
             <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
               <Icon
                 name="shopping-basket-add"
@@ -88,7 +89,6 @@ const AllOil = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-        {/* <Text>{`../assets/${item.key}.jpg`}</Text> */}
       </TouchableOpacity>
     );
   };
@@ -96,7 +96,7 @@ const AllOil = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={AllOil}
+        data={Skincare}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
@@ -114,48 +114,49 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     margin: 5,
-    width: itemWidth,
-  },
-  image: {
-    marginBottom: 10,
-    width: 160,
-    height: 100,
-    textAlign: "center",
-    borderRadius: 10,
   },
   cartStyle: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  image: {
+    marginBottom: 10,
+    width: 260,
+    height: 100,
+    textAlign: "center",
+    borderRadius: 10,
   },
 
   card: {
     flexDirection: "column",
     margin: 5,
     backgroundColor: "#F5F6FB",
-    padding: 4,
+    padding: 7,
     borderRadius: 5,
     shadowColor: "gray",
     shadowOffset: {
       width: 0,
       height: 2,
     },
+    width: "47%",
     shadowOpacity: 0.5,
     shadowRadius: 3.84,
     elevation: 5,
   },
-  image: {
-    width: 85,
-    height: 80,
-    borderRadius: 10,
-    resizeMode: "cover",
+
+  heartIcon: {
+    position: "absolute",
+    top: 5,
+    right: 5,
+    zIndex: 1,
   },
   details: {
     paddingTop: 10,
   },
   name: {
+    width: 120,
     fontSize: 16,
     fontWeight: "bold",
-    width: 100,
   },
   price: {
     fontSize: 16,
@@ -165,25 +166,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
   },
-  BiscuitsImgStyle: {
-    width: 95,
-    height: 90,
+
+  FlashSaleImg: {
+    width: 115,
+    height: 100,
+    textAlign: "center",
+    alignItems: "center",
+    alignSelf: "center",
     marginVertical: 5,
     borderRadius: 10,
   },
-  heartIcon: {
-    position: "absolute",
-    top: 5,
-    right: 5,
-    zIndex: 1,
-  },
-
-  heartIcon: {
-    position: "absolute",
-    top: 5,
-    right: 5,
-    zIndex: 1,
-  },
 });
 
-export default AllOil;
+export default SkinCares;

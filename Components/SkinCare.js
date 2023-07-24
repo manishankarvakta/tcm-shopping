@@ -1,31 +1,23 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
-  View,
-} from "react-native";
-import { Icon } from "@rneui/base";
+import { FlatList, StyleSheet, Text, TouchableOpacity, Image, View } from "react-native";
+import { Icon } from '@rneui/base';
 
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 import Routes from "../Utility/Routes";
 import { addProduct, addToCart } from "../Screens/Redux/CartSlice";
 import { useDispatch } from "react-redux";
-import { useGetProductCategoryIdQuery } from "../Screens/Redux/Api/ProductsApi";
+import {useGetSkinCareProductsQuery } from "../Screens/Redux/Api/ProductsApi";
 import { useEffect } from "react";
 import { PHOTO_URL } from "../Utility/BaseUrl";
 import { addFavoriteProduct } from "../Screens/Redux/WishListSlice";
 
-const Oil = () => {
-  const { data, isSuccess, isError } = useGetProductCategoryIdQuery(
-    "62e8fe11b0757f089ab009cf"
-  );
-  const [Oil, setOil] = useState([]);
+const SkinCare = () => {
+  const { data, isSuccess, isError } = useGetSkinCareProductsQuery("62e8fe11b0757f089ab009c4");
+  const [SkinProducts, setSkinProducts] = useState([])
+ 
 
   useEffect(() => {
-    data?.length > 0 && setOil(data);
+    data?.length > 0 && setSkinProducts(data);
   }, [isSuccess]);
 
   const dispatch = useDispatch();
@@ -34,7 +26,7 @@ const Oil = () => {
   const navigation = useNavigation();
 
   const handleFavoriteToggle = (item) => {
-    dispatch(addFavoriteProduct(item));
+    dispatch(addFavoriteProduct(item))
     if (favoriteItems.includes(item)) {
       setFavoriteItems(favoriteItems.filter((favItem) => favItem !== item));
     } else {
@@ -55,7 +47,7 @@ const Oil = () => {
   return (
     <FlatList
       horizontal
-      data={Oil.slice(0, 9)}
+      data={SkinProducts.slice(0, 9)}
       showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => (
         <TouchableOpacity style={styles.card}>
@@ -76,7 +68,7 @@ const Oil = () => {
             <Icon
               name="heart"
               size={20}
-              color={isItemFavorite(item) ? "red" : "gray"}
+              color={isItemFavorite(item) ? 'red' : 'gray'}
               type="font-awesome"
             />
           </TouchableOpacity>
@@ -85,22 +77,17 @@ const Oil = () => {
             <View style={styles.cartStyle}>
               <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
               <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
-                <Icon
-                  name="shopping-basket-add"
-                  size={21}
-                  color="#2EB5AC"
-                  type="fontisto"
-                />
+                <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
               </TouchableOpacity>
             </View>
           </View>
         </TouchableOpacity>
       )}
-    />
+    />  
   );
 };
 
-export default Oil;
+export default SkinCare;
 
 const styles = StyleSheet.create({
   card: {
@@ -109,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F6FB",
     padding: 10,
     borderRadius: 5,
-    shadowColor: "gray",
+    shadowColor: 'gray',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -119,7 +106,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   heartIcon: {
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     right: 5,
     zIndex: 1,
@@ -129,7 +116,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   price: {
     fontSize: 16,
@@ -144,7 +131,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   cartStyle: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

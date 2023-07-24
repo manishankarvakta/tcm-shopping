@@ -14,27 +14,20 @@ import * as Location from "expo-location";
 import { StatusBar } from "expo-status-bar";
 import ImageCarousel from "../../Components/ImageCarousel";
 import Routes from "../../Utility/Routes";
-import TopCategorys from "../../Components/TopCategorys"
+import TopCategorys from "../../Components/TopCategorys";
 import ProductCart from "../../Components/ProductCart";
 import FlashSale from "../../Components/FlashSale";
 import Freshvegetable from "../../Components/Freshvegetable";
 import Biscuits from "../../Components/Biscuits";
-import SaltSugar from "../../Components/SaltSugar";
-import SliderTwo from "../../Components/SliderTwo"
+import SliderTwo from "../../Components/SliderTwo";
 import FreshFruits from "../../Components/FreshFruits.";
-import Noodles from "../../Components/Noodles";
-import Oil from "../../Components/Oil"
+import Noodles from "../../Components/Oil";
+import SkinCare from "../../Components/SkinCare";
 import OffersSlider from "../../Components/OffersSlider";
-import { useNavigation } from "@react-navigation/native";
-import FeaturedProductStack from "../../Navigation/FeaturedProductStack";
-
-
-
-
+import Drinks from "../../Components/Drinks";
+import Oil from "../../Components/Oil";
 
 const HomeScreen = ({ navigation }) => {
-
-
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   useEffect(() => {
@@ -96,15 +89,18 @@ const HomeScreen = ({ navigation }) => {
       headerLeft: () => {
         return (
           <View style={styles.headerLeft}>
+            <TouchableOpacity>
+              <Icon
+                onPress={() => navigation.openDrawer()}
+                name="bars"
+                size={37}
+                color="white"
+                type="ant-design"
+                paddingRight={10}
+              />
+            </TouchableOpacity>
 
-
-          <TouchableOpacity>
-            <Icon onPress={() => navigation.openDrawer()} name="bars" size={37} color="white" type="ant-design" paddingRight={10}/>
-         </TouchableOpacity>
-    
-            <TouchableOpacity
-          
-            >
+            <TouchableOpacity>
               <Avatar
                 rounded
                 source={require("../../assets/logo.png")}
@@ -160,7 +156,10 @@ const HomeScreen = ({ navigation }) => {
                 Items
               </Text>
             </View>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate(Routes.CART_SCREEN_TAB)}>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => navigation.navigate(Routes.CART_SCREEN_TAB)}
+            >
               <Icon
                 name="shoppingcart"
                 type="ant-design"
@@ -178,210 +177,186 @@ const HomeScreen = ({ navigation }) => {
     <ScrollView style={styles.continer}>
       <StatusBar style="dark" />
       <View>
-        <ImageCarousel/>
-         </View>
-      <View
-          style={styles.TopCategorysTextStyle}
+        <ImageCarousel />
+      </View>
+      <View style={styles.TopCategorysTextStyle}>
+        <Text style={styles.TitleNameStyle}>Top Categories</Text>
+        <TouchableOpacity
+          style={{ flexDirection: "row" }}
+          onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
         >
-          <Text style={styles.TitleNameStyle}>
-            Top Categories
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
-        </View>
-        <View>
+          <Text style={styles.ViewMoreStyle}>View More</Text>
+          <Icon name="arrowright" type="ant-design" size={20} color="red" />
+        </TouchableOpacity>
+      </View>
+      <View>
         <View style={styles.row}>
-        <TopCategorys/>
-    </View>
-   
+          <TopCategorys />
+        </View>
+      </View>
+
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}
+        >
+          <Text style={styles.AllCategoryTextstyle}>All Categories</Text>
+        </TouchableOpacity>
+        <View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Popular</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.POPULAR_Product)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View>
+          <ProductCart />
         </View>
 
         <View>
-              <TouchableOpacity   onPress={() => navigation.navigate(Routes.CATEGORY_GROUP_TAB)}>
-                 <Text style={styles.AllCategoryTextstyle}>All Categories</Text>
-                 </TouchableOpacity>
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Popular
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.POPULAR_Product)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
-        </View>
-           </View>
-           <View>
-           <ProductCart />
-           </View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Flash Sales</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.FLASHSALE_TAB)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
 
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Flash Sales
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.FLASHSALE_TAB)}
-           
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <View>
+            <FlashSale />
+          </View>
         </View>
 
         <View>
-          <FlashSale/>
-        </View>
-           </View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Fresh Vegetables</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.FRESH_VEGETABLES)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
 
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Fresh Vegetables
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.FRESH_VEGETABLES)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <View>
+            <Freshvegetable />
+          </View>
         </View>
 
         <View>
-          <Freshvegetable/>
-        </View>
-           </View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Biscuits</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.All_BISCUITS)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
 
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Biscuits
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.All_BISCUITS)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <View>
+            <Biscuits />
+          </View>
         </View>
 
         <View>
-          <Biscuits/>
-        </View>
-           </View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Drinks</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.DRINKS)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
 
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Salt & Sugar
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.SALT_SUGER)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <View>
+            <Drinks />
+          </View>
         </View>
 
         <View>
-          <SaltSugar/>
-        </View>
-           </View>
-
-           <View>
-            <SliderTwo/>
-           </View>
-
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Fresh Fruits
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.FRESH_FOOD_TAB)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <SliderTwo />
         </View>
 
         <View>
-          <FreshFruits/>
-        </View>
-           </View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Fresh Fruits</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.FRESH_FOOD_TAB)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
 
-
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Noodles
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.NOODLES_TAB)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <View>
+            <FreshFruits />
+          </View>
         </View>
 
         <View>
-          <Noodles/>
-        </View>
-           </View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Oil</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.OIL_TAB)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
 
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Oil
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.ALL_OIL_TAB)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <View>
+            <Oil />
+          </View>
         </View>
 
         <View>
-          <Oil/>
-        </View>
-           </View>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Skin Care</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.SKIN_CARE_TAB)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
 
-
-           <View>
-           <View style={styles.AllProductSectionStyle}>
-          <Text style={styles.TitleNameStyle}>
-            Offers
-          </Text>
-          <TouchableOpacity
-            style={{ flexDirection: "row" }}
-            onPress={() => navigation.navigate(Routes.OFFER_PRODUCTS_TAB)}
-          >
-            <Text style={styles.ViewMoreStyle}>View More</Text>
-            <Icon name="arrowright" type="ant-design" size={20} color="red" />
-          </TouchableOpacity>
+          <View>
+            <SkinCare />
+          </View>
         </View>
 
         <View>
-          <OffersSlider/>
+          <View style={styles.AllProductSectionStyle}>
+            <Text style={styles.TitleNameStyle}>Offers</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate(Routes.OFFER_PRODUCTS_TAB)}
+            >
+              <Text style={styles.ViewMoreStyle}>View More</Text>
+              <Icon name="arrowright" type="ant-design" size={20} color="red" />
+            </TouchableOpacity>
+          </View>
+
+          <View>
+            <OffersSlider />
+          </View>
         </View>
-           </View>
-        </View>
+      </View>
     </ScrollView>
   );
 };
@@ -409,47 +384,46 @@ const styles = StyleSheet.create({
   },
 
   row: {
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding:10,
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: 10,
   },
-  cardImgStyle:{
-    width:170,
-    height:90,
-    borderRadius:15
+  cardImgStyle: {
+    width: 170,
+    height: 90,
+    borderRadius: 15,
   },
 
-  TopCategorysTextStyle:{
+  TopCategorysTextStyle: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginHorizontal: 10,
     marginTop: 10,
   },
 
-  TitleNameStyle:{
+  TitleNameStyle: {
     fontSize: 16,
-    fontWeight: "600" 
-    },
-
-  AllCategoryTextstyle:{
-    textAlign:"center",
-    fontSize: 20,
-    fontWeight:"700",
-    color:"red" 
+    fontWeight: "600",
   },
 
-  AllProductSectionStyle:{
+  AllCategoryTextstyle: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "700",
+    color: "red",
+  },
+
+  AllProductSectionStyle: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginHorizontal: 10,
     marginTop: 20,
   },
 
-  ViewMoreStyle:{ 
+  ViewMoreStyle: {
     marginRight: 5,
-    color: "red"
-    },
-
+    color: "red",
+  },
 });

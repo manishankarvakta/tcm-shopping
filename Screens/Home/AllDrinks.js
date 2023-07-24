@@ -19,16 +19,16 @@ import { addProduct } from "../Redux/CartSlice";
 const numColumns = 3;
 const itemWidth = Dimensions.get("window").width / numColumns;
 
-const AllOil = ({ navigation }) => {
+const AllDrinks = ({ navigation }) => {
   const { data, isSuccess, isError } = useGetProductCategoryIdQuery(
-    "62e8fe11b0757f089ab009e6"
+    "62e8fe11b0757f089ab009c8"
   );
-  const [AllOil, setAllOil] = useState([]);
+  const [Drinks, setDrink] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    data?.length > 0 && setAllOil(data);
+    data?.length > 0 && setDrink(data);
   }, [isSuccess]);
 
   const handleFavoriteToggle = (item) => {
@@ -96,7 +96,7 @@ const AllOil = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={AllOil}
+        data={Drinks}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
@@ -186,4 +186,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AllOil;
+export default AllDrinks;

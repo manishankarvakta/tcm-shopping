@@ -13,19 +13,23 @@ import { useNavigation } from "@react-navigation/native";
 import Routes from "../Utility/Routes";
 import { addProduct, addToCart } from "../Screens/Redux/CartSlice";
 import { useDispatch } from "react-redux";
-import { useGetProductCategoryIdQuery } from "../Screens/Redux/Api/ProductsApi";
+import {
+  useGetFlashSalesQuery,
+  useGetPopularProductsQuery,
+  useGetProductCategoryIdQuery,
+} from "../Screens/Redux/Api/ProductsApi";
 import { useEffect } from "react";
 import { PHOTO_URL } from "../Utility/BaseUrl";
 import { addFavoriteProduct } from "../Screens/Redux/WishListSlice";
 
-const Oil = () => {
+const Drinks = () => {
   const { data, isSuccess, isError } = useGetProductCategoryIdQuery(
-    "62e8fe11b0757f089ab009cf"
+    "62e8fe11b0757f089ab009c8"
   );
-  const [Oil, setOil] = useState([]);
+  const [Drink, setDrink] = useState([]);
 
   useEffect(() => {
-    data?.length > 0 && setOil(data);
+    data?.length > 0 && setDrink(data);
   }, [isSuccess]);
 
   const dispatch = useDispatch();
@@ -55,7 +59,7 @@ const Oil = () => {
   return (
     <FlatList
       horizontal
-      data={Oil.slice(0, 9)}
+      data={Drink.slice(0, 9)}
       showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => (
         <TouchableOpacity style={styles.card}>
@@ -100,7 +104,7 @@ const Oil = () => {
   );
 };
 
-export default Oil;
+export default Drinks;
 
 const styles = StyleSheet.create({
   card: {

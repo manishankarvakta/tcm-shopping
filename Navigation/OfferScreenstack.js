@@ -2,7 +2,6 @@
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from "../Utility/Routes";
-import AllOil from "../Screens/Home/AllOil";
 import HomeScreen from "../Screens/Home/HomeScreen";
 import OffersScreen from "../Screens/Home/OffersScreen";
 

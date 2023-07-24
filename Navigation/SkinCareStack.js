@@ -2,18 +2,18 @@
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from "../Utility/Routes";
-import AllOil from "../Screens/Home/AllOil";
+import SkinCares from "../Screens/Home/Skincares";
 
 
 const Stack = createStackNavigator();
 
-export default function OilStacknav()  {
+export default function SkinCareStack()  {
 
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name={Routes.ALL_OIL}
-      component={AllOil}
+      name={Routes.SKIN_CARE}
+      component={SkinCares}
       options={{
     
 
