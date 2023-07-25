@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, Image, Text } from 'react-native';
-import { Icon } from '@rneui/base';
-import Routes from '../../Utility/Routes';
-import { useNavigation } from '@react-navigation/native';
-import { useGetPopularProductsQuery } from '../Redux/Api/ProductsApi';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  Dimensions,
+  Image,
+  Text,
+} from "react-native";
+import { Icon } from "@rneui/base";
+import Routes from "../../Utility/Routes";
+import { useNavigation } from "@react-navigation/native";
+import { useGetPopularProductsQuery } from "../Redux/Api/ProductsApi";
 const numColumns = 3;
-const itemWidth = Dimensions.get('window').width / numColumns;
-import { PHOTO_URL } from '../../Utility/BaseUrl'
-import { useDispatch, useSelector } from 'react-redux';
-import { addProduct } from '../Redux/CartSlice';
-import { addFavoriteProduct } from '../Redux/WishListSlice';
+const itemWidth = Dimensions.get("window").width / numColumns;
+import { PHOTO_URL } from "../../Utility/BaseUrl";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../Redux/CartSlice";
+import { addFavoriteProduct } from "../Redux/WishListSlice";
 
 const PopularProducts = () => {
   const navigation = useNavigation();
@@ -18,8 +26,6 @@ const PopularProducts = () => {
 
   const { data, isSuccess, isError } = useGetPopularProductsQuery();
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     data?.length > 0 && setProduct(data);
@@ -34,10 +40,8 @@ const PopularProducts = () => {
   };
 
   const handleFavoriteToggle = (item) => {
-    dispatch(addFavoriteProduct(item))
+    dispatch(addFavoriteProduct(item));
     if (favoriteItems.includes(item)) {
-
-     
       setFavoriteItems(favoriteItems.filter((item) => item !== item));
     } else {
       setFavoriteItems([...favoriteItems, item]);
@@ -50,16 +54,19 @@ const PopularProducts = () => {
     const photos = `${PHOTO_URL}${item.photo}`;
 
     return (
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })} style={styles.card}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
+        style={styles.card}
+      >
         <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
-        <TouchableOpacity onPress={() => handleFavoriteToggle(item)}
+        <TouchableOpacity
+          onPress={() => handleFavoriteToggle(item)}
           style={styles.heartIcon}
-          
         >
-          <Icon 
+          <Icon
             name="heart"
             size={20}
-            color={isItemFavorite(item._id) ? 'red' : 'gray'}
+            color={isItemFavorite(item._id) ? "red" : "gray"}
             type="font-awesome"
           />
         </TouchableOpacity>
@@ -68,7 +75,13 @@ const PopularProducts = () => {
           <View style={styles.cartStyle}>
             <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
             <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
-              <Icon  name="shopping-basket-add" size={20} color="#2EB5AC" paddingTop={5} type="fontisto" />
+              <Icon
+                name="shopping-basket-add"
+                size={20}
+                color="#2EB5AC"
+                paddingTop={5}
+                type="fontisto"
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -99,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F6FB",
     padding: 7,
     borderRadius: 5,
-    shadowColor: 'gray',
+    shadowColor: "gray",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -113,7 +126,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   price: {
     fontSize: 16,
@@ -124,8 +137,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   cartStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   PopularProductsImg: {
     width: 95,
@@ -133,7 +146,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   heartIcon: {
-    position: 'absolute',
+    position: "absolute",
     top: 5,
     right: 5,
     zIndex: 1,

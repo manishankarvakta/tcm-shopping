@@ -8,9 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import Store, { store } from "./Screens/Redux/Store/Store";
 import DrawerNav from "./Navigation/DrawerNav";
-import FeaturedProductStack from "./Navigation/FeaturedProductStack";
-
-
+import Profile from "./Screens/Profile/Profile";
 
 export default function App() {
   const [token, setToken] = useState(false);
@@ -37,7 +35,7 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-           <DrawerNav/>
+        <DrawerNav />
       </NavigationContainer>
     </Provider>
   );

@@ -26,10 +26,19 @@ import SkinCare from "../../Components/SkinCare";
 import OffersSlider from "../../Components/OffersSlider";
 import Drinks from "../../Components/Drinks";
 import Oil from "../../Components/Oil";
+import { useSelector } from "react-redux";
 
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [cartItemCount, setCartItemCount] = useState("0");
+
+  const cartItem = useSelector((state) => state.cartReducer.products);
+
+  useEffect(() => {
+    setCartItemCount(cartItem.length);
+  }, [cartItem]);
+
   useEffect(() => {
     (async () => {
       const userData = await AsyncStorage.getItem("user");
@@ -144,7 +153,7 @@ const HomeScreen = ({ navigation }) => {
                   fontSize: 16,
                 }}
               >
-                {/* {format(new Date(), "MM-dd-yyyy")} */} 03
+                {cartItemCount}
               </Text>
               <Text
                 style={{
@@ -171,7 +180,7 @@ const HomeScreen = ({ navigation }) => {
         );
       },
     });
-  }, [navigation, location]);
+  }, [navigation, location, cartItemCount]);
 
   return (
     <ScrollView style={styles.continer}>

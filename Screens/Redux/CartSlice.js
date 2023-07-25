@@ -6,14 +6,14 @@ const cartCalculation = (products) => {
   let grossTotal = 0;
   let totalItem = 0;
   products.map((item) => {
-    console.log("checkItem:",item)
+    console.log("checkItem:", item);
     total = total + item.mrp * item.qty;
     vat = vat + item.qty * ((item.mrp * item.vat) / 100);
     grossTotal = total + vat;
     totalItem = totalItem + item.qty;
   });
 
-  return { total, vat, grossTotal, totalItem,  };
+  return { total, vat, grossTotal, totalItem };
 };
 
 const initialState = {
@@ -74,16 +74,17 @@ const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       const { _id } = action.payload;
+      console.log("action:", action.payload);
       let product;
 
-      const existingProduct = state.products.find((item) =>item.id === _id);
-      const restProduct = state.products.filter((item) =>item.id !== _id);
-      
+      const existingProduct = state.products.find((item) => item.id === _id);
+      const restProduct = state.products.filter((item) => item.id !== _id);
+
       if (existingProduct) {
         product = {
-          ...existingProduct, qty: existingProduct.qty+= 1
-        }
-        
+          ...existingProduct,
+          qty: (existingProduct.qty += 1),
+        };
       } else {
         const item = action.payload;
         product = {
@@ -101,7 +102,7 @@ const cartSlice = createSlice({
           order: 1,
           photo: item.photo,
         };
-    
+
         return {
           ...state,
           products: [...restProduct, product],
@@ -109,31 +110,28 @@ const cartSlice = createSlice({
       }
     },
     addWishListProduct: (state, action) => {
-  
-        const item = action.payload;
-        const product = {
-          id: item._id,
-          priceId: item?.priceId,
-          name: item.name,
-          article_code: item.article_code,
-          ean: item.ean,
-          mrp: item?.mrp,
-          qty: 1,
-          tp: item?.tp,
-          vat: 0,
-          unit: item.unit,
-          supplier: item?.supplier,
-          order: 1,
-          photo: item.photo,
-        };
-    
-        return {
-          ...state,
-          products: [...state.products, product],
-        };
-    
+      const item = action.payload;
+      const product = {
+        id: item._id,
+        priceId: item?.priceId,
+        name: item.name,
+        article_code: item.article_code,
+        ean: item.ean,
+        mrp: item?.mrp,
+        qty: 1,
+        tp: item?.tp,
+        vat: 0,
+        unit: item.unit,
+        supplier: item?.supplier,
+        order: 1,
+        photo: item.photo,
+      };
+
+      return {
+        ...state,
+        products: [...state.products, product],
+      };
     },
-    
 
     selcetProduct: (state, action) => {
       const { grossTotal, total, totalItem, vat } = cartCalculation(
@@ -174,6 +172,6 @@ export const {
   removeProduct,
   productsQuntityIncrement,
   productsQuntityDecrements,
-  addWishListProduct
+  addWishListProduct,
 } = cartSlice.actions;
-export default cartReducer =  cartSlice.reducer
+export default cartReducer = cartSlice.reducer;

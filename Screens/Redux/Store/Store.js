@@ -4,18 +4,18 @@ import ProductsApi from "../Api/ProductsApi";
 
 const Store = configureStore({
   reducer: {
-    
     [ProductsApi.reducerPath]: ProductsApi.reducer,
-    
+
     cartReducer,
     WishReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(ProductsApi.middleware)
-  
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }).concat(ProductsApi.middleware),
 });
 
 export default Store;

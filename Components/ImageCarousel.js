@@ -11,15 +11,17 @@ import { useGetBestFeaturedProductsQuery } from "../Screens/Redux/Api/ProductsAp
 import { PHOTO_URL } from "../Utility/BaseUrl";
 
 import Routes from "../Utility/Routes";
+import { useNavigation } from "@react-navigation/native";
 
-const ImageCarousel = ({navigation}) => {
-  const { data, isSuccess, isError, isFetching, isLoading } = useGetBestFeaturedProductsQuery();
+const ImageCarousel = () => {
+  const navigation = useNavigation();
+  const { data, isSuccess, isError, isFetching, isLoading } =
+    useGetBestFeaturedProductsQuery();
 
   useEffect(() => {
     //console.log(data);
   }, [isSuccess, data]);
 
- 
   return (
     <FlatList
       horizontal
@@ -29,8 +31,10 @@ const ImageCarousel = ({navigation}) => {
         const Featuredphoto = `${PHOTO_URL}${item.photo}`;
 
         return (
-          <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt,{_id:item._id})}>
-            <Image 
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Routes.Tt, { _id: item.id })}
+          >
+            <Image
               source={{ uri: Featuredphoto }}
               style={styles.image}
               resizeMode="cover"
