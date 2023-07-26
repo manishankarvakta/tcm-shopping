@@ -19,6 +19,7 @@ import FeaturedProductStack from "./FeaturedProductStack";
 import SkinCareStack from "./SkinCareStack";
 import DrinksStack from "./DrinksStack";
 import OilStack from "./OilStack";
+import ProfileStack from "./ProfileStack";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -80,6 +81,12 @@ const StackNav = () => {
       <Stack.Screen
         name={Routes.IMAGE_CAROUSEL_Tab}
         component={FeaturedProductStack}
+      />
+
+      <Stack.Screen
+        name={Routes.PRFILE_STACK}
+        component={ProfileStack}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

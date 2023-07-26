@@ -2,30 +2,28 @@ import ProductCart from "../Components/ProductCart";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import Routes from "../Utility/Routes";
+import Profile from "../Screens/Profile/Profile";
+import PersonalInfo from "../Screens/Profile/PersonalInfo";
 
 const Stack = createStackNavigator();
 
-export default function ProductStacknav() {
+export default function ProfileStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={Routes.Product_Slider}
-        component={ProductCart}
+        name={Routes.PROFILE}
+        component={Profile}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name={Routes.Tt}
-        component={SingleProductsDetailsScreen}
+        name={Routes.PERSONAL_INFO}
+        component={PersonalInfo}
         options={{
           headerStyle: {
             borderBottomWidth: 0,
           },
-
-          headerBackTitle: "BACK",
-
-          headerTitle: "",
         }}
       />
     </Stack.Navigator>

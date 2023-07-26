@@ -92,4 +92,8 @@ export default {
 
   IMAGE_CAROUSEL: "Featued Product",
   IMAGE_CAROUSEL_Tab: "Featued Product",
+
+  PERSONAL_INFO: "Personal Information",
+  PROFILE: "Profile",
+  PRFILE_STACK: "Profile stack",
 };

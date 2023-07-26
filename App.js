@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import Store, { store } from "./Screens/Redux/Store/Store";
 import DrawerNav from "./Navigation/DrawerNav";
 import Profile from "./Screens/Profile/Profile";
+import PersonalInfo from "./Screens/Profile/PersonalInfo";
+import ProfileStack from "./Navigation/ProfileStack";
 
 export default function App() {
   const [token, setToken] = useState(false);
@@ -40,14 +42,5 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 //{token ? <TabNav /> : <AuthStackNav />}
