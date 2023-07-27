@@ -20,6 +20,7 @@ import SkinCareStack from "./SkinCareStack";
 import DrinksStack from "./DrinksStack";
 import OilStack from "./OilStack";
 import ProfileStack from "./ProfileStack";
+import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -88,6 +89,8 @@ const StackNav = () => {
         component={ProfileStack}
         options={{ headerShown: false }}
       />
+
+      <Stack.Screen name={Routes.Tt} component={SingleProductsDetailsScreen} />
     </Stack.Navigator>
   );
 };

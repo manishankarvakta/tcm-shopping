@@ -62,7 +62,10 @@ const Drinks = () => {
       data={Drink.slice(0, 9)}
       showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => (
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
+        >
           <Image
             onPress={() => alert(item.imageUrl)}
             source={{ uri: `${PHOTO_URL}${item.photo}` }}

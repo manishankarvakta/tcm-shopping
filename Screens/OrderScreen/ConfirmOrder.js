@@ -5,13 +5,13 @@ import {
   TouchableOpacity,
   Switch,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import React, { useEffect } from "react";
 import { Icon } from "@rneui/base";
 import { useState } from "react";
 import Routes from "../../Utility/Routes";
 import { useDispatch, useSelector } from "react-redux";
-import { selcetProduct } from "../Redux/CartSlice";
 
 export default function ConfirmOrder({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -19,10 +19,8 @@ export default function ConfirmOrder({ navigation }) {
   const cartItems = useSelector((state) => state.cartReducer);
 
   return (
-    <SafeAreaView>
-      <View
-        style={{ flexDirection: "column", justifyContent: "space-between" }}
-      >
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
         <View>
           <View style={styles.HeaderContext}>
             <TouchableOpacity style={{ paddingRight: 5 }}>
@@ -65,30 +63,6 @@ export default function ConfirmOrder({ navigation }) {
             </View>
           </View>
 
-          <View style={styles.DeliveryTimeStyle}>
-            <View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  marginHorizontal: 10,
-                  marginTop: 20,
-                  paddingVertical: 5,
-                }}
-              >
-                <Icon
-                  style={styles.piechartStyle}
-                  name="piechart"
-                  size={20}
-                  color="#000"
-                  type="antdesign"
-                />
-                <Text style={styles.DeliveryTimeText}>
-                  Preferred Delivery Timings
-                </Text>
-              </View>
-            </View>
-          </View>
-
           <View>
             <View style={styles.NeedBagStyle}>
               <View>
@@ -125,40 +99,38 @@ export default function ConfirmOrder({ navigation }) {
             </View>
           </View>
         </View>
+      </ScrollView>
 
-        <View>
-          <View style={styles.TermsConditionStyle}>
-            <Text style={{ color: "gray", fontSize: 10 }}>
-              By tapping proceed, I agree to TCM SuperShop{" "}
-              <Text style={{ color: "red" }}>Terms and Conditions.</Text>
-            </Text>
-          </View>
+      <View>
+        <View style={styles.TermsConditionStyle}>
+          <Text style={{ color: "gray", fontSize: 10 }}>
+            By tapping proceed, I agree to TCM SuperShop{" "}
+            <Text style={{ color: "red" }}>Terms and Conditions.</Text>
+          </Text>
+        </View>
 
-          <View style={{ marginTop: 20 }}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate(Routes.ORDER_ID)}
-              style={styles.PlaceOrderButton}
-            >
-              <View>
-                <Icon
-                  type="antdesign"
-                  name="shoppingcart"
-                  size={24}
-                  color="white"
-                />
-              </View>
+        <View style={{ marginTop: 20 }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Routes.ORDER_ID)}
+            style={styles.PlaceOrderButton}
+          >
+            <View>
+              <Icon
+                type="antdesign"
+                name="shoppingcart"
+                size={24}
+                color="white"
+              />
+            </View>
 
-              <View>
-                <Text style={styles.PlaceOrderStyle}>Place Order</Text>
-              </View>
+            <View>
+              <Text style={styles.PlaceOrderStyle}>Place Order</Text>
+            </View>
 
-              <View style={{ borderRadius: 20 }}>
-                <Text style={styles.TotalPriceStyle}>
-                  ৳{cartItems.total} tk
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+            <View style={{ borderRadius: 20 }}>
+              <Text style={styles.TotalPriceStyle}>৳{cartItems.total} tk</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -166,6 +138,9 @@ export default function ConfirmOrder({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   HeaderContext: {
     flexDirection: "row",
     alignItems: "center",
@@ -195,34 +170,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "flex-end",
-  },
-  DeliveryTimeStyle: {
-    backgroundColor: "#DEE1E6",
-    marginVertical: 10,
-    marginHorizontal: 10,
-    paddingBottom: 13,
-    borderRadius: 10,
-  },
-  piechartStyle: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 2,
-  },
-
-  DeliveryTimeText: {
-    color: "#000",
-    fontSize: 20,
-    fontWeight: "700",
-    paddingLeft: 5,
-  },
-  DeliveryScheduleStyle: {
-    flexDirection: "row",
-    borderRadius: 4,
-    paddingHorizontal: 10,
-    marginHorizontal: 10,
-    paddingVertical: 10,
-    justifyContent: "space-between",
-    backgroundColor: "#DEE1E6",
   },
 
   NeedBagStyle: {

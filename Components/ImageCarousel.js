@@ -32,7 +32,7 @@ const ImageCarousel = () => {
 
         return (
           <TouchableOpacity
-            onPress={() => navigation.navigate(Routes.Tt, { _id: item.id })}
+            onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
           >
             <Image
               source={{ uri: Featuredphoto }}

@@ -11,6 +11,10 @@ import DrawerNav from "./Navigation/DrawerNav";
 import Profile from "./Screens/Profile/Profile";
 import PersonalInfo from "./Screens/Profile/PersonalInfo";
 import ProfileStack from "./Navigation/ProfileStack";
+import ConfirmOrder from "./Screens/OrderScreen/ConfirmOrder";
+import ManageAddress from "./Screens/Profile/ManageAddress";
+import Settings from "./Screens/Profile/Settings";
+import NotificationSettings from "./Screens/Profile/NotificationSettings";
 
 export default function App() {
   const [token, setToken] = useState(false);

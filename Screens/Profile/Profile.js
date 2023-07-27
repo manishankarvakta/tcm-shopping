@@ -78,6 +78,7 @@ export default function Profile({ navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={() => navigation.navigate(Routes.MANAGE_ADDRESS)}
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
@@ -104,6 +105,7 @@ export default function Profile({ navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={() => navigation.navigate(Routes.SETTINGS)}
             style={{
               flexDirection: "row",
               justifyContent: "space-between",

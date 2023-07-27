@@ -96,4 +96,7 @@ export default {
   PERSONAL_INFO: "Personal Information",
   PROFILE: "Profile",
   PRFILE_STACK: "Profile stack",
+  MANAGE_ADDRESS: "Manage Address",
+  SETTINGS: "Settings",
+  NOTIFICATIONS_SETTINGS: "Notification Settings",
 };
