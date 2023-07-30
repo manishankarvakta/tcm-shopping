@@ -13,9 +13,19 @@ import { ScrollView } from "react-native-gesture-handler";
 import Routes from "../../Utility/Routes";
 import { useSelector } from "react-redux";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
+import { useAddSaleMutation } from "../Redux/Api/SalesApi";
 
 export default function ConfirmationProducts({ navigation }) {
   const cartItems = useSelector((state) => state.cartReducer);
+  const [createNewSale] = useAddSaleMutation();
+  const createSale = () => {
+    console.log(cartItems);
+    const sale = createNewSale(cartItems);
+
+    if (sale) {
+      console.log("success");
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -35,6 +45,26 @@ export default function ConfirmationProducts({ navigation }) {
               </Text>
               by choosing one of the {"\n"}following payment options.
             </Text>
+          </View>
+        </View>
+
+        <View style={styles.PaymentSectionStyle}>
+          <View style={styles.PaymentOptionText}>
+            <Text style={{ fontSize: 20, fontWeight: "700" }}>
+              Payment Options
+            </Text>
+          </View>
+
+          <View>
+            <TouchableOpacity style={styles.PaymentOptionStyle}>
+              <View style={{ marginVertical: 5 }}>
+                <View>
+                  <Text style={styles.PaymentOptionTextStyle}>
+                    Cash On Delivery
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -73,100 +103,14 @@ export default function ConfirmationProducts({ navigation }) {
           </View>
         </View>
 
-        <View style={styles.PaymentSectionStyle}>
-          <View style={styles.PaymentOptionText}>
-            <Text style={{ fontSize: 20, fontWeight: "700" }}>
-              Payment Options
-            </Text>
-          </View>
-
-          <View>
-            <TouchableOpacity style={styles.PaymentOptionStyle}>
-              <View style={{ marginVertical: 5 }}>
-                <View
-                  style={{
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Image
-                    source={require("../../assets/FlashSales/f8.jpg")}
-                    style={styles.PaymentOptionImgStyle}
-                  />
-                  <Text style={styles.PaymentOptionTextStyle}>Bkash</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.PaymentOptionStyle}>
-              <View style={{ marginVertical: 5 }}>
-                <View
-                  style={{
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Image
-                    source={require("../../assets/FlashSales/f7.jpg")}
-                    style={styles.PaymentOptionImgStyle}
-                  />
-                  <Text style={styles.PaymentOptionTextStyle}>
-                    Credit or Debit Card
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.PaymentOptionStyle}>
-              <View style={{ marginVertical: 5 }}>
-                <View
-                  style={{
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Image
-                    source={require("../../assets/FlashSales/f5.jpg")}
-                    style={styles.PaymentOptionImgStyle}
-                  />
-                  <Text style={styles.PaymentOptionTextStyle}>
-                    International Credit or Debit Card
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.PaymentOptionStyle}>
-              <View style={{ marginVertical: 5 }}>
-                <View
-                  style={{
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
-                >
-                  <Image
-                    source={require("../../assets/f1.png")}
-                    style={styles.PaymentOptionImgStyle}
-                  />
-                  <Text style={styles.PaymentOptionTextStyle}>Nagad</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <Text style={styles.TrxIDStyle}>bKash Trx ID method</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
         <View>
           <View style={styles.EmailVerifyAds}>
             <View style={{ alignSelf: "center" }}>
               <TouchableOpacity
-                onPress={() => navigation.navigate(Routes.HOME_TAB)}
+                onPress={() => createSale()}
                 style={styles.backToShoppingBtn}
               >
-                <Text style={styles.TextColor}>Back to Shopping</Text>
+                <Text style={styles.TextColor}>Confirm Order</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -316,6 +260,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 16,
     padding: 10,
+    alignSelf: "center",
   },
 
   TrxIDStyle: {

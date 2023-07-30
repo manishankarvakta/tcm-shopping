@@ -78,7 +78,7 @@ const PopularProducts = () => {
               <Icon
                 name="shopping-basket-add"
                 size={20}
-                color="#2EB5AC"
+                color="tomato"
                 paddingTop={5}
                 type="fontisto"
               />

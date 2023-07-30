@@ -47,15 +47,13 @@ export default function ConfirmOrder({ navigation }) {
 
             <View style={styles.ChangeInfo}>
               <TouchableOpacity
+                onPress={() => navigation.navigate(Routes.UPDATE_INFORMATION)}
                 style={{
                   borderWidth: 1,
                   borderColor: "blue",
                   borderRadius: 5,
                   paddingVertical: 10,
                   paddingHorizontal: 30,
-                }}
-                onPress={() => {
-                  // Handle button press
                 }}
               >
                 <Text style={{ color: "blue" }}>Change</Text>

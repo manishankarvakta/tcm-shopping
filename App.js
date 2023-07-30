@@ -15,6 +15,9 @@ import ConfirmOrder from "./Screens/OrderScreen/ConfirmOrder";
 import ManageAddress from "./Screens/Profile/ManageAddress";
 import Settings from "./Screens/Profile/Settings";
 import NotificationSettings from "./Screens/Profile/NotificationSettings";
+import ChangePassword from "./Screens/Profile/ChangePassword";
+import DeleteAccount from "./Screens/Profile/DeleteAccount";
+import UpdateInformation from "./Screens/Profile/UpdateInformation";
 
 export default function App() {
   const [token, setToken] = useState(false);

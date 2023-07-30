@@ -7,11 +7,15 @@ import {
 } from "react-native";
 import React from "react";
 import { Icon } from "@rneui/base";
+import Routes from "../../Utility/Routes";
 
-export default function ManageAddress() {
+export default function ManageAddress({navigation}) {
   return (
     <SafeAreaView>
-      <TouchableOpacity style={{ flexDirection: "row", paddingVertical: 10 }}>
+      <TouchableOpacity style={{ flexDirection: "row", paddingVertical: 10 }}
+                      onPress={() => navigation.navigate(Routes.UPDATE_INFORMATION)}
+
+      >
         <Text>
           {" "}
           <Icon type="antdesign" name="plus" size={17} color="#C38FEE" />{" "}

@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ProductsApi from "../Api/ProductsApi";
+import SalesApi from "../Api/SalesApi";
 // import  cartReducer  from "../CartSlice";
 
 const Store = configureStore({
   reducer: {
     [ProductsApi.reducerPath]: ProductsApi.reducer,
+    [SalesApi.reducerPath]: SalesApi.reducer,
 
     cartReducer,
     WishReducer,
@@ -15,7 +17,9 @@ const Store = configureStore({
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat(ProductsApi.middleware),
+    })
+      .concat(ProductsApi.middleware)
+      .concat(SalesApi.middleware),
 });
 
 export default Store;

@@ -11,13 +11,7 @@ export default function FavoriteProductsStack() {
       <Stack.Screen
         name={Routes.FAVORITES_STACK}
         component={FavoritesProducts}
-        options={{
-          headerStyle: {
-            borderBottomWidth: 0,
-          },
-
-          headerBackTitle: "BACK",
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name={Routes.Tt}

@@ -61,7 +61,7 @@ export default {
   Product_Card_Drawer: "Popular",
 
   OFFER_PRODUCTS: "Special Offer ",
-  OFFER_PRODUCTS_TAB: "Offer ",
+  OFFER_PRODUCTS_TAB: "Offer Product",
   OFFER_PRODUCTS_DRAWER: "Offers",
 
   CART_SCREEN: "Order products",
@@ -99,4 +99,8 @@ export default {
   MANAGE_ADDRESS: "Manage Address",
   SETTINGS: "Settings",
   NOTIFICATIONS_SETTINGS: "Notification Settings",
+  CHANGE_PASSWORD: "Change password",
+  DELETE_ACCOUNT: "Delete My Account",
+
+  UPDATE_INFORMATION: "Update Information",
 };

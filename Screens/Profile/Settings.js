@@ -46,7 +46,7 @@ export default function Settings({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate(Routes.PERSONAL_INFO)}
+          onPress={() => navigation.navigate(Routes.CHANGE_PASSWORD)}
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -84,7 +84,7 @@ export default function Settings({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate(Routes.PERSONAL_INFO)}
+          onPress={() => navigation.navigate(Routes.DELETE_ACCOUNT)}
           style={{
             flexDirection: "row",
             justifyContent: "space-between",

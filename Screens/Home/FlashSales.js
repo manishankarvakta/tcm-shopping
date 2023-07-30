@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, Image, Text } from 'react-native';
-import { Icon } from '@rneui/base';
-import Routes from '../../Utility/Routes';
-import { useGetFlashSalesQuery } from '../Redux/Api/ProductsApi';
-import { PHOTO_URL } from '../../Utility/BaseUrl';
-import { useDispatch } from 'react-redux';
-import { addFavoriteProduct } from '../Redux/WishListSlice';
-import { addProduct } from '../Redux/CartSlice';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  Dimensions,
+  Image,
+  Text,
+} from "react-native";
+import { Icon } from "@rneui/base";
+import Routes from "../../Utility/Routes";
+import { useGetFlashSalesQuery } from "../Redux/Api/ProductsApi";
+import { PHOTO_URL } from "../../Utility/BaseUrl";
+import { useDispatch } from "react-redux";
+import { addFavoriteProduct } from "../Redux/WishListSlice";
+import { addProduct } from "../Redux/CartSlice";
 const numColumns = 2;
 
 const FlashSale = ({ navigation }) => {
-
   const { data, isSuccess, isError } = useGetFlashSalesQuery();
   const [FlashSale, setFlashSale] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     data?.length > 0 && setFlashSale(data);
   }, [isSuccess]);
 
   const handleFavoriteToggle = (item) => {
-     dispatch(addFavoriteProduct(item)) 
+    dispatch(addFavoriteProduct(item));
     if (favoriteItems.includes(item)) {
       setFavoriteItems(favoriteItems.filter((favItem) => favItem !== item));
     } else {
@@ -42,7 +49,10 @@ const FlashSale = ({ navigation }) => {
     const photo = `${PHOTO_URL}${item.photo}`;
 
     return (
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })} style={styles.card}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
+        style={styles.card}
+      >
         <TouchableOpacity
           style={styles.heartIcon}
           onPress={() => handleFavoriteToggle(item)}
@@ -50,7 +60,7 @@ const FlashSale = ({ navigation }) => {
           <Icon
             name="heart"
             size={20}
-            color={isItemFavorite(item) ? 'red' : 'gray'}
+            color={isItemFavorite(item) ? "red" : "gray"}
             type="font-awesome"
           />
         </TouchableOpacity>
@@ -58,14 +68,18 @@ const FlashSale = ({ navigation }) => {
           onPress={() => alert(item.imageUrl)}
           source={{ uri: photo }}
           style={styles.FlashSaleImg}
-
         />
         <View style={styles.details}>
           <Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>
             <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
             <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
-              <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
+              <Icon
+                name="shopping-basket-add"
+                size={21}
+                color="tomato"
+                type="fontisto"
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -88,16 +102,16 @@ const FlashSale = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
-    marginVertical: 10
+    marginVertical: 10,
   },
   item: {
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
     margin: 5,
   },
   cartStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   image: {
     marginBottom: 10,
@@ -113,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F6FB",
     padding: 7,
     borderRadius: 5,
-    shadowColor: 'gray',
+    shadowColor: "gray",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -125,7 +139,7 @@ const styles = StyleSheet.create({
   },
 
   heartIcon: {
-    position: 'absolute',
+    position: "absolute",
     top: 5,
     right: 5,
     zIndex: 1,
@@ -136,7 +150,7 @@ const styles = StyleSheet.create({
   name: {
     width: 120,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   price: {
     fontSize: 16,

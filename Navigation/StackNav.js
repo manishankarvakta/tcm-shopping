@@ -21,6 +21,7 @@ import DrinksStack from "./DrinksStack";
 import OilStack from "./OilStack";
 import ProfileStack from "./ProfileStack";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
+import UpdateInformation from "../Screens/Profile/UpdateInformation";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -91,6 +92,10 @@ const StackNav = () => {
       />
 
       <Stack.Screen name={Routes.Tt} component={SingleProductsDetailsScreen} />
+      <Stack.Screen
+        name={Routes.UPDATE_INFORMATION}
+        component={UpdateInformation}
+      />
     </Stack.Navigator>
   );
 };

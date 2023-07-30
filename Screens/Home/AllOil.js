@@ -82,7 +82,7 @@ const AllOil = ({ navigation }) => {
               <Icon
                 name="shopping-basket-add"
                 size={21}
-                color="#2EB5AC"
+                color="tomato"
                 type="fontisto"
               />
             </TouchableOpacity>

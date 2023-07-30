@@ -27,7 +27,7 @@ function DrawerNav() {
         options={{
           headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="home" size={20} color="red" type="AntDesign" />
+            <Icon name="home" size={20} color="tomato" type="AntDesign" />
           ),
         }}
       />
@@ -35,12 +35,11 @@ function DrawerNav() {
         name={Routes.OFFER_PRODUCTS_DRAWER}
         component={OfferScreenstack}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
             <Icon
               name="local-offer"
               size={20}
-              color="red"
+              color="tomato"
               type="MaterialIcons"
             />
           ),
@@ -50,9 +49,8 @@ function DrawerNav() {
         name={Routes.Product_Card_Drawer}
         component={PopularProductStack}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="box" size={20} color="red" type="entypo" />
+            <Icon name="box" size={20} color="tomato" type="entypo" />
           ),
         }}
       />
@@ -61,9 +59,8 @@ function DrawerNav() {
         name={Routes.FLASHSALE_Drawer}
         component={FlashsaleProductNav}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="box" size={20} color="red" type="entypo" />
+            <Icon name="box" size={20} color="tomato" type="entypo" />
           ),
         }}
       />
@@ -72,9 +69,8 @@ function DrawerNav() {
         name={Routes.FAVORITES_PRODUCTS_DRAWER}
         component={FavoriteProductsStack}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="heart" size={20} color="red" type="antdesign" />
+            <Icon name="heart" size={20} color="tomato" type="antdesign" />
           ),
         }}
       />
@@ -88,12 +84,11 @@ function DrawerNav() {
         name={Routes.ORDER_HISTORY_DRAWER}
         component={OrderHistoryNavStack}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
             <Icon
               name="details"
               size={20}
-              color="red"
+              color="tomato"
               type="MaterialIcons
         "
             />
@@ -105,9 +100,8 @@ function DrawerNav() {
         name={Routes.REWARD}
         component={EarnReward}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="coins" size={20} color="red" type="font-awesome-5" />
+            <Icon name="coins" size={20} color="tomato" type="font-awesome-5" />
           ),
         }}
       />
@@ -116,9 +110,13 @@ function DrawerNav() {
         name={Routes.HELP_SCREEN_DRAWER}
         component={HelpScreen}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="help-with-circle" size={20} color="red" type="entypo" />
+            <Icon
+              name="help-with-circle"
+              size={20}
+              color="tomato"
+              type="entypo"
+            />
           ),
         }}
       />
@@ -127,9 +125,8 @@ function DrawerNav() {
         name={Routes.CUSTOMER_SUPPORT_DRAWER}
         component={CustomerSupport}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="phone-call" size={20} color="red" type="feather" />
+            <Icon name="phone-call" size={20} color="tomato" type="feather" />
           ),
           onPress: callCustomerSupport,
         }}
@@ -139,9 +136,8 @@ function DrawerNav() {
         name={Routes.LIVE_CHAT_DREAWER}
         component={ChatsScreen}
         options={{
-          headerShown: false,
           drawerIcon: ({ color, size }) => (
-            <Icon name="chat" size={20} color="red" type="entypo" />
+            <Icon name="chat" size={20} color="tomato" type="entypo" />
           ),
         }}
       />
