@@ -6,7 +6,7 @@ const cartCalculation = (products) => {
   let grossTotal = 0;
   let totalItem = 0;
   products.map((item) => {
-    console.log("checkItem:", item);
+    //console.log("checkItem:", item);
     total = total + item.mrp * item.qty;
     vat = vat + item.qty * ((item.mrp * item.vat) / 100);
     grossTotal = total + vat;
@@ -74,7 +74,7 @@ const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       const { _id } = action.payload;
-      console.log("action:", action.payload);
+      //console.log("action:", action.payload);
       let product;
 
       const existingProduct = state.products.find((item) => item.id === _id);

@@ -14,7 +14,7 @@ import { useGetProductCategoryIdQuery } from "../Redux/Api/ProductsApi";
 import { useEffect } from "react";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
 import { addFavoriteProduct } from "../Redux/WishListSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../Redux/CartSlice";
 const numColumns = 3;
 const itemWidth = Dimensions.get("window").width / numColumns;
@@ -24,8 +24,10 @@ const AllBiscuits = ({ navigation }) => {
     "62e8fe11b0757f089ab009e6"
   );
   const [Biscuits, setBiscuits] = useState([]);
-  const [favoriteItems, setFavoriteItems] = useState([]);
+  // const [favoriteItems, setFavoriteItems] = useState([]);
+  const favoriteItems = useSelector((state) => state.WishReducer);
 
+  console.log(favoriteItems);
   const dispatch = useDispatch();
   useEffect(() => {
     data?.length > 0 && setBiscuits(data);
@@ -33,14 +35,16 @@ const AllBiscuits = ({ navigation }) => {
 
   const handleFavoriteToggle = (item) => {
     dispatch(addFavoriteProduct(item));
-    if (favoriteItems.includes(item)) {
-      setFavoriteItems(favoriteItems.filter((favItem) => favItem !== item));
-    } else {
-      setFavoriteItems([...favoriteItems, item]);
-    }
   };
 
-  const isItemFavorite = (item) => favoriteItems.includes(item);
+  const isItemFavorite = (item) => {
+    if (favoriteItems?.length > 0) {
+      if (favoriteItems?.includes(item)) {
+        console.log(item);
+        return true;
+      }
+    }
+  };
   const renderItem = ({ item }) => {
     const photos = `${PHOTO_URL}${item.photo}`;
     const truncateName = (name) => {

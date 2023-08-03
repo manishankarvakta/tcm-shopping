@@ -1,29 +1,52 @@
-import React, { useState,useEffect } from 'react';
-import { SafeAreaView, StyleSheet, Image, View, Text, TextInput } from 'react-native';
-import { useGetSearchProductQuery } from '../Redux/Api/ProductsApi';
+import React, { useState, useEffect } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+} from "react-native";
+import { useGetSearchProductQuery } from "../Redux/Api/ProductsApi";
 
 const SearchScreen = () => {
-  const [searchText, setSearchText] = useState('');
-  const { data, isSuccess, isError, isFetching, isLoading,refetch  } = useGetSearchProductQuery(searchText)
+  const [searchText, setSearchText] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  //console.log(searchResult);
+  const { data, isSuccess, isError, isFetching, isLoading, refetch } =
+    useGetSearchProductQuery(searchText);
   // const cart = useSelector(state => state.cartReducer)
 
-  useEffect(()=>{
-    //console.log("Product:", data)
-  },[isSuccess])
+  useEffect(() => {
+    console.log(searchResult);
+    setSearchResult(data?.data || []);
+  }, [data]);
 
-  //console.log(isFetching, isLoading, isSuccess, isError, refetch )
+  useEffect(() => {
+    refetch();
+  }, [searchText]);
+
+  useEffect(() => {
+    setSearchResult(data?.data || []);
+
+    setSearchResult();
+  }, [isSuccess]);
+
+  console.log(isFetching, isLoading, isSuccess, isError, refetch);
   const handleSearch = (q) => {
     // Perform search based on searchText
     setSearchText(q);
-    refetch()
     //console.log('Searching for:', searchText);
   };
 
+  console.log("searchText", searchText);
+
   return (
     <SafeAreaView>
-      <View style={{marginTop:65}}>
+      <View style={{ marginTop: 65 }}>
         <Image
-          source={require('../../assets/2650577-removebg-preview.png')}
+          source={require("../../assets/2650577-removebg-preview.png")}
           style={styles.image}
         />
 
@@ -35,40 +58,53 @@ const SearchScreen = () => {
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search" 
+            placeholder="Search"
             value={searchText}
             onChangeText={setSearchText}
-            onSubmitEditing={handleSearch}
+            // onSubmitEditing={handleSearch}
           />
         </View>
+
+        {/* <View>
+          <ScrollView>
+            {searchResult.length === 1 ? (
+              <Text>No search results found.</Text>
+            ) : (
+              searchResult.map((item) => (
+                <View key={item._id}>
+                  <Text>Name: {item.name}</Text>
+                  <Text>Price: {item.price}</Text>
+                </View>
+              ))
+            )}
+          </ScrollView>
+        </View> */}
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-
-
   image: {
-    width: '90%',
+    width: "90%",
     height: 150,
   },
   textContainer: {
     paddingVertical: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   text: {
-    fontWeight: '300',
+    fontWeight: "300",
     fontSize: 16,
   },
   searchContainer: {
-    width: '100%',
+    width: "100%",
     marginTop: 20,
     paddingHorizontal: 20,
   },
   searchInput: {
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 15,

@@ -39,7 +39,7 @@ const init = {
   totalItem: 0,
   total: 0,
   vat: 0,
-  point: { 
+  point: {
     old: 0,
     new: 0,
   },
@@ -54,7 +54,7 @@ const init = {
   customerId: "",
   updateUser: "63dfffdd1edc4e4632e8bcf4",
   status: "order",
-}
+};
 
 const cartCalculation = (products) => {
   let grossTotal = 0;
@@ -65,46 +65,63 @@ const cartCalculation = (products) => {
   let grossTotalRound = 0;
   if (products?.length > 0) {
     products.map((item) => {
-      console.log("item", item)
+      //console.log("item", item)
       if (item?.promo_price > 0) {
         if (item?.promo_start && item?.promo_end) {
-          const isBetween = isWithinInterval(new Date(), { start: parseISO(item?.promo_start), end: parseISO(item?.promo_end) });
+          const isBetween = isWithinInterval(new Date(), {
+            start: parseISO(item?.promo_start),
+            end: parseISO(item?.promo_end),
+          });
           if (isBetween) {
             if (item.promo_type === true) {
-              total = total + ((parseFloat(item.mrp) - ((item.mrp * parseFloat(item.promo_price)) / 100)) * parseFloat(item.qty));
-              vat = vat + ((((parseFloat(item.mrp) - ((parseFloat(item.mrp) * parseFloat(item.promo_price)) / 100)) * parseFloat(item.qty)) * parseFloat(item.vat)) / 100)
+              total =
+                total +
+                (parseFloat(item.mrp) -
+                  (item.mrp * parseFloat(item.promo_price)) / 100) *
+                  parseFloat(item.qty);
+              vat =
+                vat +
+                ((parseFloat(item.mrp) -
+                  (parseFloat(item.mrp) * parseFloat(item.promo_price)) / 100) *
+                  parseFloat(item.qty) *
+                  parseFloat(item.vat)) /
+                  100;
               grossTotal = total + vat;
               totalItem = totalItem + item.qty;
-
             } else {
-              total = total + ((parseFloat(item.mrp) - parseFloat(item?.promo_price)) * parseFloat(item.qty));
-              vat = vat + ((((parseFloat(item.mrp) - parseFloat(item?.promo_price)) * parseFloat(item.qty)) * parseFloat(item.vat)) / 100)
+              total =
+                total +
+                (parseFloat(item.mrp) - parseFloat(item?.promo_price)) *
+                  parseFloat(item.qty);
+              vat =
+                vat +
+                ((parseFloat(item.mrp) - parseFloat(item?.promo_price)) *
+                  parseFloat(item.qty) *
+                  parseFloat(item.vat)) /
+                  100;
               grossTotal = total + vat;
               totalItem = totalItem + item.qty;
             }
-
           } else {
-            console.log("item3", item)
+            //console.log("item3", item)
             total = total + item.mrp * item.qty;
             vat = vat + item.qty * ((item.mrp * item.vat) / 100);
             grossTotal = total + vat;
             totalItem = totalItem + item.qty;
           }
         } else {
-          console.log("item2", item)
+          //console.log("item2", item)
           total = total + item.mrp * item.qty;
           vat = vat + item.qty * ((item.mrp * item.vat) / 100);
           grossTotal = total + vat;
           totalItem = totalItem + item.qty;
         }
       } else {
-
         total = total + item.mrp * item.qty;
         vat = vat + item.qty * ((item.mrp * item.vat) / 100);
         grossTotal = total + vat;
         totalItem = totalItem + item.qty;
       }
-
     });
     todayPoint = Math.floor(grossTotal / 100);
     grossTotalRound = Math.ceil(grossTotal);
@@ -170,11 +187,10 @@ export const orderSlice = createSlice({
     selectCustomerDeliveryAddress: (state, action) => {
       state.delivery = {
         address: action.payload.address,
-        phone: action.payload.phone
+        phone: action.payload.phone,
       };
     },
     selectCustomerInfo: (state, action) => {
-
       return (state = {
         ...state,
         customerId: action.payload.id,
@@ -183,7 +199,7 @@ export const orderSlice = createSlice({
           old: action.payload.point,
           new: action.payload.point + state.todayPoint,
         },
-      })
+      });
       // state.customerId = action.payload;
     },
     reset: () => intialState,
