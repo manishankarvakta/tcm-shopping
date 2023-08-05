@@ -5,13 +5,11 @@ import Routes from "../Utility/Routes";
 
 import { Home, Login, Category, CategoryGroup } from "../Screens";
 
-import ProductStacknav from "./ProductStacknav";
 import PopularProductStack from "./PopularProductStack";
 import FlashsaleProductNav from "./FlashsaleProductNav";
 import VegetablesProductStack from "./VegetablesProductStack";
 import BiscuitsStack from "./BiscuitsStack";
 import FreshFruitsStack from "./FreshFruitsStack";
-import NoodlesStack from "./OilStack";
 import OrderScreenNav from "../Navigation/OrderScreenNav";
 import OfferScreenstack from "../Navigation/OfferScreenstack";
 import CategoryStackNav from "./CategoryStackNav";
@@ -22,6 +20,7 @@ import OilStack from "./OilStack";
 import ProfileStack from "./ProfileStack";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import UpdateInformation from "../Screens/Profile/UpdateInformation";
+import EarnReward from "../Screens/DrawerScreen/EarnReward";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -70,11 +69,7 @@ const StackNav = () => {
         component={SkinCareStack}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name={Routes.Product_Card}
-        component={ProductStacknav}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name={Routes.OFFER_PRODUCTS_TAB}
         component={OfferScreenstack}

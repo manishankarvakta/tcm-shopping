@@ -106,12 +106,25 @@ export default function ConfirmationProducts({ navigation }) {
         <View>
           <View style={styles.EmailVerifyAds}>
             <View style={{ alignSelf: "center" }}>
-              <TouchableOpacity
-                onPress={() => createSale()}
-                style={styles.backToShoppingBtn}
-              >
-                <Text style={styles.TextColor}>Confirm Order</Text>
-              </TouchableOpacity>
+              <View style={{ marginTop: 20 }}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate(Routes.ORDER_SUCCESS)}
+                  style={styles.PlaceOrderButton}
+                >
+                  <View>
+                    <Icon
+                      type="antdesign"
+                      name="shoppingcart"
+                      size={24}
+                      color="white"
+                    />
+                  </View>
+
+                  <View>
+                    <Text style={styles.PlaceOrderStyle}>Confirm Order</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
@@ -172,6 +185,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 10,
     padding: 10,
+  },
+  PlaceOrderButton: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 10,
+    paddingVertical: 12,
+    backgroundColor: "red",
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+  },
+  PlaceOrderStyle: {
+    color: "white",
+    fontWeight: "700",
+    fontSize: 18,
+    paddingHorizontal: 15,
   },
 
   OrderProductImg: {

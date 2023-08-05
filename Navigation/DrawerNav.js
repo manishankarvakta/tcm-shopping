@@ -13,9 +13,18 @@ import EarnReward from "../Screens/DrawerScreen/EarnReward";
 import CustomDrawer from "../Components/CustomDrawer";
 import FlashsaleProductNav from "./FlashsaleProductNav";
 import FavoriteProductsStack from "./FavoriteProductsStack";
+import { TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
+  const navigation = useNavigation();
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
   const callCustomerSupport = () => {
     Linking.openURL("tel:+1234567890");
   };
@@ -43,6 +52,7 @@ function DrawerNav() {
               type="MaterialIcons"
             />
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -52,6 +62,7 @@ function DrawerNav() {
           drawerIcon: ({ color, size }) => (
             <Icon name="box" size={20} color="tomato" type="entypo" />
           ),
+          headerShown: false,
         }}
       />
 
@@ -62,6 +73,7 @@ function DrawerNav() {
           drawerIcon: ({ color, size }) => (
             <Icon name="box" size={20} color="tomato" type="entypo" />
           ),
+          headerShown: false,
         }}
       />
 
@@ -72,6 +84,7 @@ function DrawerNav() {
           drawerIcon: ({ color, size }) => (
             <Icon name="heart" size={20} color="tomato" type="antdesign" />
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -93,6 +106,7 @@ function DrawerNav() {
         "
             />
           ),
+          headerShown: false,
         }}
       />
 
@@ -102,6 +116,21 @@ function DrawerNav() {
         options={{
           drawerIcon: ({ color, size }) => (
             <Icon name="coins" size={20} color="tomato" type="font-awesome-5" />
+          ),
+          headerStyle: {
+            borderBottomWidth: 0,
+          },
+          headerBackTitle: "BACK",
+          // Add headerLeft option to set custom back arrow
+          headerLeft: () => (
+            <TouchableOpacity onPress={handleBackPress}>
+              <Ionicons
+                name="arrow-back" // Replace this with the name of your desired icon
+                size={24}
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
           ),
         }}
       />
@@ -118,6 +147,21 @@ function DrawerNav() {
               type="entypo"
             />
           ),
+          headerStyle: {
+            borderBottomWidth: 0,
+          },
+          headerBackTitle: "BACK",
+          // Add headerLeft option to set custom back arrow
+          headerLeft: () => (
+            <TouchableOpacity onPress={handleBackPress}>
+              <Ionicons
+                name="arrow-back" // Replace this with the name of your desired icon
+                size={24}
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
+          ),
         }}
       />
 
@@ -128,6 +172,22 @@ function DrawerNav() {
           drawerIcon: ({ color, size }) => (
             <Icon name="phone-call" size={20} color="tomato" type="feather" />
           ),
+          headerStyle: {
+            borderBottomWidth: 0,
+          },
+          headerBackTitle: "BACK",
+          // Add headerLeft option to set custom back arrow
+          headerLeft: () => (
+            <TouchableOpacity onPress={handleBackPress}>
+              <Ionicons
+                name="arrow-back" // Replace this with the name of your desired icon
+                size={24}
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
+          ),
+
           onPress: callCustomerSupport,
         }}
       />
@@ -138,6 +198,21 @@ function DrawerNav() {
         options={{
           drawerIcon: ({ color, size }) => (
             <Icon name="chat" size={20} color="tomato" type="entypo" />
+          ),
+          headerStyle: {
+            borderBottomWidth: 0,
+          },
+          headerBackTitle: "BACK",
+          // Add headerLeft option to set custom back arrow
+          headerLeft: () => (
+            <TouchableOpacity onPress={handleBackPress}>
+              <Ionicons
+                name="arrow-back" // Replace this with the name of your desired icon
+                size={24}
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
           ),
         }}
       />

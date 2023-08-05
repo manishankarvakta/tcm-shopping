@@ -78,6 +78,7 @@ export default {
   ORDER_HISTORY_TAB: "Order history",
   ORDER_HISTORY_DRAWER: "Order History",
   ORDER_HISTORY_DETAILS: "details",
+  ORDER_SUCCESS: "Success",
 
   HELP_SCREEN_DRAWER: "help",
   CUSTOMER_SUPPORT_DRAWER: "Customer Support",

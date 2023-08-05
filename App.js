@@ -18,6 +18,7 @@ import NotificationSettings from "./Screens/Profile/NotificationSettings";
 import ChangePassword from "./Screens/Profile/ChangePassword";
 import DeleteAccount from "./Screens/Profile/DeleteAccount";
 import UpdateInformation from "./Screens/Profile/UpdateInformation";
+import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
 
 export default function App() {
   const [token, setToken] = useState(false);

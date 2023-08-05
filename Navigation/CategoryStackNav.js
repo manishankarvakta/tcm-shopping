@@ -11,32 +11,48 @@ import SubCategory from "../Screens/Home/SubCategory";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import HomeScreen from "../Screens/Home/HomeScreen";
 import ProductsCategory from "../Screens/Home/ProductsCategory";
+import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 
-const CategoryStackNav = () => {
+const CategoryStackNav = ({ navigation }) => {
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
   const Stack = createNativeStackNavigator();
 
   return (
     <Stack.Navigator>
-     
-     <Stack.Screen
+      <Stack.Screen
         name={Routes.CATEGORY_GROUP_SCREEN}
         component={CategoryGroupScreen}
-       
+        options={{
+          headerStyle: {
+            borderBottomWidth: 0,
+          },
+          headerBackTitle: "BACK",
+          // Add headerLeft option to set custom back arrow
+          headerLeft: () => (
+            <TouchableOpacity onPress={handleBackPress}>
+              <Ionicons
+                name="arrow-back" // Replace this with the name of your desired icon
+                size={24}
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
       />
 
       <Stack.Screen
         name={Routes.CATEGORY_SCREEN}
         component={CategoryScreen}
         options={{
-        
           headerStyle: {
-            
             borderBottomWidth: 0,
-           
           },
-          
+
           headerBackTitle: "BACK",
-      
         }}
       />
 
@@ -44,16 +60,11 @@ const CategoryStackNav = () => {
         name={Routes.SUB_CATEGORY}
         component={SubCategory}
         options={{
-         
           headerStyle: {
-            
             borderBottomWidth: 0,
-           
           },
-        
+
           headerBackTitle: "BACK",
-       
-         
         }}
       />
 
@@ -61,34 +72,23 @@ const CategoryStackNav = () => {
         name={Routes.PRODUCTS_CATEGORY}
         component={ProductsCategory}
         options={{
-          
           headerStyle: {
-            
             borderBottomWidth: 0,
-           
           },
-          
+
           headerBackTitle: "BACK",
-       
-        
         }}
       />
 
-
-<Stack.Screen
+      <Stack.Screen
         name={Routes.Tt}
         component={SingleProductsDetailsScreen}
         options={{
-          
           headerStyle: {
-            
             borderBottomWidth: 0,
-           
           },
-          
-          headerBackTitle: "BACK",
-       
 
+          headerBackTitle: "BACK",
         }}
       />
 
@@ -96,16 +96,11 @@ const CategoryStackNav = () => {
         name={Routes.HOME}
         component={HomeScreen}
         options={{
-          
           headerStyle: {
-            
             borderBottomWidth: 0,
-           
           },
-          
+
           headerBackTitle: "BACK",
-          
-       
         }}
       />
     </Stack.Navigator>
