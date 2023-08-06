@@ -20,9 +20,8 @@ const numColumns = 3;
 const itemWidth = Dimensions.get("window").width / numColumns;
 
 const AllOil = ({ navigation }) => {
-  const { data, isSuccess, isError } = useGetProductCategoryIdQuery(
-    "62e8fe11b0757f089ab009e6"
-  );
+  const { data, isSuccess, isError, refetch, isFetching } =
+    useGetProductCategoryIdQuery("62e8fe11b0757f089ab009e6");
   const [AllOil, setAllOil] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
 
@@ -98,6 +97,8 @@ const AllOil = ({ navigation }) => {
       <FlatList
         data={AllOil}
         renderItem={renderItem}
+        onRefresh={refetch}
+        refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
       />

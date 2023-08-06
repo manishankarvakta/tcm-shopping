@@ -79,6 +79,7 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
             </TouchableOpacity>
           </View>
           <TouchableOpacity
+            onPress={() => dispatch(addProduct(data))}
             style={{
               marginTop: 25,
               backgroundColor: "#CBCBCB",

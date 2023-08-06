@@ -21,9 +21,8 @@ import { addProduct } from "../Redux/CartSlice";
 const numColumns = 2;
 
 const SkinCares = ({ navigation }) => {
-  const { data, isSuccess, isError } = useGetSkinCareProductsQuery(
-    "62e8fe11b0757f089ab009c4"
-  );
+  const { data, isSuccess, isError, refetch, isFetching } =
+    useGetSkinCareProductsQuery("62e8fe11b0757f089ab009c4");
   const [Skincare, setSkincare] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const dispatch = useDispatch();
@@ -98,6 +97,8 @@ const SkinCares = ({ navigation }) => {
       <FlatList
         data={Skincare}
         renderItem={renderItem}
+        onRefresh={refetch}
+        refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
       />

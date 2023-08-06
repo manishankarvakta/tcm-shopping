@@ -20,9 +20,8 @@ const numColumns = 3;
 const itemWidth = Dimensions.get("window").width / numColumns;
 
 const AllFreshFruits = ({ navigation }) => {
-  const { data, isSuccess, isError } = useGetProductCategoryIdQuery(
-    "62e8ed5bb0757f089ab009af"
-  );
+  const { data, isSuccess, isError, isFetching, refetch } =
+    useGetProductCategoryIdQuery("62e8ed5bb0757f089ab009af");
   const [Fruits, setFruits] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
 
@@ -98,6 +97,8 @@ const AllFreshFruits = ({ navigation }) => {
       <FlatList
         data={Fruits.slice(0, 30)}
         renderItem={renderItem}
+        onRefresh={refetch}
+        refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
       />

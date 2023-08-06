@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, Image, Text } from 'react-native';
-import { Icon } from '@rneui/base';
-import Routes from '../../Utility/Routes';
-import { useDispatch, useSelector } from 'react-redux';
-import { PHOTO_URL } from '../../Utility/BaseUrl';
-import { addProduct, addWishListProduct, removeProduct } from '../Redux/CartSlice';
+import React, { useState } from "react";
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  Dimensions,
+  Image,
+  Text,
+} from "react-native";
+import { Icon } from "@rneui/base";
+import Routes from "../../Utility/Routes";
+import { useDispatch, useSelector } from "react-redux";
+import { PHOTO_URL } from "../../Utility/BaseUrl";
+import {
+  addProduct,
+  addWishListProduct,
+  removeProduct,
+} from "../Redux/CartSlice";
+import { removeProducts } from "../Redux/WishListSlice";
 
 const numColumns = 2;
 
 const FavoritesProducts = ({ navigation }) => {
   const FavoriteItem = useSelector((state) => state.WishReducer);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const truncateName = (name) => {
     const maxLength = 12;
@@ -20,35 +33,36 @@ const FavoritesProducts = ({ navigation }) => {
     return name;
   };
 
-
   const renderItem = ({ item }) => {
-    console.log("itttttemm :",item)
+    console.log("itttttemm :", item);
     const photos = `${PHOTO_URL}${item.photo}`;
 
     const handleDelete = () => {
-      dispatch(removeProduct(item.id));
+      dispatch(removeProducts(item.id));
     };
-  
+
     return (
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Tt, { _id: item.id })} style={styles.card} >
-        <TouchableOpacity
-          style={styles.deleteIcon}
-          onPress={handleDelete}
-        >
-          <Icon
-           name="delete" size={20} color="red" type="ant-design"
-          />
+      <TouchableOpacity
+        onPress={() => navigation.navigate(Routes.Tt, { _id: item.id })}
+        style={styles.card}
+      >
+        <TouchableOpacity style={styles.deleteIcon} onPress={handleDelete}>
+          <Icon name="delete" size={20} color="red" type="ant-design" />
         </TouchableOpacity>
-        <Image
-          source={{ uri: photos }}
-          style={styles.FlashSaleImg}
-        />
+        <Image source={{ uri: photos }} style={styles.FlashSaleImg} />
         <View style={styles.details}>
           <Text style={styles.name}>{truncateName(item.name)}</Text>
           <View style={styles.cartStyle}>
             <Text style={styles.price}>৳ {item.mrp} </Text>
-            <TouchableOpacity onPress={() => dispatch(addWishListProduct(item))}>
-              <Icon name="shopping-basket-add" size={21} color="#2EB5AC" type="fontisto" />
+            <TouchableOpacity
+              onPress={() => dispatch(addWishListProduct(item))}
+            >
+              <Icon
+                name="shopping-basket-add"
+                size={21}
+                color="#2EB5AC"
+                type="fontisto"
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -70,16 +84,16 @@ const FavoritesProducts = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
-    marginVertical: 10
+    marginVertical: 10,
   },
   item: {
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
     margin: 5,
   },
   cartStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   card: {
     flexDirection: "column",
@@ -87,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F6FB",
     padding: 7,
     borderRadius: 5,
-    shadowColor: 'gray',
+    shadowColor: "gray",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -98,7 +112,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   deleteIcon: {
-    position: 'absolute',
+    position: "absolute",
     top: 5,
     right: 5,
     zIndex: 1,
@@ -108,7 +122,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   price: {
     fontSize: 16,
@@ -126,4 +140,3 @@ const styles = StyleSheet.create({
 });
 
 export default FavoritesProducts;
-

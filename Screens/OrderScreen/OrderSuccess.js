@@ -19,7 +19,7 @@ const OrderSuccess = () => {
       <SafeAreaView>
         <View style={styles.container}>
           <View style={styles.inputWrapper}>
-            <Text style={styles.RegsuccessText}>Order </Text>
+            <Text style={styles.RegsuccessText}>Order Confirmed</Text>
           </View>
 
           <View>
@@ -33,8 +33,8 @@ const OrderSuccess = () => {
             onPress={() => navigation.navigate(Routes.HOME)}
           >
             <Text>
-              <Icon name="check-circle" size={13} color={"white"} />{" "}
-              <Text style={styles.DoneText}>Done</Text>
+              <Icon name="check-circle" size={17} color={"white"} />{" "}
+              <Text style={styles.DoneText}>BACK TO HOME</Text>
             </Text>
           </TouchableOpacity>
         </View>
@@ -74,13 +74,12 @@ const styles = StyleSheet.create({
     marginTop: 28,
   },
   DoneBtn: {
-    width: 138,
     justifyContent: "center",
     textAlign: "center",
     flexDirection: "row",
     padding: 12,
     borderRadius: 5,
-    backgroundColor: "red",
+    backgroundColor: "#12852C",
     marginVertical: 40,
   },
   DoneText: {

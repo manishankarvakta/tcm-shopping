@@ -18,7 +18,8 @@ import { addProduct } from "../Redux/CartSlice";
 const numColumns = 2;
 
 const FlashSale = ({ navigation }) => {
-  const { data, isSuccess, isError } = useGetFlashSalesQuery();
+  const { data, isSuccess, isError, refetch, isFetching } =
+    useGetFlashSalesQuery();
   const [FlashSale, setFlashSale] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const dispatch = useDispatch();
@@ -92,6 +93,8 @@ const FlashSale = ({ navigation }) => {
       <FlatList
         data={FlashSale}
         renderItem={renderItem}
+        onRefresh={refetch}
+        refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
       />

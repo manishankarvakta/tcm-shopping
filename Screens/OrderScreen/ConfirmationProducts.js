@@ -79,13 +79,14 @@ export default function ConfirmationProducts({ navigation }) {
                 <Text style={styles.TitleStyle}>Total Discount</Text>
                 <Text style={styles.TitleStyleTwo}>Total Order</Text>
                 <Text style={styles.TitleStyleThree}>Amount Paid</Text>
+                <Text style={styles.TitleStyleThree}>Today point</Text>
               </View>
 
               <View>
                 <Text style={styles.TitleStyle}>{cartItems.total}tk</Text>
                 <Text style={styles.TitleStyle}>৳{cartItems.vat}</Text>
                 <Text style={styles.TitleStyle}>৳{cartItems.grossTotal}</Text>
-                <Text style={styles.TitleStyleThree}>৳0</Text>
+                <Text style={styles.TitleStyle}>{cartItems.todayPoint}</Text>
               </View>
             </View>
 

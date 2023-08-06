@@ -24,7 +24,8 @@ const PopularProducts = () => {
   const [product, setProduct] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
 
-  const { data, isSuccess, isError } = useGetPopularProductsQuery();
+  const { data, isSuccess, isError, isFetching, refetch } =
+    useGetPopularProductsQuery();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -94,6 +95,8 @@ const PopularProducts = () => {
       <FlatList
         data={product}
         renderItem={renderItem}
+        onRefresh={refetch}
+        refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
       />

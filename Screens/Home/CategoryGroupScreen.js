@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, Image, Text, SafeAreaView } from 'react-native';
-import Routes from '../../Utility/Routes';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  Dimensions,
+  Image,
+  Text,
+  SafeAreaView,
+} from "react-native";
+import Routes from "../../Utility/Routes";
+import { useNavigation } from "@react-navigation/native";
 
 const numColumns = 2;
 
@@ -23,7 +32,12 @@ export default function CategoryGroupScreen() {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.cardTwo}>
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.CATEGORY_SCREEN, { group: item.option })} style={styles.CategoryGroupScreenStyle}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate(Routes.CATEGORY_SCREEN, { group: item.option })
+          }
+          style={styles.CategoryGroupScreenStyle}
+        >
           <Text style={styles.CategoryGroupNameStyle}>{item.label}</Text>
           <View style={styles.imageContainer}>
             <Image source={item.image} style={styles.image} />

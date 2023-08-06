@@ -33,6 +33,15 @@ const HomeScreen = ({ navigation }) => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [cartItemCount, setCartItemCount] = useState("0");
 
+  const getUser = async () => {
+    // console.log("getUser");
+    const store = await AsyncStorage.getAllKeys();
+    const userData = await AsyncStorage.getItem("user");
+
+    console.log("Names", userData, store);
+  };
+
+  getUser();
   const cartItem = useSelector((state) => state.cartReducer.products);
 
   useEffect(() => {

@@ -19,6 +19,8 @@ import ChangePassword from "./Screens/Profile/ChangePassword";
 import DeleteAccount from "./Screens/Profile/DeleteAccount";
 import UpdateInformation from "./Screens/Profile/UpdateInformation";
 import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
+import { Login } from "./Screens";
+import TabNav from "./Navigation/TabNav";
 
 export default function App() {
   const [token, setToken] = useState(false);
@@ -45,10 +47,10 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <DrawerNav />
+        {token ? <DrawerNav /> : <AuthStackNav />}
       </NavigationContainer>
     </Provider>
   );
 }
 
-//{token ? <TabNav /> : <AuthStackNav />}
+//

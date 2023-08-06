@@ -46,12 +46,15 @@ const WishListSlice = createSlice({
         FavoritesProducts: products,
       };
     },
-    // other reducers...
+    removeProducts: (state, action) => {
+      const productId = action.payload;
+      state.products = state.products.filter((item) => item.id !== productId);
+    },
   },
 });
 
 // Actions
-export const { addFavoriteProduct } = WishListSlice.actions;
+export const { addFavoriteProduct, removeProducts } = WishListSlice.actions;
 
 // Reducer
 export default WishListSlice.reducer;

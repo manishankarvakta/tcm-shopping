@@ -70,15 +70,15 @@ const LoginScreen = ({ navigation }) => {
           } catch (error) {
             Alert.alert("Login Faild! Please try again.");
             setLoading(false);
-           // console.log("storeError:", error);
+            // console.log("storeError:", error);
           } finally {
-           // console.log("Login Success");
+            // console.log("Login Success");
             navigation.replace(Routes.HOME_TAB);
           }
         }
         const store = await AsyncStorage.getAllKeys();
         const token = await AsyncStorage.getItem("user");
-        // console.log(store, token);
+        console.log(store, token);
         setLoading(false);
       })
       .catch(async (error) => {
@@ -90,10 +90,10 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const forgotPassword = () => {
-   // console.log("forgot Pass");
+    // console.log("forgot Pass");
   };
   const register = () => {
-   // console.log("register");
+    // console.log("register");
   };
 
   return (

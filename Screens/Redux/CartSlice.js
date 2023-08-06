@@ -5,15 +5,17 @@ const cartCalculation = (products) => {
   let vat = 0;
   let grossTotal = 0;
   let totalItem = 0;
+  let todayPoint = 0;
   products.map((item) => {
     //console.log("checkItem:", item);
-    total = total + item.mrp * item.qty;
+    total = item.mrp * item.qty;
     vat = vat + item.qty * ((item.mrp * item.vat) / 100);
     grossTotal = total + vat;
     totalItem = totalItem + item.qty;
   });
+  todayPoint = grossTotal / 1000;
 
-  return { total, vat, grossTotal, totalItem };
+  return { total, vat, grossTotal, totalItem, todayPoint };
 };
 
 const initialState = {
@@ -134,13 +136,14 @@ const cartSlice = createSlice({
     },
 
     selcetProduct: (state, action) => {
-      const { grossTotal, total, totalItem, vat } = cartCalculation(
+      const { grossTotal, total, totalItem, vat, todayPoint } = cartCalculation(
         action.payload
       );
       state.total = total;
       state.grossTotal = grossTotal;
       state.totalItem = totalItem;
       state.vat = vat;
+      state.todayPoint = todayPoint;
     },
 
     removeProduct: (state, action) => {
