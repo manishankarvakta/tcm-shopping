@@ -154,7 +154,10 @@ const HomeScreen = ({ navigation }) => {
               width: 120,
             }}
           >
-            <View style={{ alignItems: "center", marginRight: 10 }}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(Routes.CART_SCREEN_TAB)}
+              style={{ alignItems: "center", marginRight: 10 }}
+            >
               <Text
                 style={{
                   fontWeight: "900",
@@ -173,7 +176,7 @@ const HomeScreen = ({ navigation }) => {
               >
                 Items
               </Text>
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() => navigation.navigate(Routes.CART_SCREEN_TAB)}

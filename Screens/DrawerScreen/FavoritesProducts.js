@@ -12,12 +12,8 @@ import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
 import { useDispatch, useSelector } from "react-redux";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
-import {
-  addProduct,
-  addWishListProduct,
-  removeProduct,
-} from "../Redux/CartSlice";
-import { removeProducts } from "../Redux/WishListSlice";
+import { addProduct, addWishListProduct } from "../Redux/CartSlice";
+import { removeProduct } from "../Redux/WishListSlice";
 
 const numColumns = 2;
 
@@ -34,11 +30,10 @@ const FavoritesProducts = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => {
-    console.log("itttttemm :", item);
     const photos = `${PHOTO_URL}${item.photo}`;
 
     const handleDelete = () => {
-      dispatch(removeProducts(item.id));
+      dispatch(removeProduct(item.id)); // Corrected the dispatch action
     };
 
     return (

@@ -19,11 +19,11 @@ export default function ConfirmationProducts({ navigation }) {
   const cartItems = useSelector((state) => state.cartReducer);
   const [createNewSale] = useAddSaleMutation();
   const createSale = () => {
-    console.log(cartItems);
+    // console.log(cartItems);
     const sale = createNewSale(cartItems);
 
     if (sale) {
-      console.log("success");
+      //console.log("success");
     }
   };
 

@@ -14,7 +14,7 @@ const TabNav = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-         headerShown: false,
+        headerShown: false,
         tabBarIcon: ({ color, size, focused }) => {
           let IconName;
           if (route.name === Routes.HOME_TAB) {
@@ -35,8 +35,11 @@ const TabNav = () => {
       })}
     >
       <Tab.Screen name={Routes.HOME_TAB} component={StackNav} />
-      <Tab.Screen name={Routes.CATEGORY_GROUP_TAB} component={CategoryStackNav} />
-      <Tab.Screen name={Routes.CHATS_TAB} component={Chats} />
+      <Tab.Screen
+        name={Routes.CATEGORY_GROUP_TAB}
+        component={CategoryStackNav}
+      />
+      {/* <Tab.Screen name={Routes.CHATS_TAB} component={Chats} /> */}
       <Tab.Screen name={Routes.SERARCH_TAB} component={Search} />
     </Tab.Navigator>
   );

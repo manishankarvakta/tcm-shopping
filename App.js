@@ -21,6 +21,7 @@ import UpdateInformation from "./Screens/Profile/UpdateInformation";
 import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
 import { Login } from "./Screens";
 import TabNav from "./Navigation/TabNav";
+import StackNav from "./Navigation/StackNav";
 
 export default function App() {
   const [token, setToken] = useState(false);
@@ -47,7 +48,7 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        {token ? <DrawerNav /> : <AuthStackNav />}
+        <DrawerNav />
       </NavigationContainer>
     </Provider>
   );

@@ -26,7 +26,7 @@ const AllBiscuits = ({ navigation }) => {
   // const [favoriteItems, setFavoriteItems] = useState([]);
   const favoriteItems = useSelector((state) => state.WishReducer);
 
-  console.log(favoriteItems);
+  // console.log(favoriteItems);
   const dispatch = useDispatch();
   useEffect(() => {
     data?.length > 0 && setBiscuits(data);
@@ -39,7 +39,7 @@ const AllBiscuits = ({ navigation }) => {
   const isItemFavorite = (item) => {
     if (favoriteItems?.length > 0) {
       if (favoriteItems?.includes(item)) {
-        console.log(item);
+        //  console.log(item);
         return true;
       }
     }

@@ -23,7 +23,7 @@ import {
 
 const CartScreen = ({ navigation }) => {
   const cartItems = useSelector((state) => state.cartReducer);
-  console.log("cartItems:", cartItems);
+  //console.log("cartItems:", cartItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -206,7 +206,7 @@ const CartScreen = ({ navigation }) => {
               color: "#000",
             }}
           >
-            ৳{cartItems.total} tk
+            ৳{cartItems.grossTotal} tk
           </Text>
         </View>
       </TouchableOpacity>

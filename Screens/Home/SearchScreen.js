@@ -19,11 +19,6 @@ const SearchScreen = () => {
   // const cart = useSelector(state => state.cartReducer)
 
   useEffect(() => {
-    console.log(searchResult);
-    setSearchResult(data?.data || []);
-  }, [data]);
-
-  useEffect(() => {
     refetch();
   }, [searchText]);
 
@@ -65,9 +60,9 @@ const SearchScreen = () => {
           />
         </View>
 
-        {/* <View>
+        <View>
           <ScrollView>
-            {searchResult.length === 1 ? (
+            {searchResult.length === 0 ? (
               <Text>No search results found.</Text>
             ) : (
               searchResult.map((item) => (
@@ -78,7 +73,7 @@ const SearchScreen = () => {
               ))
             )}
           </ScrollView>
-        </View> */}
+        </View>
       </View>
     </SafeAreaView>
   );

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const cartCalculation = (products) => {
+  //console.log("products:", products);
   let total = 0;
   let vat = 0;
   let grossTotal = 0;
@@ -8,12 +9,14 @@ const cartCalculation = (products) => {
   let todayPoint = 0;
   products.map((item) => {
     //console.log("checkItem:", item);
-    total = item.mrp * item.qty;
+    total = total + item.mrp * item.qty;
     vat = vat + item.qty * ((item.mrp * item.vat) / 100);
-    grossTotal = total + vat;
     totalItem = totalItem + item.qty;
   });
-  todayPoint = grossTotal / 1000;
+  grossTotal = total + vat;
+  console.log("grossTotal", grossTotal);
+
+  todayPoint = grossTotal / 100;
 
   return { total, vat, grossTotal, totalItem, todayPoint };
 };
@@ -102,6 +105,7 @@ const cartSlice = createSlice({
           unit: item.unit,
           supplier: item?.priceList[0]?.supplier,
           order: 1,
+
           photo: item.photo,
         };
 
@@ -136,6 +140,7 @@ const cartSlice = createSlice({
     },
 
     selcetProduct: (state, action) => {
+      //console.log("selcetProduct:", action.payload);
       const { grossTotal, total, totalItem, vat, todayPoint } = cartCalculation(
         action.payload
       );

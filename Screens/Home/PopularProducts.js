@@ -52,6 +52,7 @@ const PopularProducts = () => {
   const isItemFavorite = (item) => favoriteItems.includes(item);
 
   const renderItem = ({ item }) => {
+    //console.log("item :", item);
     const photos = `${PHOTO_URL}${item.photo}`;
 
     return (
