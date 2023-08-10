@@ -11,8 +11,19 @@ import React from "react";
 
 import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Profile({ navigation }) {
+  const logOut = async () => {
+    console.log("logout");
+    await AsyncStorage.setItem("token", "");
+    await AsyncStorage.setItem("user", "");
+
+    const name = await AsyncStorage.getItem("user");
+    navigation.replace(Routes.LOGIN);
+
+    console.log(name);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -143,7 +154,7 @@ export default function Profile({ navigation }) {
       </ScrollView>
       <View>
         <View>
-          <TouchableOpacity style={{ flexDirection: "row" }}>
+          <TouchableOpacity style={{ flexDirection: "row" }} onPress={logOut}>
             <Text>
               {" "}
               <Icon

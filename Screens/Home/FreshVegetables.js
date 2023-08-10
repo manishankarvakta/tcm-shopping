@@ -10,17 +10,13 @@ import {
 } from "react-native";
 import Routes from "../../Utility/Routes";
 import { Icon } from "@rneui/base";
-import {
-  useGetProductCategoryIdQuery,
-  useGetVegetablesQuery,
-} from "../Redux/Api/ProductsApi";
+import { useGetVegetablesQuery } from "../Redux/Api/ProductsApi";
 import { useEffect } from "react";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
 import { addFavoriteProduct } from "../Redux/WishListSlice";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../Redux/CartSlice";
-const numColumns = 3;
-const itemWidth = Dimensions.get("window").width / numColumns;
+const numColumns = 2;
 
 const FreshVegetables = ({ navigation }) => {
   const { data, isSuccess, isError, refetch, isFetching } =
@@ -46,7 +42,7 @@ const FreshVegetables = ({ navigation }) => {
   const renderItem = ({ item }) => {
     const photos = `${PHOTO_URL}${item.photo}`;
     const truncateName = (name) => {
-      const maxLength = 12; // Define the maximum length for the name
+      const maxLength = 23; // Define the maximum length for the name
       if (name.length > maxLength) {
         return name.substring(0, maxLength - 3) + "..."; // Truncate and add "..." at the end
       }
@@ -72,7 +68,7 @@ const FreshVegetables = ({ navigation }) => {
         <Image
           onPress={() => alert(item.imageUrl)}
           source={{ uri: photos }}
-          style={styles.BiscuitsImgStyle}
+          style={styles.FreshVegetablesImgStyle}
         />
 
         <View style={styles.details}>
@@ -98,7 +94,7 @@ const FreshVegetables = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={Fruits.slice(0, 60)}
+        data={Fruits.slice(0, 30)}
         renderItem={renderItem}
         onRefresh={refetch}
         refreshing={isFetching}
@@ -118,15 +114,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     margin: 5,
-    width: itemWidth,
   },
-  image: {
-    marginBottom: 10,
-    width: 160,
-    height: 100,
-    textAlign: "center",
-    borderRadius: 10,
-  },
+
   cartStyle: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -143,23 +132,19 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
+    width: "47%",
     shadowOpacity: 0.5,
     shadowRadius: 3.84,
     elevation: 5,
   },
-  image: {
-    width: 85,
-    height: 80,
-    borderRadius: 10,
-    resizeMode: "cover",
-  },
+
   details: {
     paddingTop: 10,
   },
   name: {
+    width: 120,
     fontSize: 16,
     fontWeight: "bold",
-    width: 100,
   },
   price: {
     fontSize: 16,
@@ -169,9 +154,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
   },
-  BiscuitsImgStyle: {
-    width: 95,
-    height: 90,
+  FreshVegetablesImgStyle: {
+    width: 115,
+    height: 100,
+    alignSelf: "center",
     marginVertical: 5,
     borderRadius: 10,
   },

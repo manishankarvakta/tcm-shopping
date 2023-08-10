@@ -20,3 +20,21 @@ export const SalesApi = createApi({
 export const { useAddSaleMutation } = SalesApi;
 
 export default SalesApi;
+
+// customerLogin: builder.mutation({
+//   query: (Customer) => ({
+//     url: "/ecom/customer/login",
+//     method: "POST",
+//     body: Customer,
+//   }),
+// }),
+// customerRegister: builder.mutation({
+//   query: (Customer) => ({
+//     url: "/ecom/customer/register",
+//     method: "POST",
+//     body: Customer,
+//     headers: {
+//       "Content-type": "application/json; charset=UTF-8",
+//     },
+//   }),
+// }),

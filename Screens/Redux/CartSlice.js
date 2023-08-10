@@ -61,12 +61,12 @@ const initialState = {
     new: 0,
   },
   todayPoint: 0,
-  discount: 19,
+  discount: 0,
   promo_discount: 0,
   billerId: "63dfffdd1edc4e4632e8bcf4",
   delivery: {
-    address: "",
-    phone: "",
+    address: "Mirpur - 1 , dhaka",
+    phone: "01680622993",
   },
   customerId: "",
   updateUser: "63dfffdd1edc4e4632e8bcf4",
@@ -149,6 +149,13 @@ const cartSlice = createSlice({
       state.totalItem = totalItem;
       state.vat = vat;
       state.todayPoint = todayPoint;
+      state.point = {
+        ...state.point,
+        new: state?.point?.old + todayPoint,
+      };
+    },
+    customerInfo: (state, action) => {
+      state.customerId = action.payload;
     },
 
     removeProduct: (state, action) => {
@@ -177,6 +184,7 @@ const cartSlice = createSlice({
 export const {
   addProduct,
   selcetProduct,
+  customerInfo,
   removeProduct,
   productsQuntityIncrement,
   productsQuntityDecrements,

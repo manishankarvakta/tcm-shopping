@@ -53,7 +53,7 @@ const StackNav = () => {
         component={VegetablesProductStack}
       />
       <Stack.Screen name={Routes.All_BISCUITS} component={BiscuitsStack} />
-      <Stack.Screen name={Routes.DRINKS} component={DrinksStack} />
+      <Stack.Screen name={Routes.SOFT_DRINKS_TAB} component={DrinksStack} />
       <Stack.Screen
         name={Routes.FRESH_FOOD_TAB}
         component={FreshFruitsStack}
@@ -81,7 +81,7 @@ const StackNav = () => {
       />
 
       <Stack.Screen
-        name={Routes.PRFILE_STACK}
+        name={Routes.PRFILE_STACK_DRAWER}
         component={ProfileStack}
         options={{ headerShown: false }}
       />

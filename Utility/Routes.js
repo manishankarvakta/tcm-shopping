@@ -37,8 +37,8 @@ export default {
   FRESH_VEGETABLES: "Fresh Vegetables",
   All_BISCUITS: "Biscuits",
 
-  DRINKS: "Drinks",
-  SOFT_DRINKS_TAB: "All Drinks",
+  DRINKS: " All Drinks",
+  SOFT_DRINKS_TAB: "Drinks",
 
   FRESH_FOOD: "Fresh food",
   FRESH_FOOD_TAB: "Fresh Foods",
@@ -96,7 +96,7 @@ export default {
 
   PERSONAL_INFO: "Personal Information",
   PROFILE: "Profile",
-  PRFILE_STACK: "Profile stack",
+  PRFILE_STACK_DRAWER: "Profile stack",
   MANAGE_ADDRESS: "Manage Address",
   SETTINGS: "Settings",
   NOTIFICATIONS_SETTINGS: "Notification Settings",

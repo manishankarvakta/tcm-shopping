@@ -11,7 +11,6 @@ import {
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Avatar, Button, Image, Input } from "@rneui/themed";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { format } from "date-fns";
 import { Icon } from "@rneui/base";
 import axios from "axios";
 import BASE_URL from "../../Utility/BaseUrl";
@@ -38,26 +37,26 @@ const LoginScreen = ({ navigation }) => {
     getUser();
     AsyncStorage.getItem("token").then((value) => {
       if (value !== null) {
-        navigation.navigate(Routes.HOME_TAB);
+        navigation.navigate(Routes.HOME_DRAWER);
       }
     });
     //console.log(loading);
   }, [loading]);
 
   const submitLogin = async () => {
-    // console.log(userId, pass);
+    console.log(userId, pass);
     setLoading(true);
     // navigation.replace("Home");
 
     // AXIOS LOGIN REQUEST
-    //console.log(`${BASE_URL}/customer/login`)
+    console.log(`${BASE_URL}/ecom/customer/login`);
     await axios
-      .post(`${BASE_URL}/user/login`, {
-        email: userId,
+      .post(`${BASE_URL}/ecom/customer/login`, {
+        phone: userId,
         password: pass,
       })
       .then(async (response) => {
-        // console.log(response.status);
+        console.log(response.status);
         if (response.status === 200) {
           // console.log(response.data.access_token);
 
@@ -70,10 +69,10 @@ const LoginScreen = ({ navigation }) => {
           } catch (error) {
             Alert.alert("Login Faild! Please try again.");
             setLoading(false);
-            // console.log("storeError:", error);
+            console.log("storeError:", error);
           } finally {
             // console.log("Login Success");
-            navigation.replace(Routes.HOME_TAB);
+            navigation.replace(Routes.HOME_DRAWER);
           }
         }
         const store = await AsyncStorage.getAllKeys();
@@ -83,7 +82,7 @@ const LoginScreen = ({ navigation }) => {
       })
       .catch(async (error) => {
         Alert.alert("Login Faild! Please try again.");
-        //console.log("error", error);
+        console.log("error", error);
         setLoading(false);
       });
     // .finally();

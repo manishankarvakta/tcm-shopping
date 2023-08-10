@@ -3,16 +3,13 @@ import React, { useState, useEffect } from "react";
 
 const Slider = () => {
   const data = [
-    { id: '1', imageUrl: require("../assets/image1.jpg") },
-    { id: '2', imageUrl: require("../assets/img66.jpg") },
-    { id: '3', imageUrl: require("../assets/image1.jpg") },
-    { id: '4', imageUrl: require("../assets/img66.jpg") },
-    { id: '5', imageUrl: require("../assets/img66.jpg") },
-    { id: '6', imageUrl: require("../assets/image1.jpg") },
+    { id: "1", imageUrl: require("../assets/image1.jpg") },
+    { id: "2", imageUrl: require("../assets/img66.jpg") },
+    { id: "3", imageUrl: require("../assets/image1.jpg") },
+    { id: "4", imageUrl: require("../assets/img66.jpg") },
+    { id: "5", imageUrl: require("../assets/img66.jpg") },
+    { id: "6", imageUrl: require("../assets/image1.jpg") },
   ];
-
-
-
 
   return (
     <FlatList
@@ -26,17 +23,16 @@ const Slider = () => {
             source={item.imageUrl}
             style={{
               width: 356,
-              height: 250,
-              marginHorizontal: 20,
+              height: 170,
+              marginHorizontal: 10,
               marginVertical: 15,
-              borderRadius: 10,
-              resizeMode:"cover"
+              borderRadius: 20,
+              resizeMode: "stretch",
             }}
           />
         </TouchableOpacity>
       )}
       keyExtractor={(item) => item.id}
-     
     />
   );
 };

@@ -4,16 +4,12 @@ import {
   TouchableOpacity,
   FlatList,
   StyleSheet,
-  Dimensions,
   Image,
   Text,
 } from "react-native";
 import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
-import {
-  useGetFlashSalesQuery,
-  useGetSkinCareProductsQuery,
-} from "../Redux/Api/ProductsApi";
+import { useGetSkinCareProductsQuery } from "../Redux/Api/ProductsApi";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
 import { useDispatch } from "react-redux";
 import { addFavoriteProduct } from "../Redux/WishListSlice";
@@ -72,7 +68,7 @@ const SkinCares = ({ navigation }) => {
         <Image
           onPress={() => alert(item.imageUrl)}
           source={{ uri: photo }}
-          style={styles.FlashSaleImg}
+          style={styles.SkincareImg}
         />
         <View style={styles.details}>
           <Text style={styles.name}>{truncateName(item.name)}</Text>
@@ -168,11 +164,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 
-  FlashSaleImg: {
+  SkincareImg: {
     width: 115,
     height: 100,
-    textAlign: "center",
-    alignItems: "center",
     alignSelf: "center",
     marginVertical: 5,
     borderRadius: 10,

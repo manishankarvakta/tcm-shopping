@@ -9,8 +9,6 @@ import {
 import React, { useState, useEffect } from "react";
 import { useGetOfferProductsQuery } from "../Screens/Redux/Api/ProductsApi";
 import { PHOTO_URL } from "../Utility/BaseUrl";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../Screens/Redux/CartSlice";
 import { useNavigation } from "@react-navigation/native";
 import Routes from "../Utility/Routes";
 
@@ -42,10 +40,11 @@ const OffersSlider = () => {
               source={{ uri: offerSliderImg }}
               style={{
                 width: 200,
-                height: 200,
+                height: 150,
                 marginHorizontal: 5,
                 marginVertical: 10,
                 borderRadius: 10,
+                resizeMode: "stretch",
               }}
             />
           </TouchableOpacity>

@@ -67,7 +67,7 @@ const SkinCare = () => {
             source={{ uri: `${PHOTO_URL}${item.photo}` }}
             style={{
               width: 95,
-              height: 90,
+              height: 85,
               marginVertical: 8,
               borderRadius: 10,
             }}
@@ -90,7 +90,8 @@ const SkinCare = () => {
               <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
                 <Icon
                   name="shopping-basket-add"
-                  size={21}
+                  size={19}
+                  paddingTop={5}
                   color="tomato"
                   type="fontisto"
                 />
@@ -109,21 +110,21 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "column",
     margin: 5,
-    backgroundColor: "#F5F6FB",
     padding: 10,
     borderRadius: 5,
-    shadowColor: "gray",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 3.84,
-    elevation: 5,
+    backgroundColor: "white",
+
+    //backgroundColor: "#F5F6FB",
+    borderRadius: 5,
+    elevation: 5, // This is for Android shadow
+    shadowColor: "black", // This is for iOS shadow
+    shadowOffset: { width: 0, height: 2 }, // This is for iOS shadow
+    shadowOpacity: 0.25, // This is for iOS shadow
+    shadowRadius: 5,
   },
   heartIcon: {
     position: "absolute",
-    top: 5,
+    top: 5, // Adjust the top value to control the vertical position
     right: 5,
     zIndex: 1,
   },

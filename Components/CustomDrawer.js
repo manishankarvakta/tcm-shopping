@@ -16,7 +16,7 @@ export default function CustomDrawer(props) {
         contentContainerStyle={{ backgroundColor: "#ffff" }}
       >
         <TouchableOpacity
-          onPress={() => navigation.navigate(Routes.PRFILE_STACK)}
+          onPress={() => navigation.navigate(Routes.PRFILE_STACK_DRAWER)}
         >
           <Image
             source={require("../assets/mansurol.jpeg")}

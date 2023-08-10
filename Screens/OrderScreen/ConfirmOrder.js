@@ -7,17 +7,31 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect } from "react";
 import { Icon } from "@rneui/base";
 import { useState } from "react";
 import Routes from "../../Utility/Routes";
 import { useDispatch, useSelector } from "react-redux";
+import { customerInfo } from "../Redux/CartSlice";
 
 export default function ConfirmOrder({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
 
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartReducer);
+  console.log(cartItems);
 
+  const getUser = async () => {
+    // console.log("getUser");
+    const store = await AsyncStorage.getAllKeys();
+    const userData = await AsyncStorage.getItem("user");
+    const user = JSON.parse(userData);
+    dispatch(customerInfo(user.id));
+    console.log("Names", user);
+  };
+
+  getUser();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -50,13 +64,13 @@ export default function ConfirmOrder({ navigation }) {
                 onPress={() => navigation.navigate(Routes.UPDATE_INFORMATION)}
                 style={{
                   borderWidth: 1,
-                  borderColor: "blue",
+                  borderColor: "tomato",
                   borderRadius: 5,
                   paddingVertical: 10,
                   paddingHorizontal: 30,
                 }}
               >
-                <Text style={{ color: "blue" }}>Change</Text>
+                <Text style={{ color: "tomato" }}>Change</Text>
               </TouchableOpacity>
             </View>
           </View>

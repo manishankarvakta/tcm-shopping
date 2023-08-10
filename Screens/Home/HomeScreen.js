@@ -26,18 +26,22 @@ import SkinCare from "../../Components/SkinCare";
 import OffersSlider from "../../Components/OffersSlider";
 import Drinks from "../../Components/Drinks";
 import Oil from "../../Components/Oil";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { customerInfo } from "../Redux/CartSlice";
 
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [cartItemCount, setCartItemCount] = useState("0");
 
+  const dispatch = useDispatch();
+
   const getUser = async () => {
     // console.log("getUser");
     const store = await AsyncStorage.getAllKeys();
     const userData = await AsyncStorage.getItem("user");
-
+    const user = JSON.parse(userData);
+    dispatch(customerInfo(user.id));
     console.log("Names", userData, store);
   };
 
@@ -294,7 +298,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.TitleNameStyle}>Drinks</Text>
             <TouchableOpacity
               style={{ flexDirection: "row" }}
-              onPress={() => navigation.navigate(Routes.DRINKS)}
+              onPress={() => navigation.navigate(Routes.SOFT_DRINKS_TAB)}
             >
               <Text style={styles.ViewMoreStyle}>View More</Text>
               <Icon name="arrowright" type="ant-design" size={20} color="red" />

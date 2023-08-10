@@ -7,25 +7,45 @@ import {
   StyleSheet,
 } from "react-native";
 import { Icon } from "@rneui/base";
+import { Alert } from "react-native";
 
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import Routes from "../../Utility/Routes";
 import { useSelector } from "react-redux";
-import { PHOTO_URL } from "../../Utility/BaseUrl";
+import BASE_URL, { PHOTO_URL } from "../../Utility/BaseUrl";
 import { useAddSaleMutation } from "../Redux/Api/SalesApi";
+import axios from "axios";
 
 export default function ConfirmationProducts({ navigation }) {
+  const [loading, setLoading] = useState(false);
   const cartItems = useSelector((state) => state.cartReducer);
-  const [createNewSale] = useAddSaleMutation();
-  const createSale = () => {
-    // console.log(cartItems);
-    const sale = createNewSale(cartItems);
+  //console.log("cartItems:", cartItems);
 
-    if (sale) {
-      //console.log("success");
-    }
+  const OrderSubmit = async () => {
+    await axios
+      .post(`${BASE_URL}/ecom/sale`, cartItems)
+      .then(async (response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          console.log("Order Successfull");
+        }
+      })
+      .catch(async (error) => {
+        console.log(error);
+      });
   };
+  console.log(OrderSubmit);
+  // // const [createNewSale] = useAddSaleMutation();
+  // // const createSale = () => {
+  // //   console.log(cartItems);
+  // //   const sale = createNewSale(cartItems);
+
+  // //   if (sale) {
+  // //     console.log("success");
+  // //     console.log(sale);
+  // //   }
+  // // };
 
   return (
     <SafeAreaView>
@@ -78,8 +98,8 @@ export default function ConfirmationProducts({ navigation }) {
                 <Text style={styles.TitleStyle}>SubTotal</Text>
                 <Text style={styles.TitleStyle}>Total Discount</Text>
                 <Text style={styles.TitleStyleTwo}>Total Order</Text>
-                <Text style={styles.TitleStyleThree}>Amount Paid</Text>
                 <Text style={styles.TitleStyleThree}>Today point</Text>
+                <Text style={styles.TitleStyleThree}>Total point</Text>
               </View>
 
               <View>
@@ -87,6 +107,7 @@ export default function ConfirmationProducts({ navigation }) {
                 <Text style={styles.TitleStyle}>৳{cartItems.vat}</Text>
                 <Text style={styles.TitleStyle}>৳{cartItems.grossTotal}</Text>
                 <Text style={styles.TitleStyle}>{cartItems.todayPoint}</Text>
+                <Text style={styles.TitleStyle}>{cartItems.Point}</Text>
               </View>
             </View>
 
@@ -109,7 +130,7 @@ export default function ConfirmationProducts({ navigation }) {
             <View style={{ alignSelf: "center" }}>
               <View style={{ marginTop: 20 }}>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate(Routes.ORDER_SUCCESS)}
+                  onPress={OrderSubmit}
                   style={styles.PlaceOrderButton}
                 >
                   <View>

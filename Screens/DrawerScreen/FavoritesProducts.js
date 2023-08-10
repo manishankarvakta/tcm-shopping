@@ -12,7 +12,7 @@ import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
 import { useDispatch, useSelector } from "react-redux";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
-import { addProduct, addWishListProduct } from "../Redux/CartSlice";
+import { addWishListProduct } from "../Redux/CartSlice";
 import { removeProduct } from "../Redux/WishListSlice";
 
 const numColumns = 2;
@@ -55,7 +55,7 @@ const FavoritesProducts = ({ navigation }) => {
               <Icon
                 name="shopping-basket-add"
                 size={21}
-                color="#2EB5AC"
+                color="tomato"
                 type="fontisto"
               />
             </TouchableOpacity>
