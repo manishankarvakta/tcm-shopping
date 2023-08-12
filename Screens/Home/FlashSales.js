@@ -1,29 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Dimensions,
-  Image,
-  Text,
-} from "react-native";
-import { Icon } from "@rneui/base";
-import Routes from "../../Utility/Routes";
+import { View, FlatList } from "react-native";
 import { useGetFlashSalesQuery } from "../Redux/Api/ProductsApi";
-import { PHOTO_URL } from "../../Utility/BaseUrl";
-import { useDispatch } from "react-redux";
-import { addFavoriteProduct } from "../Redux/WishListSlice";
-import { addProduct } from "../Redux/CartSlice";
 import ProductsCardDesign from "../../Components/ProductsCardDesign";
 const numColumns = 2;
 
 const FlashSale = ({ navigation }) => {
-  const { data, isSuccess, isError, refetch, isFetching } =
-    useGetFlashSalesQuery();
+  const { data, isSuccess, refetch, isFetching } = useGetFlashSalesQuery();
   const [FlashSale, setFlashSale] = useState([]);
-  const [favoriteItems, setFavoriteItems] = useState([]);
-  const dispatch = useDispatch();
+
   useEffect(() => {
     data?.length > 0 && setFlashSale(data);
   }, [isSuccess]);

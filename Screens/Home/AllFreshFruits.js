@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, FlatList } from "react-native";
-
 import { useGetProductCategoryIdQuery } from "../Redux/Api/ProductsApi";
 import { useEffect } from "react";
 import ProductsCardDesign from "../../Components/ProductsCardDesign";

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, FlatList } from "react-native";
-
 import { useGetSkinCareProductsQuery } from "../Redux/Api/ProductsApi";
-
 import ProductsCardDesign from "../../Components/ProductsCardDesign";
 const numColumns = 2;
 

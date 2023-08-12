@@ -12,7 +12,6 @@ import Routes from "../../Utility/Routes";
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-
 import { PHOTO_URL } from "../../Utility/BaseUrl";
 import {
   productsQuntityDecrements,

@@ -1,32 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Dimensions,
-  Image,
-  Text,
-} from "react-native";
-import { Icon } from "@rneui/base";
-import Routes from "../../Utility/Routes";
+import { View, FlatList } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
 import { useGetPopularProductsQuery } from "../Redux/Api/ProductsApi";
 const numColumns = 2;
-import { PHOTO_URL } from "../../Utility/BaseUrl";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../Redux/CartSlice";
-import { addFavoriteProduct } from "../Redux/WishListSlice";
+
 import ProductsCardDesign from "../../Components/ProductsCardDesign";
 
 const PopularProducts = () => {
   const navigation = useNavigation();
   const [product, setProduct] = useState([]);
-  const [favoriteItems, setFavoriteItems] = useState([]);
-
   const { data, isSuccess, isError, isFetching, refetch } =
     useGetPopularProductsQuery();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     data?.length > 0 && setProduct(data);

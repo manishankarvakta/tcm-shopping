@@ -23,11 +23,7 @@ const AllBiscuits = ({ navigation }) => {
   const { data, isSuccess, isError, refetch, isFetching } =
     useGetProductCategoryIdQuery("62e8fe11b0757f089ab009e6");
   const [Biscuits, setBiscuits] = useState([]);
-  // const [favoriteItems, setFavoriteItems] = useState([]);
-  const favoriteItems = useSelector((state) => state.WishReducer);
 
-  // console.log(favoriteItems);
-  const dispatch = useDispatch();
   useEffect(() => {
     data?.length > 0 && setBiscuits(data);
   }, [isSuccess]);

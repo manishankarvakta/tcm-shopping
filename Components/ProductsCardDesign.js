@@ -45,7 +45,7 @@ export default function ProductsCardDesign({ item, navigation }) {
         <Icon
           name="heart"
           size={20}
-          color={isItemFavorite(item._id) ? "red" : "gray"}
+          color={isItemFavorite(item) ? "red" : "gray"}
           type="font-awesome"
         />
       </TouchableOpacity>
