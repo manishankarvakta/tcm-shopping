@@ -20,15 +20,14 @@ import axios from "axios";
 export default function ConfirmationProducts({ navigation }) {
   const [loading, setLoading] = useState(false);
   const cartItems = useSelector((state) => state.cartReducer);
-  //console.log("cartItems:", cartItems);
+  console.log("cartItems:", cartItems);
 
   const OrderSubmit = async () => {
     await axios
       .post(`${BASE_URL}/ecom/sale`, cartItems)
       .then(async (response) => {
         if (response.status === 200) {
-          console.log(response.data);
-          console.log("Order Successfull");
+          console.log(response);
         }
       })
       .catch(async (error) => {

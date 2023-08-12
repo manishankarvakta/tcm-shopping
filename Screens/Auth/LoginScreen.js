@@ -72,7 +72,7 @@ const LoginScreen = ({ navigation }) => {
             console.log("storeError:", error);
           } finally {
             // console.log("Login Success");
-            navigation.replace(Routes.HOME_DRAWER);
+            navigation.replace(Routes.HOME);
           }
         }
         const store = await AsyncStorage.getAllKeys();

@@ -5,14 +5,20 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
+import { useUpdateCustomerAddressMutation } from "../Redux/Api/CustomerApi";
 
 const UpdateInformation = () => {
-  const [floorNo, setFloorNo] = useState("");
-  const [apartment, setApartment] = useState("");
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const [holdingNumber, setHoldingNumber] = useState("");
+  const [roadNumber, setRoadNumber] = useState("");
+  const [sector, setSector] = useState("");
+  const [town, setTown] = useState("Uttara");
+  const [city, setCity] = useState("Dhaka");
+  const [zip, setZip] = useState("");
+
+  const [updateCustomerAddress] = useUpdateCustomerAddressMutation();
 
   const handleSave = () => {
     // Here you can implement the logic to save the updated information.
@@ -21,44 +27,49 @@ const UpdateInformation = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Name:</Text>
-      <TextInput style={styles.input} value={name} onChangeText={setName} />
-      <Text style={styles.label}>Floor No:</Text>
-      <TextInput
-        style={styles.input}
-        value={floorNo}
-        onChangeText={setFloorNo}
-        keyboardType="numeric"
-      />
+    <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+      <ScrollView style={styles.container}>
+        <Text style={styles.label}>Holding Number:</Text>
+        <TextInput
+          style={styles.input}
+          value={holdingNumber}
+          onChangeText={setHoldingNumber}
+        />
 
-      <Text style={styles.label}>Apartment:</Text>
-      <TextInput
-        style={styles.input}
-        value={apartment}
-        onChangeText={setApartment}
-      />
+        <Text style={styles.label}>Road Number:</Text>
+        <TextInput
+          style={styles.input}
+          value={roadNumber}
+          onChangeText={setRoadNumber}
+        />
 
-      <Text style={styles.label}>Phone Number:</Text>
-      <TextInput
-        style={styles.input}
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
-        keyboardType="phone-pad"
-      />
+        <Text style={styles.label}>Sector:</Text>
+        <TextInput
+          style={styles.input}
+          value={sector}
+          onChangeText={setSector}
+          keyboardType="numeric"
+        />
 
-      <Text style={styles.label}>Email:</Text>
-      <TextInput
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
+        <Text style={styles.label}>Town:</Text>
+        <TextInput style={styles.input} value={town} onChangeText={setTown} />
 
-      <TouchableOpacity style={styles.button} onPress={handleSave}>
-        <Text style={styles.buttonText}>Save</Text>
-      </TouchableOpacity>
-    </View>
+        <Text style={styles.label}>City:</Text>
+        <TextInput style={styles.input} value={city} onChangeText={setCity} />
+
+        <Text style={styles.label}>Zip:</Text>
+        <TextInput
+          style={styles.input}
+          value={zip}
+          onChangeText={setZip}
+          keyboardType="numeric"
+        />
+
+        <TouchableOpacity style={styles.button} onPress={handleSave}>
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

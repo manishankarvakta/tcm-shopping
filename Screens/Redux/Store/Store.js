@@ -3,12 +3,13 @@ import ProductsApi from "../Api/ProductsApi";
 import SalesApi from "../Api/SalesApi";
 import cartReducer from "../CartSlice";
 import WishReducer from "../WishListSlice";
+import CustomerApi from "../Api/CustomerApi";
 
 const Store = configureStore({
   reducer: {
     [ProductsApi.reducerPath]: ProductsApi.reducer,
     [SalesApi.reducerPath]: SalesApi.reducer,
-
+    [CustomerApi.reducerPath]: CustomerApi.reducer,
     cartReducer,
     WishReducer,
   },
@@ -20,6 +21,7 @@ const Store = configureStore({
       serializableCheck: false,
     })
       .concat(ProductsApi.middleware)
+      .concat(CustomerApi.middleware)
       .concat(SalesApi.middleware),
 });
 

@@ -12,8 +12,19 @@ import React from "react";
 import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState } from "react";
 
 export default function Profile({ navigation }) {
+  const [username, setUsername] = useState();
+  const getUser = async () => {
+    // console.log("getUser");
+    const store = await AsyncStorage.getAllKeys();
+    const userData = await AsyncStorage.getItem("user");
+    const user = JSON.parse(userData);
+    setUsername(user.name);
+    console.log(user);
+  };
+  getUser();
   const logOut = async () => {
     console.log("logout");
     await AsyncStorage.setItem("token", "");
@@ -47,7 +58,7 @@ export default function Profile({ navigation }) {
                 fontWeight: "600",
               }}
             >
-              Mansurol islam
+              {username}
             </Text>
           </View>
 
