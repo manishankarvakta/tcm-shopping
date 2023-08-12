@@ -1,14 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
 
-const ChatsScreen = () => {
+export default function ChatsScreen() {
   return (
     <View>
       <Text>ChatsScreen</Text>
     </View>
   );
-};
-
-export default ChatsScreen;
-
-const styles = StyleSheet.create({});
+}

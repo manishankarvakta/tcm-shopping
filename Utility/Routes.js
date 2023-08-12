@@ -5,9 +5,9 @@ export default {
   REGISTER: "Register",
   FORGOT_PASSWORD: "Forgot Password",
 
-  HOME: "Home",
+  HOME: "Home Screen",
   HOME_TAB: "Home Tab",
-  HOME_DRAWER: "Home",
+  HOME_DRAWER: "Home ",
 
   SERARCH: "Search",
   SERARCH_TAB: "Search Tab",
