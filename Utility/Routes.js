@@ -5,7 +5,7 @@ export default {
   REGISTER: "Register",
   FORGOT_PASSWORD: "Forgot Password",
 
-  HOME: "Home Screen",
+  HOME: "Home",
   HOME_TAB: "Home Tab",
   HOME_DRAWER: "Home ",
 

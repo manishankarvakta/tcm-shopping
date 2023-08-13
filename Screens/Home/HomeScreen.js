@@ -42,7 +42,7 @@ const HomeScreen = ({ navigation }) => {
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
     dispatch(customerInfo(user.id));
-    console.log("Names", userData, store);
+    //console.log("Names", userData, store);
   };
 
   getUser();

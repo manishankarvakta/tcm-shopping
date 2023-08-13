@@ -14,7 +14,7 @@ const cartCalculation = (products) => {
     totalItem = totalItem + item.qty;
   });
   grossTotal = total + vat;
-  console.log("grossTotal", grossTotal);
+  //console.log("grossTotal", grossTotal);
 
   todayPoint = grossTotal / 100;
 

@@ -22,18 +22,18 @@ export default function Profile({ navigation }) {
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
     setUsername(user.name);
-    console.log(user);
+    //console.log(user);
   };
   getUser();
   const logOut = async () => {
-    console.log("logout");
+    //console.log("logout");
     await AsyncStorage.setItem("token", "");
     await AsyncStorage.setItem("user", "");
 
     const name = await AsyncStorage.getItem("user");
     navigation.replace(Routes.LOGIN);
 
-    console.log(name);
+    //console.log(name);
   };
   return (
     <SafeAreaView style={styles.container}>

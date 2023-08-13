@@ -28,14 +28,14 @@ const SearchScreen = () => {
     setSearchResult();
   }, [isSuccess]);
 
-  console.log(isFetching, isLoading, isSuccess, isError, refetch);
+  //console.log(isFetching, isLoading, isSuccess, isError, refetch);
   const handleSearch = (q) => {
     // Perform search based on searchText
     setSearchText(q);
     //console.log('Searching for:', searchText);
   };
 
-  console.log("searchText", searchText);
+  //console.log("searchText", searchText);
 
   return (
     <SafeAreaView>

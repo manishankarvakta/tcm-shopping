@@ -31,7 +31,7 @@ function DrawerNav() {
   return (
     <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen
-        name={Routes.HOME_DRAWER}
+        name={Routes.HOME}
         component={TabNav}
         options={{
           headerShown: false,

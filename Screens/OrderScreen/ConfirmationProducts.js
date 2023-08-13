@@ -20,21 +20,24 @@ import axios from "axios";
 export default function ConfirmationProducts({ navigation }) {
   const [loading, setLoading] = useState(false);
   const cartItems = useSelector((state) => state.cartReducer);
-  console.log("cartItems:", cartItems);
+  //console.log("cartItems:", cartItems);
 
   const OrderSubmit = async () => {
     await axios
       .post(`${BASE_URL}/ecom/sale`, cartItems)
       .then(async (response) => {
+        console.log("response :", response.data);
+
         if (response.status === 200) {
-          console.log(response);
+          // Do something upon successful response
         }
       })
       .catch(async (error) => {
         console.log(error);
+        // Handle the error (e.g., show an error message to the user)
       });
   };
-  console.log(OrderSubmit);
+
   // // const [createNewSale] = useAddSaleMutation();
   // // const createSale = () => {
   // //   console.log(cartItems);
@@ -52,38 +55,16 @@ export default function ConfirmationProducts({ navigation }) {
         <View style={styles.OrderConfirmantionSectionStye}>
           <View>
             <Text style={styles.ConfirmationText}>Confirmation</Text>
-            <Text style={styles.OrderNumberText}>Order number #11880922</Text>
+            <Text>
+              Order number{" "}
+              <Text style={styles.OrderNumberText}>#{cartItems.billerId}</Text>
+            </Text>
 
             <Text>
               Your order is currrently {"\n"}
               confirmed as{" "}
-              <Text style={{ color: "gray" }}>Cash on {"\n"}Delivery.</Text>You
-              can also{" "}
-              <Text style={{ color: "green", fontWeight: "600", fontSize: 15 }}>
-                Pay {"\n"}Now{" "}
-              </Text>
-              by choosing one of the {"\n"}following payment options.
+              <Text style={{ color: "gray" }}>Cash on {"\n"}Delivery.</Text>
             </Text>
-          </View>
-        </View>
-
-        <View style={styles.PaymentSectionStyle}>
-          <View style={styles.PaymentOptionText}>
-            <Text style={{ fontSize: 20, fontWeight: "700" }}>
-              Payment Options
-            </Text>
-          </View>
-
-          <View>
-            <TouchableOpacity style={styles.PaymentOptionStyle}>
-              <View style={{ marginVertical: 5 }}>
-                <View>
-                  <Text style={styles.PaymentOptionTextStyle}>
-                    Cash On Delivery
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
           </View>
         </View>
 
@@ -121,6 +102,25 @@ export default function ConfirmationProducts({ navigation }) {
               <Text style={styles.TitleStyleFour}>Deu</Text>
               <Text style={styles.TitleStyleFour}>৳{cartItems.grossTotal}</Text>
             </View>
+          </View>
+        </View>
+        <View style={styles.PaymentSectionStyle}>
+          <View style={styles.PaymentOptionText}>
+            <Text style={{ fontSize: 20, fontWeight: "700" }}>
+              Payment Options
+            </Text>
+          </View>
+
+          <View>
+            <TouchableOpacity style={styles.PaymentOptionStyle}>
+              <View style={{ marginVertical: 5 }}>
+                <View>
+                  <Text style={styles.PaymentOptionTextStyle}>
+                    Cash On Delivery
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -237,8 +237,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   OrderNumberText: {
-    color: "gray",
-    fontWeight: "700",
+    color: "black",
+    fontWeight: "800",
     fontSize: 14,
     paddingVertical: 12,
   },

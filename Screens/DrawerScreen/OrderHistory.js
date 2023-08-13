@@ -9,6 +9,10 @@ import {
 import React from "react";
 import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
+import axios from "axios";
+import BASE_URL from "../../Utility/BaseUrl";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const orderHistoryData = [
   {
@@ -67,6 +71,24 @@ const RenderData = ({ item, navigation }) => {
 };
 
 export default function OrderHistory({ navigation }) {
+  const [orderHistoryData, setOrderHistoryData] = useState([]);
+
+  useEffect(() => {
+    const cId = "64d3677bc23a8c033e44d471"; // Replace with the actual customer ID
+    const apiUrl = `${BASE_URL}/ecom/sale/${cId}`;
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        const data = response.data;
+        // console.log(data);
+        setOrderHistoryData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching order history data:", error);
+      });
+  }, []);
+
   const renderItem = ({ item }) => (
     <RenderData item={item} navigation={navigation} />
   );

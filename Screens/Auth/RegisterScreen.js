@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BASE_URL from "../../Utility/BaseUrl";
+import Routes from "../../Utility/Routes";
 
 const RegisterScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ const RegisterScreen = ({ navigation }) => {
               JSON.stringify(response.data.user)
             );
             setLoading(false);
-            navigation.replace("Home");
+            navigation.replace(Routes.LOGIN);
           } catch (error) {
             Alert.alert("Registration Failed! Please try again.");
             setLoading(false);

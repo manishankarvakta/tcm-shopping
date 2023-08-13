@@ -37,26 +37,26 @@ const LoginScreen = ({ navigation }) => {
     getUser();
     AsyncStorage.getItem("token").then((value) => {
       if (value !== null) {
-        navigation.navigate(Routes.HOME_DRAWER);
+        navigation.navigate(Routes.HOME);
       }
     });
     //console.log(loading);
   }, [loading]);
 
   const submitLogin = async () => {
-    console.log(userId, pass);
+    //console.log(userId, pass);
     setLoading(true);
     // navigation.replace("Home");
 
     // AXIOS LOGIN REQUEST
-    console.log(`${BASE_URL}/ecom/customer/login`);
+    //console.log(`${BASE_URL}/ecom/customer/login`);
     await axios
       .post(`${BASE_URL}/ecom/customer/login`, {
         phone: userId,
         password: pass,
       })
       .then(async (response) => {
-        console.log(response.status);
+        // console.log(response.status);
         if (response.status === 200) {
           // console.log(response.data.access_token);
 
@@ -69,10 +69,9 @@ const LoginScreen = ({ navigation }) => {
           } catch (error) {
             Alert.alert("Login Faild! Please try again.");
             setLoading(false);
-            console.log("storeError:", error);
+            // console.log("storeError:", error);
           } finally {
             // console.log("Login Success");
-            navigation.replace(Routes.HOME);
           }
         }
         const store = await AsyncStorage.getAllKeys();

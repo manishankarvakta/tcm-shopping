@@ -20,7 +20,7 @@ export default function ConfirmOrder({ navigation }) {
 
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartReducer);
-  console.log(cartItems);
+  // console.log(cartItems);
 
   const getUser = async () => {
     // console.log("getUser");
@@ -28,7 +28,7 @@ export default function ConfirmOrder({ navigation }) {
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
     dispatch(customerInfo(user.id));
-    console.log("Names", user);
+    // console.log("Names", user);
   };
 
   getUser();

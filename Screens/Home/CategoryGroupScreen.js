@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   TouchableOpacity,
   FlatList,
   StyleSheet,
-  Dimensions,
   Image,
   Text,
   SafeAreaView,
@@ -15,8 +14,18 @@ import { useNavigation } from "@react-navigation/native";
 const numColumns = 2;
 
 const mcData = [
-  { option: "food", label: "Food" },
-  { option: "personalCare", label: "Personal Care" },
+  {
+    option: "food",
+    label: "Food",
+    image: require("../../assets/Combo-02.png"),
+    backgroundColor: "#75BEDD",
+  },
+  {
+    option: "personalCare",
+    label: "Personal Care",
+    image: require("../../assets/Combo-01.png"),
+    backgroundColor: "#639AAD",
+  },
   { option: "hygiene", label: "Hygiene" },
   { option: "beauty", label: "Beauty & Health" },
   { option: "babyCare", label: "Baby Care" },
@@ -31,7 +40,7 @@ export default function CategoryGroupScreen() {
   const navigation = useNavigation();
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.cardTwo}>
+      <View style={[styles.cardTwo, { backgroundColor: item.backgroundColor }]}>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate(Routes.CATEGORY_SCREEN, { group: item.option })
@@ -63,29 +72,31 @@ export default function CategoryGroupScreen() {
 
 const styles = StyleSheet.create({
   cardTwo: {
+    flex: 1,
     marginVertical: 3,
     marginHorizontal: 3,
     backgroundColor: "#F5F6FB",
-    padding: 5,
     borderRadius: 10,
     shadowColor: "gray",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    width: "48.4%",
+
+    marginTop: 5,
+    marginRight: 7,
     shadowOpacity: 0.5,
     shadowRadius: 3.84,
   },
   image: {
     width: 90,
     height: 80,
+    borderRadius: 10,
+    marginTop: 10,
   },
   imageContainer: {
-    justifyContent: "flex-end",
     alignItems: "flex-end",
-    alignSelf: "flex-end",
-    width: "45%",
+    width: "42%",
   },
   CategoryGroupScreenStyle: {
     flexDirection: "row",
@@ -94,9 +105,9 @@ const styles = StyleSheet.create({
   CategoryGroupNameStyle: {
     alignSelf: "center",
     marginLeft: 10,
-    width: "55%",
+    width: "43%",
     fontWeight: "700",
     fontSize: 15,
-    color: "#5E6D75",
+    color: "white",
   },
 });
