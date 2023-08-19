@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const getUser = async () => {
-    // console.log("getUser");
+    //console.log("getUser");
     const store = await AsyncStorage.getAllKeys();
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);

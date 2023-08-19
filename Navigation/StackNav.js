@@ -21,6 +21,8 @@ import ProfileStack from "./ProfileStack";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import UpdateInformation from "../Screens/Profile/UpdateInformation";
 import EarnReward from "../Screens/DrawerScreen/EarnReward";
+import DrawerNav from "./DrawerNav";
+import ManageAddress from "../Screens/Profile/ManageAddress";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -90,6 +92,11 @@ const StackNav = () => {
       <Stack.Screen
         name={Routes.UPDATE_INFORMATION}
         component={UpdateInformation}
+      />
+      <Stack.Screen
+        name={Routes.MANAGE_ADDRESS}
+        component={ManageAddress}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

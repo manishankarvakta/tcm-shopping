@@ -3,6 +3,7 @@ import ProductsApi from "../Api/ProductsApi";
 import SalesApi from "../Api/SalesApi";
 import cartReducer from "../CartSlice";
 import WishReducer from "../WishListSlice";
+import CustomerReducer from "../CustomerSlice";
 import CustomerApi from "../Api/CustomerApi";
 
 const Store = configureStore({
@@ -12,6 +13,7 @@ const Store = configureStore({
     [CustomerApi.reducerPath]: CustomerApi.reducer,
     cartReducer,
     WishReducer,
+    CustomerReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -21,8 +23,8 @@ const Store = configureStore({
       serializableCheck: false,
     })
       .concat(ProductsApi.middleware)
-      .concat(CustomerApi.middleware)
-      .concat(SalesApi.middleware),
+      .concat(SalesApi.middleware)
+      .concat(CustomerApi.middleware),
 });
 
 export default Store;

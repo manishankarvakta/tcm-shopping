@@ -7,10 +7,14 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useUpdateCustomerAddressMutation } from "../Redux/Api/CustomerApi";
+import Routes from "../../Utility/Routes";
+import { useDispatch } from "react-redux";
+import { updateAddresss } from "../Redux/CustomerSlice";
 
-const UpdateInformation = () => {
+const UpdateInformation = ({ navigation }) => {
   const [holdingNumber, setHoldingNumber] = useState("");
   const [roadNumber, setRoadNumber] = useState("");
   const [sector, setSector] = useState("");
@@ -20,10 +24,27 @@ const UpdateInformation = () => {
 
   const [updateCustomerAddress] = useUpdateCustomerAddressMutation();
 
-  const handleSave = () => {
-    // Here you can implement the logic to save the updated information.
-    // You can perform validation and other necessary actions before saving.
-    // Don't forget to call the appropriate backend API to save the data.
+  const handleSave = async () => {
+    try {
+      const updatedAddress = {
+        holdingNumber,
+        roadNumber,
+        sector,
+        town,
+        city,
+        zip,
+      };
+
+      const response = await updateCustomerAddress(updatedAddress);
+      if (response.data) {
+        // Navigating to ManageAddress
+        navigation.navigate(Routes.MANAGE_ADDRESS, { updatedAddress });
+        Alert.alert("Address updated successfully");
+      }
+    } catch (error) {
+      // Handle error, e.g., show an error message
+      console.error("Error updating address:", error);
+    }
   };
 
   return (

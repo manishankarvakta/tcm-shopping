@@ -72,7 +72,7 @@ const RenderData = ({ item, navigation }) => {
 
 export default function OrderHistory({ navigation }) {
   const [orderHistoryData, setOrderHistoryData] = useState([]);
-
+  //console.log("orderHistoryData:", orderHistoryData);
   useEffect(() => {
     const cId = "64d3677bc23a8c033e44d471"; // Replace with the actual customer ID
     const apiUrl = `${BASE_URL}/ecom/sale/${cId}`;
@@ -81,7 +81,7 @@ export default function OrderHistory({ navigation }) {
       .get(apiUrl)
       .then((response) => {
         const data = response.data;
-        // console.log(data);
+        console.log("data:", data);
         setOrderHistoryData(data);
       })
       .catch((error) => {
@@ -95,7 +95,7 @@ export default function OrderHistory({ navigation }) {
   return (
     <SafeAreaView>
       <FlatList
-        data={orderHistoryData}
+        data={orderHistoryData.data}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />

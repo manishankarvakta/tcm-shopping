@@ -7,6 +7,9 @@ export const CustomerApi = createApi({
   tagTypes: ["Customer"],
 
   endpoints: (builder) => ({
+    customer: builder.query({
+      query: (id) => `/ecom/customer/${id}`,
+    }),
     updateCustomerAddress: builder.mutation({
       query: ({ _id, ...rest }) => ({
         url: `/ecom/customer/address/${_id}`,
@@ -18,6 +21,7 @@ export const CustomerApi = createApi({
   }),
 });
 
-export const { useUpdateCustomerAddressMutation } = CustomerApi;
+export const { useCustomerQuery, useUpdateCustomerAddressMutation } =
+  CustomerApi;
 
 export default CustomerApi;

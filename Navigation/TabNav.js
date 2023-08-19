@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Home, Category, Search, Chats, CategoryGroup } from "../Screens";
 import StackNav from "./StackNav";
 import CategoryStackNav from "./CategoryStackNav";
+import DrawerNav from "./DrawerNav";
 
 const TabNav = () => {
   const Tab = createBottomTabNavigator();

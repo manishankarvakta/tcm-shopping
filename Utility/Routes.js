@@ -98,6 +98,7 @@ export default {
   PROFILE: "Profile",
   PRFILE_STACK_DRAWER: "Profile stack",
   MANAGE_ADDRESS: "Manage Address",
+  MANAGE_ADDRESS_STACK: "Address",
   SETTINGS: "Settings",
   NOTIFICATIONS_SETTINGS: "Notification Settings",
   CHANGE_PASSWORD: "Change password",

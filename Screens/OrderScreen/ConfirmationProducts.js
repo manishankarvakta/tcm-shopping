@@ -21,21 +21,24 @@ export default function ConfirmationProducts({ navigation }) {
   const [loading, setLoading] = useState(false);
   const cartItems = useSelector((state) => state.cartReducer);
   //console.log("cartItems:", cartItems);
-
   const OrderSubmit = async () => {
-    await axios
-      .post(`${BASE_URL}/ecom/sale`, cartItems)
-      .then(async (response) => {
-        console.log("response :", response.data);
+    if (cartItems.products.length > 0) {
+      await axios
+        .post(`${BASE_URL}/ecom/sale`, cartItems)
+        .then(async (response) => {
+          console.log("response :", response.data);
 
-        if (response.status === 200) {
-          // Do something upon successful response
-        }
-      })
-      .catch(async (error) => {
-        console.log(error);
-        // Handle the error (e.g., show an error message to the user)
-      });
+          if (response.status === 200) {
+            // Do something upon successful response
+          }
+        })
+        .catch(async (error) => {
+          console.log("error :", error);
+          // Handle the error (e.g., show an error message to the user)
+        });
+    } else {
+      Alert.alert("Please select that order product more then one ");
+    }
   };
 
   // // const [createNewSale] = useAddSaleMutation();
