@@ -28,6 +28,7 @@ import Drinks from "../../Components/Drinks";
 import Oil from "../../Components/Oil";
 import { useDispatch, useSelector } from "react-redux";
 import { customerInfo } from "../Redux/CartSlice";
+import TopCategorysTwo from "../../Components/TopCategorysTwo";
 
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
@@ -215,6 +216,9 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View>
+        <View>
+          <TopCategorysTwo />
+        </View>
         <View style={styles.row}>
           <TopCategorys />
         </View>
@@ -413,7 +417,6 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",
-    padding: 10,
   },
   cardImgStyle: {
     width: 170,

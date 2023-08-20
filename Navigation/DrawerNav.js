@@ -16,6 +16,8 @@ import FavoriteProductsStack from "./FavoriteProductsStack";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Home } from "../Screens";
+import HomeScreen from "../Screens/Home/HomeScreen";
 
 const Drawer = createDrawerNavigator();
 

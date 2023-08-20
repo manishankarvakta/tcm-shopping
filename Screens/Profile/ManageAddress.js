@@ -15,14 +15,11 @@ import Routes from "../../Utility/Routes";
 import { useSelector } from "react-redux";
 import { useCustomerQuery } from "../Redux/Api/CustomerApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 import { useState } from "react";
-import { Button } from "react-native-elements";
 
 export default function ManageAddress({ navigation }) {
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
-  const { data, isSuccess } = useCustomerQuery(userId);
   const [isModalVisible, setModalVisible] = useState(false);
   const [userAddress, setUserAddress] = useState();
 
@@ -34,7 +31,7 @@ export default function ManageAddress({ navigation }) {
   const [city, setCity] = useState("Dhaka");
   const [zip, setZip] = useState("");
 
-  console.log("userData", userData);
+  const { data, isSuccess } = useCustomerQuery(userId);
   useEffect(() => {
     setUserData(data);
   }, [isSuccess, data]);
@@ -115,8 +112,8 @@ export default function ManageAddress({ navigation }) {
           </View>
         </View>
 
-        <TouchableOpacity>
-          <Text style={{ color: "#C38FEE" }}>VIEW</Text>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <Text style={{ color: "#C38FEE" }}>Edit</Text>
         </TouchableOpacity>
       </View>
     );
@@ -129,8 +126,17 @@ export default function ManageAddress({ navigation }) {
         visible={isModalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
+        <TouchableOpacity
+          onPress={() => setModalVisible(false)}
+          style={styles.closeIconContainer}
+        >
+          <View style={styles.closeIconCircle}>
+            <Icon type="antdesign" name="close" size={24} color="red" />
+          </View>
+        </TouchableOpacity>
+
         <KeyboardAvoidingView behavior="padding" style={styles.modalContainer}>
-          <Text style={styles.modalTitle}>Add New Address</Text>
+          <Text style={styles.modalTitle}>New Address</Text>
           <TextInput
             placeholder=""
             style={styles.input}
@@ -173,14 +179,17 @@ export default function ManageAddress({ navigation }) {
             value={zip}
             onChangeText={setZip}
           />
-          {/* Add more input fields as needed */}
-          <View style={{ flexDirection: "row", margin: 5 }}>
-            <Button title="Submit" onPress={handleAddAddress} />
-            <Button
-              style={{ marginHorizontal: 5 }}
-              title="Cancel"
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => setModalVisible(false)}
-            />
+            >
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleAddAddress}>
+              <Text style={styles.buttonText}>Add</Text>
+            </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </Modal>
@@ -233,8 +242,44 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "gray",
     borderWidth: 1,
-    marginBottom: 10,
+    marginBottom: 15,
     paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  button: {
+    width: "25%",
+    height: 40,
+    backgroundColor: "tomato",
+    padding: 10,
+    borderRadius: 5,
+    alignItems: "center",
+    marginHorizontal: 80,
+  },
+
+  closeIconContainer: {
+    position: "absolute",
+    top: 35,
+    right: 20,
+    zIndex: 1,
+  },
+  closeIconCircle: {
+    width: 28,
+    height: 28,
+    backgroundColor: "white",
+    borderRadius: 18,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "red",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    alignItems: "center", // Center the buttons vertically
+    marginHorizontal: 15,
   },
 
   ChangeInfo: {

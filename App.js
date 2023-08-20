@@ -8,20 +8,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import Store, { store } from "./Screens/Redux/Store/Store";
 import DrawerNav from "./Navigation/DrawerNav";
-import Profile from "./Screens/Profile/Profile";
-import PersonalInfo from "./Screens/Profile/PersonalInfo";
-import ProfileStack from "./Navigation/ProfileStack";
-import ConfirmOrder from "./Screens/OrderScreen/ConfirmOrder";
-import ManageAddress from "./Screens/Profile/ManageAddress";
-import Settings from "./Screens/Profile/Settings";
-import NotificationSettings from "./Screens/Profile/NotificationSettings";
-import ChangePassword from "./Screens/Profile/ChangePassword";
-import DeleteAccount from "./Screens/Profile/DeleteAccount";
-import UpdateInformation from "./Screens/Profile/UpdateInformation";
-import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
-import { Login } from "./Screens";
 import TabNav from "./Navigation/TabNav";
 import StackNav from "./Navigation/StackNav";
+import HomeScreen from "./Screens/Home/HomeScreen";
+import TopCategorysTwo from "./Components/TopCategorysTwo";
+import TopCategorys from "./Components/TopCategorys";
 
 export default function App() {
   const [token, setToken] = useState(false);
@@ -48,8 +39,7 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <DrawerNav />
-        {/* {token ? <DrawerNav /> : <AuthStackNav />} */}
+        {token ? <DrawerNav /> : <AuthStackNav />}
       </NavigationContainer>
     </Provider>
   );
