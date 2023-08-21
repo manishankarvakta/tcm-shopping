@@ -39,7 +39,8 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        {token ? <DrawerNav /> : <AuthStackNav />}
+        <DrawerNav />
+        {/* {token ? <TabNav /> : <AuthStackNav />} */}
       </NavigationContainer>
     </Provider>
   );

@@ -9,7 +9,6 @@ import Settings from "../Screens/Profile/Settings";
 import NotificationSettings from "../Screens/Profile/NotificationSettings";
 import ChangePassword from "../Screens/Profile/ChangePassword";
 import DeleteAccount from "../Screens/Profile/DeleteAccount";
-import UpdateInformation from "../Screens/Profile/UpdateInformation";
 
 const Stack = createStackNavigator();
 

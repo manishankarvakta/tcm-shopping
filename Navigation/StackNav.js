@@ -51,8 +51,9 @@ const StackNav = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name={Routes.FRESH_VEGETABLES}
+        name={Routes.FRESH_VEGETABLES_TAB}
         component={VegetablesProductStack}
+        options={{ headerShown: false }}
       />
       <Stack.Screen name={Routes.All_BISCUITS} component={BiscuitsStack} />
       <Stack.Screen name={Routes.SOFT_DRINKS_TAB} component={DrinksStack} />

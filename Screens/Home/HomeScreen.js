@@ -268,7 +268,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.TitleNameStyle}>Fresh Vegetables</Text>
             <TouchableOpacity
               style={{ flexDirection: "row" }}
-              onPress={() => navigation.navigate(Routes.FRESH_VEGETABLES)}
+              onPress={() => navigation.navigate(Routes.FRESH_VEGETABLES_TAB)}
             >
               <Text style={styles.ViewMoreStyle}>View More</Text>
               <Icon name="arrowright" type="ant-design" size={20} color="red" />
