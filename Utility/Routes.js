@@ -35,9 +35,10 @@ export default {
   FLASHSALE_Drawer: "Flash Sales ",
 
   FRESH_VEGETABLES_TAB: "Vegetables",
+  All_BISCUITS_TAB: "Biscuits",
   All_BISCUITS: "Biscuits",
 
-  DRINKS: " All Drinks",
+  DRINK: "Drinks",
   SOFT_DRINKS_TAB: "Drinks",
 
   FRESH_FOOD: "Fresh food",
@@ -105,4 +106,6 @@ export default {
   DELETE_ACCOUNT: "Delete My Account",
 
   UPDATE_INFORMATION: "Update Information",
+
+  ORDER_ADDRESS: "Order Address",
 };

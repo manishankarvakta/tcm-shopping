@@ -11,8 +11,6 @@ import {
   Alert,
 } from "react-native";
 import React, { useEffect } from "react";
-import Routes from "../../Utility/Routes";
-import { useSelector } from "react-redux";
 import {
   useCustomerQuery,
   useUpdateCustomerAddressMutation,
@@ -21,13 +19,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-export default function ManageAddress({ navigation }) {
+export default function OrderScreenAddress() {
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   const [isModalVisible, setModalVisible] = useState(false);
   const [userAddress, setUserAddress] = useState();
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState("");
 
   const [type, setType] = useState("Home");
   const [holdingNumber, setHoldingNumber] = useState("");
@@ -67,12 +63,7 @@ export default function ManageAddress({ navigation }) {
     getUser();
   }, []);
 
-  // console.log("data:", userData);
-
-  // console.log("loggedinCustomer:", loggedinCustomer);
-
   useEffect(() => {
-    // const userAddress = userData?.address;
     setUserAddress(userData?.address);
   }, [userData]);
 
@@ -91,10 +82,6 @@ export default function ManageAddress({ navigation }) {
       address: [...userAddress, updatedAddress],
     });
 
-    // const updatedAddresses = userAddress.map((item, index) =>
-    //   index === item.index ? updatedAddress : item
-    // );
-
     setUserAddress(updatedAddress);
 
     // console.log("updateAddress:", userData);
@@ -112,67 +99,10 @@ export default function ManageAddress({ navigation }) {
     }
   };
 
-  const AddressDelete = (item, index) => {
-    // console.log(index);
-    const updatedAddresses = [...userData.address];
-    updatedAddresses.splice(index, 1); // Remove the address at the given index
-    setUserData({
-      ...userData,
-      address: updatedAddresses,
-    });
-  };
-
-  const handleEdit = (item, index) => {
-    // console.log("index", index);
-    setCurrentIndex(index);
-    setIsUpdate(true);
-    setType(item.type);
-    setHoldingNumber(item.holdingNumber);
-    setRoadNumber(item.roadNumber);
-    setSector(item.sector);
-    setTown(item.town);
-    setCity(item.city);
-    setZip(item.zip);
-    setModalVisible(true);
-  };
-
-  const handleUpdate = () => {
-    const updatedAddress = {
-      type,
-      holdingNumber,
-      roadNumber,
-      sector,
-      town,
-      city,
-      zip,
-    };
-    console.log("new", updatedAddress);
-
-    let allAddress = [...userData.address];
-
-    allAddress[currentIndex] = updatedAddress;
-
-    console.log("allAddress", allAddress);
-
-    setUserData({
-      ...userData,
-      address: allAddress,
-    });
-
-    setCurrentIndex("");
-    setIsUpdate(false);
-    setModalVisible(false);
-  };
-
-  const handdleNew = () => {
-    setIsUpdate(false);
-    setModalVisible(true);
-  };
-
-  const AddressCard = (item, index) => {
+  const AddressCard = (item) => {
     // console.log("item:", item);
     return (
-      <View>
+      <TouchableOpacity style={{ marginTop: 10 }}>
         <View style={styles.AddressDetails}>
           <View style={{ flexDirection: "row" }}>
             <View>
@@ -207,29 +137,12 @@ export default function ManageAddress({ navigation }) {
               </View>
             </View>
           </View>
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity onPress={() => handleEdit(item, index)}>
-              <Text
-                style={{
-                  color: "blue",
-                  fontWeight: "500",
-                  fontSize: 16,
-                  marginRight: 20,
-                }}
-              >
-                Edit
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => AddressDelete(item, index)}>
-              <Icon name="trash-o" size={20} color="tomato" />
-            </TouchableOpacity>
-          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "white" }}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -246,11 +159,8 @@ export default function ManageAddress({ navigation }) {
         </TouchableOpacity>
 
         <KeyboardAvoidingView behavior="padding" style={styles.modalContainer}>
-          {isUpdate ? (
-            <Text style={styles.modalTitle}>Update Address</Text>
-          ) : (
-            <Text style={styles.modalTitle}>New Address</Text>
-          )}
+          <Text style={styles.modalTitle}>New Address</Text>
+
           <TextInput
             placeholder=""
             style={styles.input}
@@ -301,43 +211,27 @@ export default function ManageAddress({ navigation }) {
             >
               <Text style={styles.buttonText}>Cancel</Text>
             </TouchableOpacity>
-            {isUpdate ? (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => handleUpdate()}
-              >
-                <Text style={styles.buttonText}>Update</Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => handleAddAddress()}
-              >
-                <Text style={styles.buttonText}>Add</Text>
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleAddAddress()}
+            >
+              <Text style={styles.buttonText}>Add</Text>
+            </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </Modal>
-
-      <TouchableOpacity
-        style={{ flexDirection: "row", paddingVertical: 10, marginLeft: 7 }}
-        onPress={() => handdleNew()}
-      >
-        <Text>
-          <Icon type="antdesign" name="plus" size={17} color="#C38FEE" />
-        </Text>
-
-        <Text style={{ fontWeight: "700", color: "#C38FEE" }}>Add New</Text>
-      </TouchableOpacity>
 
       <FlatList
         data={userData?.address}
         renderItem={({ item, index }) => AddressCard(item, index)}
         keyExtractor={(item) => item.index}
       />
-      <TouchableOpacity style={styles.buttonStyle} onPress={AddressSave}>
-        <Text style={styles.buttonText}>Save</Text>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={() => setModalVisible(true)}
+      >
+        <Icon name="plus" size={20} color="white" style={{ marginRight: 5 }} />
+        <Text style={styles.buttonText}>Add New</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -353,7 +247,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderWidth: 1,
     borderColor: "white",
-    backgroundColor: "white",
+    backgroundColor: "#ECEDE8",
     marginVertical: 5,
   },
   modalContainer: {
@@ -424,5 +318,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 10,
     marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });

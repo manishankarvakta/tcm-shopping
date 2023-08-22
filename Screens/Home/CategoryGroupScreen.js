@@ -23,22 +23,57 @@ const mcData = [
   {
     option: "personalCare",
     label: "Personal Care",
-    // image: require("../../assets/Combo-01.png"),
+    image: require("../../assets/Foods.png"),
     backgroundColor: "#639AAD",
   },
-  { option: "hygiene", label: "Hygiene" },
-  { option: "beauty", label: "Beauty & Health" },
+  {
+    option: "hygiene",
+    label: "Hygiene",
+    backgroundColor: "#6A6091",
+    image: require("../../assets/Foods.png"),
+  },
+  {
+    option: "beauty",
+    label: "Beauty & Health",
+    backgroundColor: "#316359",
+    image: require("../../assets/Foods.png"),
+  },
   {
     option: "babyCare",
     label: "Baby Care",
     image: require("../../assets/Baby-Care.png"),
     backgroundColor: "#639AAD",
   },
-  { option: "clean", label: "Clean & Supplies" },
-  { option: "home", label: "Home & Kitchen" },
-  { option: "stationeries", label: "Stationeries" },
-  { option: "toys", label: "Toys" },
-  { option: "lifeStyle", label: "Life Style" },
+  {
+    option: "clean",
+    label: "Clean & Supplies",
+    backgroundColor: "#73C991",
+    image: require("../../assets/Foods.png"),
+  },
+  {
+    option: "home",
+    label: "Home & Kitchen",
+    backgroundColor: "#2DC1BA",
+    image: require("../../assets/Foods.png"),
+  },
+  {
+    option: "stationeries",
+    label: "Stationeries",
+    backgroundColor: "#071B53",
+    image: require("../../assets/Foods.png"),
+  },
+  {
+    option: "toys",
+    label: "Toys",
+    backgroundColor: "#15385E",
+    image: require("../../assets/Foods.png"),
+  },
+  {
+    option: "lifeStyle",
+    label: "Life Style",
+    backgroundColor: "#35CABD",
+    image: require("../../assets/Foods.png"),
+  },
 ];
 
 export default function CategoryGroupScreen() {
@@ -62,7 +97,7 @@ export default function CategoryGroupScreen() {
   };
 
   return (
-    <SafeAreaView style={{ marginHorizontal: 10, marginTop: 10 }}>
+    <SafeAreaView style={{ marginHorizontal: 10, marginTop: 10, flex: 1 }}>
       <View style={styles.container}>
         <FlatList
           data={mcData}
@@ -78,7 +113,7 @@ export default function CategoryGroupScreen() {
 const styles = StyleSheet.create({
   cardTwo: {
     flex: 1,
-    marginVertical: 3,
+    marginVertical: 8,
     marginHorizontal: 3,
     backgroundColor: "#F5F6FB",
     borderRadius: 10,

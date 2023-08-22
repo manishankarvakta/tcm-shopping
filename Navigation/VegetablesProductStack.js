@@ -2,8 +2,8 @@ import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen"
 import { createStackNavigator } from "@react-navigation/stack";
 import Routes from "../Utility/Routes";
 import { Ionicons } from "@expo/vector-icons";
-import FreshVegetables from "../Screens/Home/FreshVegetables";
 import { TouchableOpacity } from "react-native";
+import FreshVegetables from "../Screens/Home/FreshVegetables";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +17,9 @@ export default function VegetablesProductStack({ navigation }) {
         name={Routes.FRESH_VEGETABLES_TAB}
         component={FreshVegetables}
         options={{
+          drawerIcon: ({ color, size }) => (
+            <Icon name="coins" size={20} color="tomato" type="font-awesome-5" />
+          ),
           headerStyle: {
             borderBottomWidth: 0,
           },
@@ -38,15 +41,11 @@ export default function VegetablesProductStack({ navigation }) {
         name={Routes.Tt}
         component={SingleProductsDetailsScreen}
         options={{
-          headerShown: false,
-
           headerStyle: {
             borderBottomWidth: 0,
           },
 
           headerBackTitle: "BACK",
-
-          headerTitle: "",
         }}
       />
     </Stack.Navigator>

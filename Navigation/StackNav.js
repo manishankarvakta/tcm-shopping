@@ -23,6 +23,7 @@ import UpdateInformation from "../Screens/Profile/UpdateInformation";
 import EarnReward from "../Screens/DrawerScreen/EarnReward";
 import DrawerNav from "./DrawerNav";
 import ManageAddress from "../Screens/Profile/ManageAddress";
+import OrderScreenAddress from "../Screens/OrderScreen/OrderScreenAddress";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
@@ -55,8 +56,16 @@ const StackNav = () => {
         component={VegetablesProductStack}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name={Routes.All_BISCUITS} component={BiscuitsStack} />
-      <Stack.Screen name={Routes.SOFT_DRINKS_TAB} component={DrinksStack} />
+      <Stack.Screen
+        name={Routes.All_BISCUITS_TAB}
+        component={BiscuitsStack}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={Routes.SOFT_DRINKS_TAB}
+        component={DrinksStack}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name={Routes.FRESH_FOOD_TAB}
         component={FreshFruitsStack}
@@ -98,6 +107,11 @@ const StackNav = () => {
         name={Routes.MANAGE_ADDRESS}
         component={ManageAddress}
         options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name={Routes.ORDER_ADDRESS}
+        component={OrderScreenAddress}
       />
     </Stack.Navigator>
   );

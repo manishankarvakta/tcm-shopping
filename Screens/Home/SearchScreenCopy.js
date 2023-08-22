@@ -12,6 +12,30 @@ import { useGetSearchProductQuery } from "../Redux/Api/ProductsApi";
 
 const SearchScreen = () => {
   const [searchText, setSearchText] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  //console.log(searchResult);
+  const { data, isSuccess, isError, isFetching, isLoading, refetch } =
+    useGetSearchProductQuery(searchText);
+  // const cart = useSelector(state => state.cartReducer)
+
+  useEffect(() => {
+    refetch();
+  }, [searchText]);
+
+  useEffect(() => {
+    setSearchResult(data?.data || []);
+
+    setSearchResult();
+  }, [isSuccess]);
+
+  //console.log(isFetching, isLoading, isSuccess, isError, refetch);
+  const handleSearch = (q) => {
+    // Perform search based on searchText
+    setSearchText(q);
+    //console.log('Searching for:', searchText);
+  };
+
+  //console.log("searchText", searchText);
 
   return (
     <SafeAreaView>
@@ -34,6 +58,21 @@ const SearchScreen = () => {
             onChangeText={setSearchText}
             // onSubmitEditing={handleSearch}
           />
+        </View>
+
+        <View>
+          <ScrollView>
+            {searchResult.length === 0 ? (
+              <Text>No search results found.</Text>
+            ) : (
+              searchResult.map((item) => (
+                <View key={item._id}>
+                  <Text>Name: {item.name}</Text>
+                  <Text>Price: {item.price}</Text>
+                </View>
+              ))
+            )}
+          </ScrollView>
         </View>
       </View>
     </SafeAreaView>

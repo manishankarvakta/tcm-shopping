@@ -14,13 +14,37 @@ import { useState } from "react";
 import Routes from "../../Utility/Routes";
 import { useDispatch, useSelector } from "react-redux";
 import { customerInfo } from "../Redux/CartSlice";
+import { useCustomerQuery } from "../Redux/Api/CustomerApi";
 
 export default function ConfirmOrder({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [userDatas, setUserDatas] = useState([]);
 
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartReducer);
   // console.log(cartItems);
+
+  const { data, isSuccess } = useCustomerQuery(userId);
+  console.log("userxxx:", userDatas);
+  useEffect(() => {
+    setUserDatas(data);
+  }, [isSuccess, data]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const user = await AsyncStorage.getItem("user");
+        const parsedUser = JSON.parse(user);
+        setUserId(parsedUser.id);
+        // console.log("UserID:", parsedUser.name);
+      } catch (error) {
+        console.error("Error getting user:", error);
+      }
+    };
+
+    getUsers();
+  }, []);
 
   const getUser = async () => {
     // console.log("getUser");
@@ -28,10 +52,11 @@ export default function ConfirmOrder({ navigation }) {
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
     dispatch(customerInfo(user.id));
-    // console.log("Names", user);
+    console.log("Names", user);
   };
 
   getUser();
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -51,7 +76,7 @@ export default function ConfirmOrder({ navigation }) {
           <View style={styles.AddressDetails}>
             <View>
               <Text style={{ color: "#333333" }}>
-                House 56,Jamal Khan Road,{"\n"}Jamal Khan
+                {userDatas?.address?.city},{"\n"}Jamal Khan
               </Text>
               <Text style={{ color: "black", fontWeight: "700" }}>
                 Jamal Khan,Chattogram
@@ -61,7 +86,7 @@ export default function ConfirmOrder({ navigation }) {
 
             <View style={styles.ChangeInfo}>
               <TouchableOpacity
-                onPress={() => navigation.navigate(Routes.UPDATE_INFORMATION)}
+                onPress={() => navigation.navigate(Routes.ORDER_ADDRESS)}
                 style={{
                   borderWidth: 1,
                   borderColor: "tomato",

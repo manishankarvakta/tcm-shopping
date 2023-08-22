@@ -1,34 +1,51 @@
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import Routes from "../Utility/Routes";
-
+import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 import AllDrinks from "../Screens/Home/AllDrinks";
 
 const Stack = createStackNavigator();
 
-export default function DrinksStack() {
+export default function DrinksStack({ navigation }) {
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={Routes.DRINKS}
+        name={Routes.DRINK}
         component={AllDrinks}
         options={{
-          headerShown: false,
+          drawerIcon: ({ color, size }) => (
+            <Icon name="coins" size={20} color="tomato" type="font-awesome-5" />
+          ),
+          headerStyle: {
+            borderBottomWidth: 0,
+          },
+          headerBackTitle: "BACK",
+
+          headerLeft: () => (
+            <TouchableOpacity onPress={handleBackPress}>
+              <Ionicons
+                name="arrow-back"
+                size={24}
+                color="black"
+                style={{ marginLeft: 10 }}
+              />
+            </TouchableOpacity>
+          ),
         }}
       />
       <Stack.Screen
         name={Routes.Tt}
         component={SingleProductsDetailsScreen}
         options={{
-          headerShown: false,
-
           headerStyle: {
             borderBottomWidth: 0,
           },
 
           headerBackTitle: "BACK",
-
-          headerTitle: "",
         }}
       />
     </Stack.Navigator>
