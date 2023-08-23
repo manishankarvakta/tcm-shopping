@@ -49,7 +49,7 @@ export default function OrderScreenAddress({ navigation }) {
   }, [userId]);
 
   // console.log("data=>", userData);
-  console.log("data=>", holdingNumber);
+  // console.log("data=>", holdingNumber);
 
   useEffect(() => {
     const getUser = async () => {
@@ -80,27 +80,25 @@ export default function OrderScreenAddress({ navigation }) {
       city,
       zip,
     };
-    setUserData({
+    const update = updateAddress({
       ...userData,
       address: [...userAddress, updatedAddress],
     });
 
-    setUserAddress(updatedAddress);
+    if (update) {
+      refetch();
+      dispatch(UpdateCustomerDeliveryInfo(updatedAddress));
+      setModalVisible(false);
+      navigation.navigate(Routes.CONFIRM_ORDER);
+
+      // Alert.alert("user address update successfull");
+    }
+    // setUserAddress(updatedAddress);
 
     // console.log("updateAddress:", userData);
     setModalVisible(false);
   };
   // console.log(userAddress);
-
-  const AddressSave = async () => {
-    // console.log("saveData", userData);
-    const update = updateAddress(userData);
-
-    if (update) {
-      refetch();
-      Alert.alert("user address update successfull");
-    }
-  };
 
   const handdleAddress = (item) => {
     dispatch(UpdateCustomerDeliveryInfo(item));

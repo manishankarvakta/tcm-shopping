@@ -27,15 +27,28 @@ import OffersSlider from "../../Components/OffersSlider";
 import Drinks from "../../Components/Drinks";
 import Oil from "../../Components/Oil";
 import { useDispatch, useSelector } from "react-redux";
-import { customerInfo } from "../Redux/CartSlice";
+import { customerDeliveryInfo, customerInfo } from "../Redux/CartSlice";
 import TopCategorysTwo from "../../Components/TopCategorysTwo";
+import { useCustomerQuery } from "../Redux/Api/CustomerApi";
 
 const HomeScreen = ({ navigation }) => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [cartItemCount, setCartItemCount] = useState("0");
+  const [userId, setUserId] = useState();
 
   const dispatch = useDispatch();
+
+  const { data, isSuccess, refetch } = useCustomerQuery(userId);
+
+  useEffect(() => {
+    // setUserData(data);
+    dispatch(customerDeliveryInfo(data));
+  }, [isSuccess, data]);
+
+  useEffect(() => {
+    refetch();
+  }, [userId]);
 
   const getUser = async () => {
     //console.log("getUser");
@@ -43,6 +56,7 @@ const HomeScreen = ({ navigation }) => {
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
     dispatch(customerInfo(user.id));
+    setUserId(user.id);
     //console.log("Names", userData, store);
   };
 

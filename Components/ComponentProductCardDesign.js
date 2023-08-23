@@ -39,16 +39,29 @@ export default function ComponentProductCardDesign({ item }) {
       style={styles.card}
       onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
     >
-      <Image
-        onPress={() => alert(item.imageUrl)}
-        source={{ uri: `${PHOTO_URL}${item.photo}` }}
-        style={{
-          width: 95,
-          height: 85,
-          marginVertical: 5,
-          borderRadius: 5,
-        }}
-      />
+      {item.photo ? (
+        <Image
+          onPress={() => alert(item.imageUrl)}
+          source={{ uri: `${PHOTO_URL}${item.photo}` }}
+          style={{
+            width: 95,
+            height: 85,
+            marginVertical: 5,
+            borderRadius: 5,
+          }}
+        />
+      ) : (
+        <Image
+          onPress={() => alert(item.imageUrl)}
+          source={require("../assets/noPhoto.jpg")}
+          style={{
+            width: 95,
+            height: 85,
+            marginVertical: 5,
+            borderRadius: 5,
+          }}
+        />
+      )}
       <TouchableOpacity
         style={styles.heartIcon}
         onPress={() => handleFavoriteToggle(item)}

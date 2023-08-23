@@ -50,7 +50,7 @@ export default function ManageAddress({ navigation }) {
   }, [userId]);
 
   // console.log("data=>", userData);
-  console.log("data=>", holdingNumber);
+  // console.log("data=>", holdingNumber);
 
   useEffect(() => {
     const getUser = async () => {

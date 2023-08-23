@@ -29,7 +29,6 @@ export default function ConfirmOrder({ navigation }) {
   // console.log("userxxx:", userDatas);
   useEffect(() => {
     setUserDatas(data);
-    dispatch(customerDeliveryInfo(data));
   }, [isSuccess, data]);
 
   useEffect(() => {

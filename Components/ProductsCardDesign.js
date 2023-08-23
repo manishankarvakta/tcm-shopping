@@ -37,7 +37,14 @@ export default function ProductsCardDesign({ item, navigation }) {
       onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
       style={styles.card}
     >
-      <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
+      {photos ? (
+        <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
+      ) : (
+        <Image
+          source={require("../assets/noPhoto.jpg")}
+          style={styles.PopularProductsImg}
+        />
+      )}
       <TouchableOpacity
         onPress={() => handleFavoriteToggle(item)}
         style={styles.heartIcon}
