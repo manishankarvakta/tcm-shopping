@@ -18,8 +18,11 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useDispatch } from "react-redux";
+import { UpdateCustomerDeliveryInfo } from "../Redux/CartSlice";
+import Routes from "../../Utility/Routes";
 
-export default function OrderScreenAddress() {
+export default function OrderScreenAddress({ navigation }) {
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -32,7 +35,7 @@ export default function OrderScreenAddress() {
   const [town, setTown] = useState("Uttara");
   const [city, setCity] = useState("Dhaka");
   const [zip, setZip] = useState("");
-
+  const dispatch = useDispatch();
   const [updateAddress] = useUpdateCustomerAddressMutation();
 
   const { data, isSuccess, refetch } = useCustomerQuery(userId);
@@ -99,10 +102,18 @@ export default function OrderScreenAddress() {
     }
   };
 
+  const handdleAddress = (item) => {
+    dispatch(UpdateCustomerDeliveryInfo(item));
+    navigation.navigate(Routes.CONFIRM_ORDER);
+  };
+
   const AddressCard = (item) => {
     // console.log("item:", item);
     return (
-      <TouchableOpacity style={{ marginTop: 10 }}>
+      <TouchableOpacity
+        style={{ marginTop: 10 }}
+        onPress={() => handdleAddress(item)}
+      >
         <View style={styles.AddressDetails}>
           <View style={{ flexDirection: "row" }}>
             <View>

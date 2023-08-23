@@ -5,8 +5,8 @@ export default {
   REGISTER: "Register",
   FORGOT_PASSWORD: "Forgot Password",
 
-  HOME: "Home",
-  HOME_TAB: "Home Tab",
+  HOME: "Home stack",
+  HOME_TAB: "Home",
   HOME_DRAWER: "Home ",
 
   SERARCH: "Search",

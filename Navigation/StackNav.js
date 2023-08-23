@@ -19,9 +19,6 @@ import DrinksStack from "./DrinksStack";
 import OilStack from "./OilStack";
 import ProfileStack from "./ProfileStack";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
-import UpdateInformation from "../Screens/Profile/UpdateInformation";
-import EarnReward from "../Screens/DrawerScreen/EarnReward";
-import DrawerNav from "./DrawerNav";
 import ManageAddress from "../Screens/Profile/ManageAddress";
 import OrderScreenAddress from "../Screens/OrderScreen/OrderScreenAddress";
 const StackNav = () => {
@@ -99,10 +96,7 @@ const StackNav = () => {
       />
 
       <Stack.Screen name={Routes.Tt} component={SingleProductsDetailsScreen} />
-      <Stack.Screen
-        name={Routes.UPDATE_INFORMATION}
-        component={UpdateInformation}
-      />
+
       <Stack.Screen
         name={Routes.MANAGE_ADDRESS}
         component={ManageAddress}

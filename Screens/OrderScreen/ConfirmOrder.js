@@ -13,7 +13,7 @@ import { Icon } from "@rneui/base";
 import { useState } from "react";
 import Routes from "../../Utility/Routes";
 import { useDispatch, useSelector } from "react-redux";
-import { customerInfo } from "../Redux/CartSlice";
+import { customerDeliveryInfo, customerInfo } from "../Redux/CartSlice";
 import { useCustomerQuery } from "../Redux/Api/CustomerApi";
 
 export default function ConfirmOrder({ navigation }) {
@@ -23,12 +23,13 @@ export default function ConfirmOrder({ navigation }) {
 
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartReducer);
-  // console.log(cartItems);
+  const { address, phone } = cartItems.delivery;
 
   const { data, isSuccess } = useCustomerQuery(userId);
-  console.log("userxxx:", userDatas);
+  // console.log("userxxx:", userDatas);
   useEffect(() => {
     setUserDatas(data);
+    dispatch(customerDeliveryInfo(data));
   }, [isSuccess, data]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function ConfirmOrder({ navigation }) {
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
     dispatch(customerInfo(user.id));
-    console.log("Names", user);
+    // console.log("Names", user);
   };
 
   getUser();
@@ -76,12 +77,16 @@ export default function ConfirmOrder({ navigation }) {
           <View style={styles.AddressDetails}>
             <View>
               <Text style={{ color: "#333333" }}>
-                {userDatas?.address?.city},{"\n"}Jamal Khan
+                {address?.holdingNumber && `Home: ${address?.holdingNumber} ,`}
+                {address?.roadNumber && `Road: ${address?.roadNumber} ,`}
+                {address?.sector && `Sector: ${address?.sector}`}
               </Text>
               <Text style={{ color: "black", fontWeight: "700" }}>
-                Jamal Khan,Chattogram
+                {address?.town && `${address?.town},`}
+                {address?.city && `${address?.city} - `}
+                {address?.zip && `${address?.zip}`}
               </Text>
-              <Text style={{ color: "#333333" }}>+8801680622993</Text>
+              <Text style={{ color: "#333333" }}>{phone}</Text>
             </View>
 
             <View style={styles.ChangeInfo}>

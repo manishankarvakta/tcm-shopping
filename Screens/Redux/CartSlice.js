@@ -65,8 +65,8 @@ const initialState = {
   promo_discount: 0,
   billerId: "63dfffdd1edc4e4632e8bcf4",
   delivery: {
-    address: "Mirpur - 1 , dhaka",
-    phone: "01680622993",
+    address: {},
+    phone: "",
   },
   customerId: "",
   updateUser: "63dfffdd1edc4e4632e8bcf4",
@@ -157,6 +157,16 @@ const cartSlice = createSlice({
     customerInfo: (state, action) => {
       state.customerId = action.payload;
     },
+    customerDeliveryInfo: (state, action) => {
+      //console.log("customerDeliveryInfo", action.payload);
+      state.delivery.address = action.payload?.address[0];
+      state.delivery.phone = action.payload?.phone;
+    },
+
+    UpdateCustomerDeliveryInfo: (state, action) => {
+      // console.log("UpdateCustomerDeliveryInfo", action.payload);
+      state.delivery.address = action.payload;
+    },
 
     removeProduct: (state, action) => {
       const productId = action.payload;
@@ -189,5 +199,7 @@ export const {
   productsQuntityIncrement,
   productsQuntityDecrements,
   addWishListProduct,
+  customerDeliveryInfo,
+  UpdateCustomerDeliveryInfo,
 } = cartSlice.actions;
 export default cartReducer = cartSlice.reducer;
