@@ -3,7 +3,7 @@ import BASE_URL from "../../../Utility/BaseUrl";
 
 export const SalesApi = createApi({
   reducerPath: "salesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5001" }),
   tagTypes: ["Sale"],
   endpoints: (builder) => ({
     addSale: builder.mutation({

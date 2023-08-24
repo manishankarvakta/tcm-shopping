@@ -11,25 +11,32 @@ import { Alert } from "react-native";
 
 import React, { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
-import Routes from "../../Utility/Routes";
 import { useSelector } from "react-redux";
-import BASE_URL, { PHOTO_URL } from "../../Utility/BaseUrl";
-import { useAddSaleMutation } from "../Redux/Api/SalesApi";
+import BASE_URL from "../../Utility/BaseUrl";
 import axios from "axios";
+import Routes from "../../Utility/Routes";
+import { useAddSaleMutation } from "../Redux/Api/SalesApi";
 
 export default function ConfirmationProducts({ navigation }) {
-  const [loading, setLoading] = useState(false);
   const cartItems = useSelector((state) => state.cartReducer);
-  //console.log("cartItems:", cartItems);
+  const [createSale] = useAddSaleMutation();
+
   const OrderSubmit = async () => {
-    if (cartItems.products.length > 0) {
+    if (cartItems?.products?.length > 0) {
+      console.log("cartItems:", cartItems);
+      const response = createSale(cartItems);
+
+      // console.log("response", response);
       await axios
-        .post(`${BASE_URL}/ecom/sale`, cartItems)
+        .post(`http://localhost:5001/api/ecom/sale/`, cartItems)
+        // .post(`${BASE_URL}/ecom/sale`, cartItems)
         .then(async (response) => {
-          console.log("response :", response.data);
+          console.log("response :", response);
 
           if (response.status === 200) {
-            // Do something upon successful response
+            console.log("sale Success");
+          } else {
+            console.log(error);
           }
         })
         .catch(async (error) => {
@@ -41,21 +48,14 @@ export default function ConfirmationProducts({ navigation }) {
     }
   };
 
-  // // const [createNewSale] = useAddSaleMutation();
-  // // const createSale = () => {
-  // //   console.log(cartItems);
-  // //   const sale = createNewSale(cartItems);
+  // console.log("cartItems:", cartItems);
 
-  // //   if (sale) {
-  // //     console.log("success");
-  // //     console.log(sale);
-  // //   }
-  // // };
-
+  const { holdingNumber, roadNumber, sector, town, zip, city } =
+    cartItems.delivery.address;
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={styles.OrderConfirmantionSectionStye}>
+        {/* <View style={styles.OrderConfirmantionSectionStye}>
           <View>
             <Text style={styles.ConfirmationText}>Confirmation</Text>
             <Text>
@@ -69,7 +69,7 @@ export default function ConfirmationProducts({ navigation }) {
               <Text style={{ color: "gray" }}>Cash on {"\n"}Delivery.</Text>
             </Text>
           </View>
-        </View>
+        </View> */}
 
         <View>
           <View style={styles.OrderSummerySectionStyle}>
@@ -158,7 +158,7 @@ export default function ConfirmationProducts({ navigation }) {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: 18,
+                fontSize: 21,
                 paddingTop: 10,
                 letterSpacing: 3,
                 color: "gray",
@@ -167,28 +167,30 @@ export default function ConfirmationProducts({ navigation }) {
               {" "}
               Delivery Address
             </Text>
-            <Text style={{ fontWeight: "400", fontSize: 14, paddingTop: 10 }}>
-              House56, Jamal Khan Road,Jamal Khan(Jamal khan)
-            </Text>
-            <Text
-              style={{
-                fontWeight: "600",
-                fontSize: 18,
-                paddingTop: 10,
-                color: "gray",
-              }}
-            >
-              Preferred Delivery Timings
-            </Text>
-            <Text style={{ fontWeight: "400", fontSize: 14, paddingTop: 10 }}>
-              Regular
-            </Text>
-            <Text style={{ fontWeight: "400", fontSize: 14, paddingTop: 5 }}>
-              Wed,Jun 7
-            </Text>
-            <Text style={{ fontWeight: "400", fontSize: 14, paddingTop: 5 }}>
-              8:00 AM - 9.00 AM
-            </Text>
+            <View>
+              <Text
+                style={{
+                  fontWeight: "500",
+                  fontSize: 17,
+                  paddingTop: 10,
+                  color: "gray",
+                }}
+              >
+                House No : {holdingNumber}, Road No: {roadNumber},Sector:{" "}
+                {sector},
+              </Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "500",
+                  fontSize: 17,
+                  paddingTop: 5,
+                  color: "gray",
+                }}
+              >
+                {town},{city}-{zip}
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -478,10 +480,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-    backgroundColor: "#c1c1c1",
+    backgroundColor: "#F0F8FF",
     marginHorizontal: 10,
     borderRadius: 5,
     marginTop: 10,
     paddingVertical: 20,
+    marginBottom: 5,
   },
 });

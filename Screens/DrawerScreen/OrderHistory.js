@@ -13,24 +13,7 @@ import axios from "axios";
 import BASE_URL from "../../Utility/BaseUrl";
 import { useState } from "react";
 import { useEffect } from "react";
-
-const orderHistoryData = [
-  {
-    orderId: "12345",
-    status: "Processing",
-    date: "Jun 12, 2023",
-    price: "$255",
-    shipment: "1 Shipment",
-  },
-  {
-    orderId: "54321",
-    status: "Delivered",
-    date: "Aug 20, 2023",
-    price: "$155",
-    shipment: "1 Shipment",
-  },
-  // Add more fake data items here
-];
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const RenderData = ({ item, navigation }) => {
   return (
@@ -72,16 +55,32 @@ const RenderData = ({ item, navigation }) => {
 
 export default function OrderHistory({ navigation }) {
   const [orderHistoryData, setOrderHistoryData] = useState([]);
+  const [userId, setUserId] = useState("");
+  console.log("orderHistoryData", orderHistoryData);
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const user = await AsyncStorage.getItem("user");
+        const parsedUser = JSON.parse(user);
+        setUserId(parsedUser.id);
+        // console.log("UserID:", parsedUser.name);
+      } catch (error) {
+        console.error("Error getting user:", error);
+      }
+    };
+
+    getUser();
+  }, []);
   //console.log("orderHistoryData:", orderHistoryData);
   useEffect(() => {
-    const cId = "64d3677bc23a8c033e44d471"; // Replace with the actual customer ID
-    const apiUrl = `${BASE_URL}/ecom/sale/${cId}`;
+    const apiUrl = `${BASE_URL}/ecom/sale/${userId}`;
 
     axios
       .get(apiUrl)
       .then((response) => {
         const data = response.data;
-        console.log("data:", data);
+        console.log("Historydata:", data);
         setOrderHistoryData(data);
       })
       .catch((error) => {

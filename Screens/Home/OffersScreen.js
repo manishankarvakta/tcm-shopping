@@ -47,7 +47,7 @@ const OffersScreen = ({ navigation }) => {
             <Text style={styles.OfferProductNameStyle}>{item.name}</Text>
             <View style={styles.OfferPriceSectionStyle}>
               <Text style={{ color: "red", fontSize: 15 }}>
-                ৳{item.priceList[0].mrp}
+                ৳{item?.priceList[0]?.mrp}
               </Text>
               <TouchableOpacity style={styles.OfferProductAddCartStyle}>
                 <FontAwesome

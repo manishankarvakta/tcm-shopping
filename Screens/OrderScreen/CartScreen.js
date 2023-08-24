@@ -113,7 +113,7 @@ const CartScreen = ({ navigation }) => {
       </View>
 
       <View style={styles.ExpressIteamsStyle}>
-        <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
+        <View style={{ flexDirection: "row" }}>
           <Icon
             name="shipping-fast"
             size={20}
@@ -123,7 +123,6 @@ const CartScreen = ({ navigation }) => {
           />
           <Text style={{ color: "#fff" }}>Express Items</Text>
         </View>
-        <Text style={{ color: "#fff" }}>5.00PM-6.00PM</Text>
       </View>
 
       <FlatList
@@ -132,45 +131,6 @@ const CartScreen = ({ navigation }) => {
         renderItem={renderItem}
         contentContainerStyle={{ paddingBottom: 15 }}
       />
-
-      <View
-        style={{
-          flexDirection: "row",
-          margin: 30,
-          marginHorizontal: 10,
-          paddingVertical: 10,
-          backgroundColor: "#D4E9F9",
-          borderRadius: 5,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginHorizontal: 20,
-          }}
-        >
-          <Icon
-            style={{
-              width: 14,
-              height: 14,
-              borderRadius: 15,
-              backgroundColor: "green",
-              justifyContent: "center",
-              alignItems: "center",
-              marginHorizontal: 10,
-              marginVertical: 2,
-            }}
-            name="check"
-            size={12}
-            color="#fff"
-            type="ant-design"
-          />
-          <Text style={{ color: "#000" }}>
-            Delivery fee is reduced to $0 from $29
-          </Text>
-        </View>
-      </View>
 
       <TouchableOpacity
         onPress={() => navigation.navigate(Routes.CONFIRM_ORDER)}

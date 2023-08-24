@@ -50,6 +50,8 @@ const LoginScreen = ({ navigation }) => {
 
     // AXIOS LOGIN REQUEST
     //console.log(`${BASE_URL}/ecom/customer/login`);
+    const url = `${BASE_URL}/ecom/customer/login`;
+    //console.log("url", url);
     await axios
       .post(`${BASE_URL}/ecom/customer/login`, {
         phone: userId,
@@ -81,7 +83,7 @@ const LoginScreen = ({ navigation }) => {
       })
       .catch(async (error) => {
         Alert.alert("Login Faild! Please try again.");
-        console.log("error", error);
+        //console.log("error", error);
         setLoading(false);
       });
     // .finally();

@@ -146,13 +146,13 @@ export default function ManageAddress({ navigation }) {
       city,
       zip,
     };
-    console.log("new", updatedAddress);
+    // console.log("new", updatedAddress);
 
     let allAddress = [...userData.address];
 
     allAddress[currentIndex] = updatedAddress;
 
-    console.log("allAddress", allAddress);
+    //console.log("allAddress", allAddress);
 
     setUserData({
       ...userData,

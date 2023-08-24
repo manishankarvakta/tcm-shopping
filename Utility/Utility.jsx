@@ -7,16 +7,16 @@ const Utility = () => {
   const addTocart = (item) => {
     const product = {
       id: item._id,
-      priceId: item.priceList[0]._id,
+      priceId: item?.priceList[0]?._id,
       name: item.name,
       article_code: item.article_code,
       ean: item.ean,
-      mrp: item.priceList[0].mrp,
+      mrp: item?.priceList[0]?.mrp,
       qty: 1,
-      tp: item.priceList[0].tp,
+      tp: item?.priceList[0]?.tp,
       vat: 0,
       unit: item.unit,
-      supplier: item.priceList[0].supplier,
+      supplier: item?.priceList[0]?.supplier,
       order: 1,
       photo: item.photo,
     };

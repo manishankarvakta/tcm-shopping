@@ -44,7 +44,7 @@ export default function TopCategorysTwo() {
           <Text style={styles.CategoryGroupNameStyle}>Flash Sale</Text>
           <View style={styles.imageContainer}>
             <Image
-              source={require("../assets/All-Catagores.png")}
+              source={require("../assets/CategoryImg/All-Catagores.png")}
               style={styles.image}
             />
           </View>

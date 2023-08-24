@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import BASE_URL from "../../../Utility/BaseUrl";
-
+//console.log("BASE_URL,", BASE_URL);
 // Define a service using a base URL and expected endpoints
 export const ProductsApi = createApi({
   reducerPath: "productsApi",

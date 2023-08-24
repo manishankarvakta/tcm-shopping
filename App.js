@@ -13,6 +13,7 @@ import StackNav from "./Navigation/StackNav";
 import HomeScreen from "./Screens/Home/HomeScreen";
 import TopCategorysTwo from "./Components/TopCategorysTwo";
 import TopCategorys from "./Components/TopCategorys";
+import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
 
 export default function App() {
   const [token, setToken] = useState(false);

@@ -95,8 +95,8 @@ const cartSlice = createSlice({
         product = {
           id: item._id,
           priceId: item?.priceList[0]?._id,
-          name: item.name,
-          article_code: item.article_code,
+          name: item?.name,
+          article_code: item?.article_code,
           ean: item.ean,
           mrp: item?.priceList[0]?.mrp,
           qty: 1,

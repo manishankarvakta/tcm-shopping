@@ -16,7 +16,7 @@ const mcData = [
   {
     option: "food",
     label: "Food",
-    image: require("../assets/Foods.png"),
+    image: require("../assets/CategoryImg/Foods.png"),
     backgroundColor: "#A8D1DF",
   },
 
@@ -24,7 +24,7 @@ const mcData = [
     option: "babyCare",
     label: "Baby Care",
     backgroundColor: "#C5DDF1",
-    image: require("../assets/Baby-Care.png"),
+    image: require("../assets/CategoryImg/Baby-Care.png"),
   },
 ];
 
