@@ -7,7 +7,7 @@ import {
 import Routes from "../Utility/Routes";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { Icon } from "react-native-elements";
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
   const [username, setUsername] = useState();
@@ -41,8 +41,8 @@ export default function CustomDrawer(props) {
           />
           <Text
             style={{
-              padding: 10,
-              marginBottom: 22,
+              padding: 5,
+              marginBottom: 10,
               alignSelf: "center",
               fontWeight: "600",
               fontSize: 20,
@@ -50,6 +50,23 @@ export default function CustomDrawer(props) {
           >
             {username}
           </Text>
+          <Text
+            style={{
+              alignSelf: "center",
+              flexDirection: "row",
+            }}
+          >
+            {" "}
+            <Icon
+              name="coins"
+              size={20}
+              color="tomato"
+              type="font-awesome-5"
+            />{" "}
+            <Text style={{ fontWeight: "600", fontSize: 16 }}>520</Text>
+          </Text>
+
+          {/* Add the coin icon */}
         </TouchableOpacity>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>

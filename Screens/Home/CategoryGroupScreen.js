@@ -30,13 +30,13 @@ const mcData = [
     option: "hygiene",
     label: "Hygiene",
     backgroundColor: "#6A6091",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    image: require("../../assets/CategoryImg/Hygniene-Product.png"),
   },
   {
     option: "beauty",
     label: "Beauty & Health",
     backgroundColor: "#316359",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    image: require("../../assets/Beauty-&-Helth.png"),
   },
   {
     option: "babyCare",
@@ -47,32 +47,32 @@ const mcData = [
   {
     option: "clean",
     label: "Clean & Supplies",
-    backgroundColor: "#73C991",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    backgroundColor: "#31577C",
+    image: require("../../assets/CategoryImg/Clean-and-supplies.png"),
   },
   {
     option: "home",
     label: "Home & Kitchen",
-    backgroundColor: "#2DC1BA",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    backgroundColor: "#73B5EB",
+    image: require("../../assets/CategoryImg/Home-and-kitchen.png"),
   },
   {
     option: "stationeries",
     label: "Stationeries",
     backgroundColor: "#071B53",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    image: require("../../assets/CategoryImg/Stationaries.png"),
   },
   {
     option: "toys",
     label: "Toys",
     backgroundColor: "#15385E",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    image: require("../../assets/CategoryImg/Toys.png"),
   },
   {
     option: "lifeStyle",
     label: "Life Style",
     backgroundColor: "#35CABD",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    image: require("../../assets/CategoryImg/lifestyle-products.png"),
   },
 ];
 

@@ -16,19 +16,26 @@ import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const RenderData = ({ item, navigation }) => {
+  const formattedCreatedAt = new Date(item.createdAt).toLocaleDateString();
+
   return (
     <View style={styles.OrderHistorycardStyle}>
       <View style={{ padding: 10 }}>
         <View style={styles.OrderIdStyles}>
-          <Text>{`Order Id ${item.orderId}`}</Text>
+          <Text style={{ fontWeight: "700" }}>
+            Order Id:{`  ${item.invoiceId}`}
+          </Text>
           <Text style={{ color: "orange" }}>{item.status}</Text>
         </View>
 
-        <Text>{item.date}</Text>
+        <Text style={{ fontWeight: "600" }}>{formattedCreatedAt}</Text>
 
         <View style={styles.OrderPricesStyle}>
-          <Text style={{ fontWeight: "bold" }}>{item.price}</Text>
-          <Text style={{ marginHorizontal: 10 }}>{item.shipment}</Text>
+          <Text style={{ fontWeight: "bold" }}>৳{item.total}</Text>
+          <Text style={{ marginHorizontal: 10, marginTop: 2 }}>
+            {" "}
+            | {item.totalItem} items
+          </Text>
         </View>
       </View>
 
@@ -36,7 +43,9 @@ const RenderData = ({ item, navigation }) => {
 
       <View style={styles.IconDetails}>
         <TouchableOpacity
-          onPress={() => navigation.navigate(Routes.ORDER_HISTORY_DETAILS)}
+          onPress={() =>
+            navigation.navigate(Routes.ORDER_HISTORY_DETAILS, { id: item._id })
+          }
           style={{ flexDirection: "row" }}
         >
           <Icon
@@ -56,7 +65,7 @@ const RenderData = ({ item, navigation }) => {
 export default function OrderHistory({ navigation }) {
   const [orderHistoryData, setOrderHistoryData] = useState([]);
   const [userId, setUserId] = useState("");
-  console.log("orderHistoryData", orderHistoryData);
+  //console.log("orderHistoryData", orderHistoryData);
 
   useEffect(() => {
     const getUser = async () => {
@@ -80,7 +89,7 @@ export default function OrderHistory({ navigation }) {
       .get(apiUrl)
       .then((response) => {
         const data = response.data;
-        console.log("Historydata:", data);
+        /// console.log("Historydata:", data);
         setOrderHistoryData(data);
       })
       .catch((error) => {
@@ -94,7 +103,7 @@ export default function OrderHistory({ navigation }) {
   return (
     <SafeAreaView>
       <FlatList
-        data={orderHistoryData.data}
+        data={orderHistoryData}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />

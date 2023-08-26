@@ -1,4 +1,4 @@
-const BASE_URL = "https://dev.communitymagasin.com/api";
+const BASE_URL = "https://api.communitymagasin.com/api";
 export const PHOTO_URL = "https://api.communitymagasin.com";
 // const BASE_URL = "https://dev.communitymagasin.com/api";
 // export const PHOTO_URL = "https://api.communitymagasin.com";
