@@ -19,12 +19,12 @@ import { useAddSaleMutation } from "../Redux/Api/SalesApi";
 
 export default function ConfirmationProducts({ navigation }) {
   const cartItems = useSelector((state) => state.cartReducer);
-  const [createSale] = useAddSaleMutation();
+  // const [createSale] = useAddSaleMutation();
 
   const OrderSubmit = async () => {
     if (cartItems?.products?.length > 0) {
       console.log("cartItems:", cartItems);
-      const response = createSale(cartItems);
+      // const response = createSale(cartItems);
 
       // console.log("response", response);
       await axios
