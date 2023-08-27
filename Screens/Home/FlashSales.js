@@ -8,6 +8,7 @@ const FlashSale = ({ navigation }) => {
   const { data, isSuccess, refetch, isFetching } = useGetFlashSalesQuery();
   const [FlashSale, setFlashSale] = useState([]);
 
+  // console.log("flash", FlashSale);
   useEffect(() => {
     data?.length > 0 && setFlashSale(data);
   }, [isSuccess]);

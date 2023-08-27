@@ -19,8 +19,8 @@ export default function OrderHistoryDetails({ navigation, route }) {
 
   //console.log(id);
   useEffect(() => {
-    console.log("success");
-    console.log("data", data);
+    // console.log("success");
+    //console.log("data", data);
   }, [isSuccess, data]);
 
   useEffect(() => {

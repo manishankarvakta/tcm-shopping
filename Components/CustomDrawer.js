@@ -8,6 +8,8 @@ import Routes from "../Utility/Routes";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Icon } from "react-native-elements";
+import { useDispatch, useSelector } from "react-redux";
+import { selcetProduct } from "../Screens/Redux/CartSlice";
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
   const [username, setUsername] = useState();
@@ -20,6 +22,11 @@ export default function CustomDrawer(props) {
     //console.log(user);
   };
   getUser();
+
+  const dispatch = useDispatch();
+
+  const getPoint = useSelector((state) => state.cartReducer);
+  //console.log("getPoint:", getPoint);
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
@@ -30,7 +37,7 @@ export default function CustomDrawer(props) {
           onPress={() => navigation.navigate(Routes.PRFILE_STACK_DRAWER)}
         >
           <Image
-            source={require("../assets/mansurol.jpeg")}
+            source={require("../assets/user.png")}
             style={{
               width: 60,
               height: 60,
@@ -41,14 +48,13 @@ export default function CustomDrawer(props) {
           />
           <Text
             style={{
-              padding: 5,
-              marginBottom: 10,
+              marginBottom: 5,
               alignSelf: "center",
               fontWeight: "600",
-              fontSize: 20,
+              fontSize: 16,
             }}
           >
-            {username}
+            @UserName
           </Text>
           <Text
             style={{
@@ -59,11 +65,13 @@ export default function CustomDrawer(props) {
             {" "}
             <Icon
               name="coins"
-              size={20}
+              size={18}
               color="tomato"
               type="font-awesome-5"
             />{" "}
-            <Text style={{ fontWeight: "600", fontSize: 16 }}>520</Text>
+            <Text style={{ fontWeight: "500", fontSize: 15 }}>
+              {/* {getPoint.point.new} */} 1057
+            </Text>
           </Text>
 
           {/* Add the coin icon */}

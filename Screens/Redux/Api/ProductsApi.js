@@ -12,7 +12,7 @@ export const ProductsApi = createApi({
       tagTypes: ["Product"],
     }),
     getPopularProducts: builder.query({
-      query: () => `/ecom/product/promo-products`,
+      query: () => `ecom/product/best-seller`,
       tagTypes: ["Product"],
     }),
 

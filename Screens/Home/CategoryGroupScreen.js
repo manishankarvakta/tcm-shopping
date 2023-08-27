@@ -7,10 +7,12 @@ import {
   Image,
   Text,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import Routes from "../../Utility/Routes";
 import { useNavigation } from "@react-navigation/native";
-
+import { useState } from "react";
+import { useEffect } from "react";
 const numColumns = 2;
 
 const mcData = [
@@ -36,7 +38,7 @@ const mcData = [
     option: "beauty",
     label: "Beauty & Health",
     backgroundColor: "#316359",
-    image: require("../../assets/Beauty-&-Helth.png"),
+    image: require("../../assets/CategoryImg/Foods.png"),
   },
   {
     option: "babyCare",
@@ -78,6 +80,7 @@ const mcData = [
 
 export default function CategoryGroupScreen() {
   const navigation = useNavigation();
+
   const renderItem = ({ item }) => {
     return (
       <View style={[styles.cardTwo, { backgroundColor: item.backgroundColor }]}>

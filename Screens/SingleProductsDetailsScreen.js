@@ -5,6 +5,7 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
@@ -18,7 +19,7 @@ import { addProduct } from "./Redux/CartSlice";
 export default function SingleProductsDetailsScreen({ navigation, route }) {
   const { _id } = route.params;
   //console.log(_id)
-  const { data, isError, refetch } = useGetProductDetailsQuery(_id);
+  const { data, isError, isLoading, refetch } = useGetProductDetailsQuery(_id);
 
   const dispatch = useDispatch();
   //console.log(data)
@@ -26,9 +27,15 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
     refetch();
   }, [_id]);
 
-  //console.log("dataN:", isError)
-
-  const noPhoto = "https://i.ibb.co/PNQcdP2/noPhoto.jpg";
+  if (isLoading) {
+    return (
+      <SafeAreaView
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      >
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
+    );
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: "#F5F6FB" }}>

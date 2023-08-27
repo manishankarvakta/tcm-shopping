@@ -41,7 +41,7 @@ export default function Profile({ navigation }) {
         <View>
           <View>
             <Image
-              source={require("../../assets/mansurol.jpeg")}
+              source={require("../../assets/user.png")}
               style={{
                 width: 90,
                 height: 90,
@@ -58,7 +58,7 @@ export default function Profile({ navigation }) {
                 fontWeight: "600",
               }}
             >
-              {username}
+              @userName
             </Text>
           </View>
 

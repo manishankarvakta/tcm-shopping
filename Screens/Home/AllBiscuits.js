@@ -28,6 +28,7 @@ const AllBiscuits = ({ navigation }) => {
     data?.length > 0 && setBiscuits(data);
   }, [isSuccess]);
 
+  // console.log("data", data);
   const renderItem = ({ item }) => (
     <ProductsCardDesign item={item} navigation={navigation} />
   );

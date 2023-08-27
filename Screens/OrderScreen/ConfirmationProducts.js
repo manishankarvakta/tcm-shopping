@@ -8,14 +8,10 @@ import {
 } from "react-native";
 import { Icon } from "@rneui/base";
 import { Alert } from "react-native";
-
 import React, { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
-import BASE_URL from "../../Utility/BaseUrl";
 import axios from "axios";
-import Routes from "../../Utility/Routes";
-import { useAddSaleMutation } from "../Redux/Api/SalesApi";
 
 export default function ConfirmationProducts({ navigation }) {
   const cartItems = useSelector((state) => state.cartReducer);
@@ -23,7 +19,7 @@ export default function ConfirmationProducts({ navigation }) {
 
   const OrderSubmit = async () => {
     if (cartItems?.products?.length > 0) {
-      console.log("cartItems:", cartItems);
+      //console.log("cartItems:", cartItems);
       // const response = createSale(cartItems);
 
       // console.log("response", response);
@@ -31,16 +27,16 @@ export default function ConfirmationProducts({ navigation }) {
         .post(`http://localhost:5001/api/ecom/sale/`, cartItems)
         // .post(`${BASE_URL}/ecom/sale`, cartItems)
         .then(async (response) => {
-          console.log("response :", response);
+          // console.log("response :", response);
 
           if (response.status === 200) {
-            console.log("sale Success");
+            // console.log("sale Success");
           } else {
-            console.log(error);
+            //console.log(error);
           }
         })
         .catch(async (error) => {
-          console.log("error :", error);
+          // console.log("error :", error);
           // Handle the error (e.g., show an error message to the user)
         });
     } else {
@@ -50,8 +46,9 @@ export default function ConfirmationProducts({ navigation }) {
 
   // console.log("cartItems:", cartItems);
 
-  const { holdingNumber, roadNumber, sector, town, zip, city } =
-    cartItems.delivery.address;
+  const DeliveryAddress = cartItems?.delivery?.address;
+
+  // { holdingNumber, roadNumber, sector, town, zip, city }
   return (
     <SafeAreaView>
       <ScrollView>
@@ -86,11 +83,11 @@ export default function ConfirmationProducts({ navigation }) {
               </View>
 
               <View>
-                <Text style={styles.TitleStyle}>{cartItems.total}tk</Text>
-                <Text style={styles.TitleStyle}>৳{cartItems.vat}</Text>
-                <Text style={styles.TitleStyle}>৳{cartItems.grossTotal}</Text>
-                <Text style={styles.TitleStyle}>{cartItems.todayPoint}</Text>
-                <Text style={styles.TitleStyle}>{cartItems.Point}</Text>
+                <Text style={styles.TitleStyle}>{cartItems?.total}tk</Text>
+                <Text style={styles.TitleStyle}>৳{cartItems?.vat}</Text>
+                <Text style={styles.TitleStyle}>৳{cartItems?.grossTotal}</Text>
+                <Text style={styles.TitleStyle}>{cartItems?.todayPoint}</Text>
+                <Text style={styles.TitleStyle}>{cartItems?.Point}</Text>
               </View>
             </View>
 
@@ -103,7 +100,9 @@ export default function ConfirmationProducts({ navigation }) {
               }}
             >
               <Text style={styles.TitleStyleFour}>Deu</Text>
-              <Text style={styles.TitleStyleFour}>৳{cartItems.grossTotal}</Text>
+              <Text style={styles.TitleStyleFour}>
+                ৳{cartItems?.grossTotal}
+              </Text>
             </View>
           </View>
         </View>
@@ -176,8 +175,8 @@ export default function ConfirmationProducts({ navigation }) {
                   color: "gray",
                 }}
               >
-                House No : {holdingNumber}, Road No: {roadNumber},Sector:{" "}
-                {sector},
+                House No : {DeliveryAddress?.holdingNumber}, Road No:{" "}
+                {DeliveryAddress?.roadNumber},Sector: {DeliveryAddress?.sector},
               </Text>
               <Text
                 style={{
@@ -188,7 +187,8 @@ export default function ConfirmationProducts({ navigation }) {
                   color: "gray",
                 }}
               >
-                {town},{city}-{zip}
+                {DeliveryAddress?.town},{DeliveryAddress?.city}-
+                {DeliveryAddress?.zip}
               </Text>
             </View>
           </View>

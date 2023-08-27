@@ -13,20 +13,19 @@ const PopularProducts = () => {
   const { data, isSuccess, isError, isFetching, refetch, error } =
     useGetPopularProductsQuery();
 
-  //console.log("data", data, error);
-
   useEffect(() => {
-    data?.length > 0 && setProduct(data);
-  }, [isSuccess]);
+    data && setProduct(data);
+  }, [isSuccess, data]);
 
-  const renderItem = ({ item }) => (
-    <ProductsCardDesign item={item} navigation={navigation} />
-  );
+  // console.log("data", product);
+
+  const renderItem = ({ item }) => console.log("item", item);
+  // <ProductsCardDesign item={item} navigation={navigation} />
 
   return (
     <View style={{ marginHorizontal: 10, marginVertical: 10 }}>
       <FlatList
-        data={product}
+        data={data}
         renderItem={renderItem}
         onRefresh={refetch}
         refreshing={isFetching}
