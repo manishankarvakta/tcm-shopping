@@ -1,7 +1,7 @@
 import { FlatList, Image, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 
-const Slider = () => {
+const SliderTwo = () => {
   const data = [
     { id: "1", imageUrl: require("../assets/image1.jpg") },
     { id: "2", imageUrl: require("../assets/img66.jpg") },
@@ -37,4 +37,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default SliderTwo;

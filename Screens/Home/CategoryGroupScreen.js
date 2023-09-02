@@ -7,12 +7,10 @@ import {
   Image,
   Text,
   SafeAreaView,
-  ActivityIndicator,
 } from "react-native";
 import Routes from "../../Utility/Routes";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-import { useEffect } from "react";
+
 const numColumns = 2;
 
 const mcData = [

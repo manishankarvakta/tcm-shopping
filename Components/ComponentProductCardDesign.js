@@ -76,7 +76,7 @@ export default function ComponentProductCardDesign({ item }) {
       <View style={styles.details}>
         <Text style={styles.name}>{truncateName(item.name)}</Text>
         <View style={styles.cartStyle}>
-          <Text style={styles.price}>৳{item.priceList[0].mrp}</Text>
+          <Text style={styles.price}>৳{item?.priceList[0]?.mrp}</Text>
           <TouchableOpacity onPress={() => dispatch(addProduct(item))}>
             <Icon
               name="shopping-basket-add"

@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import BASE_URL from "../../Utility/BaseUrl";
 
 export default function ConfirmationProducts({ navigation }) {
   const cartItems = useSelector((state) => state.cartReducer);
@@ -23,11 +24,13 @@ export default function ConfirmationProducts({ navigation }) {
       // const response = createSale(cartItems);
 
       // console.log("response", response);
+
+      //console.log("cartItemsDtails:", cartItems);
       await axios
-        .post(`http://localhost:5001/api/ecom/sale/`, cartItems)
-        // .post(`${BASE_URL}/ecom/sale`, cartItems)
+        // .post(`http://localhost:5001/api/ecom/sale/`, cartItems)
+        .post(`${BASE_URL}/ecom/sale`, cartItems)
         .then(async (response) => {
-          // console.log("response :", response);
+          console.log("response :", response);
 
           if (response.status === 200) {
             // console.log("sale Success");

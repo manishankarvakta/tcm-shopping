@@ -19,8 +19,9 @@ const PopularProducts = () => {
 
   // console.log("data", product);
 
-  const renderItem = ({ item }) => console.log("item", item);
-  // <ProductsCardDesign item={item} navigation={navigation} />
+  const renderItem = ({ item }) => (
+    <ProductsCardDesign item={item} navigation={navigation} />
+  );
 
   return (
     <View style={{ marginHorizontal: 10, marginVertical: 10 }}>

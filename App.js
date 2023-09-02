@@ -14,6 +14,7 @@ import HomeScreen from "./Screens/Home/HomeScreen";
 import TopCategorysTwo from "./Components/TopCategorysTwo";
 import TopCategorys from "./Components/TopCategorys";
 import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
+import SliderTwo from "./Components/SliderTwo";
 
 export default function App() {
   const [token, setToken] = useState(false);
