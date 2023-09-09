@@ -14,37 +14,42 @@ import BASE_URL from "../../Utility/BaseUrl";
 import { useState } from "react";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { RefreshControl } from "react-native";
 
 const RenderData = ({ item, navigation }) => {
-  const formattedCreatedAt = new Date(item.createdAt).toLocaleDateString();
+  //console.log("itemData", item);
 
   return (
     <View style={styles.OrderHistorycardStyle}>
       <View style={{ padding: 10 }}>
         <View style={styles.OrderIdStyles}>
           <Text style={{ fontWeight: "700" }}>
-            Order Id:{`  ${item.invoiceId}`}
+            Order Id:{`  ${item?.invoiceId}`}
           </Text>
-          <Text style={{ color: "orange" }}>{item.status}</Text>
+          <Text style={{ color: "orange" }}>{item?.status}</Text>
         </View>
 
-        <Text style={{ fontWeight: "600" }}>{formattedCreatedAt}</Text>
+        {item?.products.map((product, index) => (
+          <View key={index}>
+            <Text style={{ fontWeight: "600", color: "green" }}>
+              {product?.name}
+            </Text>
 
-        <View style={styles.OrderPricesStyle}>
-          <Text style={{ fontWeight: "bold" }}>৳{item.total}</Text>
-          <Text style={{ marginHorizontal: 10, marginTop: 2 }}>
-            {" "}
-            | {item.totalItem} items
-          </Text>
-        </View>
+            <View style={styles.OrderPricesStyle}>
+              <Text style={{ fontWeight: "bold" }}>৳{product?.mrp}</Text>
+              <Text style={{ marginHorizontal: 10, marginTop: 2 }}>
+                {" "}
+                | {product?.qty} items
+              </Text>
+            </View>
+          </View>
+        ))}
       </View>
-
-      <View style={styles.BlankViewThree} />
 
       <View style={styles.IconDetails}>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate(Routes.ORDER_HISTORY_DETAILS, { id: item._id })
+            navigation.navigate(Routes.ORDER_HISTORY_DETAILS, { id: item?._id })
           }
           style={{ flexDirection: "row" }}
         >
@@ -65,37 +70,47 @@ const RenderData = ({ item, navigation }) => {
 export default function OrderHistory({ navigation }) {
   const [orderHistoryData, setOrderHistoryData] = useState([]);
   const [userId, setUserId] = useState("");
-  //console.log("orderHistoryData", orderHistoryData);
-
+  const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     const getUser = async () => {
       try {
         const user = await AsyncStorage.getItem("user");
         const parsedUser = JSON.parse(user);
         setUserId(parsedUser.id);
-        // console.log("UserID:", parsedUser.name);
+        // console.log("UserID:", parsedUser.id);
       } catch (error) {
-        console.error("Error getting user:", error);
+        // console.error("Error getting user:", error);
       }
     };
 
     getUser();
   }, []);
   //console.log("orderHistoryData:", orderHistoryData);
-  useEffect(() => {
-    const apiUrl = `${BASE_URL}/ecom/sale/${userId}`;
-
+  const fetchOrderHistory = () => {
+    const apiUrl = `${BASE_URL}/app/customer/history/${userId}`;
     axios
       .get(apiUrl)
       .then((response) => {
         const data = response.data;
-        /// console.log("Historydata:", data);
         setOrderHistoryData(data);
+        setRefreshing(false); // Stop refreshing when data is loaded
       })
       .catch((error) => {
         console.error("Error fetching order history data:", error);
+        setRefreshing(false); // Stop refreshing on error
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    // Fetch initial order history data
+    fetchOrderHistory();
+
+    // Set up an interval to auto-refresh every X seconds (e.g., every 60 seconds)
+    const refreshInterval = setInterval(fetchOrderHistory, 60000); // Adjust the interval as needed
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(refreshInterval);
+  }, [userId]);
 
   const renderItem = ({ item }) => (
     <RenderData item={item} navigation={navigation} />
@@ -105,7 +120,17 @@ export default function OrderHistory({ navigation }) {
       <FlatList
         data={orderHistoryData}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item._id}
+        refreshControl={
+          // Add refresh control to the FlatList
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => {
+              setRefreshing(true); // Start refreshing when the user manually pulls down
+              fetchOrderHistory(); // Fetch data when the user manually refreshes
+            }}
+          />
+        }
       />
     </SafeAreaView>
   );
@@ -120,7 +145,7 @@ const styles = StyleSheet.create({
   OrderIdStyles: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 2,
+    paddingVertical: 2,
   },
   OrderPricesStyle: {
     flexDirection: "row",

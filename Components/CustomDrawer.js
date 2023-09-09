@@ -10,15 +10,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Icon } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { selcetProduct } from "../Screens/Redux/CartSlice";
+import { useEffect } from "react";
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
   const [username, setUsername] = useState();
+  const [point, setPoint] = useState();
   const getUser = async () => {
     // console.log("getUser");
     const store = await AsyncStorage.getAllKeys();
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
     setUsername(user.name);
+    setPoint(user.point);
     //console.log(user);
   };
   getUser();
@@ -54,7 +57,7 @@ export default function CustomDrawer(props) {
               fontSize: 16,
             }}
           >
-            @UserName
+            {username}
           </Text>
           <Text
             style={{
@@ -69,9 +72,7 @@ export default function CustomDrawer(props) {
               color="tomato"
               type="font-awesome-5"
             />{" "}
-            <Text style={{ fontWeight: "500", fontSize: 15 }}>
-              {/* {getPoint.point.new} */} 1057
-            </Text>
+            <Text style={{ fontWeight: "500", fontSize: 15 }}>{point}</Text>
           </Text>
 
           {/* Add the coin icon */}

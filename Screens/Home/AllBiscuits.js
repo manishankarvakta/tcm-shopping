@@ -20,8 +20,13 @@ import ProductsCardDesign from "../../Components/ProductsCardDesign";
 const numColumns = 2;
 
 const AllBiscuits = ({ navigation }) => {
-  const { data, isSuccess, isError, refetch, isFetching } =
-    useGetProductCategoryIdQuery("62e8fe11b0757f089ab009e6");
+  const {
+    data,
+    isSuccess,
+    isError,
+    refetch,
+    isFetching,
+  } = useGetProductCategoryIdQuery("62e8fe11b0757f089ab009e6");
   const [Biscuits, setBiscuits] = useState([]);
 
   useEffect(() => {

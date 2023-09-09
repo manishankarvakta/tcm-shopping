@@ -58,7 +58,7 @@ export default function Profile({ navigation }) {
                 fontWeight: "600",
               }}
             >
-              @userName
+              {username}
             </Text>
           </View>
 

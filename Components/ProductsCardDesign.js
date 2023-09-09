@@ -8,7 +8,7 @@ import { addFavoriteProduct } from "../Screens/Redux/WishListSlice";
 import { addProduct } from "../Screens/Redux/CartSlice";
 
 export default function ProductsCardDesign({ item, navigation }) {
-  console.log("single", item);
+  ///console.log("single", item);
   const dispatch = useDispatch();
   const [favoriteItems, setFavoriteItems] = useState([]);
 

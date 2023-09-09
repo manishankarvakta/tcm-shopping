@@ -10,8 +10,14 @@ import ProductsCardDesign from "../../Components/ProductsCardDesign";
 const PopularProducts = () => {
   const navigation = useNavigation();
   const [product, setProduct] = useState([]);
-  const { data, isSuccess, isError, isFetching, refetch, error } =
-    useGetPopularProductsQuery();
+  const {
+    data,
+    isSuccess,
+    isError,
+    isFetching,
+    refetch,
+    error,
+  } = useGetPopularProductsQuery();
 
   useEffect(() => {
     data && setProduct(data);

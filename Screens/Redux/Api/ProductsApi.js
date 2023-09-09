@@ -8,25 +8,25 @@ export const ProductsApi = createApi({
   tagTypes: ["Product", "Category"],
   endpoints: (builder) => ({
     getOfferProducts: builder.query({
-      query: () => `/ecom/product/offer`,
+      query: () => `/app/product/offer`,
       tagTypes: ["Product"],
     }),
     getPopularProducts: builder.query({
-      query: () => `ecom/product/best-seller`,
+      query: () => `app/product/best-seller`,
       tagTypes: ["Product"],
     }),
 
     getFlashSales: builder.query({
-      query: () => `/ecom/product/promo-products`,
+      query: () => `/app/product/promo-products`,
     }),
 
     getComboProducts: builder.query({
-      query: () => `/ecom/product/Combo`,
+      query: () => `/app/product/Combo`,
       tagTypes: ["Product"],
     }),
 
     getBestFeaturedProducts: builder.query({
-      query: () => `/ecom/featured`,
+      query: () => `/app/featured`,
       tagTypes: ["Product"],
     }),
 
@@ -41,42 +41,42 @@ export const ProductsApi = createApi({
     }),
 
     getSimilarProducts: builder.query({
-      query: (id) => `/ecom/product-similar/${id}`,
+      query: (id) => `/app/product-similar/${id}`,
       tagTypes: ["Products"],
     }),
 
     getProductsCategory: builder.query({
-      query: (id) => `/ecom/product/category/${id}`,
+      query: (id) => `/app/product/category/${id}`,
       tagTypes: ["Category"],
     }),
 
     getCategoryGroup: builder.query({
-      query: (group) => `/ecom/category/group/${group}`,
+      query: (group) => `/app/category/group/${group}`,
       tagTypes: ["Category"],
     }),
 
     getSubCategory: builder.query({
-      query: (mc) => `/ecom/category/master/${mc}`,
+      query: (mc) => `/app/category/master/${mc}`,
       tagTypes: ["Category"],
     }),
 
     getProductCategoryId: builder.query({
-      query: (_id) => `ecom/product_category/${_id}`,
+      query: (_id) => `app/product_category/${_id}`,
       tagTypes: ["Category"],
     }),
 
     getSkinCareProducts: builder.query({
-      query: (_id) => `ecom/product_category/${_id}`,
+      query: (_id) => `app/product_category/${_id}`,
       tagTypes: ["Category"],
     }),
 
     getVegetables: builder.query({
-      query: (_id) => `ecom/product_category/${_id}`,
+      query: (_id) => `app/product_category/${_id}`,
       tagTypes: ["Category"],
     }),
 
     getProductDetails: builder.query({
-      query: (_id) => `/ecom/product/${_id}`,
+      query: (_id) => `/app/product/${_id}`,
       tagTypes: ["Products"],
     }),
   }),

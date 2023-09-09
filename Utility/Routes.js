@@ -10,7 +10,7 @@ export default {
   HOME_DRAWER: "Home ",
 
   SERARCH: "Search",
-  SERARCH_TAB: "Search Tab",
+  SERARCH_TAB: "Search",
 
   CATEGORY: "Category",
   CATEGORY_SCREEN: "Categorys ",
@@ -34,12 +34,12 @@ export default {
   FLASHSALE_TAB: "Flash Sales Tab",
   FLASHSALE_Drawer: "Flash Sales ",
 
-  FRESH_VEGETABLES_TAB: "Vegetables",
-  All_BISCUITS_TAB: "Biscuits",
+  FRESH_VEGETABLES_TAB: "Vegetables ",
+  All_BISCUITS_TAB: "Biscuits ",
   All_BISCUITS: "Biscuits",
 
   DRINK: "Drinks",
-  SOFT_DRINKS_TAB: "Drinks",
+  SOFT_DRINKS_TAB: "Drinks ",
 
   FRESH_FOOD: "Fresh food",
   FRESH_FOOD_TAB: "Fresh Foods",

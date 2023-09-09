@@ -13,6 +13,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import BASE_URL from "../../Utility/BaseUrl";
+import Routes from "../../Utility/Routes";
 
 export default function ConfirmationProducts({ navigation }) {
   const cartItems = useSelector((state) => state.cartReducer);
@@ -28,18 +29,18 @@ export default function ConfirmationProducts({ navigation }) {
       //console.log("cartItemsDtails:", cartItems);
       await axios
         // .post(`http://localhost:5001/api/ecom/sale/`, cartItems)
-        .post(`${BASE_URL}/ecom/sale`, cartItems)
-        .then(async (response) => {
-          console.log("response :", response);
+        .post(`${BASE_URL}/app/sale`, cartItems)
+        .then((response) => {
+          //console.log("response :", response);
 
           if (response.status === 200) {
-            // console.log("sale Success");
+            navigation.navigate(Routes.ORDER_SUCCESS);
           } else {
             //console.log(error);
           }
         })
-        .catch(async (error) => {
-          // console.log("error :", error);
+        .catch((error) => {
+          console.log("error :", error);
           // Handle the error (e.g., show an error message to the user)
         });
     } else {

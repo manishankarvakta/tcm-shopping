@@ -8,7 +8,7 @@ export const SalesApi = createApi({
   endpoints: (builder) => ({
     addSale: builder.mutation({
       query: (saleData) => ({
-        url: "/ecom/sale",
+        url: "/app/sale",
         method: "POST",
         body: saleData,
       }),
@@ -16,7 +16,7 @@ export const SalesApi = createApi({
     }),
 
     getSaleById: builder.query({
-      query: (id) => `/sale/${id}`,
+      query: (id) => `app/sale/details/${id}`,
       invalidatesTags: ["Sale"],
     }),
   }),

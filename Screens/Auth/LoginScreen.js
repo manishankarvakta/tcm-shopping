@@ -46,14 +46,14 @@ const LoginScreen = ({ navigation }) => {
   const submitLogin = async () => {
     //console.log(userId, pass);
     setLoading(true);
-    // navigation.replace("Home");
+    navigation.navigate(Routes.HOME_DRAWER);
 
     // AXIOS LOGIN REQUEST
-    //console.log(`${BASE_URL}/ecom/customer/login`);
-    const url = `${BASE_URL}/ecom/customer/login`;
+    //console.log(`${BASE_URL}/app/customer/login`);
+    const url = `${BASE_URL}/app/customer/login`;
     //console.log("url", url);
     await axios
-      .post(`${BASE_URL}/ecom/customer/login`, {
+      .post(`${BASE_URL}/app/customer/login`, {
         phone: userId,
         password: pass,
       })

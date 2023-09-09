@@ -16,11 +16,13 @@ export default function OrderHistoryDetails({ navigation, route }) {
   const { id } = route.params;
   const { data, isSuccess, refetch } = useGetSaleByIdQuery(id);
   const [itemsModalVisible, setItemsModalVisible] = useState(false);
+  const [History, setHistory] = useState();
 
-  //console.log(id);
+  console.log("data", id);
+  console.log("data", data);
+
   useEffect(() => {
-    // console.log("success");
-    //console.log("data", data);
+    data && setHistory(data);
   }, [isSuccess, data]);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function OrderHistoryDetails({ navigation, route }) {
   }, [id]);
 
   const formattedCreatedAt = new Date(data?.createdAt).toLocaleDateString();
-  const roundedPrice = data?.grossTotal.toFixed(2);
+  const roundedPrice = data?.grossTotal?.toFixed(2);
 
   const Address = data?.customerId?.address[0];
   //console.log("hi", Address?.city);

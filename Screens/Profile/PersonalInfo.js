@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import {
   TextInput,
   RadioButton,
@@ -7,34 +7,78 @@ import {
   Text,
   Avatar,
 } from "react-native-paper";
+import {
+  useCustomerQuery,
+  useUpdateCustomerAddressMutation,
+} from "../Redux/Api/CustomerApi";
+import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
 
 const PersonalInfo = () => {
-  const [name, setName] = React.useState("");
-  const [gender, setGender] = React.useState("");
-  const [phone, setPhone] = React.useState("");
+  const [userUpdate] = useUpdateCustomerAddressMutation();
+  const [UserInfo, setUserInfo] = useState();
+
+  const [name, setFirstName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [area, setArea] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [gender, setGender] = React.useState("");
+  const [dateOfBirth, setDateOfBirth] = React.useState("");
+
+  const { data, isSuccess, refetch } = useCustomerQuery(UserInfo);
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      setFirstName(data?.name);
+      setEmail(data?.email);
+      setPhone(data?.phone);
+      setGender(data?.gender);
+      setDateOfBirth(data?.dob);
+    }
+  }, [data, isSuccess]);
+
+  const getUser = async () => {
+    // console.log("getUser");
+    const store = await AsyncStorage.getAllKeys();
+    const userData = await AsyncStorage.getItem("user");
+    const user = JSON.parse(userData);
+    setUserInfo(user.id);
+  };
+  getUser();
+
+  const handleUser = () => {
+    const updatedUser = {
+      _id: data?._id,
+      name,
+      email,
+      phone,
+      gender,
+      dob: dateOfBirth,
+    };
+    // console.log(updatedUser);
+    const update = userUpdate(updatedUser);
+
+    if (update) {
+      console.log(update);
+      Alert.alert("User Update SuccessFul");
+    }
+  };
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Avatar.Image
           source={require("../../assets/mansurol.jpeg")} // Replace with your image path
-          size={120}
+          size={100}
           style={styles.avatar}
         />
       </View>
       <View style={{ paddingTop: 15 }}>
         <TextInput
-          label="FullName"
+          label="Full Name"
           value={name}
-          onChangeText={(text) => setName(text)}
-          style={styles.input}
-        />
-
-        <TextInput
-          label="Phone"
-          value={phone}
-          onChangeText={(text) => setPhone(text)}
+          onChangeText={(text) => setFirstName(text)}
           style={styles.input}
         />
 
@@ -46,11 +90,19 @@ const PersonalInfo = () => {
         />
 
         <TextInput
-          label="Area"
-          value={area}
-          onChangeText={(text) => setArea(text)}
+          label="Phone"
+          value={phone}
+          onChangeText={(text) => setPhone(text)}
           style={styles.input}
         />
+
+        <TextInput
+          label="Date of Birth"
+          value={dateOfBirth}
+          onChangeText={(text) => setDateOfBirth(text)}
+          style={styles.input}
+        />
+
         <View>
           <Text style={{ paddingVertical: 5 }}>Gender</Text>
           <RadioButton.Group
@@ -58,15 +110,27 @@ const PersonalInfo = () => {
             value={gender}
           >
             <View style={styles.radioGroup}>
-              <RadioButton.Item label="Male" value="male" color="#C38FEE" />
-              <RadioButton.Item label="Female" value="female" color="#C38FEE" />
+              <RadioButton.Item
+                label="Male"
+                value="male"
+                color="#C38FEE"
+                status={gender === "Male" ? "checked" : "unchecked"}
+              />
+              <RadioButton.Item
+                label="Female"
+                value="female"
+                color="#C38FEE"
+                status={gender === "Male" ? "checked" : "unchecked"}
+              />
             </View>
           </RadioButton.Group>
         </View>
 
-        <Button mode="contained">Save</Button>
+        <Button mode="contained" onPress={handleUser}>
+          Update
+        </Button>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
