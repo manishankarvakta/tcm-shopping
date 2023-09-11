@@ -1,23 +1,11 @@
-import React, { useState } from "react";
-import {
-  View,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Dimensions,
-  Image,
-  Text,
-} from "react-native";
-import Routes from "../../Utility/Routes";
-import { Icon } from "@rneui/base";
+import React, { useState, useEffect } from "react";
+import { View, FlatList, Text, ActivityIndicator } from "react-native";
 import { useGetProductCategoryIdQuery } from "../Redux/Api/ProductsApi";
-import { useEffect } from "react";
-import { PHOTO_URL } from "../../Utility/BaseUrl";
-import { addFavoriteProduct } from "../Redux/WishListSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../Redux/CartSlice";
 import ProductsCardDesign from "../../Components/ProductsCardDesign";
+import { Button } from "react-native-elements";
+
 const numColumns = 2;
+const initialItemCount = 6; // Initial number of items to display
 
 const AllBiscuits = ({ navigation }) => {
   const {
@@ -27,26 +15,54 @@ const AllBiscuits = ({ navigation }) => {
     refetch,
     isFetching,
   } = useGetProductCategoryIdQuery("62e8fe11b0757f089ab009e6");
+  const [visibleItemCount, setVisibleItemCount] = useState(initialItemCount);
   const [Biscuits, setBiscuits] = useState([]);
 
   useEffect(() => {
-    data?.length > 0 && setBiscuits(data);
-  }, [isSuccess]);
+    if (isSuccess) {
+      setBiscuits(data || []);
+    }
+  }, [isSuccess, data]);
 
-  // console.log("data", data);
+  const loadMoreItems = () => {
+    const newVisibleItemCount = visibleItemCount + 6; // Load 6 more items
+    setVisibleItemCount(newVisibleItemCount);
+  };
+
   const renderItem = ({ item }) => (
     <ProductsCardDesign item={item} navigation={navigation} />
   );
+
+  const renderFooter = () => {
+    if (isFetching) {
+      return <ActivityIndicator size="small" color="tomato" />;
+    }
+    if (visibleItemCount < Biscuits.length) {
+      return (
+        <Button
+          title="Load More"
+          onPress={loadMoreItems}
+          type="outline"
+          buttonStyle={{ backgroundColor: "transparent", borderWidth: 0 }}
+          titleStyle={{ color: "tomato" }}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <View style={{ marginHorizontal: 10, marginVertical: 10 }}>
       <FlatList
-        data={Biscuits.slice(0, 30)}
+        data={Biscuits.slice(0, visibleItemCount)}
         renderItem={renderItem}
         onRefresh={refetch}
         refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
+        ListFooterComponent={renderFooter}
       />
+      {isError && <Text>Error: Something went wrong.</Text>}
     </View>
   );
 };

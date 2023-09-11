@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { View, FlatList, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, FlatList, Text, ActivityIndicator } from "react-native";
 import { useGetProductCategoryIdQuery } from "../Redux/Api/ProductsApi";
-import { useEffect } from "react";
 import ProductsCardDesign from "../../Components/ProductsCardDesign";
-import { Button } from "react-native-elements"; // Import the Button component
+import { Button } from "react-native-elements";
 
 const numColumns = 2;
-const initialItemCount = 6; // Number of items to initially display
+const initialItemCount = 6;
 
 const AllDrinks = ({ navigation }) => {
   const {
@@ -17,20 +16,40 @@ const AllDrinks = ({ navigation }) => {
     refetch,
   } = useGetProductCategoryIdQuery("62e8fe11b0757f089ab009c8");
   const [visibleItemCount, setVisibleItemCount] = useState(initialItemCount);
-  const [Drinks, setDrink] = useState([]);
+  const [Drinks, setDrinks] = useState([]);
 
   useEffect(() => {
-    data?.length > 0 && setDrink(data);
-  }, [isSuccess]);
+    if (isSuccess) {
+      setDrinks(data || []);
+    }
+  }, [isSuccess, data]);
 
   const loadMoreItems = () => {
-    const newVisibleItemCount = visibleItemCount + 9; // Load 9 more items
+    const newVisibleItemCount = visibleItemCount + 6; // Load 6 more items
     setVisibleItemCount(newVisibleItemCount);
   };
 
   const renderItem = ({ item }) => (
     <ProductsCardDesign item={item} navigation={navigation} />
   );
+
+  const renderFooter = () => {
+    if (isFetching) {
+      return <ActivityIndicator size="small" color="tomato" />;
+    }
+    if (visibleItemCount < Drinks.length) {
+      return (
+        <Button
+          title="Load More"
+          onPress={loadMoreItems}
+          type="outline"
+          buttonStyle={{ backgroundColor: "transparent", borderWidth: 0 }}
+          titleStyle={{ color: "tomato" }}
+        />
+      );
+    }
+    return null;
+  };
 
   return (
     <View style={{ marginHorizontal: 10, marginVertical: 10, flex: 1 }}>
@@ -41,16 +60,9 @@ const AllDrinks = ({ navigation }) => {
         refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
+        ListFooterComponent={renderFooter}
       />
-      {visibleItemCount < Drinks.length && (
-        <Button
-          title="Load More"
-          onPress={loadMoreItems}
-          type="outline" // You can specify the button type (solid, clear, outline) as needed
-          buttonStyle={{ backgroundColor: "transparent", borderWidth: 0 }}
-          titleStyle={{ color: "tomato" }}
-        />
-      )}
+      {isError && <Text>Error: Something went wrong.</Text>}
     </View>
   );
 };

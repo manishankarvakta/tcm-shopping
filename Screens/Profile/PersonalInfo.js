@@ -18,6 +18,7 @@ import { useEffect } from "react";
 const PersonalInfo = () => {
   const [userUpdate] = useUpdateCustomerAddressMutation();
   const [UserInfo, setUserInfo] = useState();
+  //console.log("UserInfo:", UserInfo);
 
   const [name, setFirstName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -47,20 +48,24 @@ const PersonalInfo = () => {
   };
   getUser();
 
-  const handleUser = () => {
+  const handleUser = async () => {
     const updatedUser = {
-      _id: data?._id,
-      name,
-      email,
-      phone,
-      gender,
+      name: name,
+      email: email,
+      phone: phone,
+      gender: gender,
       dob: dateOfBirth,
     };
-    // console.log(updatedUser);
-    const update = userUpdate(updatedUser);
+    console.log("update", updatedUser);
+    const update = await userUpdate({ id: UserInfo, updatedUser });
 
     if (update) {
-      console.log(update);
+      console.log("updateUser:", update);
+      const userData = await AsyncStorage.getItem("user");
+      const user = JSON.parse(userData);
+      const newUser = { ...user, update };
+
+      await AsyncStorage.setItem("user", JSON.stringify(newUser));
       Alert.alert("User Update SuccessFul");
     }
   };
@@ -69,7 +74,7 @@ const PersonalInfo = () => {
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Avatar.Image
-          source={require("../../assets/mansurol.jpeg")} // Replace with your image path
+          source={require("../../assets/user.png")}
           size={100}
           style={styles.avatar}
         />

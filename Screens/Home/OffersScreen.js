@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,27 +8,31 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
-import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import Routes from "../../Utility/Routes";
 import { useGetOfferProductsQuery } from "../Redux/Api/ProductsApi";
-import { useState, useEffect } from "react";
-import { PHOTO_URL } from "../../Utility/BaseUrl";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../Redux/CartSlice";
+import { Button } from "react-native-elements";
+import { PHOTO_URL } from "../../Utility/BaseUrl";
 
 const OffersScreen = ({ navigation }) => {
-  const { data, isSuccess, isError, isFetching, isLoading, refetch } =
-    useGetOfferProductsQuery();
-
+  const { data, isSuccess, isFetching, refetch } = useGetOfferProductsQuery();
   const [offer, setOffer] = useState([]);
+  const [visibleItemCount, setVisibleItemCount] = useState(6); // Number of items to initially display
 
   const dispatch = useDispatch();
+
   useEffect(() => {
-    data?.length > 0 && setOffer(data);
+    if (isSuccess) {
+      setOffer(data || []);
+    }
   }, [isSuccess, data]);
 
-  //console.log(isFetching, isLoading, isSuccess, isError);
+  const loadMoreItems = () => {
+    const newVisibleItemCount = visibleItemCount + 6; // Load 6 more items
+    setVisibleItemCount(newVisibleItemCount);
+  };
 
   const renderProductItem = ({ item }) => {
     const Offerphoto = `${PHOTO_URL}${item.photo}`;
@@ -49,13 +54,11 @@ const OffersScreen = ({ navigation }) => {
               <Text style={{ color: "red", fontSize: 15 }}>
                 ৳{item?.priceList[0]?.mrp}
               </Text>
-              <TouchableOpacity style={styles.OfferProductAddCartStyle}>
-                <FontAwesome
-                  name="plus"
-                  size={14}
-                  color="#1D2F3E"
-                  onPress={() => dispatch(addProduct(item))}
-                />
+              <TouchableOpacity
+                style={styles.OfferProductAddCartStyle}
+                onPress={() => dispatch(addProduct(item))}
+              >
+                <FontAwesome name="plus" size={14} color="#1D2F3E" />
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
@@ -74,14 +77,39 @@ const OffersScreen = ({ navigation }) => {
     );
   };
 
+  const renderFooter = () => {
+    if (isFetching) {
+      return (
+        <ActivityIndicator
+          size="small"
+          color="tomato"
+          style={{ marginVertical: 10 }}
+        />
+      );
+    }
+    if (visibleItemCount < offer.length) {
+      return (
+        <Button
+          title="Load More"
+          onPress={loadMoreItems}
+          type="outline"
+          buttonStyle={{ backgroundColor: "transparent", borderWidth: 0 }}
+          titleStyle={{ color: "tomato" }}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <SafeAreaView>
       <FlatList
-        data={offer}
+        data={offer.slice(0, visibleItemCount)}
         renderItem={renderProductItem}
         onRefresh={refetch}
         refreshing={isFetching}
-        keyExtractor={(item) => item._id.toString()} // Convert the id to a string to ensure uniqueness
+        keyExtractor={(item) => item._id.toString()}
+        ListFooterComponent={renderFooter}
       />
     </SafeAreaView>
   );

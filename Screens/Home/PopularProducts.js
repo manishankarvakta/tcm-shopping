@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList } from "react-native";
-
+import { View, FlatList, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useGetPopularProductsQuery } from "../Redux/Api/ProductsApi";
-const numColumns = 2;
-
+import { Button, Text } from "react-native-elements";
 import ProductsCardDesign from "../../Components/ProductsCardDesign";
 
+const numColumns = 2;
+const initialItemCount = 6;
+
 const PopularProducts = () => {
+  const [visibleItemCount, setVisibleItemCount] = useState(initialItemCount);
   const navigation = useNavigation();
   const [product, setProduct] = useState([]);
   const {
@@ -20,25 +22,51 @@ const PopularProducts = () => {
   } = useGetPopularProductsQuery();
 
   useEffect(() => {
-    data && setProduct(data);
+    if (isSuccess) {
+      // Update product data when it's successfully fetched
+      setProduct(data || []);
+    }
   }, [isSuccess, data]);
 
-  // console.log("data", product);
+  const loadMoreItems = () => {
+    const newVisibleItemCount = visibleItemCount + 6; // Load 6 more items
+    setVisibleItemCount(newVisibleItemCount);
+  };
 
   const renderItem = ({ item }) => (
     <ProductsCardDesign item={item} navigation={navigation} />
   );
 
+  const renderFooter = () => {
+    if (isFetching) {
+      return <ActivityIndicator size="small" color="tomato" />;
+    }
+    if (visibleItemCount < product.length) {
+      return (
+        <Button
+          title="Load More"
+          onPress={loadMoreItems}
+          type="outline"
+          buttonStyle={{ backgroundColor: "transparent", borderWidth: 0 }}
+          titleStyle={{ color: "tomato" }}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <View style={{ marginHorizontal: 10, marginVertical: 10 }}>
       <FlatList
-        data={data}
+        data={product.slice(0, visibleItemCount)}
         renderItem={renderItem}
         onRefresh={refetch}
         refreshing={isFetching}
         keyExtractor={(item) => item._id}
         numColumns={numColumns}
+        ListFooterComponent={renderFooter}
       />
+      {isError && <Text>Error: {error.message}</Text>}
     </View>
   );
 };

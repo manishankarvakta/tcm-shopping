@@ -133,7 +133,6 @@ const HomeScreen = ({ navigation }) => {
                 size={37}
                 color="white"
                 type="ant-design"
-                paddingRight={10}
               />
             </TouchableOpacity>
 
@@ -409,10 +408,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   headerLeft: {
     flexDirection: "row",
-    // marginHorizontal: 5,
-    // marginVertical: 5,
-    // marginBottom: 5,
-    marginLeft: 10,
   },
   avatar: {
     height: 40,

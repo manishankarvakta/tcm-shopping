@@ -37,7 +37,6 @@ const CategoryStackNav = ({ navigation }) => {
                 name="arrow-back" // Replace this with the name of your desired icon
                 size={24}
                 color="black"
-                style={{ marginLeft: 10 }}
               />
             </TouchableOpacity>
           ),

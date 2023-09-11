@@ -43,21 +43,6 @@ export default function ComponentProductCardDesign({ item }) {
         <Image
           onPress={() => alert(item.imageUrl)}
           source={{ uri: `${PHOTO_URL}${item.photo}` }}
-          onError={() => {
-            // Handle the error loading the image by setting a default image source
-            // In this case, we're using a local image as the default
-            return (
-              <Image
-                source={require("../assets/noPhoto.jpg")}
-                style={{
-                  width: 95,
-                  height: 85,
-                  marginVertical: 5,
-                  borderRadius: 5,
-                }}
-              />
-            );
-          }}
           style={{
             width: 95,
             height: 85,

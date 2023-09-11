@@ -14,7 +14,7 @@ export default function VegetablesProductStack({ navigation }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={Routes.FRESH_VEGETABLES_TAB}
+        name={Routes.VEGETABLES}
         component={FreshVegetables}
         options={{
           drawerIcon: ({ color, size }) => (

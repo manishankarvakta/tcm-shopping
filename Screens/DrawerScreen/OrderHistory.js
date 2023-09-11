@@ -17,53 +17,33 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RefreshControl } from "react-native";
 
 const RenderData = ({ item, navigation }) => {
-  //console.log("itemData", item);
+  const formattedCreatedAt = new Date(item?.createdAt).toLocaleDateString();
+  const roundedPrice = item?.grossTotal?.toFixed(2);
 
   return (
-    <View style={styles.OrderHistorycardStyle}>
+    <TouchableOpacity
+      style={styles.OrderHistorycardStyle}
+      onPress={() =>
+        navigation.navigate(Routes.ORDER_HISTORY_DETAILS, { id: item?._id })
+      }
+    >
       <View style={{ padding: 10 }}>
         <View style={styles.OrderIdStyles}>
-          <Text style={{ fontWeight: "700" }}>
-            Order Id:{`  ${item?.invoiceId}`}
-          </Text>
+          <Text style={{ fontWeight: "500" }}>{formattedCreatedAt}</Text>
           <Text style={{ color: "orange" }}>{item?.status}</Text>
         </View>
+        <Text style={{ fontWeight: "800", paddingVertical: 5 }}>
+          InvoiceId:{`  ${item?.invoiceId}`}
+        </Text>
 
-        {item?.products.map((product, index) => (
-          <View key={index}>
-            <Text style={{ fontWeight: "600", color: "green" }}>
-              {product?.name}
-            </Text>
-
-            <View style={styles.OrderPricesStyle}>
-              <Text style={{ fontWeight: "bold" }}>৳{product?.mrp}</Text>
-              <Text style={{ marginHorizontal: 10, marginTop: 2 }}>
-                {" "}
-                | {product?.qty} items
-              </Text>
-            </View>
-          </View>
-        ))}
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={{ fontWeight: "600" }}>
+            total Items : {item?.totalItem}
+          </Text>
+          <Text style={{ fontWeight: "bold" }}>Total : {roundedPrice}৳</Text>
+        </View>
       </View>
-
-      <View style={styles.IconDetails}>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate(Routes.ORDER_HISTORY_DETAILS, { id: item?._id })
-          }
-          style={{ flexDirection: "row" }}
-        >
-          <Icon
-            name="filetext1"
-            size={16}
-            color="gray"
-            type="ant-design"
-            paddingRight={5}
-          />
-          <Text style={styles.DetailsTextStyle}>Details</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

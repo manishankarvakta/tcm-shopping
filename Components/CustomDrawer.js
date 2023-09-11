@@ -11,25 +11,26 @@ import { Icon } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { selcetProduct } from "../Screens/Redux/CartSlice";
 import { useEffect } from "react";
+import { useCustomerQuery } from "../Screens/Redux/Api/CustomerApi";
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
   const [username, setUsername] = useState();
   const [point, setPoint] = useState();
+  const [userInfo, setUserInfo] = useState();
+
+  const { data, isSuccess, refetch } = useCustomerQuery(userInfo);
+  //console.log("datadata", data);
   const getUser = async () => {
-    // console.log("getUser");
     const store = await AsyncStorage.getAllKeys();
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
-    setUsername(user.name);
-    setPoint(user.point);
-    //console.log(user);
+    setUserInfo(user.id);
   };
   getUser();
 
-  const dispatch = useDispatch();
-
-  const getPoint = useSelector((state) => state.cartReducer);
-  //console.log("getPoint:", getPoint);
+  useEffect(() => {
+    refetch();
+  }, [data, isSuccess]);
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
@@ -57,7 +58,7 @@ export default function CustomDrawer(props) {
               fontSize: 16,
             }}
           >
-            {username}
+            {data?.name}
           </Text>
           <Text
             style={{
@@ -72,7 +73,9 @@ export default function CustomDrawer(props) {
               color="tomato"
               type="font-awesome-5"
             />{" "}
-            <Text style={{ fontWeight: "500", fontSize: 15 }}>{point}</Text>
+            <Text style={{ fontWeight: "500", fontSize: 15 }}>
+              {data?.point}
+            </Text>
           </Text>
 
           {/* Add the coin icon */}

@@ -12,14 +12,15 @@ import {
 import React, { useEffect, useState } from "react";
 import { Icon } from "@rneui/base";
 import { useGetSaleByIdQuery } from "../Redux/Api/SalesApi";
+import { PHOTO_URL } from "../../Utility/BaseUrl";
 export default function OrderHistoryDetails({ navigation, route }) {
   const { id } = route.params;
   const { data, isSuccess, refetch } = useGetSaleByIdQuery(id);
   const [itemsModalVisible, setItemsModalVisible] = useState(false);
   const [History, setHistory] = useState();
 
-  console.log("data", id);
-  console.log("data", data);
+  // console.log("data", id);
+  console.log("dataTwo", data);
 
   useEffect(() => {
     data && setHistory(data);
@@ -52,75 +53,44 @@ export default function OrderHistoryDetails({ navigation, route }) {
       <View>
         <View>
           <View style={styles.OrderHistoryDetailsScreenStyle}>
-            <Image
-              source={require("../../assets/FlashSales/f9.jpg")}
-              style={styles.OrderHistoryImg}
-              resizeMode="contain"
-            />
+            <View style={styles.headerTitleStyle}>
+              <TouchableOpacity
+                style={styles.TitleItemStyle}
+                onPress={openItemsModal}
+              >
+                <Icon
+                  name="shopping-basket"
+                  size={25}
+                  padding={5}
+                  color="green"
+                  type="Fontisto"
+                  paddingBottom={5}
+                  paddingRight={5}
+                />
+                <Text style={styles.ColorSizeStyle}>Items List</Text>
+              </TouchableOpacity>
+            </View>
 
-            <View style={{ padding: 10, alignSelf: "center" }}>
+            <View
+              style={{
+                paddingHorizontal: 5,
+                alignSelf: "center",
+              }}
+            >
               <Text>
                 <Text style={styles.OrderText}>Order status </Text>
                 <Text style={styles.CancelText}>{data?.status}</Text>
               </Text>
-              <Text style={{ marginVertical: 5 }}>
-                <Text style={{ fontSize: 14, fontWeight: "500" }}>
+              <Text>
+                <Text style={{ fontSize: 13, fontWeight: "500" }}>
                   Order ID: #{data?.invoiceId}
-                </Text>
+                </Text>{" "}
               </Text>
+              <Text>{formattedCreatedAt}</Text>
             </View>
           </View>
 
-          <View style={styles.headerTitleStyle}>
-            <TouchableOpacity style={styles.TitleItemStyle}>
-              <Icon
-                name="shopping-bag"
-                size={25}
-                padding={5}
-                color="green"
-                type="feather"
-                paddingRight={5}
-              />
-
-              <Text style={styles.ColorSizeStyle}>Reorder</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.TitleItemStyle}
-              onPress={openItemsModal}
-            >
-              <Icon
-                name="shopping-basket"
-                size={25}
-                padding={5}
-                color="green"
-                type="Fontisto"
-                paddingRight={5}
-              />
-              <Text style={styles.ColorSizeStyle}>Items</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.TitleItemStyle}>
-              <Icon
-                name="cancel"
-                size={25}
-                padding={5}
-                color="green"
-                type="MaterialIcons"
-                paddingRight={5}
-              />
-              <Text style={styles.ColorSizeStyle}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
-
           <View style={styles.BlankViewStyle} />
-
-          <View style={styles.OrderDeliverTimeStyle}>
-            <Text style={{ fontSize: 15, fontWeight: "700" }}>
-              {data?.invoiceId}
-            </Text>
-            <Text>{formattedCreatedAt}</Text>
-          </View>
 
           <View style={styles.ReturnItemTextStyle}>
             <View style={styles.CommonTextStyle}>
@@ -191,7 +161,7 @@ export default function OrderHistoryDetails({ navigation, route }) {
                 Total Amount :
               </Text>{" "}
               <Text style={{ fontSize: 14, color: "green" }}>
-                {roundedPrice}
+                {roundedPrice} Tk
               </Text>
             </Text>
           </View>
@@ -214,12 +184,30 @@ export default function OrderHistoryDetails({ navigation, route }) {
             data={data?.products}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <View style={styles.productItem}>
-                <View style={styles.productDetails}>
-                  <Text style={styles.productName}>{item.name}</Text>
-                  <Text style={styles.productPrice}>
-                    ৳{item.mrp} | {item.qty} pic
-                  </Text>
+              <View style={styles.CartProductStyle}>
+                <View style={{}}>
+                  <Image
+                    source={{ uri: `${PHOTO_URL}${item.photo}` }}
+                    style={styles.CartProductImgStyle}
+                  />
+                </View>
+
+                <View
+                  style={{
+                    justifyContent: "space-between",
+                    paddingHorizontal: 10,
+                  }}
+                >
+                  <View style={{ width: 180 }}>
+                    <Text style={{ fontSize: 14, fontWeight: "500" }}>
+                      {item.name}
+                    </Text>
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text style={{ color: "red" }}>৳{item.mrp} </Text>
+
+                    <Text> | {item.qty} pcs</Text>
+                  </View>
                 </View>
               </View>
             )}
@@ -237,11 +225,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 10,
   },
+  CartProductStyle: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    paddingVertical: 10,
+    borderWidth: 1,
+    marginVertical: 10,
+    marginHorizontal: 10,
+    backgroundColor: "#F3F6FD",
+    borderColor: "#ddd",
+    borderRadius: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 55,
+    height: 80,
+  },
+  CartProductImgStyle: {
+    width: 60,
+    height: 65,
 
-  OrderHistoryImg: {
-    width: 90,
-    height: 90,
-    borderRadius: 15,
+    borderRadius: 10,
   },
 
   OrderText: {
@@ -250,12 +255,6 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 
-  CancelText: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#CCCCAE",
-    padding: 10,
-  },
   headerTitleStyle: {
     flexDirection: "row",
     justifyContent: "center",
@@ -337,30 +336,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  productImage: {
-    width: 60,
-    height: 60,
-    marginRight: 10,
-  },
-  productDetails: {
-    flex: 1,
-  },
-  productName: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  productPrice: {
-    fontSize: 14,
-    color: "green",
-  },
-
   productItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-    marginTop: 30,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E0E0E0",
     paddingBottom: 10,
     marginLeft: 20,
     position: "relative",
@@ -368,8 +344,8 @@ const styles = StyleSheet.create({
 
   closeButtonTwo: {
     position: "absolute",
-    width: 28,
-    height: 28,
+    width: 25,
+    height: 25,
     backgroundColor: "white",
     borderRadius: 18,
     justifyContent: "center",
@@ -378,7 +354,7 @@ const styles = StyleSheet.create({
     borderColor: "red",
     marginTop: 20,
     alignSelf: "flex-end",
-
+    marginBottom: 10,
     zIndex: 2,
   },
 });

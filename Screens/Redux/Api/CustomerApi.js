@@ -11,16 +11,16 @@ export const CustomerApi = createApi({
       query: (id) => `/app/customer/${id}`,
     }),
     updateCustomerAddress: builder.mutation({
-      query: ({ _id, ...rest }) => ({
-        url: `/app/customer/address/${_id}`,
+      query: ({ id, ...rest }) => ({
+        url: `/app/customer/${id}`,
         method: "PUT",
-        body: rest,
+        body: rest.updatedUser,
       }),
       invalidatesTags: ["Customer"],
     }),
     updateUserInfoUpdates: builder.mutation({
-      query: ({ _id, ...rest }) => ({
-        url: `/app/customer/address/${_id}`,
+      query: ({ id, ...rest }) => ({
+        url: `/app/customer/address/${id}`,
         method: "PUT",
         body: rest,
       }),

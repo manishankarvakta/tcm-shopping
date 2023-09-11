@@ -6,7 +6,7 @@ export default {
   FORGOT_PASSWORD: "Forgot Password",
 
   HOME: "Home stack",
-  HOME_TAB: "Home",
+  HOME_TAB: "Home Tab",
   HOME_DRAWER: "Home ",
 
   SERARCH: "Search",
@@ -34,6 +34,7 @@ export default {
   FLASHSALE_TAB: "Flash Sales Tab",
   FLASHSALE_Drawer: "Flash Sales ",
 
+  VEGETABLES: "Vegetabales",
   FRESH_VEGETABLES_TAB: "Vegetables ",
   All_BISCUITS_TAB: "Biscuits ",
   All_BISCUITS: "Biscuits",
