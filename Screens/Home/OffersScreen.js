@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../Redux/CartSlice";
 import { Button } from "react-native-elements";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
+import { ActivityIndicator } from "react-native-paper";
 
 const OffersScreen = ({ navigation }) => {
   const { data, isSuccess, isFetching, refetch } = useGetOfferProductsQuery();
@@ -30,7 +31,7 @@ const OffersScreen = ({ navigation }) => {
   }, [isSuccess, data]);
 
   const loadMoreItems = () => {
-    const newVisibleItemCount = visibleItemCount + 6; // Load 6 more items
+    const newVisibleItemCount = visibleItemCount + 6;
     setVisibleItemCount(newVisibleItemCount);
   };
 
@@ -63,16 +64,6 @@ const OffersScreen = ({ navigation }) => {
             </View>
           </TouchableOpacity>
         </View>
-
-        <View
-          style={{
-            borderWidth: 0.4,
-            borderTopColor: "gray",
-            width: "90%",
-            alignItems: "center",
-            alignSelf: "center",
-          }}
-        ></View>
       </View>
     );
   };
