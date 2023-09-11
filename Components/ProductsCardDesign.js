@@ -31,7 +31,15 @@ export default function ProductsCardDesign({ item, navigation }) {
 
   const isItemFavorite = (item) => favoriteItems.includes(item);
 
-  const photos = `${PHOTO_URL}${item.photo}`;
+  let photos = null;
+  if (item?.photo !== undefined) {
+    if (item?.photo !== "") {
+      if (item?.photo !== "photo.jpg") {
+        photos = `${PHOTO_URL}${item.photo}`;
+      }
+    }
+  }
+  console.log("photos", photos);
 
   return (
     <TouchableOpacity
@@ -39,13 +47,20 @@ export default function ProductsCardDesign({ item, navigation }) {
       style={styles.card}
     >
       {photos ? (
-        <Image source={{ uri: photos }} style={styles.PopularProductsImg} />
+        <Image
+          source={{ uri: photos }}
+          style={styles.PopularProductsImg}
+          onError={() => {
+            console.log("Image failed to load."); // You can add your error handling logic here
+          }}
+        />
       ) : (
         <Image
           source={require("../assets/noPhoto.jpg")}
           style={styles.PopularProductsImg}
         />
       )}
+
       <TouchableOpacity
         onPress={() => handleFavoriteToggle(item)}
         style={styles.heartIcon}

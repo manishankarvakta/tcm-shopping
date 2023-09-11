@@ -65,7 +65,7 @@ const PersonalInfo = ({ navigation }) => {
       const userData = await AsyncStorage.getItem("user");
       const user = JSON.parse(userData);
       const newUser = { ...user, update };
-
+      refetch();
       await AsyncStorage.setItem("user", JSON.stringify(newUser));
 
       navigation.navigate(Routes.PROFILE);
