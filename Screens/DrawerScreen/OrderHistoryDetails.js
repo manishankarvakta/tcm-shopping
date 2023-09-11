@@ -78,8 +78,8 @@ export default function OrderHistoryDetails({ navigation, route }) {
               }}
             >
               <Text>
-                <Text style={styles.OrderText}>Order status </Text>
-                <Text style={styles.CancelText}>{data?.status}</Text>
+                <Text style={styles.OrderText}>Status </Text>
+                <Text style={styles.OrderStatusText}>{data?.status}</Text>
               </Text>
               <Text>
                 <Text style={{ fontSize: 13, fontWeight: "500" }}>
@@ -161,7 +161,7 @@ export default function OrderHistoryDetails({ navigation, route }) {
                 Total Amount :
               </Text>{" "}
               <Text style={{ fontSize: 14, color: "green" }}>
-                {roundedPrice} Tk
+                {roundedPrice} ৳
               </Text>
             </Text>
           </View>
@@ -204,7 +204,7 @@ export default function OrderHistoryDetails({ navigation, route }) {
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row" }}>
-                    <Text style={{ color: "red" }}>৳{item.mrp} </Text>
+                    <Text style={{ color: "red" }}>{item.mrp}৳</Text>
 
                     <Text> | {item.qty} pcs</Text>
                   </View>
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
 
   OrderText: {
     fontSize: 18,
-    fontWeight: "900",
+    fontWeight: "700",
     margin: 10,
   },
 
@@ -356,5 +356,10 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginBottom: 10,
     zIndex: 2,
+  },
+  OrderStatusText: {
+    color: "#E2C08D",
+    fontSize: 18,
+    fontWeight: "600",
   },
 });

@@ -71,7 +71,7 @@ export default {
 
   CONFIRM_ORDER: "Confirm Order",
 
-  ORDER_ID: "ID NO",
+  ORDER_ID: "Order Summary",
 
   DP: "prectice",
   DPT: "prectice Two",

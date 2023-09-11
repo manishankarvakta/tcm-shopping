@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   FlatList,
@@ -5,14 +6,12 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
-import React from "react";
 import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
 import axios from "axios";
 import BASE_URL from "../../Utility/BaseUrl";
-import { useState } from "react";
-import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RefreshControl } from "react-native";
 
@@ -35,7 +34,6 @@ const RenderData = ({ item, navigation }) => {
         <Text style={{ fontWeight: "800", paddingVertical: 5 }}>
           InvoiceId:{`  ${item?.invoiceId}`}
         </Text>
-
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text style={{ fontWeight: "600" }}>
             total Items : {item?.totalItem}
@@ -51,21 +49,22 @@ export default function OrderHistory({ navigation }) {
   const [orderHistoryData, setOrderHistoryData] = useState([]);
   const [userId, setUserId] = useState("");
   const [refreshing, setRefreshing] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getUser = async () => {
       try {
         const user = await AsyncStorage.getItem("user");
         const parsedUser = JSON.parse(user);
         setUserId(parsedUser.id);
-        // console.log("UserID:", parsedUser.id);
       } catch (error) {
-        // console.error("Error getting user:", error);
+        console.error("Error getting user:", error);
       }
     };
 
     getUser();
   }, []);
-  //console.log("orderHistoryData:", orderHistoryData);
+
   const fetchOrderHistory = () => {
     const apiUrl = `${BASE_URL}/app/customer/history/${userId}`;
     axios
@@ -73,52 +72,62 @@ export default function OrderHistory({ navigation }) {
       .then((response) => {
         const data = response.data;
         setOrderHistoryData(data);
-        setRefreshing(false); // Stop refreshing when data is loaded
+        setLoading(false);
+        setRefreshing(false);
       })
       .catch((error) => {
         console.error("Error fetching order history data:", error);
-        setRefreshing(false); // Stop refreshing on error
+        setLoading(false);
+        setRefreshing(false);
       });
   };
 
   useEffect(() => {
-    // Fetch initial order history data
     fetchOrderHistory();
 
-    // Set up an interval to auto-refresh every X seconds (e.g., every 60 seconds)
-    const refreshInterval = setInterval(fetchOrderHistory, 60000); // Adjust the interval as needed
+    const refreshInterval = setInterval(fetchOrderHistory, 60000);
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(refreshInterval);
   }, [userId]);
 
   const renderItem = ({ item }) => (
     <RenderData item={item} navigation={navigation} />
   );
+
   return (
-    <SafeAreaView>
-      <FlatList
-        data={orderHistoryData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item._id}
-        refreshControl={
-          // Add refresh control to the FlatList
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={() => {
-              setRefreshing(true); // Start refreshing when the user manually pulls down
-              fetchOrderHistory(); // Fetch data when the user manually refreshes
-            }}
-          />
-        }
-      />
+    <SafeAreaView style={styles.container}>
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : (
+        <FlatList
+          data={orderHistoryData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item._id}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={() => {
+                setRefreshing(true);
+                fetchOrderHistory();
+              }}
+            />
+          }
+        />
+      )}
     </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+  },
   OrderHistorycardStyle: {
     backgroundColor: "#F6F8FA",
-    marginHorizontal: 10,
+    padding: 15,
     borderRadius: 10,
     marginVertical: 5,
   },

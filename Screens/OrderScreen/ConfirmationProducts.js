@@ -56,22 +56,6 @@ export default function ConfirmationProducts({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-        {/* <View style={styles.OrderConfirmantionSectionStye}>
-          <View>
-            <Text style={styles.ConfirmationText}>Confirmation</Text>
-            <Text>
-              Order number{" "}
-              <Text style={styles.OrderNumberText}>#{cartItems.billerId}</Text>
-            </Text>
-
-            <Text>
-              Your order is currrently {"\n"}
-              confirmed as{" "}
-              <Text style={{ color: "gray" }}>Cash on {"\n"}Delivery.</Text>
-            </Text>
-          </View>
-        </View> */}
-
         <View>
           <View style={styles.OrderSummerySectionStyle}>
             <Text style={styles.OrderSummeryTextStyle}>Totals Summary</Text>
@@ -81,15 +65,14 @@ export default function ConfirmationProducts({ navigation }) {
               <View>
                 <Text style={styles.TitleStyle}>SubTotal</Text>
                 <Text style={styles.TitleStyle}>Total Discount</Text>
-                <Text style={styles.TitleStyleTwo}>Total Order</Text>
-                <Text style={styles.TitleStyleThree}>Today point</Text>
-                <Text style={styles.TitleStyleThree}>Total point</Text>
+                <Text style={styles.TitleStyle}>Total Order</Text>
+                <Text style={styles.TitleStyle}>Today point</Text>
               </View>
 
               <View>
-                <Text style={styles.TitleStyle}>{cartItems?.total}tk</Text>
-                <Text style={styles.TitleStyle}>৳{cartItems?.vat}</Text>
-                <Text style={styles.TitleStyle}>৳{cartItems?.grossTotal}</Text>
+                <Text style={styles.TitleStyle}>{cartItems?.total}৳</Text>
+                <Text style={styles.TitleStyle}>{cartItems?.vat}৳</Text>
+                <Text style={styles.TitleStyle}>{cartItems?.grossTotal}৳</Text>
                 <Text style={styles.TitleStyle}>{cartItems?.todayPoint}</Text>
                 <Text style={styles.TitleStyle}>{cartItems?.Point}</Text>
               </View>
@@ -105,7 +88,7 @@ export default function ConfirmationProducts({ navigation }) {
             >
               <Text style={styles.TitleStyleFour}>Deu</Text>
               <Text style={styles.TitleStyleFour}>
-                ৳{cartItems?.grossTotal}
+                {cartItems?.grossTotal}৳
               </Text>
             </View>
           </View>
@@ -453,19 +436,6 @@ const styles = StyleSheet.create({
 
   TitleStyle: {
     color: "gray",
-    fontWeight: "500",
-    fontSize: 14,
-    paddingVertical: 2,
-  },
-  TitleStyleTwo: {
-    color: "black",
-    fontWeight: "700",
-    fontSize: 14,
-    paddingVertical: 2,
-  },
-
-  TitleStyleThree: {
-    color: "green",
     fontWeight: "500",
     fontSize: 14,
     paddingVertical: 2,

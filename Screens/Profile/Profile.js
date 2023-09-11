@@ -13,17 +13,19 @@ import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
+import { useCustomerQuery } from "../Redux/Api/CustomerApi";
 
 export default function Profile({ navigation }) {
-  const [username, setUsername] = useState();
+  const [userInfo, setUserInfo] = useState();
+
+  const { data, isSuccess, refetch } = useCustomerQuery(userInfo);
+
   const getUser = async () => {
-    // console.log("getUser");
-    const store = await AsyncStorage.getAllKeys();
     const userData = await AsyncStorage.getItem("user");
     const user = JSON.parse(userData);
-    setUsername(user.name);
-    //console.log(user);
+    setUserInfo(user.id);
   };
+  getUser();
   getUser();
   const logOut = async () => {
     //console.log("logout");
@@ -58,7 +60,7 @@ export default function Profile({ navigation }) {
                 fontWeight: "600",
               }}
             >
-              {username}
+              {data?.name}
             </Text>
           </View>
 

@@ -58,7 +58,7 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
         <Text
           style={{ color: "red", marginTop: 20, fontSize: 15, marginLeft: 17 }}
         >
-          ৳{data?.priceList[0]?.mrp}
+          {data?.priceList[0]?.mrp}৳
         </Text>
 
         <View
@@ -72,10 +72,8 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
             style={{
               marginLeft: 10,
               alignSelf: "flex-start",
-              backgroundColor: "black",
+              backgroundColor: "tomato",
               marginBottom: 10,
-              borderWidth: 1,
-              borderColor: "gray",
               borderRadius: 8,
               marginTop: 20,
               justifyContent: "space-between",
@@ -114,7 +112,7 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
         <TouchableOpacity onPress={() => navigation.navigate(Routes.HOME)}>
           <Text
             style={{
-              color: "blue",
+              color: "tomato",
               textAlign: "center",
               fontSize: 18,
               padding: 20,

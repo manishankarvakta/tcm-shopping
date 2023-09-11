@@ -14,8 +14,9 @@ import {
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
+import Routes from "../../Utility/Routes";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ navigation }) => {
   const [userUpdate] = useUpdateCustomerAddressMutation();
   const [UserInfo, setUserInfo] = useState();
   //console.log("UserInfo:", UserInfo);
@@ -66,7 +67,8 @@ const PersonalInfo = () => {
       const newUser = { ...user, update };
 
       await AsyncStorage.setItem("user", JSON.stringify(newUser));
-      Alert.alert("User Update SuccessFul");
+
+      navigation.navigate(Routes.PROFILE);
     }
   };
 
@@ -131,7 +133,11 @@ const PersonalInfo = () => {
           </RadioButton.Group>
         </View>
 
-        <Button mode="contained" onPress={handleUser}>
+        <Button
+          mode="contained"
+          onPress={handleUser}
+          style={{ backgroundColor: "tomato" }}
+        >
           Update
         </Button>
       </View>
