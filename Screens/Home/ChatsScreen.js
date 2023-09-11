@@ -1,14 +1,29 @@
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
-const ChatsScreen = () => {
+export default function ChatsScreen() {
   return (
-    <View>
-      <Text>ChatsScreen</Text>
+    <View style={styles.container}>
+      <Text style={styles.constructionText}>
+        This page is now under construction
+      </Text>
     </View>
   );
-};
+}
 
-export default ChatsScreen;
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  constructionText: {
+    fontSize: 18,
+    fontStyle: "italic",
+    marginTop: 10,
+  },
+});

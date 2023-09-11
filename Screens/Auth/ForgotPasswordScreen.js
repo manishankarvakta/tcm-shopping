@@ -40,7 +40,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
         navigation.replace("Home");
       }
     });
-    console.log(loading);
+    //console.log(loading);
   }, [loading]);
 
   const submitLogin = async () => {
@@ -68,9 +68,9 @@ const ForgotPasswordScreen = ({ navigation }) => {
           } catch (error) {
             Alert.alert("Login Faild! Please try again.");
             setLoading(false);
-            console.log("storeError:", error);
+            //console.log("storeError:", error);
           } finally {
-            console.log("Login Success");
+            //console.log("Login Success");
             navigation.replace("Home");
           }
         }
@@ -81,7 +81,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       })
       .catch(async (error) => {
         Alert.alert("Login Faild! Please try again.");
-        console.log("error", error);
+       // console.log("error", error);
         setLoading(false);
       });
     // .finally();

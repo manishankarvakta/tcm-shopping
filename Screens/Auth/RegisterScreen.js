@@ -1,95 +1,82 @@
+import React, { useState } from "react";
 import {
   Alert,
-  ImageBackground,
-  KeyboardAvoidingView,
-  SafeAreaView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Avatar, Button, Image, Input } from "@rneui/themed";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { format } from "date-fns";
-import { Icon } from "@rneui/base";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import BASE_URL from "../../Utility/BaseUrl";
-import Spinner from "react-native-loading-spinner-overlay/lib";
-import { StatusBar } from "expo-status-bar";
+import Routes from "../../Utility/Routes";
 
 const RegisterScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
-  const [userId, setUserId] = useState("");
-  const [pass, setPass] = useState("");
-  const [user, setUser] = useState({});
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
 
-  const getUser = async () => {
-    // console.log("getUser");
-    const store = await AsyncStorage.getAllKeys();
-    const userData = await AsyncStorage.getItem("user");
-    setUser(JSON.parse(userData));
-
-    // console.log("Names", store);
-  };
-
-  useEffect(() => {
-    getUser();
-    AsyncStorage.getItem("token").then((value) => {
-      if (value !== null) {
-        navigation.replace("Home");
-      }
-    });
-    console.log(loading);
-  }, [loading]);
-
-  const submitLogin = async () => {
-    // console.log(userId, pass);
+  const submitRegistration = async () => {
     setLoading(true);
-    // navigation.replace("Home");
 
-    // AXIOS LOGIN REQUEST
+    // AXIOS REGISTER REQUEST
     axios
-      .post(`${BASE_URL}/user/login`, {
-        email: userId,
-        password: pass,
+      .post(`${BASE_URL}/ecom/customer/register`, {
+        fullName: fullName,
+        phone: phone,
+        password: password,
       })
       .then(async (response) => {
-        // console.log(response.status);
         if (response.status === 200) {
-          // console.log(response.data.access_token);
-
           try {
             await AsyncStorage.setItem("token", response.data.access_token);
             await AsyncStorage.setItem(
               "user",
               JSON.stringify(response.data.user)
             );
-          } catch (error) {
-            Alert.alert("Login Faild! Please try again.");
             setLoading(false);
-            console.log("storeError:", error);
-          } finally {
-            console.log("Login Success");
-            navigation.replace("Home");
+            navigation.replace(Routes.LOGIN);
+          } catch (error) {
+            Alert.alert("Registration Failed! Please try again.");
+            setLoading(false);
           }
         }
-        const store = await AsyncStorage.getAllKeys();
-        const token = await AsyncStorage.getItem("user");
-        // console.log(store, token);
-        setLoading(false);
       })
-      .catch(async (error) => {
-        Alert.alert("Login Faild! Please try again.");
-        console.log("error", error);
+      .catch((error) => {
+        Alert.alert("Registration Failed! Please try again.");
         setLoading(false);
       });
-    // .finally();
   };
 
   return (
     <View style={styles.container}>
-      <Text>Register</Text>
+      <Text style={styles.title}>Register</Text>
+      <View style={styles.inputWrapper}>
+        <TextInput
+          style={styles.input}
+          placeholder="Full Name"
+          value={fullName}
+          onChangeText={(text) => setFullName(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Phone Number"
+          value={phone}
+          onChangeText={(text) => setPhone(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+        />
+        <TouchableOpacity style={styles.button} onPress={submitRegistration}>
+          <Text style={styles.buttonText}>Register</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -98,44 +85,32 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "red",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    color: "white",
-  },
-  logo: {
-    height: 120,
-    width: 120,
-    borderColor: "white",
-    borderWidth: 5,
-    borderRadius: 100,
-    marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "500",
-    color: "black",
-    marginBottom: 25,
+    marginBottom: 20,
   },
   inputWrapper: {
     width: 300,
   },
   input: {
-    color: "black",
-    borderColor: "transprent",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    marginBottom: 15,
   },
   button: {
-    marginBottom: 20,
-    justifyContent: "space-between",
+    backgroundColor: "tomato",
+    padding: 10,
+    borderRadius: 5,
+    alignItems: "center",
   },
-  spinnerTextStyle: {
-    color: "red",
-    fontWeight: "300",
-    fontSize: 14,
+  buttonText: {
+    color: "white",
+    fontWeight: "700",
   },
 });

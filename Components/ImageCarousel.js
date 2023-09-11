@@ -6,41 +6,55 @@ import {
   Image,
   View,
 } from "react-native";
-import React from "react";
-// import { Image } from "@rneui/themed";
+import React, { useState, useEffect } from "react";
+import { useGetBestFeaturedProductsQuery } from "../Screens/Redux/Api/ProductsApi";
+import { PHOTO_URL } from "../Utility/BaseUrl";
+
+import Routes from "../Utility/Routes";
+import { useNavigation } from "@react-navigation/native";
 
 const ImageCarousel = () => {
-  const data = [
-    { url: require("../assets/image1.jpg") },
-    { url: require("../assets/image2.jpg") },
-    { url: require("../assets/image3.jpg") },
-  ];
+  const navigation = useNavigation();
+  const { data, isSuccess, isError, isFetching, isLoading } =
+    useGetBestFeaturedProductsQuery();
+
+  useEffect(() => {
+    //console.log(data);
+  }, [isSuccess, data]);
 
   return (
     <FlatList
       horizontal
       data={data}
       showsHorizontalScrollIndicator={false}
-      renderItem={({ item }) => (
-        <TouchableOpacity>
-          <Image
-            onPress={() => alert(item.url)}
-            source={item.url}
-            style={{
-              width: 200,
-              height: 100,
-              marginHorizontal: 5,
-              marginVertical: 10,
-              borderRadius: 10,
-            }}
-          />
-          {/* <Text>{`../assets/${item.key}.jpg`}</Text> */}
-        </TouchableOpacity>
-      )}
+      renderItem={({ item }) => {
+        const Featuredphoto = `${PHOTO_URL}${item.photo}`;
+
+        return (
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
+          >
+            <Image
+              source={{ uri: Featuredphoto }}
+              style={styles.image}
+              resizeMode="cover"
+            />
+          </TouchableOpacity>
+        );
+      }}
+      keyExtractor={(item) => item._id}
     />
   );
 };
 
 export default ImageCarousel;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  image: {
+    width: 130,
+    height: 130,
+    marginHorizontal: 5,
+    marginVertical: 10,
+    borderRadius: 10,
+  },
+});

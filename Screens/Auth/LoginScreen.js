@@ -11,7 +11,6 @@ import {
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Avatar, Button, Image, Input } from "@rneui/themed";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { format } from "date-fns";
 import { Icon } from "@rneui/base";
 import axios from "axios";
 import BASE_URL from "../../Utility/BaseUrl";
@@ -38,21 +37,24 @@ const LoginScreen = ({ navigation }) => {
     getUser();
     AsyncStorage.getItem("token").then((value) => {
       if (value !== null) {
-        navigation.navigate(Routes.HOME_TAB);
+        navigation.navigate(Routes.HOME);
       }
     });
-    console.log(loading);
+    //console.log(loading);
   }, [loading]);
 
   const submitLogin = async () => {
-    // console.log(userId, pass);
+    //console.log(userId, pass);
     setLoading(true);
-    // navigation.replace("Home");
+    navigation.navigate(Routes.HOME_DRAWER);
 
     // AXIOS LOGIN REQUEST
-    axios
-      .post(`${BASE_URL}/user/login`, {
-        email: userId,
+    //console.log(`${BASE_URL}/app/customer/login`);
+    const url = `${BASE_URL}/app/customer/login`;
+    //console.log("url", url);
+    await axios
+      .post(`${BASE_URL}/app/customer/login`, {
+        phone: userId,
         password: pass,
       })
       .then(async (response) => {
@@ -69,30 +71,29 @@ const LoginScreen = ({ navigation }) => {
           } catch (error) {
             Alert.alert("Login Faild! Please try again.");
             setLoading(false);
-            console.log("storeError:", error);
+            // console.log("storeError:", error);
           } finally {
-            console.log("Login Success");
-            navigation.replace(Routes.HOME_TAB);
+            // console.log("Login Success");
           }
         }
         const store = await AsyncStorage.getAllKeys();
         const token = await AsyncStorage.getItem("user");
-        // console.log(store, token);
+        //console.log(store, token);
         setLoading(false);
       })
       .catch(async (error) => {
         Alert.alert("Login Faild! Please try again.");
-        console.log("error", error);
+        //console.log("error", error);
         setLoading(false);
       });
     // .finally();
   };
 
   const forgotPassword = () => {
-    console.log("forgot Pass");
+    // console.log("forgot Pass");
   };
   const register = () => {
-    console.log("register");
+    // console.log("register");
   };
 
   return (
