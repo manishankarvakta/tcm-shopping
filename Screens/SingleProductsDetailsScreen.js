@@ -103,9 +103,10 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
         ></View>
         <View style={{ padding: 10 }}>
           <Text>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy.Lorem
-            Ipsum is simply dummy text of the
+            {/* */}
+            {data?.details?.length > 0
+              ? data.details
+              : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.Lorem Ipsum is simply dummy text of the "}
           </Text>
         </View>
 

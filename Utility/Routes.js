@@ -4,9 +4,10 @@ export default {
   LOGIN: "Login",
   REGISTER: "Register",
   FORGOT_PASSWORD: "Forgot Password",
+  LOGIN_Auth: "LoginUser",
 
   HOME: "Home stack",
-  HOME_TAB: "Home Tab",
+  HOME_TAB: "Home",
   HOME_DRAWER: "Home ",
 
   SERARCH: "Search",

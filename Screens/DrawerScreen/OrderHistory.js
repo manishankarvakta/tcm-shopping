@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import { Icon } from "@rneui/base";
 import Routes from "../../Utility/Routes";
 import axios from "axios";
 import BASE_URL from "../../Utility/BaseUrl";
@@ -50,7 +49,6 @@ export default function OrderHistory({ navigation }) {
   const [userId, setUserId] = useState("");
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -64,15 +62,20 @@ export default function OrderHistory({ navigation }) {
 
     getUser();
   }, []);
-
-  const fetchOrderHistory = () => {
+  console.log(userId);
+  const fetchOrderHistory = async () => {
     const apiUrl = `${BASE_URL}/app/customer/history/${userId}`;
-    axios
+    console.log(apiUrl);
+
+    await axios
       .get(apiUrl)
       .then((response) => {
         const data = response.data;
         setOrderHistoryData(data);
-        setLoading(false);
+        if (response?.data?.length > 0) {
+          setLoading(false);
+        }
+
         setRefreshing(false);
       })
       .catch((error) => {
@@ -83,7 +86,9 @@ export default function OrderHistory({ navigation }) {
   };
 
   useEffect(() => {
-    fetchOrderHistory();
+    if (userId?.length > 0) {
+      fetchOrderHistory();
+    }
 
     const refreshInterval = setInterval(fetchOrderHistory, 60000);
 
