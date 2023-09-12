@@ -59,7 +59,7 @@ const SearchScreen = ({ navigation }) => {
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search"
+            placeholder="Search Products"
             value={searchText}
             onChangeText={setSearchText}
             // onSubmitEditing={handleSearch}
