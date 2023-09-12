@@ -46,7 +46,6 @@ const LoginScreen = ({ navigation }) => {
   const submitLogin = async () => {
     //console.log(userId, pass);
     setLoading(true);
-    navigation.navigate(Routes.HOME_DRAWER);
 
     // AXIOS LOGIN REQUEST
     //console.log(`${BASE_URL}/app/customer/login`);
@@ -66,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
             await AsyncStorage.setItem("token", response.data.access_token);
             await AsyncStorage.setItem(
               "user",
-              JSON.stringify(response.data.user)
+              JSON.stringify(response?.data?.user)
             );
           } catch (error) {
             Alert.alert("Login Faild! Please try again.");
@@ -80,6 +79,7 @@ const LoginScreen = ({ navigation }) => {
         const token = await AsyncStorage.getItem("user");
         //console.log(store, token);
         setLoading(false);
+        navigation.navigate(Routes.HOME_DRAWER);
       })
       .catch(async (error) => {
         Alert.alert("Login Faild! Please try again.");
@@ -104,10 +104,7 @@ const LoginScreen = ({ navigation }) => {
     >
       <StatusBar style="light" />
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={[styles.container]}
-      >
+      <KeyboardAvoidingView behavior="padding" style={[styles.container]}>
         <Spinner
           //visibility of Overlay Loading Spinner
           visible={loading}
@@ -141,7 +138,11 @@ const LoginScreen = ({ navigation }) => {
           <Button
             type="solid"
             color="error"
-            buttonStyle={{ borderRadius: 50, padding: 13, fontWeight: 600 }}
+            buttonStyle={{
+              borderRadius: 10,
+              paddingVertical: 10,
+              fontWeight: 600,
+            }}
             style={styles.button}
             onPress={() => submitLogin()}
           >
@@ -153,59 +154,27 @@ const LoginScreen = ({ navigation }) => {
             />
             Login
           </Button>
-          <Button
-            type="Link"
-            color="error"
-            buttonStyle={{ fontWeight: 400 }}
-            style={styles.button}
-            onPress={() => navigation.navigate(Routes.FORGOT_PASSWORD)}
-          >
-            <Icon
-              name="lock"
-              type="ant-design"
-              color="white"
-              style={{ marginRight: 10 }}
-            />
-            Forgot Password
-          </Button>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <View style={styles.linkContainer}>
+            <Text
+              style={styles.linkText}
+              onPress={() => navigation.navigate(Routes.REGISTER)}
+            >
+              Register
+            </Text>
+          </View>
+          <View style={styles.linkContainer}>
+            <Text
+              style={styles.linkText}
+              onPress={() => navigation.navigate(Routes.FORGOT_PASSWORD)}
+            >
+              Forgot Password ?
+            </Text>
+          </View>
         </View>
       </KeyboardAvoidingView>
-      <View
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 40,
-        }}
-      >
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            flex: 1,
-          }}
-        >
-          <Button
-            type="solid"
-            color="error"
-            buttonStyle={{
-              width: 300,
-              borderRadius: 50,
-              padding: 13,
-              fontWeight: 600,
-            }}
-            style={styles.button}
-            onPress={() => navigation.navigate(Routes.REGISTER)}
-          >
-            <Icon
-              name="lock"
-              type="ant-design"
-              color="white"
-              style={{ marginRight: 10 }}
-            />
-            Register
-          </Button>
-        </View>
-      </View>
     </ImageBackground>
   );
 };
@@ -252,12 +221,24 @@ const styles = StyleSheet.create({
     color: "black",
     borderColor: "transprent",
   },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginHorizontal: 30,
+    paddingVertical: 15,
+  },
+  linkContainer: {
+    flex: 1,
+  },
+  linkText: {
+    color: "tomato",
+  },
   image: {
     flex: 1,
     justifyContent: "center",
   },
   button: {
-    marginBottom: 20,
+    marginBottom: 10,
     justifyContent: "space-between",
   },
   spinnerTextStyle: {

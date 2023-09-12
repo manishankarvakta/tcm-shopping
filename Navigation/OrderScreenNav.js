@@ -46,7 +46,7 @@ export default function OrderScreenNav() {
       />
 
       <Stack.Screen
-        name={Routes.HOME}
+        name={Routes.HOME_DRAWER}
         component={HomeScreen}
         options={{
           headerStyle: {

@@ -36,7 +36,9 @@ export const ProductsApi = createApi({
     }),
 
     getSearchProduct: builder.query({
-      query: (q) => `/product/search/${q}`,
+      // query: (q) => `/product/search/${q}`,
+      query: (q) => `/app/product/search/${q}`,
+
       tagTypes: ["Products"],
     }),
 

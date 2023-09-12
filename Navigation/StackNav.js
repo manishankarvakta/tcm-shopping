@@ -21,13 +21,19 @@ import ProfileStack from "./ProfileStack";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import ManageAddress from "../Screens/Profile/ManageAddress";
 import OrderScreenAddress from "../Screens/OrderScreen/OrderScreenAddress";
+import AuthStackNav from "./AuthStackNav";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 
   return (
     <Stack.Navigator>
+      {/* <Stack.Screen
+        name={Routes.LOGIN_Auth}
+        component={AuthStackNav}
+        options={{ headerShown: false }}
+      /> */}
       <Stack.Screen name={Routes.HOME} component={Home} />
-      <Stack.Screen name={Routes.LOGIN} component={Login} />
+
       <Stack.Screen
         name={Routes.CATEGORY_GROUP_TAB}
         component={CategoryStackNav}

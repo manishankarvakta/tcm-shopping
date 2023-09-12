@@ -15,6 +15,8 @@ import TopCategorysTwo from "./Components/TopCategorysTwo";
 import TopCategorys from "./Components/TopCategorys";
 import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
 import SliderTwo from "./Components/SliderTwo";
+import LoginScreen from "./Screens/Auth/LoginScreen";
+import SingleProductsDetailsScreen from "./Screens/SingleProductsDetailsScreen";
 
 export default function App() {
   const [token, setToken] = useState(false);
@@ -41,7 +43,8 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        {token ? <DrawerNav /> : <AuthStackNav />}
+        <AuthStackNav />
+        {/* {token ? <DrawerNav /> : <AuthStackNav />} */}
       </NavigationContainer>
     </Provider>
   );

@@ -30,7 +30,7 @@ const OrderSuccess = () => {
 
           <TouchableOpacity
             style={styles.DoneBtn}
-            onPress={() => navigation.navigate(Routes.HOME_TAB)}
+            onPress={() => navigation.navigate(Routes.HOME_DRAWER)}
           >
             <Text>
               <Icon name="check-circle" size={17} color={"white"} />{" "}
