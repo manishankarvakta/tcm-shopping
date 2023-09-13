@@ -7,6 +7,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
+import Routes from "../../Utility/Routes";
 
 const OTPforgotPassword = ({ navigation }) => {
   const [otp, setOTP] = useState(""); // State for OTP input
@@ -15,6 +16,7 @@ const OTPforgotPassword = ({ navigation }) => {
     // Add logic here to verify the entered OTP
     // You can compare it with the OTP sent to the user
     // If OTP is correct, navigate to the password reset screen
+    navigation.navigate(Routes.LOGIN);
   };
 
   return (

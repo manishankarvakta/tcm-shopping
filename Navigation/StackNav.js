@@ -21,7 +21,7 @@ import ProfileStack from "./ProfileStack";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import ManageAddress from "../Screens/Profile/ManageAddress";
 import OrderScreenAddress from "../Screens/OrderScreen/OrderScreenAddress";
-import AuthStackNav from "./AuthStackNav";
+import OTPforgotPassword from "../Screens/Auth/OTPforgotPassword";
 const StackNav = () => {
   const Stack = createNativeStackNavigator();
 

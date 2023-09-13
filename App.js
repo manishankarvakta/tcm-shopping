@@ -46,10 +46,8 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <OTPforgotPassword />
-        {/* <ForgotPassword /> */}
         {/* <ForgotPasswordScreen /> */}
-        {/* <AuthStackNav /> */}
+        <AuthStackNav />
         {/* {token ? <DrawerNav /> : <AuthStackNav />} */}
       </NavigationContainer>
     </Provider>

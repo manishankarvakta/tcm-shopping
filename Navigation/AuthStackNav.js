@@ -12,6 +12,8 @@ import TabNav from "./TabNav";
 
 import { Onbording, Login, Register, ForgotPassword } from "../Screens";
 import DrawerNav from "./DrawerNav";
+import Routes from "../Utility/Routes";
+import OTPforgotPassword from "../Screens/Auth/OTPforgotPassword";
 
 const AuthStackNav = () => {
   const Stack = createNativeStackNavigator();
@@ -34,7 +36,17 @@ const AuthStackNav = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name={ROUTES.REGISTER} component={Register} />
-      <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPassword} />
+      <Stack.Screen
+        name={ROUTES.FORGOT_PASSWORD}
+        component={ForgotPassword}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={Routes.OTP_FORGET}
+        component={OTPforgotPassword}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name={ROUTES.HOME_DRAWER}
         component={DrawerNav}

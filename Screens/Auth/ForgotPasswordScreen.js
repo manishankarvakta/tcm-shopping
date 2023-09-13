@@ -7,14 +7,13 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
+import Routes from "../../Utility/Routes";
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState(""); // Add state for phone number
 
   const handleResetPassword = () => {
-    // Add logic here to handle the password reset process
-    // For example, send a password reset email or SMS to the provided email address or phone number
-    // You can use AsyncStorage to store and retrieve user data if needed
+    navigation.navigate(Routes.OTP_FORGET);
   };
 
   return (
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 39,
     color: "#5C6B73",
   },
   input: {
