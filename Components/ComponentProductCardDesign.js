@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     backgroundColor: "white",
-
     //backgroundColor: "#F5F6FB",
     borderRadius: 5,
     elevation: 5, // This is for Android shadow

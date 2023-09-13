@@ -1,142 +1,88 @@
+import React, { useState } from "react";
 import {
-  Alert,
-  ImageBackground,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  KeyboardAvoidingView,
 } from "react-native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Avatar, Button, Image, Input } from "@rneui/themed";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { format } from "date-fns";
-import { Icon } from "@rneui/base";
-import axios from "axios";
-import BASE_URL from "../../Utility/BaseUrl";
-import Spinner from "react-native-loading-spinner-overlay/lib";
-import { StatusBar } from "expo-status-bar";
 
 const ForgotPasswordScreen = ({ navigation }) => {
-  const [loading, setLoading] = useState(false);
-  const [userId, setUserId] = useState("");
-  const [pass, setPass] = useState("");
-  const [user, setUser] = useState({});
+  const [phoneNumber, setPhoneNumber] = useState(""); // Add state for phone number
 
-  const getUser = async () => {
-    // console.log("getUser");
-    const store = await AsyncStorage.getAllKeys();
-    const userData = await AsyncStorage.getItem("user");
-    setUser(JSON.parse(userData));
-
-    // console.log("Names", store);
-  };
-
-  useEffect(() => {
-    getUser();
-    AsyncStorage.getItem("token").then((value) => {
-      if (value !== null) {
-        navigation.replace("Home");
-      }
-    });
-    //console.log(loading);
-  }, [loading]);
-
-  const submitLogin = async () => {
-    // console.log(userId, pass);
-    setLoading(true);
-    // navigation.replace("Home");
-
-    // AXIOS LOGIN REQUEST
-    axios
-      .post(`${BASE_URL}/user/login`, {
-        email: userId,
-        password: pass,
-      })
-      .then(async (response) => {
-        // console.log(response.status);
-        if (response.status === 200) {
-          // console.log(response.data.access_token);
-
-          try {
-            await AsyncStorage.setItem("token", response.data.access_token);
-            await AsyncStorage.setItem(
-              "user",
-              JSON.stringify(response.data.user)
-            );
-          } catch (error) {
-            Alert.alert("Login Faild! Please try again.");
-            setLoading(false);
-            //console.log("storeError:", error);
-          } finally {
-            //console.log("Login Success");
-            navigation.replace("Home");
-          }
-        }
-        const store = await AsyncStorage.getAllKeys();
-        const token = await AsyncStorage.getItem("user");
-        // console.log(store, token);
-        setLoading(false);
-      })
-      .catch(async (error) => {
-        Alert.alert("Login Faild! Please try again.");
-       // console.log("error", error);
-        setLoading(false);
-      });
-    // .finally();
+  const handleResetPassword = () => {
+    // Add logic here to handle the password reset process
+    // For example, send a password reset email or SMS to the provided email address or phone number
+    // You can use AsyncStorage to store and retrieve user data if needed
   };
 
   return (
     <View style={styles.container}>
-      <Text>Forgot Password</Text>
+      <Text style={styles.title}>Forgot Password</Text>
+      <Text style={styles.description}>
+        Please enter your phone number to reset your password.
+      </Text>
+
+      <KeyboardAvoidingView behavior="position">
+        <TextInput
+          style={styles.input}
+          placeholder="Phone Number"
+          value={phoneNumber}
+          onChangeText={(text) => setPhoneNumber(text)}
+        />
+        <View>
+          <TouchableOpacity style={styles.button} onPress={handleResetPassword}>
+            <Text style={styles.buttonText}>Reset Password</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };
 
-export default ForgotPasswordScreen;
-
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "red",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    color: "white",
-    // backgroundColor: "rgba(255, 255, 255, .80)",
-  },
-  logo: {
-    height: 120,
-    width: 120,
-    borderColor: "white",
-    borderWidth: 5,
-    borderRadius: 100,
-    marginBottom: 20,
+    backgroundColor: "#fff",
+    padding: 20,
   },
   title: {
     fontSize: 24,
-    fontWeight: "500",
-    color: "black",
-    marginBottom: 25,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "#12852C",
   },
-  inputWrapper: {
-    width: 300,
+  description: {
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 20,
+    color: "#5C6B73",
   },
   input: {
-    color: "black",
-    borderColor: "transprent",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
+    width: 300,
+    height: 40,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginBottom: 20,
   },
   button: {
-    marginBottom: 20,
-    justifyContent: "space-between",
+    backgroundColor: "tomato",
+    padding: 10,
+    width: 200,
+    alignSelf: "center",
+    borderRadius: 5,
   },
-  spinnerTextStyle: {
-    color: "red",
-    fontWeight: "300",
-    fontSize: 14,
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    textAlign: "center",
   },
 });
+
+export default ForgotPasswordScreen;
