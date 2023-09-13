@@ -136,13 +136,13 @@ const HomeScreen = ({ navigation }) => {
               />
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <View>
               <Avatar
                 rounded
                 source={require("../../assets/logo.png")}
                 style={styles.avatar}
               />
-            </TouchableOpacity>
+            </View>
             <Icon
               name="marker"
               type="foundation"

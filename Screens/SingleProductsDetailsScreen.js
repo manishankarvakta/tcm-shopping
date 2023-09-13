@@ -36,6 +36,15 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
       </SafeAreaView>
     );
   }
+
+  let photos = null;
+  if (data?.photo !== undefined) {
+    if (data?.photo !== "") {
+      if (data?.photo !== "photo.jpg") {
+        photos = `${PHOTO_URL}${data.photo}`;
+      }
+    }
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: "#F5F6FB" }}>
@@ -50,10 +59,20 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
           {data?.name}
         </Text>
         <View style={{ alignItems: "center" }}>
-          <Image
-            source={{ uri: `${PHOTO_URL}${data?.photo}` }}
-            style={{ width: 230, height: 230, marginTop: 10 }}
-          />
+          {photos ? (
+            <Image
+              source={{ uri: photos }}
+              style={{ width: 230, height: 230, marginTop: 10 }}
+              onError={() => {
+                console.log("Image failed to load."); // You can add your error handling logic here
+              }}
+            />
+          ) : (
+            <Image
+              source={require("../assets/noPhoto.jpg")}
+              style={{ width: 230, height: 230, marginTop: 10 }}
+            />
+          )}
         </View>
         <Text
           style={{ color: "red", marginTop: 20, fontSize: 15, marginLeft: 17 }}
