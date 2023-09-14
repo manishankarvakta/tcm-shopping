@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Routes from "../Utility/Routes";
+import { Avatar, Button, Icon } from "@rneui/themed";
 
 import { Home, Login, Category, CategoryGroup } from "../Screens";
 
@@ -22,8 +23,18 @@ import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen"
 import ManageAddress from "../Screens/Profile/ManageAddress";
 import OrderScreenAddress from "../Screens/OrderScreen/OrderScreenAddress";
 import OTPforgotPassword from "../Screens/Auth/OTPforgotPassword";
-const StackNav = () => {
+import { useSelector } from "react-redux";
+import { useState } from "react";
+const StackNav = ({ navigation }) => {
   const Stack = createNativeStackNavigator();
+
+  const [OrderItem, setOrderItem] = useState("0");
+  const cartItem = useSelector((state) => state.cartReducer.products);
+
+  console.log("OrderItem", OrderItem);
+  useEffect(() => {
+    setOrderItem(cartItem.length);
+  }, [cartItem]);
 
   return (
     <Stack.Navigator>
@@ -101,7 +112,30 @@ const StackNav = () => {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen name={Routes.Tt} component={SingleProductsDetailsScreen} />
+      <Stack.Screen
+        name={Routes.Tt}
+        component={SingleProductsDetailsScreen}
+        options={({ navigation }) => ({
+          // Define custom header with a cart icon on the right
+          headerRight: () => (
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Icon
+                name="shoppingcart"
+                type="ant-design"
+                size={30}
+                color="red"
+                onPress={() => {
+                  // Navigate to your cart screen here
+                  navigation.navigate(Routes.CART_SCREEN_TAB);
+                }}
+              />
+              <Text style={{ fontSize: 16, fontWeight: "bold", color: "blue" }}>
+                {OrderItem}
+              </Text>
+            </View>
+          ),
+        })}
+      />
 
       <Stack.Screen
         name={Routes.MANAGE_ADDRESS}

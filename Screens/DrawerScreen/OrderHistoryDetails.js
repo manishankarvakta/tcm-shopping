@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,19 +9,17 @@ import {
   Modal,
   ScrollView,
   FlatList,
+  ActivityIndicator,
 } from "react-native";
-import React, { useEffect, useState } from "react";
 import { Icon } from "@rneui/base";
 import { useGetSaleByIdQuery } from "../Redux/Api/SalesApi";
 import { PHOTO_URL } from "../../Utility/BaseUrl";
+
 export default function OrderHistoryDetails({ navigation, route }) {
   const { id } = route.params;
-  const { data, isSuccess, refetch } = useGetSaleByIdQuery(id);
+  const { data, isLoading, isSuccess, refetch } = useGetSaleByIdQuery(id);
   const [itemsModalVisible, setItemsModalVisible] = useState(false);
   const [History, setHistory] = useState();
-
-  // console.log("data", id);
-  console.log("dataTwo", data);
 
   useEffect(() => {
     data && setHistory(data);
@@ -34,11 +33,6 @@ export default function OrderHistoryDetails({ navigation, route }) {
   const roundedPrice = data?.grossTotal?.toFixed(2);
 
   const Address = data?.customerId?.address[0];
-  //console.log("hi", Address?.city);
-  // console.log("holdingNo", holdingNo);
-
-  //const hle = data;
-  //console.log("hle:", hle);
 
   const openItemsModal = () => {
     setItemsModalVisible(true);
@@ -50,7 +44,11 @@ export default function OrderHistoryDetails({ navigation, route }) {
 
   return (
     <SafeAreaView>
-      <View>
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : (
         <View>
           <View style={styles.OrderHistoryDetailsScreenStyle}>
             <View style={styles.headerTitleStyle}>
@@ -166,7 +164,7 @@ export default function OrderHistoryDetails({ navigation, route }) {
             </Text>
           </View>
         </View>
-      </View>
+      )}
 
       <Modal
         animationType="slide"
@@ -245,7 +243,6 @@ const styles = StyleSheet.create({
   CartProductImgStyle: {
     width: 60,
     height: 65,
-
     borderRadius: 10,
   },
 
@@ -361,5 +358,10 @@ const styles = StyleSheet.create({
     color: "#E2C08D",
     fontSize: 18,
     fontWeight: "600",
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
