@@ -99,22 +99,9 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
             }}
           >
             <TouchableOpacity onPress={() => dispatch(addProduct(data))}>
-              <Text style={{ color: "white", padding: 8 }}>Buy now</Text>
+              <Text style={{ color: "white", padding: 8 }}>Add to cart</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => dispatch(addProduct(data))}
-            style={{
-              marginTop: 25,
-              backgroundColor: "#CBCBCB",
-              height: 30,
-              width: 30,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <FontAwesome name="plus" size={16} color="#1D2F3E" />
-          </TouchableOpacity>
         </View>
 
         <View

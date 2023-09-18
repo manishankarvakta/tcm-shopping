@@ -121,17 +121,37 @@ const StackNav = ({ navigation }) => {
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Icon
                 name="shoppingcart"
-                type="ant-design"
-                size={30}
-                color="red"
-                onPress={() => {
-                  // Navigate to your cart screen here
-                  navigation.navigate(Routes.CART_SCREEN_TAB);
-                }}
+                type="antdesign"
+                color={"tomato"}
+                size={28}
+                containerStyle={{ marginHorizontal: 15, position: "relative" }}
               />
-              <Text style={{ fontSize: 16, fontWeight: "bold", color: "blue" }}>
-                {OrderItem}
-              </Text>
+              {OrderItem ? ( // Check if OrderItem is not empty
+                <View
+                  style={{
+                    position: "absolute",
+                    backgroundColor: "red",
+                    width: 16,
+                    height: 16,
+                    borderRadius: 15 / 2,
+                    right: 10,
+                    top: -3, // Remove the + sign here
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#FFFFFF",
+                      fontSize: 8,
+                    }}
+                  >
+                    {OrderItem}
+                  </Text>
+                </View>
+              ) : null}
             </View>
           ),
         })}
