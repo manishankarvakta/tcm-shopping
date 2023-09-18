@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import { PHOTO_URL } from "../Utility/BaseUrl";
 import { useDispatch } from "react-redux";
 import { addProduct } from "./Redux/CartSlice";
+import { Icon } from "@rneui/base";
+
 export default function SingleProductsDetailsScreen({ navigation, route }) {
   const { _id } = route.params;
   //console.log(_id)
@@ -100,6 +102,33 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
           >
             <TouchableOpacity onPress={() => dispatch(addProduct(data))}>
               <Text style={{ color: "white", padding: 8 }}>Add to cart</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View
+            style={{
+              justifyContent: "space-between",
+              flexDirection: "row",
+            }}
+          >
+            <TouchableOpacity>
+              <Icon
+                name="minus"
+                size={25}
+                color="#000"
+                type="ant-design"
+                paddingRight={7}
+              />
+            </TouchableOpacity>
+            <Text style={{ fontSize: 18 }}>0</Text>
+            <TouchableOpacity>
+              <Icon
+                name="plus"
+                size={22}
+                color="#000"
+                type="ant-design"
+                paddingLeft={7}
+              />
             </TouchableOpacity>
           </View>
         </View>
