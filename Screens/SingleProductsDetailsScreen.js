@@ -1,30 +1,41 @@
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   SafeAreaView,
   Image,
-  Button,
   TouchableOpacity,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
-import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
 import Routes from "../Utility/Routes";
 import { useGetProductDetailsQuery } from "./Redux/Api/ProductsApi";
-import { useEffect } from "react";
 import { PHOTO_URL } from "../Utility/BaseUrl";
 import { useDispatch } from "react-redux";
-import { addProduct } from "./Redux/CartSlice";
-import { Icon } from "@rneui/base";
+import {
+  addProduct,
+  productsQuantityDecrement,
+  productsQuantityIncrement,
+} from "./Redux/CartSlice";
 
 export default function SingleProductsDetailsScreen({ navigation, route }) {
   const { _id } = route.params;
-  //console.log(_id)
   const { data, isError, isLoading, refetch } = useGetProductDetailsQuery(_id);
-
   const dispatch = useDispatch();
-  //console.log(data)
+  const [count, setCount] = useState(1);
+
+  const handlePlus = () => {
+    dispatch(productsQuantityIncrement(data._id));
+  };
+
+  const handleMinus = () => {
+    if (count > 1) {
+      setCount(count - 1);
+      dispatch(productsQuantityDecrement(data._id));
+    }
+  };
+
   useEffect(() => {
     refetch();
   }, [_id]);
@@ -39,6 +50,21 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
     );
   }
 
+  if (isError) {
+    return (
+      <SafeAreaView
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      >
+        <Text>Error loading product details</Text>
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.HOME)}>
+          <Text style={{ color: "tomato", fontSize: 18, padding: 20 }}>
+            Close
+          </Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
+
   let photos = null;
   if (data?.photo !== undefined) {
     if (data?.photo !== "") {
@@ -47,6 +73,7 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
       }
     }
   }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: "#F5F6FB" }}>
@@ -64,71 +91,46 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
           {photos ? (
             <Image
               source={{ uri: photos }}
-              style={{ width: 230, height: 230, marginTop: 10 }}
+              style={{ width: "80%", aspectRatio: 1, marginTop: 10 }}
               onError={() => {
-                console.log("Image failed to load."); // You can add your error handling logic here
+                console.log("Image failed to load.");
               }}
             />
           ) : (
             <Image
               source={require("../assets/noPhoto.jpg")}
-              style={{ width: 230, height: 230, marginTop: 10 }}
+              style={{ width: "80%", aspectRatio: 1, marginTop: 10 }}
             />
           )}
         </View>
-        <Text
-          style={{ color: "red", marginTop: 20, fontSize: 15, marginLeft: 17 }}
-        >
-          {data?.priceList[0]?.mrp}৳
-        </Text>
 
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginRight: 10,
+            alignItems: "center",
+            paddingHorizontal: 20,
+            marginTop: 10,
           }}
         >
-          <View
-            style={{
-              marginLeft: 10,
-              alignSelf: "flex-start",
-              backgroundColor: "tomato",
-              marginBottom: 10,
-              borderRadius: 8,
-              marginTop: 20,
-              justifyContent: "space-between",
-            }}
-          >
-            <TouchableOpacity onPress={() => dispatch(addProduct(data))}>
-              <Text style={{ color: "white", padding: 8 }}>Add to cart</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{
-              justifyContent: "space-between",
-              flexDirection: "row",
-            }}
-          >
-            <TouchableOpacity>
-              <Icon
-                name="minus"
-                size={25}
-                color="#000"
-                type="ant-design"
-                paddingRight={7}
-              />
-            </TouchableOpacity>
-            <Text style={{ fontSize: 18 }}>0</Text>
-            <TouchableOpacity>
-              <Icon
-                name="plus"
-                size={22}
-                color="#000"
-                type="ant-design"
-                paddingLeft={7}
-              />
+          <Text style={{ color: "red", fontSize: 19 }}>
+            {data?.priceList[0]?.mrp}৳
+          </Text>
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <TouchableOpacity onPress={handleMinus} style={styles.button}>
+                <FontAwesome name="minus" size={17} color="#000" />
+              </TouchableOpacity>
+              <Text style={styles.counterText}>{count}</Text>
+              <TouchableOpacity onPress={handlePlus} style={styles.button}>
+                <FontAwesome name="plus" size={17} color="#000" />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={() => dispatch(addProduct(data))}
+              style={styles.addToCartButton}
+            >
+              <Text style={{ color: "tomato", padding: 8 }}>Add to cart</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -138,7 +140,6 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
         ></View>
         <View style={{ padding: 10 }}>
           <Text>
-            {/* */}
             {data?.details?.length > 0
               ? data.details
               : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.Lorem Ipsum is simply dummy text of the "}
@@ -161,3 +162,30 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
     </SafeAreaView>
   );
 }
+
+const styles = {
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 28,
+    height: 28,
+    borderRadius: 25,
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#ECECEC",
+  },
+  counterText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginHorizontal: 15,
+  },
+  addToCartButton: {
+    marginLeft: 10,
+    alignSelf: "flex-start",
+    marginBottom: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "tomato",
+    paddingHorizontal: 10,
+  },
+};

@@ -59,7 +59,7 @@ export default function ProductsCardDesign({ item, navigation }) {
           source={require("../assets/noPhoto.jpg")}
           style={styles.PopularProductsImg}
         />
-      )}
+      )} 
 
       <TouchableOpacity
         onPress={() => handleFavoriteToggle(item)}
