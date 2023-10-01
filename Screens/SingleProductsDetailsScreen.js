@@ -117,7 +117,7 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
             {data?.priceList[0]?.mrp}৳
           </Text>
           <View style={{ flexDirection: "row" }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            {/* <View style={{ flexDirection: "row", alignItems: "center" }}>
               <TouchableOpacity onPress={handleMinus} style={styles.button}>
                 <FontAwesome name="minus" size={17} color="#000" />
               </TouchableOpacity>
@@ -125,7 +125,7 @@ export default function SingleProductsDetailsScreen({ navigation, route }) {
               <TouchableOpacity onPress={handlePlus} style={styles.button}>
                 <FontAwesome name="plus" size={17} color="#000" />
               </TouchableOpacity>
-            </View>
+            </View> */}
             <TouchableOpacity
               onPress={() => dispatch(addProduct(data))}
               style={styles.addToCartButton}

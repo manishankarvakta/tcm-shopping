@@ -125,6 +125,7 @@ const StackNav = ({ navigation }) => {
                 color={"tomato"}
                 size={28}
                 containerStyle={{ marginHorizontal: 15, position: "relative" }}
+                onPress={() => navigation.navigate(Routes.CART_SCREEN_TAB)}
               />
               {OrderItem ? ( // Check if OrderItem is not empty
                 <View
