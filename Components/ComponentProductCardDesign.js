@@ -1,5 +1,12 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+} from "react-native";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { addFavoriteProduct } from "../Screens/Redux/WishListSlice";
@@ -7,7 +14,8 @@ import Routes from "../Utility/Routes";
 import { PHOTO_URL } from "../Utility/BaseUrl";
 import { addProduct } from "../Screens/Redux/CartSlice";
 import { Icon } from "@rneui/base";
-import { useState } from "react";
+
+const windowWidth = Dimensions.get("window").width;
 
 export default function ComponentProductCardDesign({ item }) {
   const navigation = useNavigation();
@@ -36,7 +44,7 @@ export default function ComponentProductCardDesign({ item }) {
 
   return (
     <TouchableOpacity
-      style={styles.card}
+      style={[styles.card, { width: windowWidth / 3 - 10 }]} // Adjust the width to fit three cards in one row
       onPress={() => navigation.navigate(Routes.Tt, { _id: item._id })}
     >
       {item.photo ? (
@@ -91,6 +99,7 @@ export default function ComponentProductCardDesign({ item }) {
     </TouchableOpacity>
   );
 }
+
 const styles = StyleSheet.create({
   card: {
     flexDirection: "column",
@@ -98,8 +107,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     backgroundColor: "white",
-
-    //backgroundColor: "#F5F6FB",
     borderRadius: 5,
     elevation: 5, // This is for Android shadow
     shadowColor: "black", // This is for iOS shadow
@@ -109,7 +116,7 @@ const styles = StyleSheet.create({
   },
   heartIcon: {
     position: "absolute",
-    top: 5, // Adjust the top value to control the vertical position
+    top: 5,
     right: 5,
     zIndex: 1,
   },

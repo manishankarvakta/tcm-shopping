@@ -110,4 +110,6 @@ export default {
   UPDATE_INFORMATION: "Update Information",
 
   ORDER_ADDRESS: "Order Address",
+
+  OTP_FORGET: "OTP",
 };

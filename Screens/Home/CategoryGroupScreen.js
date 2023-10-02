@@ -36,7 +36,7 @@ const mcData = [
     option: "beauty",
     label: "Beauty & Health",
     backgroundColor: "#316359",
-    image: require("../../assets/CategoryImg/Foods.png"),
+    image: require("../../assets/CategoryImg/Untitled.png"),
   },
   {
     option: "babyCare",

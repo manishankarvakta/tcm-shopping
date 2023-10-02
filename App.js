@@ -17,6 +17,9 @@ import OrderSuccess from "./Screens/OrderScreen/OrderSuccess";
 import SliderTwo from "./Components/SliderTwo";
 import LoginScreen from "./Screens/Auth/LoginScreen";
 import SingleProductsDetailsScreen from "./Screens/SingleProductsDetailsScreen";
+import ForgotPasswordScreen from "./Screens/Auth/ForgotPasswordScreen";
+import { ForgotPassword } from "./Screens";
+import OTPforgotPassword from "./Screens/Auth/OTPforgotPassword";
 
 export default function App() {
   const [token, setToken] = useState(false);
@@ -43,6 +46,7 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
+        {/* <ForgotPasswordScreen /> */}
         <AuthStackNav />
         {/* {token ? <DrawerNav /> : <AuthStackNav />} */}
       </NavigationContainer>

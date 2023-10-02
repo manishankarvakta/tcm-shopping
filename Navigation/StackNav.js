@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Routes from "../Utility/Routes";
+import { Avatar, Button, Icon } from "@rneui/themed";
 
 import { Home, Login, Category, CategoryGroup } from "../Screens";
 
@@ -21,9 +22,19 @@ import ProfileStack from "./ProfileStack";
 import SingleProductsDetailsScreen from "../Screens/SingleProductsDetailsScreen";
 import ManageAddress from "../Screens/Profile/ManageAddress";
 import OrderScreenAddress from "../Screens/OrderScreen/OrderScreenAddress";
-import AuthStackNav from "./AuthStackNav";
-const StackNav = () => {
+import OTPforgotPassword from "../Screens/Auth/OTPforgotPassword";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+const StackNav = ({ navigation }) => {
   const Stack = createNativeStackNavigator();
+
+  const [OrderItem, setOrderItem] = useState("0");
+  const cartItem = useSelector((state) => state.cartReducer.products);
+
+  console.log("OrderItem", OrderItem);
+  useEffect(() => {
+    setOrderItem(cartItem.length);
+  }, [cartItem]);
 
   return (
     <Stack.Navigator>
@@ -101,7 +112,51 @@ const StackNav = () => {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen name={Routes.Tt} component={SingleProductsDetailsScreen} />
+      <Stack.Screen
+        name={Routes.Tt}
+        component={SingleProductsDetailsScreen}
+        options={({ navigation }) => ({
+          // Define custom header with a cart icon on the right
+          headerRight: () => (
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Icon
+                name="shoppingcart"
+                type="antdesign"
+                color={"tomato"}
+                size={28}
+                containerStyle={{ marginHorizontal: 15, position: "relative" }}
+                onPress={() => navigation.navigate(Routes.CART_SCREEN_TAB)}
+              />
+              {OrderItem ? ( // Check if OrderItem is not empty
+                <View
+                  style={{
+                    position: "absolute",
+                    backgroundColor: "red",
+                    width: 16,
+                    height: 16,
+                    borderRadius: 15 / 2,
+                    right: 10,
+                    top: -3, // Remove the + sign here
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#FFFFFF",
+                      fontSize: 8,
+                    }}
+                  >
+                    {OrderItem}
+                  </Text>
+                </View>
+              ) : null}
+            </View>
+          ),
+        })}
+      />
 
       <Stack.Screen
         name={Routes.MANAGE_ADDRESS}

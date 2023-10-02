@@ -23,7 +23,7 @@ function DrawerNav() {
   const navigation = useNavigation();
 
   const handleBackPress = () => {
-    navigation.goBack();
+    navigation.navigate(Routes.HOME);
   };
   const callCustomerSupport = () => {
     Linking.openURL("tel:+1234567890");
